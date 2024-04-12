@@ -1,0 +1,11 @@
+# 控制 chezmoi edit 命令使用的编辑器, code --wait 会确保文件关闭再继续
+# 配置文件在:  ~/.config/chezmoi/chezmoi.toml
+[edit]
+    command = "code"
+    args = ["--wait"]
+
+# 控制 chezmoi diff 命令使用的比较工具
+[diff]
+    command = "code"
+[merge]
+    command = "bash"

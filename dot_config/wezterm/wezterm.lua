@@ -11,7 +11,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
 config.window_background_opacity = 0.9
-config.macos_window_background_blur = 70
+config.macos_window_background_blur = 40
 config.adjust_window_size_when_changing_font_size = false
 config.text_background_opacity = 0.9
 

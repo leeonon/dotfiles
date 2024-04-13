@@ -73,6 +73,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# zsh-autosuggestion 自动补全插件
 plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -160,3 +161,4 @@ export PATH=${MY_PING_PATH}:$PATH
 
 
 source /Users/ly/.config/broot/launcher/bash/br
+eval "$(starship init zsh)"

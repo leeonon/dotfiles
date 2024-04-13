@@ -15,6 +15,10 @@ config.macos_window_background_blur = 40
 config.adjust_window_size_when_changing_font_size = false
 config.text_background_opacity = 0.9
 
+-- 设置 wezterm 窗口大小
+config.initial_rows = 60
+config.initial_cols = 130
+
 config.window_padding = {
 	left = 10,
 	right = 10,

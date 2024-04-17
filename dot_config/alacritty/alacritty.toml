@@ -49,8 +49,9 @@ shape = "Beam"
 size = 14.0
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+# family = "ComicMono NF"
 # family = "Monaspace Argon"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [font.bold]

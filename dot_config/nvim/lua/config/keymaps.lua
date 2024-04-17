@@ -30,9 +30,9 @@ keymap.set('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', {
 keymap.set('n', '<leader>o', '<cmd>Lspsaga outline<cr>', {
   desc = "🔖 Lspaga Outline",
 })
-keymap.set('n', '<leader>t', '<cmd>Lspsaga term_toggle<cr>', {
-  desc = "🖥️ Lspaga 终端",
-})
+-- keymap.set('n', '<leader>t', '<cmd>Lspsaga term_toggle<cr>', {
+--   desc = "🖥️ Lspaga 终端",
+-- })
 -- 全局搜索
 keymap.set('n', '<leader>fw', '<cmd>Telescope live_grep<CR>', {
   desc = "🔍 全局搜索",

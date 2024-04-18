@@ -68,8 +68,16 @@ return {
 			require('github-theme').setup({
 				-- ...
 			})
-			vim.cmd('colorscheme github_dark')
 		end,
+	},
+	{
+			"myypo/borrowed.nvim",
+			lazy = false,
+			priority = 1000,
+			version = '^0', -- Optional: avoid upgrading to breaking versions
+	},
+	{
+		"nyoom-engineering/oxocarbon.nvim"
 	},
   {
     "LazyVim/LazyVim",
@@ -79,6 +87,8 @@ return {
       -- colorscheme = "gruvbox",
       -- colorscheme = "nightfly",
       -- colorscheme = "github_dark_default",
+      -- colorscheme = "mayu", -- shin
+      -- colorscheme = "oxocarbon"
     },
   },
 }

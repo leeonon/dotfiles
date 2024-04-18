@@ -34,6 +34,7 @@ return {
         "dockerfile",
         "gitignore",
         "query",
+        "astro"
       },
     }
   },

@@ -111,7 +111,7 @@ alias la="lsd -la --group-dirs first --icon never --color always | lolcat"
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
-alias nv="neovide"
+alias nv="neovide --title-hidden"
 # 使用 ccat 代替 cat
 alias cat='ccat'
 # bpytop 终端资源监控器

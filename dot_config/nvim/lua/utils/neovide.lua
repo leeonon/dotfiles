@@ -1,7 +1,7 @@
 if vim.g.neovide then
   -- vim.o.guifont = "JetBrainsMono Nerd Font:h14"
   -- vim.o.guifont = "Monaspace Neon:h14"
-  vim.o.guifont = "Comic Mono:h14"
+  vim.o.guifont = "Comic Mono:h16"
   -- vim.o.guifont = "Monaspace Argon:h14"
   vim.opt.linespace = 2
   vim.g.neovide_scale_factor = 1.0
@@ -14,8 +14,8 @@ if vim.g.neovide then
   vim.g.neovide_no_idle = true
   -- 退出需要确认
   vim.g.neovide_confirm_quit = true
-  vim.g.neovide_transparency = 0.9
-  -- vim.g.transparency = 0.8
+  vim.g.neovide_transparency = 0.7
+  -- vim.g.transparency = 0
   vim.g.neovide_window_blurred = true
   vim.g.neovide_floating_blur_amount_x = 1.0
   vim.g.neovide_floating_blur_amount_y = 1.0
@@ -25,10 +25,9 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
 
   vim.g.neovide_floating_shadow = true
-  vim.g.neovide_floating_z_height = 10
+  vim.g.neovide_floating_z_height = 45
   vim.g.neovide_light_angle_degrees = 45
   vim.g.neovide_light_radius = 5
-
 
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
   vim.keymap.set("v", "<D-c>", '"+y') -- Copy

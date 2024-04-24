@@ -15,7 +15,7 @@ return {
         dark = "mocha",
       },
       term_colors = true,
-      transparent_background = false,
+      transparent_background = true,
       styles = {
         comments = {},
         conditionals = {},

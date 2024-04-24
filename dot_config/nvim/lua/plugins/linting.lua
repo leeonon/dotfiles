@@ -15,10 +15,11 @@ return {
       -- typescript = { "eslint_d" },
       -- javascriptreact = { "eslint_d" },
       -- typescriptreact = { "eslint_d" },
-      -- svelte = { "eslint_d" },
+      svelte = { "eslint_d" },
       astro = { "eslint" },
-      svelte = { "eslint" },
+      -- svelte = { "eslint" },
       python = { "pylint" },
-    }
-  }
+    },
+  },
 }
+

@@ -45,18 +45,21 @@ return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function()
-
       -- 宜忌
-      local cmd = "node -e 'console.log(require(\"../../scripts/yiji.js\").getTodayYiJi())'"
+
+      local cmd = "node -e \"console.log(require('${HOME}/.config/nvim/scripts/yiji.js').getTodayYiJi())\""
       local handle = io.popen(cmd)
       local result = handle:read("*a")
+
       handle:close()
+
+      -- vim.notify(tostring(result), vim.log.levels.INFO)
 
       local yi = string.match(result, "yi: '(.*)',")
       if yi then
-          yi = yi
+        yi = "宜: " .. yi
       else
-          yi = "👑"
+        yi = "👑"
       end
       -- 宜忌
       local opts = {
@@ -70,20 +73,20 @@ return {
           packages = { enable = true },
           week_header = {
             enable = true,
-            concat = yi .. " ",
+            concat = yi,
           },
           shortcut = {
             {
-              icon = ' ',
-              icon_hl = '@variable',
-              desc = 'Files',
-              group = 'Label',
-              action = 'Telescope find_files',
-              key = 'f',
+              icon = " ",
+              icon_hl = "@variable",
+              desc = "Files",
+              group = "Label",
+              action = "Telescope find_files",
+              key = "f",
             },
-            { action = "Lazy", group = '@property', desc = " Lazy",icon = "󰒲 ", key = "l" },
-            { action = "LazyExtras", group = 'DiagnosticHint', desc = " Lazy Extras",  icon = " ", key = "x" },
-            { action = "Telescope live_grep",group = 'Number', desc = " Find Text", icon = " ", key = "g" },
+            { action = "Lazy", group = "@property", desc = " Lazy", icon = "󰒲 ", key = "l" },
+            { action = "LazyExtras", group = "DiagnosticHint", desc = " Lazy Extras", icon = " ", key = "x" },
+            { action = "Telescope live_grep", group = "Number", desc = " Find Text", icon = " ", key = "g" },
             { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
             { action = "qa", desc = " Quit", icon = " ", key = "q" },
           },

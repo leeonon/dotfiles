@@ -4,5 +4,6 @@ title-hidden = true
 idle = true
 
 [font]
-normal = "Comic Mono"
+# normal = "Comic Mono"
+normal = "ComicShannsMono Nerd Font"
 size = 16

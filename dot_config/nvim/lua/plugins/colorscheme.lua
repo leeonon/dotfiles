@@ -80,15 +80,29 @@ return {
     "nyoom-engineering/oxocarbon.nvim",
   },
   {
+    "dgox16/oldworld.nvim",
+    lazy = false,
+    priority = 1000,
+    config = true,
+    opts = {
+      styles = {
+        booleans = { bold = true },
+        functions = { italic = true },
+        comments = { italic = true },
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "solarized-osaka",
-      colorscheme = "catppuccin",
+      -- colorscheme = "catppuccin",
       -- colorscheme = "gruvbox",
       -- colorscheme = "nightfly",
       -- colorscheme = "github_dark_default",
       -- colorscheme = "mayu", -- shin
       -- colorscheme = "oxocarbon"
+      colorscheme = "oldworld",
     },
   },
 }

@@ -49,34 +49,34 @@ shape = "Beam"
 size = 15.0
 
 [font.normal]
-# family = "ComicMono NF"
+family = "ComicMono NF"
 # family = "Monaspace Argon"
 # family = "JetBrainsMono Nerd Font"
 # family = "ComicShannsMono Nerd Font"
 # family = "MonoLisa Nerd Font Mono"
-family = "GeistMono Nerd Font"
+# family = "ComicMono NF"
 style = "Regular"
 
 [font.bold]
-family = "GeistMono Nerd Font"
+family = "ComicMono NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "GeistMono Nerd Font"
+family = "ComicMono NF"
 style = "Italic"
 
 [font.italic]
-family = "GeistMono Nerd Font"
+family = "ComicMono NF"
 style = "Italic"
 
-[font.glyph_offset]
-x = 0
-y = 3
+# [font.glyph_offset]
+# x = 0
+# y = 3
 
 
-[font.offset]
-x = 0
-y = 1
+# [font.offset]
+# x = 0
+# y = 1
 
 [[keyboard.bindings]]
 action = "ToggleMaximized"
@@ -623,7 +623,7 @@ mods = "Control"
 
 [scrolling]
 history = 100000
-multiplier = 4
+multiplier = 20
 
 [selection]
 save_to_clipboard = true
@@ -638,7 +638,7 @@ dynamic_padding = true
 dynamic_title = true
 
 [window.dimensions]
-columns = 160
+columns = 130
 lines = 50
 
 [window.padding]

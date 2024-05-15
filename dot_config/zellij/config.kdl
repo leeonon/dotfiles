@@ -1,0 +1,108 @@
+keybinds {
+    resize {
+        bind "h" "Alt h" { Resize "Left"; }
+        bind "l" "Alt l" { Resize "Right"; }
+        bind "j" "Alt j" { Resize "Down"; }
+        bind "k" "Alt k" { Resize "Up"; }
+    }
+}
+
+// 选择在 zellij 接收到 SIGTERM、SIGINT、SIGQUIT 或 SIGHUP 时的操作
+// 例如，当带有活动 zellij 会话的终端窗口关闭时
+// 选项：
+//   - detach（默认）
+//   - quit
+//
+on_force_close "detach"
+
+// 向插件发送一个请求，要求简化的用户界面（不包含箭头字体）
+// 选项：
+//   - true
+//   - false（默认）
+//
+simplified_ui false
+
+// 选择 zellij 用于打开新窗格的默认 shell 的路径
+// 默认：$SHELL
+//
+default_shell "zsh"
+
+// 切换是否在窗格周围显示窗格框架
+// 选项：
+//   - true（默认）
+//   - false
+//
+pane_frames false
+
+// 选择在主题部分中指定的主题
+// 默认：default
+//
+theme "catppuccin-mocha" 
+
+// 默认布局的名称，在启动时加载
+// 默认："default"
+//
+// default_layout "compact"
+
+// 选择 zellij 启动时使用的模式
+// 默认：normal
+//
+default_mode "normal"
+
+// 切换是否启用鼠标模式
+// 在某些配置或终端上，这可能会干扰复制文本
+// 选项：
+//   - true（默认）
+//   - false
+//
+mouse_mode true
+
+// 配置滚动缓冲区大小
+// 这是 zellij 为每个窗格存储的行数
+// 超过行数的部分将以先进先出的方式丢弃
+// 有效值：正整数
+// 默认值：10000
+//
+scroll_buffer_size 10000
+
+// 提供一个在复制文本时执行的命令。文本将被管道传输到该程序的标准输入以执行复制操作。
+// 这可以与不支持 OSC 52 ANSI 控制序列的终端仿真器一起使用，如果未设置此选项，则将使用默认值。
+// 示例：
+//
+// copy_command "xclip -selection clipboard" // x11
+// copy_command "wl-copy"                    // wayland
+// copy_command "pbcopy"                     // osx
+
+// 选择复制文本的目标
+// 允许使用主要选择缓冲区（在 x11/wayland 上）而不是系统剪贴板。
+// 当使用 copy_command 时不适用。
+// 选项：
+//   - system（默认）
+//   - primary
+//
+// copy_clipboard "primary"
+
+// 启用或禁用释放鼠标时自动复制（和清除）选择的文本
+// 默认：true
+//
+// copy_on_select false
+
+// 用于编辑窗格滚动缓冲区的默认编辑器的路径
+// 默认：$EDITOR 或 $VISUAL
+//
+// scrollback_editor "/usr/bin/vim"
+
+// 当连接到其他用户的现有会话时，
+// 会话是否应该被镜像（true）
+// 还是每个用户都有自己的光标（false）
+// 默认：false
+//
+// mirror_session true
+
+// Zellij 将查找布局的文件夹
+//
+// layout_dir /path/to/my/layout_dir
+
+// Zellij 将查找主题的文件夹
+//
+// theme_dir "/path/to/my/theme_dir"

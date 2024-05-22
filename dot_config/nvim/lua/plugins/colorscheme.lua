@@ -85,7 +85,9 @@ return {
     priority = 1000,
     config = true,
     opts = {
+      transparent = true,
       styles = {
+        transparent = true,
         booleans = { bold = true },
         functions = { italic = true },
         comments = { italic = true },
@@ -96,13 +98,13 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "solarized-osaka",
-      -- colorscheme = "catppuccin",
+      colorscheme = "catppuccin",
       -- colorscheme = "gruvbox",
       -- colorscheme = "nightfly",
       -- colorscheme = "github_dark_default",
       -- colorscheme = "mayu", -- shin
       -- colorscheme = "oxocarbon"
-      colorscheme = "oldworld",
+      -- colorscheme = "oldworld",
     },
   },
 }

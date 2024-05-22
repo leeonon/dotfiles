@@ -31,7 +31,7 @@ return {
           hidden = true,
         })
       end,
-      desc = "Lists files in your current working directory, respects .gitignore",
+      desc = "列出当前工作目录中的文件，遵守 .gitignore 文件。",
     },
     {
       "<leader>;r",
@@ -39,7 +39,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.live_grep()
       end,
-      desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+      desc = "在您当前的工作目录中搜索字符串，并在您输入时实时获取结果，遵守.gitignore文件。",
     },
     {
       "\\\\",
@@ -47,7 +47,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.buffers()
       end,
-      desc = "Lists open buffers",
+      desc = "列出打开的缓冲区",
     },
     {
       "<leader>;t",
@@ -55,7 +55,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.help_tags()
       end,
-      desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
+      desc = "列出可用的帮助标签，并在按下<cr>时打开一个新窗口，显示相关的帮助信息。",
     },
     {
       "<leader>;;",
@@ -63,7 +63,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.resume()
       end,
-      desc = "Resume the previous telescope picker",
+      desc = "恢复之前的望远镜选择器",
     },
     {
       "<leader>;e",
@@ -71,7 +71,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.diagnostics()
       end,
-      desc = "Lists Diagnostics for all open buffers or a specific buffer",
+      desc = "列出所有打开的缓冲区或特定缓冲区的诊断信息。",
     },
     {
       "<leader>;s",
@@ -79,7 +79,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.treesitter()
       end,
-      desc = "Lists Function names, variables, from Treesitter",
+      desc = "列出函数名称、变量，来自Treesitter",
     },
     {
       "sf",
@@ -101,7 +101,7 @@ return {
           layout_config = { height = 40 },
         })
       end,
-      desc = "Open File Browser with the path of the current buffer",
+      desc = "使用当前缓冲区的路径打开文件浏览器",
     },
     {
       "<leader>;gb",
@@ -109,7 +109,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.git_branches()
       end,
-      desc = "Lists All Git Branches",
+      desc = "列出所有的Git分支",
     },
     {
       "<leader>;gc",
@@ -117,7 +117,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.git_bcommits_range()
       end,
-      desc = "Lists Current Buffer Git Commit ",
+      desc = "列出当前缓冲区的 Git 提交",
     },
     {
       "<leader>;gs",
@@ -125,7 +125,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.git_status()
       end,
-      desc = "Lists All Files in Git Status",
+      desc = "列出Git状态中的所有文件",
     },
   },
   config = function(_, opts)

@@ -27,7 +27,8 @@ white = "#edecee"
 yellow = "#ffca85"
 
 [colors.primary]
-background = "#15141b"
+# background = "#15141b"
+background = "#000000"
 foreground = "#edecee"
 
 [colors.search.focused_match]
@@ -46,37 +47,29 @@ text = "CellForeground"
 shape = "Beam"
 
 [font]
-size = 15.0
+size = 14.0
 
 [font.normal]
-family = "ComicMono NF"
+# family = "ComicMono NF"
 # family = "Monaspace Argon"
-# family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 # family = "ComicShannsMono Nerd Font"
 # family = "MonoLisa Nerd Font Mono"
 # family = "ComicMono NF"
 style = "Regular"
 
 [font.bold]
-family = "ComicMono NF"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "ComicMono NF"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.italic]
-family = "ComicMono NF"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
-# [font.glyph_offset]
-# x = 0
-# y = 3
-
-
-# [font.offset]
-# x = 0
-# y = 1
 
 [[keyboard.bindings]]
 action = "ToggleMaximized"
@@ -638,9 +631,9 @@ dynamic_padding = true
 dynamic_title = true
 
 [window.dimensions]
-columns = 130
-lines = 50
+columns = 165
+lines = 40
 
 [window.padding]
-x = 2
-y = 0
+x = 15
+y = 15

@@ -30,8 +30,8 @@ local theme = {
   normal = {
     a = { fg = colors.bg_dark, bg = colors.blue },
     b = { fg = colors.blue, bg = colors.white },
-    c = { fg = colors.white, bg = colors.bg_dark },
-    z = { fg = colors.white, bg = colors.bg_dark },
+    c = { fg = colors.white, bg = "None" },
+    z = { fg = colors.white, bg = "None" },
   },
   insert = { a = { fg = colors.bg_dark, bg = colors.orange } },
   visual = { a = { fg = colors.bg_dark, bg = colors.green } },
@@ -42,7 +42,7 @@ local space = {
   function()
     return " "
   end,
-  color = { bg = colors.bg_dark, fg = colors.blue },
+  color = { bg = "None", fg = colors.blue },
 }
 
 local filename = {
@@ -82,6 +82,18 @@ local diff = {
     modified = { fg = colors.yellow },
     removed = { fg = colors.red },
   },
+}
+
+local vimIcon = {
+  function()
+    return ""
+  end,
+  color = {
+    bg = "None",
+    fg = colors.green,
+    gui = "bold",
+  },
+  padding = { right = 2, left = 1 },
 }
 
 local modes = {
@@ -213,13 +225,13 @@ return {
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
       sections = {
-        lualine_a = { modes },
+        lualine_a = { vimIcon, modes },
         lualine_b = { space },
         lualine_c = {
           -- lazyvim normal
-          LazyVim.lualine.root_dir(),
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path() },
+          -- LazyVim.lualine.root_dir(),
+          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          -- { LazyVim.lualine.pretty_path() },
           --
           filename,
           filetype,
@@ -262,7 +274,8 @@ return {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },
           -- { "location", padding = { left = 0, right = 1 } },
           space,
-          macro, space
+          macro,
+          space,
         },
         lualine_z = {
           -- function()

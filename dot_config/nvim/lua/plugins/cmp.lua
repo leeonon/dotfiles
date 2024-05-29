@@ -54,7 +54,7 @@ local function mapping(is_cmdline)
   local luasnip = require "luasnip"
 
   return {
-    ["<CR>"] = cmp.config.disable,
+    -- ["<CR>"] = cmp.config.disable,
     -- ctrl + e关闭补全窗口
     -- <C-n> and <C-p> for navigating snippets
     ["<C-N>"] = cmp.mapping(function()
@@ -72,21 +72,43 @@ local function mapping(is_cmdline)
       end
     end, { "i", "c" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if is_cmdline then
-        if cmp.visible() then
-          cmp.confirm()
-        else
-          fallback()
-        end
+      if cmp.visible() then
+        cmp.select_next_item()
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+        -- this way you will only jump inside the snippet region
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
       else
-        if cmp.visible() and has_words_before() then
-          cmp.confirm { select = true }
-        else
-          fallback()
-        end
+        fallback()
       end
-    end, { "i", "c" }),
-    ["<S-Tab>"] = cmp.config.disable,
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    --   if is_cmdline then
+    --     if cmp.visible() then
+    --       cmp.confirm()
+    --     else
+    --       fallback()
+    --     end
+    --   else
+    --     if cmp.visible() and has_words_before() then
+    --       cmp.confirm { select = true }
+    --     else
+    --       fallback()
+    --     end
+    --   end
+    -- end, { "i", "c" }),
+    -- ["<S-Tab>"] = cmp.config.disable,
   }
 end
 

@@ -3,7 +3,8 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.font_size = 14.0
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular" })
+-- config.font = wezterm.font('JetBrains Mono', { weight = 'Medium' })
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" })
 -- config.font = wezterm.font("ComicShannsMono Nerd Font", { weight = "Regular" })
 -- config.font = wezterm.font("Monaspace Neon", { weight = "Regular" })
 -- config.font = wezterm.font("RecMonoDuotone Nerd Font", { weight = "Regular" })
@@ -12,7 +13,7 @@ config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 config.macos_window_background_blur = 20
 config.adjust_window_size_when_changing_font_size = false
 config.term = "xterm-256color"

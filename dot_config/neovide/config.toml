@@ -3,7 +3,7 @@ frame = "transparent"
 title-hidden = true
 idle = true
 
-[font]
+# [font]
 # normal = "Comic Mono"
-normal = "ComicShannsMono Nerd Font"
-size = 16
+# normal = "ComicShannsMono Nerd Font"
+# size = 16

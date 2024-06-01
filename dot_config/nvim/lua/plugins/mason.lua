@@ -17,9 +17,9 @@ return {
     mason.setup({
       ui = {
         icons = {
-          package_installed = '✅',
-          package_pending = '➡️',
-          package_uninstalled = '❌',
+          package_installed = "✅",
+          package_pending = "➡️",
+          package_uninstalled = "❌",
         },
       },
     })
@@ -36,7 +36,9 @@ return {
         "graphql",
         "emmet_ls",
         "prismals",
-        "pyright",
+        "lua_ls",
+        "rust-analyzer",
+        "cssmodules_ls",
       },
     })
 
@@ -44,10 +46,9 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "isort", -- python formatter
-        "black", -- python formatter
-        "pylint",
         "eslint_d",
+        "prisma-language-server",
+        "markdownlint",
       },
     })
   end,

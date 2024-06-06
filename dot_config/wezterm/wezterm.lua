@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 config.font_size = 14.0
 -- config.font = wezterm.font('JetBrains Mono', { weight = 'Medium' })
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" })
 -- config.font = wezterm.font("ComicShannsMono Nerd Font", { weight = "Regular" })
 -- config.font = wezterm.font("Monaspace Neon", { weight = "Regular" })
 -- config.font = wezterm.font("RecMonoDuotone Nerd Font", { weight = "Regular" })
@@ -28,6 +28,7 @@ config.color_schemes = {
 	["Costom Catppuccin Mocha"] = custom,
 }
 config.color_scheme = "Custom Catppuccin Mocha"
+config.color_scheme = "Catppuccin Mocha"
 
 -- 设置 wezterm 窗口大小
 config.initial_rows = 45

@@ -14,6 +14,18 @@ return {
       })
     end,
   },
+  {
+    "nvim-tree/nvim-web-devicons",
+    opts = {
+      override_by_extension = {
+        ["astro"] = {
+          icon = "",
+          color = "#f1502f",
+          name = "Astro",
+        },
+      },
+    },
+  },
   --   {
   --     "nvimdev/dashboard-nvim",
   --     event = "VimEnter",

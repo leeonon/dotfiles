@@ -28,7 +28,8 @@ yellow = "#ffca85"
 
 [colors.primary]
 # background = "#15141b"
-background = "#000000"
+# background = "#000000"
+background = "#021727"
 foreground = "#edecee"
 
 [colors.search.focused_match]
@@ -45,49 +46,50 @@ text = "CellForeground"
 
 [cursor.style]
 shape = "Beam"
-
-# [font]
-# size = 14.0
-#
-# [font.normal]
-# # family = "ComicMono NF"
-# # family = "Monaspace Argon"
-# family = "JetBrainsMono Nerd Font"
-# # family = "ComicShannsMono Nerd Font"
-# # family = "MonoLisa Nerd Font Mono"
-# # family = "ComicMono NF"
-# style = "Regular"
-#
-# [font.bold]
-# family = "JetBrainsMono Nerd Font"
-# style = "Bold"
-#
-# [font.bold_italic]
-# family = "JetBrainsMono Nerd Font"
-# style = "Italic"
-#
-# [font.italic]
-# family = "JetBrainsMono Nerd Font"
-# style = "Italic"
+blinking = "On"
 
 [font]
 size = 14.0
 
+[font.normal]
+# family = "ComicMono NF"
+# family = "Monaspace Argon"
+# family = "JetBrainsMono Nerd Font"
+family = "ComicShannsMono Nerd Font"
+# family = "MonoLisa Nerd Font Mono"
+# family = "ComicMono NF"
+style = "Regular"
+
 [font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "Heavy"
+family = "ComicShannsMono Nerd Font"
+style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Heavy Italic"
+family = "ComicShannsMono Nerd Font"
+style = "Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
-style = "Medium Italic"
+family = "ComicShannsMono Nerd Font"
+style = "Italic"
 
-[font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Medium"
+# [font]
+# size = 14.0
+#
+# [font.bold]
+# family = "JetBrainsMono Nerd Font"
+# style = "Heavy"
+#
+# [font.bold_italic]
+# family = "JetBrainsMono Nerd Font"
+# style = "Heavy Italic"
+#
+# [font.italic]
+# family = "JetBrainsMono Nerd Font"
+# style = "Medium Italic"
+#
+# [font.normal]
+# family = "JetBrainsMono Nerd Font"
+# style = "Medium"
 
 [scrolling]
 history = 100000
@@ -100,7 +102,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 [window]
 # decorations = "transparent"
 decorations = "buttonless"
-opacity = 0.8
+opacity = 0.9
 blur = true
 dynamic_padding = false
 dynamic_title = true
@@ -110,8 +112,8 @@ columns = 165
 lines = 40
 
 [window.padding]
-x = 0
-y = 0
+x = 5
+y = 10
 
 [[keyboard.bindings]]
 key = "Comma"
@@ -252,5 +254,3 @@ mods = "Control"
 chars = "\u001B[59;5u"
 key = "Equals"
 mods = "Control"
-
-

@@ -39,6 +39,7 @@ return {
         "lua_ls",
         "rust-analyzer",
         "cssmodules_ls",
+        "mdx-analyzer",
       },
     })
 

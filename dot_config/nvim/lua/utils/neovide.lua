@@ -25,6 +25,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
 
   vim.g.neovide_floating_shadow = true
+  -- vim.g.neovide_background_color = ""
 
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
   vim.keymap.set("v", "<D-c>", '"+y') -- Copy

@@ -45,28 +45,36 @@
 
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local function mapping(is_cmdline)
-  if is_cmdline == nil then is_cmdline = false end
-  local cmp = require "cmp"
-  local luasnip = require "luasnip"
+  if is_cmdline == nil then
+    is_cmdline = false
+  end
+  local cmp = require("cmp")
+  local luasnip = require("luasnip")
 
   return {
     -- ["<CR>"] = cmp.config.disable,
     -- ctrl + e关闭补全窗口
     -- <C-n> and <C-p> for navigating snippets
     ["<C-N>"] = cmp.mapping(function()
-      if luasnip.jumpable(1) then luasnip.jump(1) end
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      end
     end, { "i", "c" }),
     ["<C-P>"] = cmp.mapping(function()
-      if luasnip.jumpable(-1) then luasnip.jump(-1) end
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      end
     end, { "i", "c" }),
-    ["<C-K>"] = cmp.mapping(function() cmp.select_prev_item { behavior = cmp.SelectBehavior.Select } end, { "i", "c" }),
+    ["<C-K>"] = cmp.mapping(function()
+      cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+    end, { "i", "c" }),
     ["<C-J>"] = cmp.mapping(function()
       if cmp.visible() then
-        cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
       else
         cmp.complete()
       end
@@ -113,7 +121,9 @@ local function mapping(is_cmdline)
 end
 
 local function trim(s)
-  if s == nil then return "" end
+  if s == nil then
+    return ""
+  end
   return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
@@ -128,7 +138,7 @@ end
 local formatting_style = {
   fields = { "kind", "abbr", "menu" },
   format = function(_, item)
-    local icons = require "icons.lspkind"
+    local icons = require("icons.lspkind")
     local icon = icons[item.kind] or ""
     item.kind = string.format("%s", icon)
     item.abbr = trim(item.abbr)
@@ -146,7 +156,7 @@ return {
       keys = { ":", "/", "?" }, -- lazy load cmp on more keys along with insert mode
       dependencies = { "hrsh7th/nvim-cmp" },
       opts = function()
-        local cmp = require "cmp"
+        local cmp = require("cmp")
         return {
           {
             type = "/",
@@ -172,8 +182,10 @@ return {
         }
       end,
       config = function(_, opts)
-        local cmp = require "cmp"
-        vim.tbl_map(function(val) cmp.setup.cmdline(val.type, val) end, opts)
+        local cmp = require("cmp")
+        vim.tbl_map(function(val)
+          cmp.setup.cmdline(val.type, val)
+        end, opts)
       end,
     },
     "hrsh7th/cmp-calc",
@@ -182,8 +194,8 @@ return {
     "kdheepak/cmp-latex-symbols",
   },
   opts = function(_, opts)
-    local cmp = require "cmp"
-    local compare = require "cmp.config.compare"
+    local cmp = require("cmp")
+    local compare = require("cmp.config.compare")
 
     opts.mapping = vim.tbl_extend("force", opts.mapping, mapping())
     opts.window = {
@@ -193,7 +205,7 @@ return {
       },
     }
     opts.formatting = formatting_style
-    opts.sources = cmp.config.sources {
+    opts.sources = cmp.config.sources({
       { name = "nvim_lsp", priority = 1000 },
       { name = "luasnip", priority = 750 },
       { name = "pandoc_references", priority = 725 },
@@ -202,7 +214,7 @@ return {
       { name = "calc", priority = 650 },
       { name = "path", priority = 500 },
       { name = "buffer", priority = 250 },
-    }
+    })
     opts.sorting = {
       comparators = {
         compare.offset,
@@ -210,8 +222,8 @@ return {
         compare.score,
         compare.recently_used,
         function(entry1, entry2)
-          local _, entry1_under = entry1.completion_item.label:find "^_+"
-          local _, entry2_under = entry2.completion_item.label:find "^_+"
+          local _, entry1_under = entry1.completion_item.label:find("^_+")
+          local _, entry2_under = entry2.completion_item.label:find("^_+")
           entry1_under = entry1_under or 0
           entry2_under = entry2_under or 0
           if entry1_under > entry2_under then

@@ -129,37 +129,37 @@ return {
     lazy = false,
     priority = 1000,
     config = true,
-    opts = {
-      transparent = true,
-      styles = {
-        transparent = true,
-        booleans = { bold = true },
-        functions = { italic = true },
-        comments = { italic = true },
-      },
-    },
+    -- opts = {
+    --   transparent = true,
+    --   styles = {
+    --     transparent = true,
+    --     booleans = { bold = true },
+    --     functions = { italic = true },
+    --     comments = { italic = true },
+    --   },
+    -- },
   },
   {
     "AlexvZyl/nordic.nvim",
     lazy = false,
     priority = 1000,
   },
-  {
-    "oxfist/night-owl.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    name = "night-owl",
-    config = function()
-      require("night-owl").setup({
-        bold = true,
-        italics = true,
-        underline = true,
-        undercurl = true,
-        transparent_background = true,
-      })
-      vim.cmd.colorscheme("night-owl")
-    end,
-  },
+  -- {
+  --   "oxfist/night-owl.nvim",
+  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   name = "night-owl",
+  --   config = function()
+  --     require("night-owl").setup({
+  --       bold = true,
+  --       italics = true,
+  --       underline = true,
+  --       undercurl = true,
+  --       transparent_background = true,
+  --     })
+  --     vim.cmd.colorscheme("night-owl")
+  --   end,
+  -- },
   {
     "LazyVim/LazyVim",
     opts = {
@@ -170,10 +170,10 @@ return {
       -- colorscheme = "nightfly",
       -- colorscheme = "github_dark_default",
       -- colorscheme = "mayu", -- shin
-      -- colorscheme = "oxocarbon"
-      -- colorscheme = "oldworld",
+      -- colorscheme = "oxocarbon",
+      colorscheme = "oldworld",
       -- colorscheme = "nordic",
-      colorscheme = "night-owl",
+      -- colorscheme = "night-owl",
     },
   },
 }

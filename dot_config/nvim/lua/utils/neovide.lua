@@ -14,7 +14,7 @@ if vim.g.neovide then
   vim.g.neovide_no_idle = true
   -- 退出需要确认
   vim.g.neovide_confirm_quit = true
-  vim.g.neovide_transparency = 0.95
+  vim.g.neovide_transparency = 0.9
   -- vim.g.transparency = 0
   vim.g.neovide_window_blurred = true
   vim.g.neovide_floating_blur_amount_x = 2.0

@@ -10,8 +10,10 @@ return {
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   keys = {
-    { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-    { "<leader><tab>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    -- { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    -- { "<leader><tab>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    { "<leader><tab>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    { "<leader>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
   },
   opts = {
     sources = { "filesystem", "git_status", "buffers" },
@@ -21,8 +23,8 @@ return {
       statusline = false,
     },
     window = {
-      -- position = "left",
-      position = "float",
+      position = "left",
+      -- position = "float",
       mappings = {
         ["o"] = "open",
         ["e"] = function()
@@ -45,7 +47,7 @@ return {
           end
         end,
       },
-      width = 35,
+      width = 45,
     },
     close_if_last_window = true, --关闭最后一个窗口时关闭 neotree
     popup_border_style = "rounded", --弹窗边框样式
@@ -55,9 +57,23 @@ return {
     sort_case_insensitive = true, --忽略大小写排序
     default_component_configs = {
       indent = {
-        with_markers = true,
-        with_expanders = true,
+        indent_size = 2,
+        padding = 1, -- extra padding on left hand side
+        -- indent guides
+        with_markers = false, -- 是否展示缩进线
+        indent_marker = "│", -- 缩进线样式
+        last_indent_marker = "└", -- 最后一行缩进线样式
+        highlight = "NeoTreeIndentMarker",
+        -- expander config, needed for nesting files
+        with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+        expander_collapsed = "",
+        expander_expanded = "",
+        expander_highlight = "NeoTreeExpander",
       },
+      -- indent = {
+      --   with_markers = true,
+      --   with_expanders = true,
+      -- },
       modified = {
         symbol = " ",
         highlight = "NeoTreeModified",

@@ -130,6 +130,8 @@ alias yabaistart='yabai --start-service'
 # skhd 命令
 alias skhdstop='skhd --stop-service'
 alias skhdstart='skhd --start-service'
+# mactop 查看 CPU 使用情况
+alias cpu='sudo mactop'
 
 # homebrew 安装的软件的环境变量
 eval export HOMEBREW_PREFIX="/opt/homebrew";

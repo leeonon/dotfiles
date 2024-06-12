@@ -33,13 +33,12 @@ return {
         "tailwindcss",
         "svelte",
         "lua_ls",
-        "graphql",
+        -- "graphql",
         "emmet_ls",
         "prismals",
         "lua_ls",
         "rust-analyzer",
-        "cssmodules_ls",
-        "mdx-analyzer",
+        -- "cssmodules_ls",
       },
     })
 

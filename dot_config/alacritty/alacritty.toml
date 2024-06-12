@@ -48,48 +48,48 @@ text = "CellForeground"
 shape = "Beam"
 blinking = "On"
 
-[font]
-size = 14.0
-
-[font.normal]
-# family = "ComicMono NF"
-# family = "Monaspace Argon"
-# family = "JetBrainsMono Nerd Font"
-family = "ComicShannsMono Nerd Font"
-# family = "MonoLisa Nerd Font Mono"
-# family = "ComicMono NF"
-style = "Regular"
-
-[font.bold]
-family = "ComicShannsMono Nerd Font"
-style = "Bold"
-
-[font.bold_italic]
-family = "ComicShannsMono Nerd Font"
-style = "Italic"
-
-[font.italic]
-family = "ComicShannsMono Nerd Font"
-style = "Italic"
-
 # [font]
 # size = 14.0
 #
+# [font.normal]
+# # family = "ComicMono NF"
+# # family = "Monaspace Argon"
+# # family = "JetBrainsMono Nerd Font"
+# family = "ComicShannsMono Nerd Font"
+# # family = "MonoLisa Nerd Font Mono"
+# # family = "ComicMono NF"
+# style = "Regular"
+#
 # [font.bold]
-# family = "JetBrainsMono Nerd Font"
-# style = "Heavy"
+# family = "ComicShannsMono Nerd Font"
+# style = "Bold"
 #
 # [font.bold_italic]
-# family = "JetBrainsMono Nerd Font"
-# style = "Heavy Italic"
+# family = "ComicShannsMono Nerd Font"
+# style = "Italic"
 #
 # [font.italic]
-# family = "JetBrainsMono Nerd Font"
-# style = "Medium Italic"
-#
-# [font.normal]
-# family = "JetBrainsMono Nerd Font"
-# style = "Medium"
+# family = "ComicShannsMono Nerd Font"
+# style = "Italic"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Medium"
 
 [scrolling]
 history = 100000
@@ -112,8 +112,8 @@ columns = 165
 lines = 40
 
 [window.padding]
-x = 5
-y = 10
+x = 0
+y = 0
 
 [[keyboard.bindings]]
 key = "Comma"
@@ -217,7 +217,7 @@ chars = "\u0002\u006e"
 # Type <escape>:w<enter> to save neovim
 key = "S"
 mods = "Command"
-chars = "\u001b\u003a\u0077\u000a"
+chars = "\u001b:w\r"
 
 [[keyboard.bindings]]
 # Create a new tmux window
@@ -238,7 +238,7 @@ mods = "Command"
 chars = "\u0002\u0078"
 
 [[keyboard.bindings]]
-# Toggle the zoom state of the current tmux pane
+# Toggle the zoom state of the current tmux paneala
 key = "Z"
 mods = "Command"
 chars = "\u0002\u007a"

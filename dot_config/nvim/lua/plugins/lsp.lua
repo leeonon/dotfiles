@@ -5,6 +5,7 @@ return {
       ["rust_analyzer"] = {
         settings = {
           cargo = { allFeatures = true },
+          hint = { enable = true },
         },
       },
       lua_ls = {

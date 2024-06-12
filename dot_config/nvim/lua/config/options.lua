@@ -10,3 +10,4 @@ vim.opt.fileencoding = "utf-8"
 -- vim.opt.spell = true
 -- vim.opt.spelllang = { "en", "cjk" }
 vim.g.transparent_background = true
+vim.g.autoformat = true

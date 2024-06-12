@@ -1,11 +1,11 @@
 return {
   "gen740/SmoothCursor.nvim",
-  enabled = false,
+  enabled = true,
   config = function()
     require("smoothcursor").setup({
       cursor = "👉",
       fancy = {
-        enable = false,
+        enable = true,
         head = { cursor = "👉" },
       },
     })

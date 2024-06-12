@@ -10,11 +10,14 @@ return {
     "kkoomen/vim-doge",
     event = "BufRead",
     keys = {
-      -- {
-      --   "<leader>d",
-      --   "<cmd>DogeGenerate<CR>",
-      --   desc = "🐕 Doc",
-      -- },
+      {
+        "<leader>d",
+        "<cmd>DogeGenerate<CR>",
+        desc = "🐕 Doc",
+      },
     },
   },
+  {
+    "editorconfig/editorconfig-vim",
+  }
 }

@@ -107,7 +107,7 @@ return {
   },
   {
     "projekt0n/github-nvim-theme",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require("github-theme").setup({
@@ -144,6 +144,14 @@ return {
     lazy = false,
     priority = 1000,
   },
+  {
+    "sainnhe/everforest",
+    priority = 1000,
+    config = function()
+      vim.g.everforest_enable_italic = true
+      vim.g.everforest_transparent_background = true
+    end,
+  },
   -- {
   --   "oxfist/night-owl.nvim",
   --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -171,9 +179,10 @@ return {
       -- colorscheme = "github_dark_default",
       -- colorscheme = "mayu", -- shin
       -- colorscheme = "oxocarbon",
-      colorscheme = "oldworld",
+      -- colorscheme = "oldworld",
       -- colorscheme = "nordic",
       -- colorscheme = "night-owl",
+      colorscheme = "everforest",
     },
   },
 }

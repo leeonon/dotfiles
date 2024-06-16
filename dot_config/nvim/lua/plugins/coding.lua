@@ -5,19 +5,7 @@ return {
     cmd = "IncRename",
     config = true,
   },
-  -- jsdoc
-  {
-    "kkoomen/vim-doge",
-    event = "BufRead",
-    keys = {
-      {
-        "<leader>d",
-        "<cmd>DogeGenerate<CR>",
-        desc = "🐕 Doc",
-      },
-    },
-  },
   {
     "editorconfig/editorconfig-vim",
-  }
+  },
 }

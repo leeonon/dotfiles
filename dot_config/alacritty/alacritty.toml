@@ -48,8 +48,8 @@ text = "CellForeground"
 shape = "Beam"
 blinking = "On"
 
-# [font]
-# size = 14.0
+[font]
+size = 15.0
 #
 # [font.normal]
 # # family = "ComicMono NF"
@@ -72,8 +72,22 @@ blinking = "On"
 # family = "ComicShannsMono Nerd Font"
 # style = "Italic"
 
-[font]
-size = 14.0
+# [font.normal]
+# family = "RecMonoCasual Nerd Font Mono"
+# style = "Regular"
+#
+# [font.bold]
+# family = "RecMonoCasual Nerd Font Mono"
+# style = "Bold"
+#
+# [font.bold_italic]
+# family = "RecMonoCasual Nerd Font Mono"
+# style = "Italic"
+#
+# [font.italic]
+# family = "RecMonoCasual Nerd Font Mono"
+# style = "Italic"
+
 
 [font.normal]
 family = "GeistMono Nerd Font"
@@ -90,7 +104,7 @@ style = "Italic"
 [font.italic]
 family = "GeistMono Nerd Font"
 style = "Italic"
-
+#
 [scrolling]
 history = 100000
 multiplier = 20
@@ -102,7 +116,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 [window]
 # decorations = "transparent"
 decorations = "buttonless"
-opacity = 0.9
+opacity = 0.8
 blur = true
 dynamic_padding = false
 dynamic_title = true

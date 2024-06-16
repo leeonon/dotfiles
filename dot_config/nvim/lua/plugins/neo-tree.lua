@@ -84,6 +84,11 @@ return {
         folder_empty = "",
         folder_empty_open = "",
       },
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
+      },
       git_status = {
         symbols = {
           -- Change type

@@ -43,7 +43,7 @@ return {
       end
     end
 
-    vim.keymap.set("n", "<space>k", show_documentation, { silent = true })
+    vim.keymap.set("n", "<space>k", show_documentation, { silent = true, desc = "📚  Lspsaga Hover 面板" })
 
     -- error lens
     vim.fn.sign_define({

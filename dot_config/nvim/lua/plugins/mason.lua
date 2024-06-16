@@ -35,17 +35,22 @@ return {
         "lua_ls",
         "emmet_ls",
         "prismals",
-        "lua_ls",
         "rust-analyzer",
-        "eslint",
+        "cssls",
+        "cssmodules_ls",
+        "astro",
+        -- eslint 无法自动Fix问题
+        -- https://github.com/neovim/nvim-lspconfig/issues/3146
+        -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-141868488
+        -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-142170603
+        "eslint"
       },
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
-        "stylua", -- lua formatter
-        "eslint_d",
+        "stylua",   -- lua formatter
         "prisma-language-server",
         "markdownlint",
       },

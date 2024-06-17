@@ -5,19 +5,13 @@ local h = require("utils/helpers")
 local config = wezterm.config_builder()
 local act = wezterm.action
 
-config.font_size = 14.0
--- config.font = wezterm.font("JetBrains Mono", { weight = "Medium" })
--- config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" })
--- config.font = wezterm.font("ComicShannsMono Nerd Font Mono", { weight = "Bold" })
--- config.font = wezterm.font("ComicMono NF")
--- config.font = wezterm.font("Monaspace Neon", { weight = "Regular" })
--- config.font = wezterm.font("GeistMono Nerd Font", { weight = "Medium" })
--- config.font = wezterm.font("BlexMono Nerd Font Mono", { weight = "Medium", })
---
+config.font_size = 15.0
 config.font = wezterm.font_with_fallback {
+  'ComicMono NF',
   { family = 'GeistMono Nerd Font',     weight = 'Medium' },
   { family = 'BlexMono Nerd Font Mono', weight = 'Medium' },
   'JeBrainsMono Nerd Font',
+  'ComicShannsMono Nerd Font Mono'
 }
 config.font_rules = {
   {
@@ -71,12 +65,12 @@ config.color_scheme = "Custom Catppuccin Mocha"
 -- config.color_scheme = "Catppuccin Mocha"
 
 -- 设置 wezterm 窗口大小
-config.initial_rows = 55
+config.initial_rows = 45
 config.initial_cols = 150
 
 config.window_padding = {
-  left = 0,
-  right = 0,
+  left = 5,
+  right = 5,
   top = 0,
   bottom = 0,
 }

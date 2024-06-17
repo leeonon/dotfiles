@@ -20,8 +20,8 @@ return {
     autocmd("BufWritePre", {
       pattern = "*.ts,*.tsx,*.jsx,*.js",
       callback = function(args)
-        vim.cmd("TSToolsAddMissingImports sync") --  添加缺失的导入
-        vim.cmd("TSToolsOrganizeImports sync") -- 组织导入顺序
+        vim.cmd("TSToolsAddMissingImports sync")        --  添加缺失的导入
+        vim.cmd("TSToolsOrganizeImports sync")          -- 组织导入顺序
         require("conform").format({ bufnr = args.buf }) -- 使用 conform 格式化文件
       end,
     })

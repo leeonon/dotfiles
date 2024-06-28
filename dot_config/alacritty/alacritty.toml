@@ -3,91 +3,87 @@ live_config_reload = true
 [colors]
 draw_bold_text_with_bright_colors = false
 
-[colors.bright]
-black = "#4d4d4d"
-blue = "#a277ff"
-cyan = "#61ffca"
-green = "#61ffca"
-magenta = "#a277ff"
-red = "#ff6767"
-white = "#edecee"
-yellow = "#ffca85"
+# [colors.bright]
+# black = "#4d4d4d"
+# blue = "#a277ff"
+# cyan = "#61ffca"
+# green = "#61ffca"
+# magenta = "#a277ff"
+# red = "#ff6767"
+# white = "#edecee"
+# yellow = "#ffca85"
+#
+# [colors.cursor]
+# cursor = "#a277ff"
+#
+# [colors.normal]
+# black = "#110f18"
+# blue = "#a277ff"
+# cyan = "#61ffca"
+# green = "#61ffca"
+# magenta = "#a277ff"
+# red = "#ff6767"
+# white = "#edecee"
+# yellow = "#ffca85"
+#
+# [colors.primary]
+# # background = "#15141b"
+# background = "#000000"
+# # background = "#021727"
+# # foreground = "#edecee"
+#
+# [colors.search.focused_match]
+# background = "#9F7AF5"
+# foreground = "#ffffff"
+#
+# [colors.search.matches]
+# background = "#ffffff"
+# foreground = "#000000"
+#
+# [colors.selection]
+# background = "#29263c"
+# text = "CellForeground"
+
+# Default colorss
+[colors.primary]
+background = '#121212'
+foreground = '#F9F9F9'
 
 [colors.cursor]
-cursor = "#a277ff"
+text = '#F9F9F9'
+cursor = '#BFBFBF'
 
+# Normal colorss
 [colors.normal]
-black = "#110f18"
-blue = "#a277ff"
-cyan = "#61ffca"
-green = "#61ffca"
-magenta = "#a277ff"
-red = "#ff6767"
-white = "#edecee"
-yellow = "#ffca85"
+black = '#232323'
+red = '#FF5454'
+green = '#00CC7A'
+yellow = '#FFD700'
+blue = '#00bFFF'
+magenta = '#FF00FF'
+cyan = '#48d1cc'
+white = '#bfbfbf'
 
-[colors.primary]
-# background = "#15141b"
-# background = "#000000"
-background = "#021727"
-foreground = "#edecee"
-
-[colors.search.focused_match]
-background = "#9F7AF5"
-foreground = "#ffffff"
-
-[colors.search.matches]
-background = "#ffffff"
-foreground = "#000000"
-
-[colors.selection]
-background = "#29263c"
-text = "CellForeground"
+# Bright colorss
+[colors.bright]
+black = '#767c77'
+red = '#ff1a75'
+green = '#1affa3'
+yellow = '#ffff00'
+blue = '#28c9ff'
+magenta = '#ff33ff'
+cyan = '#09fff2'
+white = '#f9f9f9'
 
 [cursor.style]
 shape = "Beam"
 blinking = "On"
 
 [font]
-size = 15.0
-#
-# [font.normal]
-# # family = "ComicMono NF"
-# # family = "Monaspace Argon"
-# # family = "JetBrainsMono Nerd Font"
-# family = "ComicShannsMono Nerd Font"
-# # family = "MonoLisa Nerd Font Mono"
-# # family = "ComicMono NF"
-# style = "Regular"
-#
-# [font.bold]
-# family = "ComicShannsMono Nerd Font"
-# style = "Bold"
-#
-# [font.bold_italic]
-# family = "ComicShannsMono Nerd Font"
-# style = "Italic"
-#
-# [font.italic]
-# family = "ComicShannsMono Nerd Font"
-# style = "Italic"
+size = 15
 
-# [font.normal]
-# family = "RecMonoCasual Nerd Font Mono"
-# style = "Regular"
-#
-# [font.bold]
-# family = "RecMonoCasual Nerd Font Mono"
-# style = "Bold"
-#
-# [font.bold_italic]
-# family = "RecMonoCasual Nerd Font Mono"
-# style = "Italic"
-#
-# [font.italic]
-# family = "RecMonoCasual Nerd Font Mono"
-# style = "Italic"
-
+[font.offset]
+y = 3
 
 [font.normal]
 family = "GeistMono Nerd Font"
@@ -104,7 +100,7 @@ style = "Italic"
 [font.italic]
 family = "GeistMono Nerd Font"
 style = "Italic"
-#
+
 [scrolling]
 history = 100000
 multiplier = 20
@@ -116,14 +112,14 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 [window]
 # decorations = "transparent"
 decorations = "buttonless"
-opacity = 0.8
+opacity = 0.9
 blur = true
 dynamic_padding = false
 dynamic_title = true
 
 [window.dimensions]
 columns = 165
-lines = 40
+lines = 45
 
 [window.padding]
 x = 0
@@ -138,7 +134,9 @@ chars = "\u0002\u002c"
 # Select a new tmux session for the attached client interactively
 key = "K"
 mods = "Command"
-chars = "\u0002\u0073"
+# chars = "\u0002\u0073"
+# send Ctrl-B K
+chars = "\u0002K"
 
 [[keyboard.bindings]]
 # Select window 1-9
@@ -268,3 +266,20 @@ mods = "Control"
 chars = "\u001B[59;5u"
 key = "Equals"
 mods = "Control"
+
+# F4 全屏
+[[keyboard.bindings]]
+key = "F4"
+action = "ToggleMaximized"
+
+[[keyboard.bindings]]
+# 搜索
+key = "F"
+mods = "Command"
+chars = ":Telescope live_grep\r"
+
+[[keyboard.bindings]]
+# 文件
+key = "P"
+mods = "Command"
+chars = ":Telescope find_files\r"

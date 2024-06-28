@@ -80,8 +80,6 @@ return {
           colors.fg_sidebar = fg_dark
         end,
       })
-
-      vim.cmd("colorscheme tokyonight")
     end,
   },
   -- solarized
@@ -107,7 +105,7 @@ return {
   },
   {
     "projekt0n/github-nvim-theme",
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require("github-theme").setup({
@@ -128,16 +126,17 @@ return {
     "dgox16/oldworld.nvim",
     lazy = false,
     priority = 1000,
-    config = true,
-    -- opts = {
-    --   transparent = true,
-    --   styles = {
-    --     transparent = true,
-    --     booleans = { bold = true },
-    --     functions = { italic = true },
-    --     comments = { italic = true },
-    --   },
-    -- },
+    opts = {
+      comment = {
+        italic = true,
+      },
+      styles = {
+        transparent = true,
+        booleans = { bold = true },
+        functions = { italic = true },
+        comments = { italic = true },
+      },
+    },
   },
   {
     "AlexvZyl/nordic.nvim",
@@ -148,8 +147,28 @@ return {
     "sainnhe/everforest",
     priority = 1000,
     config = function()
-      vim.g.everforest_enable_italic = true
-      vim.g.everforest_transparent_background = true
+      -- vim.g.everforest_enable_italic = true
+      -- vim.g.everforest_transparent_background = true
+    end,
+  },
+  {
+    "zootedb0t/citruszest.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("citruszest").setup({
+        option = {
+          transparent = true, -- Enable/Disable transparency
+          bold = false,
+          italic = true,
+        },
+        -- Override default highlight style in this table
+        -- E.g If you want to override `Constant` highlight style
+        style = {
+          -- This will change Constant foreground color and make it bold.
+          Constant = { fg = "#FFFFFF", bold = true },
+        },
+      })
     end,
   },
   -- {
@@ -159,13 +178,12 @@ return {
   --   name = "night-owl",
   --   config = function()
   --     require("night-owl").setup({
-  --       bold = true,
-  --       italics = true,
-  --       underline = true,
-  --       undercurl = true,
+  --       -- bold = true,
+  --       -- italics = true,
+  --       -- underline = true,
+  --       -- undercurl = true,
   --       transparent_background = true,
   --     })
-  --     vim.cmd.colorscheme("night-owl")
   --   end,
   -- },
   {
@@ -180,9 +198,9 @@ return {
       -- colorscheme = "mayu", -- shin
       -- colorscheme = "oxocarbon",
       -- colorscheme = "oldworld",
-      -- colorscheme = "nordic",
+      colorscheme = "citruszest",
       -- colorscheme = "night-owl",
-      colorscheme = "everforest",
+      -- colorscheme = "everforest",
     },
   },
 }

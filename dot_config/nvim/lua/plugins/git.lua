@@ -6,43 +6,18 @@ return {
     config = function()
       require("gitsigns").setup({
         signs = {
-          add = {
-            hl = "GitSignsAdd",
-            text = "▎",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn",
-          },
-          change = {
-            hl = "GitSignsChange",
-            text = "▎",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
-          },
-          delete = {
-            hl = "GitSignsDelete",
-            text = "",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
-          },
-          topdelete = {
-            hl = "GitSignsDelete",
-            text = "",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
-          },
-          changedelete = {
-            hl = "GitSignsChange",
-            text = "▎",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
-          },
+          add = { text = "┃" },
+          change = { text = "┃" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+          untracked = { text = "┆" },
         },
-        signcolumn = true,
-        numhl = false,
-        linehl = false,
-        word_diff = false,
+        signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+        numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
         watch_gitdir = {
-          interval = 1000,
           follow_files = true,
         },
         attach_to_untracked = true,
@@ -66,7 +41,6 @@ return {
           row = 0,
           col = 1,
         },
-        yadm = { enable = false },
 
         on_attach = function(bufnr)
           vim.keymap.set(
@@ -76,27 +50,37 @@ return {
             { buffer = bufnr, desc = "Preview git hunk" }
           )
 
-          vim.keymap.set("n", "<leader>hs", require("gitsigns").stage_hunk)
-          vim.keymap.set("n", "<leader>hr", require("gitsigns").reset_hunk)
+          vim.keymap.set("n", "<leader>hs", require("gitsigns").stage_hunk, { desc = "Gitsigns - Stage Hunk" })
+          vim.keymap.set("n", "<leader>hr", require("gitsigns").reset_hunk, { desc = "Gitsigns - Reset Hunk" })
           vim.keymap.set("v", "<leader>hs", function()
             require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
+          end, { desc = "Gitsigns - Stage Hunk" })
           vim.keymap.set("v", "<leader>hr", function()
             require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
-          vim.keymap.set("n", "<leader>hS", require("gitsigns").stage_buffer)
-          vim.keymap.set("n", "<leader>hu", require("gitsigns").undo_stage_hunk)
-          vim.keymap.set("n", "<leader>hR", require("gitsigns").reset_buffer)
-          vim.keymap.set("n", "<leader>hp", require("gitsigns").preview_hunk)
+          end, { desc = "Gitsigns - Reset Hunk" })
+          vim.keymap.set("n", "<leader>hS", require("gitsigns").stage_buffer, { desc = "Gitsigns - Stage Buffer" })
+          vim.keymap.set(
+            "n",
+            "<leader>hu",
+            require("gitsigns").undo_stage_hunk,
+            { desc = "Gitsigns - Undo Stage Hunk" }
+          )
+          vim.keymap.set("n", "<leader>hR", require("gitsigns").reset_buffer, { desc = "Gitsigns - Reset Buffer" })
+          vim.keymap.set("n", "<leader>hp", require("gitsigns").preview_hunk, { desc = "Gitsigns - Preview Hunk" })
           vim.keymap.set("n", "<leader>hb", function()
             require("gitsigns").blame_line({ full = true })
-          end)
-          vim.keymap.set("n", "<leader>tb", require("gitsigns").toggle_current_line_blame)
-          vim.keymap.set("n", "<leader>hd", require("gitsigns").diffthis)
+          end, { desc = "Gitsigns - Blame Line" })
+          vim.keymap.set(
+            "n",
+            "<leader>tb",
+            require("gitsigns").toggle_current_line_blame,
+            { desc = "Gitsigns - Toggle Blame Line" }
+          )
+          vim.keymap.set("n", "<leader>hd", require("gitsigns").diffthis, { desc = "Gitsigns - Diff This" })
           vim.keymap.set("n", "<leader>hD", function()
             require("gitsigns").diffthis("~")
-          end)
-          vim.keymap.set("n", "<leader>td", require("gitsigns").toggle_deleted)
+          end, { desc = "Gitsigns - Diff This (cached)" })
+          vim.keymap.set("n", "<leader>td", require("gitsigns").toggle_deleted, { desc = "Gitsigns - Toggle Deleted" })
         end,
       })
     end,
@@ -105,6 +89,11 @@ return {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    -- opts = {
+    --   setup = function()
+    --     vim.keymap.set("n","<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
+    --   end,
+    -- },
   },
   -- Git related plugins
   "tpope/vim-fugitive",

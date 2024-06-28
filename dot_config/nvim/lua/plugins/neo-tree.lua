@@ -47,7 +47,7 @@ return {
           end
         end,
       },
-      width = 45,
+      width = 40,
     },
     close_if_last_window = true, --关闭最后一个窗口时关闭 neotree
     popup_border_style = "rounded", --弹窗边框样式

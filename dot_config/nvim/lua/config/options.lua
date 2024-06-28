@@ -28,6 +28,8 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 -- 在块注释中自动插入 * 号。
 vim.opt.formatoptions:append({ "r" })
 
+vim.opt.laststatus = 3
+
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) --启用下划曲线。
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) --关闭下划曲线。

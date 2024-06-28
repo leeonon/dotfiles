@@ -1,3 +1,4 @@
+-- https://meatfighter.com/ascii-silhouettify/color-gallery.html
 return {
   -- LSP Hover Doc 边框设置
   {

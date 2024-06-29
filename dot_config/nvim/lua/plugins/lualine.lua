@@ -62,7 +62,7 @@ local space = {
 local filename = {
   "filename",
   color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
 }
 
 local filetype = {
@@ -70,7 +70,7 @@ local filetype = {
   icons_enabled = false,
   -- color = { bg = colors.gray2, fg = colors.blue, gui = "italic,bold" },
   color = { bg = "None", fg = colors.blue, gui = "italic,bold" },
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
 }
 
 local filesize = {
@@ -83,20 +83,25 @@ local branch = {
   "branch",
   icon = "",
   color = { bg = colors.green, fg = colors.bg, gui = "bold" },
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
 }
 
 local location = {
   "location",
-  color = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
-  separator = { left = "", right = "" },
+  color = {
+    -- bg = colors.yellow,
+    -- fg = colors.bg,
+    fg = colors.yellow,
+    gui = "bold",
+  },
+  -- separator = { left = "", right = "" },
 }
 
 local diff = {
   "diff",
   -- color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
   color = { bg = "None", fg = colors.bg, gui = "bold" },
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
   symbols = { added = " ", modified = " ", removed = " " },
 
   diff_color = {
@@ -122,9 +127,15 @@ local modes = {
   "mode",
   color = function()
     local mode_color = modecolor
-    return { bg = mode_color[vim.fn.mode()], fg = colors.bg_dark, gui = "bold" }
+    return {
+      -- bg = mode_color[vim.fn.mode()],
+      bg = "None",
+      -- fg = colors.bg_dark,
+      fg = colors.purple,
+      gui = "bold",
+    }
   end,
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
 }
 
 local function getLspName()
@@ -192,7 +203,7 @@ local lsp = {
   function()
     return getLspName()
   end,
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
   color = { bg = colors.purple, fg = colors.bg, gui = "italic,bold" },
 }
 local icons = require("lazyvim.config").icons
@@ -212,7 +223,7 @@ local dia = {
     hint = { fg = colors.cyan },
   },
   color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
-  separator = { left = "" },
+  -- separator = { left = "" },
 }
 
 return {
@@ -248,7 +259,9 @@ return {
       },
       sections = {
         lualine_a = { vimIcon, modes, filesize },
-        lualine_b = { space },
+        lualine_b = {
+          -- space
+        },
         lualine_c = {
           -- 文件路径
           -- lazyvim normal
@@ -258,10 +271,10 @@ return {
           --
           filename,
           filetype,
-          space,
+          -- space,
           branch,
           diff,
-          space,
+          -- space,
           location,
           -- space,
           -- git-blame.nvim
@@ -301,9 +314,9 @@ return {
           space,
         },
         lualine_z = {
-          function()
-            return " " .. os.date("%R")
-          end,
+          -- function()
+          --   return " " .. os.date("%R")
+          -- end,
           dia,
           lsp,
         },

@@ -1,19 +1,17 @@
 local wezterm = require("wezterm")
 local k = require("utils/keys")
--- local h = require("utils/helpers")
 
 local config = wezterm.config_builder()
 local act = wezterm.action
 
 config.font_size = 14
--- config.font = wezterm.font_with_fallback({
--- 	"ComicShannsMono Nerd Font Mono",
--- 	{ family = "GeistMono Nerd Font Mone", weight = "Medium" },
--- 	{ family = "BlexMono Nerd Font Mono", weight = "Medium" },
--- 	"JeBrainsMono Nerd Font",
--- })
-
-config.font = wezterm.font("GeistMono Nerd Font", { weight = "Medium" })
+config.font = wezterm.font_with_fallback({
+	{ family = "GeistMono Nerd Font Mono" },
+	"MartianMono Nerd Font Mono",
+	"JeBrainsMono Nerd Font Mono",
+	"ComicShannsMono Nerd Font Mono",
+	{ family = "BlexMono Nerd Font Mono", weight = "Medium" },
+})
 -- config.font_rules = {
 -- 	{
 -- 		intensity = "Bold",
@@ -47,11 +45,12 @@ config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 config.macos_window_background_blur = 64
 config.adjust_window_size_when_changing_font_size = false
 config.term = "xterm-256color"
 config.default_cursor_style = "BlinkingBar"
+config.line_height = 1.2
 
 -- custon theme
 local custom = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
@@ -64,7 +63,6 @@ config.color_schemes = {
 	["Custom Catppuccin Mocha"] = custom,
 }
 config.color_scheme = "Custom Catppuccin Mocha"
--- config.color_scheme = "Catppuccin Mocha"
 
 -- 设置 wezterm 窗口大小
 config.initial_rows = 45
@@ -84,13 +82,13 @@ config.keys = {
 	k.cmd_key("[", act.SendKey({ mods = "CTRL", key = "o" })),
 	k.cmd_key("]", act.SendKey({ mods = "CTRL", key = "i" })),
 
-	-- k.cmd_key("i", k.multiple_actions(":SmartGoTo")),
+	k.cmd_key("i", k.multiple_actions(":SmartGoTo")),
 
 	-- 将 CMD + jkhl 绑定到 CTRL + jkhl 切换窗口
-	-- k.cmd_key("J", act.SendKey({ mods = "CTRL", key = "j" })),
-	-- k.cmd_key("K", act.SendKey({ mods = "CTRL", key = "k" })),
-	-- k.cmd_key("H", act.SendKey({ mods = "CTRL", key = "h" })),
-	-- k.cmd_key("L", act.SendKey({ mods = "CTRL", key = "l" })),
+	k.cmd_key("J", act.SendKey({ mods = "CTRL", key = "j" })),
+	k.cmd_key("K", act.SendKey({ mods = "CTRL", key = "k" })),
+	k.cmd_key("H", act.SendKey({ mods = "CTRL", key = "h" })),
+	k.cmd_key("L", act.SendKey({ mods = "CTRL", key = "l" })),
 
 	-- Telescope 搜索相关
 	k.cmd_key("f", k.multiple_actions(":Telescope live_grep\r")),
@@ -127,7 +125,7 @@ config.keys = {
 	k.cmd_to_tmux_prefix("z", "z"),
 	k.cmd_to_tmux_prefix("Z", "Z"),
 	k.cmd_to_tmux_prefix("w", "x"),
-	-- k.cmd_to_tmux_prefix("x", "x"),
+	k.cmd_to_tmux_prefix("x", "x"),
 
 	k.cmd_key(
 		"R",
@@ -188,13 +186,14 @@ config.keys = {
 			act.SendKey({ key = "p" }),
 		}),
 	},
+	-- kill the current tmux pane out of the tmux window
+	{
+		mods = "CMD",
+		key = "x",
+		action = act.Multiple({
+			act.SendKey({ mods = "CTRL", key = "b" }),
+			act.SendKey({ key = "x" }),
+		}),
+	},
 }
--- wezterm.on('update-right-status', function(window, pane)
---     if h.is_nvim_or_tmux(pane) then
---         window:set_config_overrides({ keys = keys })
---     else
---         window:set_config_overrides({ keys = nil }) -- 使用默认键绑定
---     end
--- end)
-
 return config

@@ -2,14 +2,24 @@
 startup_command = "nvim +GoToFile"
 
 [[session]]
-name = "Home 🏡"
+name = "Yang 🔥"
+path = "~/code/github"
+startup_command = "ls"
+
+[[session]]
+name = "5EPlay 🖥️"
+path = "~/code/5eplay"
+startup_command = "ls"
+
+[[session]]
+name = "Home 🛖"
 path = "~"
-startup_command = "l"
+startup_command = "ls"
 
 [[session]]
 name = "Code 💻"
 path = "~/code"
-startup_command = "l"
+startup_command = "ls"
 
 [[session]]
 name = "Dotfiles 📁"

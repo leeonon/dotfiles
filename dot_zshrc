@@ -132,6 +132,8 @@ alias skhdstop='skhd --stop-service'
 alias skhdstart='skhd --start-service'
 # mactop 查看 CPU 使用情况
 alias cpu='sudo mactop'
+# sesh 打开 tmux 列表
+alias tmuxls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pick a sesh" --height 50 --prompt "⚡")"'
 
 # homebrew 安装的软件的环境变量
 eval export HOMEBREW_PREFIX="/opt/homebrew";
@@ -162,6 +164,7 @@ export PATH=${MY_PING_PATH}:$PATH
 export PATH="/opt/homebrew/bin:/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
 # 添加 pipx 安装的工具路径到 PATH
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
 source /Users/ly/.config/broot/launcher/bash/br
 eval "$(starship init zsh)"

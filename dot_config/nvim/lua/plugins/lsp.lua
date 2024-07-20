@@ -2,6 +2,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = {
+        virtual_text = false,
+      },
       setup = {
         -- https://github.com/mrcjkb/rustaceanvim/blob/master/doc/mason.txt
         rust_analyzer = function()

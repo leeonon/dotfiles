@@ -24,8 +24,14 @@ local function mapping(is_cmdline)
         luasnip.jump(-1)
       end
     end, { "i", "c" }),
-    ["<C-K>"] = cmp.mapping(function()
-      cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+    ["<C-K>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
     end, { "i", "c" }),
     ["<C-J>"] = cmp.mapping(function()
       if cmp.visible() then
@@ -34,6 +40,14 @@ local function mapping(is_cmdline)
         cmp.complete()
       end
     end, { "i", "c" }),
+    -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
+    --   if cmp.visible() and has_words_before() then
+    --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+    --   else
+    --     fallback()
+    --   end
+    -- end),
+
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -169,6 +183,7 @@ return {
       { name = "calc", priority = 650 },
       { name = "path", priority = 500 },
       { name = "buffer", priority = 250 },
+      { name = "copilot", priority = 1000, group_index = 2 },
     })
     opts.sorting = {
       comparators = {

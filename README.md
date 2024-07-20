@@ -1,15 +1,15 @@
-## Alacritty + Tmux + Zsh + Starship
+## My Dotfiles
 
-![Alacritty](https://lee-oss-1300118632.cos.ap-nanjing.myqcloud.com/obsidian/202404241618512.png)
+### Neovim + Tmux + Alacritty
 
-## NeoVim
-![Lazyvim](https://lee-oss-1300118632.cos.ap-nanjing.myqcloud.com/obsidian/202404241626950.png)
-![Lazyvim](https://lee-oss-1300118632.cos.ap-nanjing.myqcloud.com/obsidian/202404241626450.png)
+- [Neovim](./dot_config/nvim)
+- [Tmux](./dot_config/tmux)
+- [Alacritty](./dot_config/alacritty)
 
-## Wezterm
-![Wezterm](https://lee-oss-1300118632.cos.ap-nanjing.myqcloud.com/obsidian/202404241629331.png)
+![Neovim](./images/nvim-home.png)
+![Neovim](./images/nvim.png)
+![Neovim](./images/alacritty.png)
 
-## NeoVide
-![Lazyvim](https://lee-oss-1300118632.cos.ap-nanjing.myqcloud.com/obsidian/202404241626723.png)
-![Lazyvim](https://lee-oss-1300118632.cos.ap-nanjing.myqcloud.com/obsidian/202404241626606.png)
+## Neovide
 
+![Neovide](./images/neovide.png)

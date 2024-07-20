@@ -3,6 +3,11 @@
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
+  { "savq/melange-nvim" },
+  {
+    "rebelot/kanagawa.nvim",
+  },
+  { "Shatur/neovim-ayu" },
   -- catppuccin
   -- 社区配置分享：https://github.com/catppuccin/nvim/discussions/323?sort=new
   {
@@ -31,58 +36,36 @@ return {
       },
       color_overrides = {
         mocha = {
-          base = "#000000",
-          mantle = "#000000",
-          crust = "#000000",
-          background = "#000000",
+          rosewater = "#ffc9c9",
+          flamingo = "#ff9f9a",
+          pink = "#ffa9c9",
+          mauve = "#df95cf",
+          lavender = "#a990c9",
+          red = "#ff6960",
+          maroon = "#f98080",
+          peach = "#f9905f",
+          yellow = "#f9bd69",
+          green = "#b0d080",
+          teal = "#a0dfa0",
+          sky = "#a0d0c0",
+          sapphire = "#95b9d0",
+          blue = "#89a0e0",
+          text = "#e0d0b0",
+          subtext1 = "#d5c4a1",
+          subtext0 = "#bdae93",
+          overlay2 = "#928374",
+          overlay1 = "#7c6f64",
+          overlay0 = "#665c54",
+          surface2 = "#504844",
+          surface1 = "#3a3634",
+          surface0 = "#252525",
+          base = "#151515",
+          mantle = "#0e0e0e",
+          crust = "#080808",
         },
       },
     },
   },
-  {
-    "folke/tokyonight.nvim",
-    priority = 1000,
-    config = function()
-      local transparent = true -- set to true if you would like to enable transparency
-
-      local bg = "#011628"
-      local bg_dark = "#011423"
-      local bg_highlight = "#143652"
-      local bg_search = "#0A64AC"
-      local bg_visual = "#275378"
-      local fg = "#CBE0F0"
-      local fg_dark = "#B4D0E9"
-      local fg_gutter = "#627E97"
-      local border = "#547998"
-
-      require("tokyonight").setup({
-        style = "night",
-        transparent = transparent,
-        styles = {
-          sidebars = transparent and "transparent" or "dark",
-          floats = transparent and "transparent" or "dark",
-        },
-        on_colors = function(colors)
-          colors.bg = bg
-          colors.bg_dark = transparent and colors.none or bg_dark
-          colors.bg_float = transparent and colors.none or bg_dark
-          colors.bg_highlight = bg_highlight
-          colors.bg_popup = bg_dark
-          colors.bg_search = bg_search
-          colors.bg_sidebar = transparent and colors.none or bg_dark
-          colors.bg_statusline = transparent and colors.none or bg_dark
-          colors.bg_visual = bg_visual
-          colors.border = border
-          colors.fg = fg
-          colors.fg_dark = fg_dark
-          colors.fg_float = fg
-          colors.fg_gutter = fg_gutter
-          colors.fg_sidebar = fg_dark
-        end,
-      })
-    end,
-  },
-  -- solarized
   {
     "craftzdog/solarized-osaka.nvim",
     name = "solarized-osaka",
@@ -96,31 +79,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "bluz71/vim-nightfly-colors",
-    name = "nightfly",
-    lazy = false,
-    priority = 1000,
-  },
-  {
-    "projekt0n/github-nvim-theme",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require("github-theme").setup({
-        -- ...
-      })
-    end,
-  },
-  {
-    "myypo/borrowed.nvim",
-    lazy = false,
-    priority = 1000,
-    version = "^0", -- Optional: avoid upgrading to breaking versions
-  },
-  {
-    "nyoom-engineering/oxocarbon.nvim",
   },
   {
     "dgox16/oldworld.nvim",
@@ -139,68 +97,50 @@ return {
     },
   },
   {
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "sainnhe/everforest",
     priority = 1000,
     config = function()
-      -- vim.g.everforest_enable_italic = true
-      -- vim.g.everforest_transparent_background = true
+      vim.g.everforest_enable_italic = true
+      vim.g.everforest_transparent_background = true
+      vim.g.everforest_diagnostic_text_highlight = 1
+      vim.g.everforest_diagnostic_line_highlight = 1
+      vim.g.everforest_diagnostic_virtual_text = "highlighted"
+      vim.g.everforest_background = "hard"
+      vim.g.everforest_ui_contrast = "high"
+      vim.g.everforest_current_word = "underline"
     end,
   },
   {
-    "zootedb0t/citruszest.nvim",
+    "0xstepit/flow.nvim",
+    name = "Flow",
     lazy = false,
     priority = 1000,
+    opts = {},
     config = function()
-      require("citruszest").setup({
-        option = {
-          transparent = true, -- Enable/Disable transparency
-          bold = false,
-          italic = true,
-        },
-        -- Override default highlight style in this table
-        -- E.g If you want to override `Constant` highlight style
-        style = {
-          -- This will change Constant foreground color and make it bold.
-          Constant = { fg = "#FFFFFF", bold = true },
-        },
+      require("flow").setup_options({
+        transparent = true, -- Set transparent background.
+        fluo_color = "pink", --  Fluo color: pink, yellow, orange, or green.
+        mode = "normal", -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
+        aggressive_spell = false, -- Display colors for spell check.
       })
     end,
   },
-  -- {
-  --   "oxfist/night-owl.nvim",
-  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   name = "night-owl",
-  --   config = function()
-  --     require("night-owl").setup({
-  --       -- bold = true,
-  --       -- italics = true,
-  --       -- underline = true,
-  --       -- undercurl = true,
-  --       transparent_background = true,
-  --     })
-  --   end,
-  -- },
   {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "solarized-osaka",
-      -- colorscheme = "tokyonight",
       -- colorscheme = "catppuccin",
+      -- colorscheme = "melange",
+      -- colorscheme = "kanagawa",
       -- colorscheme = "gruvbox",
-      -- colorscheme = "nightfly",
-      -- colorscheme = "github_dark_default",
-      -- colorscheme = "mayu", -- shin
-      -- colorscheme = "oxocarbon",
-      -- colorscheme = "oldworld",
-      colorscheme = "citruszest",
+      -- colorscheme = "citruszest",
       -- colorscheme = "night-owl",
       -- colorscheme = "everforest",
+      -- colorscheme = "aylin",
+      -- colorscheme = "solarized",
+      -- colorscheme = "ayu-mirage",
+      -- colorscheme = "oldworld",
+      colorscheme = "flow",
     },
   },
 }

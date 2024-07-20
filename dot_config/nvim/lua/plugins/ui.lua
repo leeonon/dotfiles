@@ -16,17 +16,28 @@ return {
     end,
   },
   {
-    "nvim-tree/nvim-web-devicons",
-    opts = {
-      override_by_extension = {
-        ["astro"] = {
-          icon = "",
-          color = "#f1502f",
-          name = "Astro",
-        },
-      },
-    },
+    "echasnovski/mini.icons",
+    lazy = true,
+    opts = {},
+    init = function()
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
   },
+  -- {
+  --   "nvim-tree/nvim-web-devicons",
+  --   opts = {
+  --     override_by_extension = {
+  --       ["astro"] = {
+  --         icon = "",
+  --         color = "#f1502f",
+  --         name = "Astro",
+  --       },
+  --     },
+  --   },
+  -- },
   --   {
   --     "nvimdev/dashboard-nvim",
   --     event = "VimEnter",

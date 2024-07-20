@@ -81,28 +81,28 @@ return {
       end,
       desc = "列出函数名称、变量，来自Treesitter",
     },
-    {
-      "sf",
-      function()
-        local telescope = require("telescope")
-
-        local function telescope_buffer_dir()
-          return vim.fn.expand("%:p:h")
-        end
-
-        telescope.extensions.file_browser.file_browser({
-          path = "%:p:h",
-          cwd = telescope_buffer_dir(),
-          respect_gitignore = false,
-          hidden = true,
-          grouped = true,
-          previewer = false,
-          initial_mode = "normal",
-          layout_config = { height = 40 },
-        })
-      end,
-      desc = "使用当前缓冲区的路径打开文件浏览器",
-    },
+    -- {
+    --   "sf",
+    --   function()
+    --     local telescope = require("telescope")
+    --
+    --     local function telescope_buffer_dir()
+    --       return vim.fn.expand("%:p:h")
+    --     end
+    --
+    --     telescope.extensions.file_browser.file_browser({
+    --       path = "%:p:h",
+    --       cwd = telescope_buffer_dir(),
+    --       respect_gitignore = false,
+    --       hidden = true,
+    --       grouped = true,
+    --       previewer = false,
+    --       initial_mode = "normal",
+    --       layout_config = { height = 40 },
+    --     })
+    --   end,
+    --   desc = "使用当前缓冲区的路径打开文件浏览器",
+    -- },
     {
       "<leader>;gb",
       function()
@@ -187,4 +187,3 @@ return {
     require("telescope").load_extension("file_browser")
   end,
 }
-

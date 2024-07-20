@@ -1,93 +1,30 @@
 live_config_reload = true
 
+# import = ["~/.config/alacritty/themes/berlin-night.toml"]
+import = ["~/.config/alacritty/themes/custom.toml"]
+# import = ["~/.config/alacritty/themes/citruszest.toml"]
+
 [colors]
 draw_bold_text_with_bright_colors = false
 
-# [colors.bright]
-# black = "#4d4d4d"
-# blue = "#a277ff"
-# cyan = "#61ffca"
-# green = "#61ffca"
-# magenta = "#a277ff"
-# red = "#ff6767"
-# white = "#edecee"
-# yellow = "#ffca85"
-#
-# [colors.cursor]
-# cursor = "#a277ff"
-#
-# [colors.normal]
-# black = "#110f18"
-# blue = "#a277ff"
-# cyan = "#61ffca"
-# green = "#61ffca"
-# magenta = "#a277ff"
-# red = "#ff6767"
-# white = "#edecee"
-# yellow = "#ffca85"
-#
-# [colors.primary]
-# # background = "#15141b"
-# background = "#000000"
-# # background = "#021727"
-# # foreground = "#edecee"
-#
-# [colors.search.focused_match]
-# background = "#9F7AF5"
-# foreground = "#ffffff"
-#
-# [colors.search.matches]
-# background = "#ffffff"
-# foreground = "#000000"
-#
-# [colors.selection]
-# background = "#29263c"
-# text = "CellForeground"
-
-# Default colorss
-[colors.primary]
-background = '#121212'
-foreground = '#F9F9F9'
-
-[colors.cursor]
-text = '#F9F9F9'
-cursor = '#BFBFBF'
-
-# Normal colorss
-[colors.normal]
-black = '#232323'
-red = '#FF5454'
-green = '#00CC7A'
-yellow = '#FFD700'
-blue = '#00bFFF'
-magenta = '#FF00FF'
-cyan = '#48d1cc'
-white = '#bfbfbf'
-
-# Bright colorss
-[colors.bright]
-black = '#767c77'
-red = '#ff1a75'
-green = '#1affa3'
-yellow = '#ffff00'
-blue = '#28c9ff'
-magenta = '#ff33ff'
-cyan = '#09fff2'
-white = '#f9f9f9'
-
-[cursor.style]
-shape = "Beam"
-blinking = "On"
-
 [font]
-size = 15
+size = 14
 
 [font.offset]
-y = 3
+y = 4
 
 [font.normal]
+## # family = "ComicMono NF"
+# # family = "Monaspace Argon"
+# # family = "JetBrainsMono Nerd Font"
+# family = "ComicShannsMono Nerd Font"
+# # family = "MonoLisa Nerd Font Mono"
+# RecMonoCasual Nerd Font Mono
+# family = "ZedMono Nerd Font Mono"
+# family = "VictorMono Nerd Font Mono"
+# family = "ZedMono Nerd Font Mono"
 family = "GeistMono Nerd Font"
-style = "Regular"
+style = "Medium"
 
 [font.bold]
 family = "GeistMono Nerd Font"
@@ -98,6 +35,8 @@ family = "GeistMono Nerd Font"
 style = "Italic"
 
 [font.italic]
+# family = "VictorMono Nerd Font Mono"
+# family = "IBM Plex Mono"
 family = "GeistMono Nerd Font"
 style = "Italic"
 
@@ -110,9 +49,9 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
+opacity = 0.8
 # decorations = "transparent"
 decorations = "buttonless"
-opacity = 0.9
 blur = true
 dynamic_padding = false
 dynamic_title = true

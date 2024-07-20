@@ -61,7 +61,8 @@ local space = {
 
 local filename = {
   "filename",
-  color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+  color = { bg = "None", fg = colors.green, gui = "bold" },
+  -- color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
   -- separator = { left = "", right = "" },
 }
 
@@ -82,7 +83,8 @@ local filesize = {
 local branch = {
   "branch",
   icon = "",
-  color = { bg = colors.green, fg = colors.bg, gui = "bold" },
+  color = { bg = "None", fg = colors.bright_cyan, gui = "bold" },
+  -- color = { bg = colors.green, fg = colors.bg, gui = "bold" },
   -- separator = { left = "", right = "" },
 }
 

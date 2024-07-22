@@ -4,12 +4,16 @@ startup_command = "nvim +GoToFile"
 [[session]]
 name = "Yang 🔥"
 path = "~/code/github"
-startup_command = "ls"
+startup_command = "cowsay Skr~ | lolcat"
 
 [[session]]
-name = "5EPlay 🖥️"
+name = "Obsidian"
+path = "~/code/github/LeeOnOnObsidian/content"
+
+[[session]]
+name = "5EPlay"
 path = "~/code/5eplay"
-startup_command = "ls"
+startup_command = "cowsay Don't Push To Production on Friday | lolcat"
 
 [[session]]
 name = "Home 🛖"

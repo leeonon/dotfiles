@@ -111,6 +111,9 @@ return {
     end,
   },
   {
+    "mellow-theme/mellow.nvim",
+  },
+  {
     "0xstepit/flow.nvim",
     name = "Flow",
     lazy = false,
@@ -141,6 +144,7 @@ return {
       -- colorscheme = "ayu-mirage",
       -- colorscheme = "oldworld",
       colorscheme = "flow",
+      -- colorscheme = "mellow",
     },
   },
 }

@@ -22,22 +22,23 @@ y = 4
 # RecMonoCasual Nerd Font Mono
 # family = "ZedMono Nerd Font Mono"
 # family = "VictorMono Nerd Font Mono"
-# family = "ZedMono Nerd Font Mono"
-family = "GeistMono Nerd Font"
-style = "Medium"
+family = "ZedMono Nerd Font Mono"
+# family = "RecMonoCasual Nerd Font Mono"
+# family = "GeistMono Nerd Font"
+# style = "Medium"
 
 [font.bold]
-family = "GeistMono Nerd Font"
+family = "ZedMono Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "GeistMono Nerd Font"
+family = "RecMonoCasual Nerd Font Mono"
 style = "Italic"
 
 [font.italic]
 # family = "VictorMono Nerd Font Mono"
 # family = "IBM Plex Mono"
-family = "GeistMono Nerd Font"
+family = "RecMonoCasual Nerd Font Mono"
 style = "Italic"
 
 [scrolling]
@@ -49,11 +50,11 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
-opacity = 0.8
+opacity = 0.7
 # decorations = "transparent"
 decorations = "buttonless"
 blur = true
-dynamic_padding = false
+# dynamic_padding = false
 dynamic_title = true
 
 [window.dimensions]

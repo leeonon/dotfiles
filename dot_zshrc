@@ -112,8 +112,8 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias nv="neovide --frame buttonless --title-hidden"
-# 使用 ccat 代替 cat
-alias cat='ccat'
+# 使用 bat 代替 cat
+alias cat='bat --paging=never'
 # bpytop 终端资源监控器
 alias bpytop='bpytop'
 # lazydocker docker 管理支持鼠标
@@ -143,6 +143,25 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
+# --------------------- FZF Start --------------------
+source <(fzf --zsh)
+# 别名设置
+alias fv='vim $(fzf)'
+# alias fvim="vim $(find . -type f | fzf)"
+alias fp="fzf --preview 'bat --color=always {}'"
+alias fh='history | fzf'
+# -------------------- FZF End ------------------------
+
+# ------------------- Yazi Start ---------------------
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+# ------------------- Yazi End -----------------------
 
 # pnpm
 export PNPM_HOME="/Users/ly/Library/pnpm"
@@ -156,7 +175,6 @@ export PATH="$HOME/.local/share/pnpm/global/bin:$PATH"
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 # pnpm end
-
 
 export MY_PING_PATH=/Applications/SASE.app/Contents/Services
 export PATH=${MY_PING_PATH}:$PATH

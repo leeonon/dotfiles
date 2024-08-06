@@ -11,7 +11,7 @@ draw_bold_text_with_bright_colors = false
 size = 14
 
 [font.offset]
-y = 4
+y = 6
 
 [font.normal]
 ## # family = "ComicMono NF"
@@ -22,23 +22,23 @@ y = 4
 # RecMonoCasual Nerd Font Mono
 # family = "ZedMono Nerd Font Mono"
 # family = "VictorMono Nerd Font Mono"
-family = "ZedMono Nerd Font Mono"
+# family = "ZedMono Nerd Font Mono"
 # family = "RecMonoCasual Nerd Font Mono"
-# family = "GeistMono Nerd Font"
-# style = "Medium"
+# family = "MonoLisa Nerd Font Mono"
+# family = "Iosevka Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
+style = "Medium"
 
 [font.bold]
-family = "ZedMono Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "RecMonoCasual Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.italic]
-# family = "VictorMono Nerd Font Mono"
-# family = "IBM Plex Mono"
-family = "RecMonoCasual Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [scrolling]
@@ -50,7 +50,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
-opacity = 0.7
+opacity = 0.8
 # decorations = "transparent"
 decorations = "buttonless"
 blur = true
@@ -58,8 +58,8 @@ blur = true
 dynamic_title = true
 
 [window.dimensions]
-columns = 165
-lines = 45
+columns = 120
+lines = 30
 
 [window.padding]
 x = 0

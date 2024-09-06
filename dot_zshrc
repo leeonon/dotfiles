@@ -104,9 +104,11 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 # lsd 与 lolcat 配合使用
-alias ls="lsd -l --group-dirs first --icon never --color always | lolcat"
-alias ll="lsd -l --group-dirs first --icon never --color always | lolcat"
-alias la="lsd -la --group-dirs first --icon never --color always | lolcat"
+# alias ls="lsd -l --group-dirs first --icon never --color always | lolcat"
+# alias ll="lsd -l --group-dirs first --icon never --color always | lolcat"
+# alias la="lsd -la --group-dirs first --icon never --color always | lolcat"
+# eza 代理 ls
+alias ls="eza"
 # nvim 代替 vim
 alias v="nvim"
 alias vi="nvim"

@@ -39,6 +39,15 @@ return {
           },
         },
       },
+      -- 代码折叠相关
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
+      },
     },
   },
 }

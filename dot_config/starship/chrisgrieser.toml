@@ -1,0 +1,188 @@
+# DOCS https://starship.rs/config/
+#───────────────────────────────────────────────────────────────────────────────
+
+format = """[\
+${custom.location_indicator}$directory${custom.folder_number}\
+${custom.main_branch}$git_branch\
+$git_status$git_metrics$git_commit$git_state\
+$sudo $status\
+](bg:black)\
+$character\
+"""
+
+right_format = """\
+$jobs\
+$cmd_duration\
+${custom.tokei_loc}\
+${custom.alfred}\
+${custom.venv_on}${custom.venv_off}\
+$python$nodejs\
+$time\
+"""
+
+add_newline = false
+
+#───────────────────────────────────────────────────────────────────────────────
+
+[character] # ▓▒░
+success_symbol = "[ ](fg:black)"
+error_symbol = "[ ](fg:red)"
+vimcmd_symbol = "[ ](fg:cyan)"
+
+[status] # exit code
+disabled = false
+format = "[ $status ]($style)"
+style = "fg:bold 255 bg:red"   # 255 as ansi enforces white regardless of terminal theme
+
+[sudo]
+disabled = false
+style = 'fg:208 bg:black'
+symbol = " "
+format = "[ $symbol]($style)"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "/"
+read_only = "󰌾  "
+read_only_style = "fg:red bg:black"
+style = "fg:cyan bg:black bold"
+format = "[$path]($style) [$read_only]($read_only_style)"
+
+[directory.substitutions]
+# General
+"Library/Mobile Documents/com~apple~CloudDocs" = "󰀸 "
+"~/Desktop" = "/󰇄 "
+"~" = "/ "
+
+# my perma-repos
+".config" = " "
+"main-vault" = "󱉽 "
+"phd-data-analysis" = " "
+"writing-vault" = " "
+".password-store" = " "
+
+[custom.folder_number]
+when = "true"                                                                                                                          # always show
+description = "Number of files (and folders) in the current working directory"
+command = "find . -mindepth 1 -maxdepth 1 -not -name '.git' -not -name '.DS_Store' -not -name '.localized' -not -name 'Icon?' | wc -l"
+symbol = "󰝰 "
+format = '[$symbol$output ]($style)'
+style = "fg:yellow bg:black"
+
+# Indicate if in a subfolder of my local repo folder. Helps differentiating
+# between my local Alfred workflows and their respective repos.
+[custom.location_indicator]
+when = '[[ $PWD == $HOME/Developer/* ]]'
+style = "fg:cyan bg:black"
+command = 'echo "󱁤"'
+format = '[ $output ]($style)'
+
+#───────────────────────────────────────────────────────────────────────────────
+# GIT
+
+[git_state] # conflicts or rebasing
+style = 'fg:yellow bold bg:black'
+
+[git_commit] # checkout
+style = "fg:purple bg:black bold"
+only_detached = true
+format = " [ $hash]($style)"
+
+[git_branch] # branch
+only_attached = true
+style = "fg:purple bg:black bold"
+format = " [ $branch]($style)"
+ignore_branches = ["main"]
+
+# since "ignore_branches" fully hides the git_branch component, still showing the symbol
+[custom.main_branch]
+when = "[[ $(git branch --show-current) == 'main' ]]"
+format = '[  ](fg:purple bg:black bold)'
+
+[git_status] # files
+stashed = '[ 󰜦 $count](fg:cyan bg:black)'
+untracked = '[ +$count](fg:green bg:black)'
+deleted = '[ -$count](fg:red bg:black)'                                                            # these are unstaged as well as stage deletion
+modified = '[ ~$count](fg:208 bg:black)'                                                           # 208 = orange
+renamed = '[ 󰑕 $count](fg:blue bg:black)'
+staged = '[ 󰐖 $count](fg:green bg:black)'
+conflicted = '[  $count](fg:red bg:black)'
+diverged = '[ 󰞇 $count](fg:red bg:black bold)'
+ahead = '[ 󰶣$count](fg:cyan bg:black)'
+behind = '[ 󰶡$count](fg:yellow bg:black)'
+style = 'bg:black'
+format = '[($ahead_behind$conflicted$stashed$staged$untracked$renamed$modified$deleted )]($style)'
+
+# INFO putting a variable into round bracket ensures that the bracket content is
+# only shown when the variable is set. `bright-black` is effectively gray.
+[git_metrics] # changed lines
+disabled = false
+format = """\
+([\\(](fg:bright-black bg:black)\
+[(+$added)](fg:green bg:black)\
+[/](fg:bright-black bg:black)\
+[(-$deleted)](fg:red bg:black)\
+[\\)](fg:bright-black bg:black))\
+"""
+
+#───────────────────────────────────────────────────────────────────────────────
+# RIGHT SIDE
+
+[jobs]
+symbol = " "
+format = "[+$number $symbol]($style)"
+style = "fg:bold purple"
+symbol_threshold = 1
+number_threshold = 1
+
+[custom.tokei_loc]
+description = "Number of lines of code in the current project using tokei (for performance)."
+command = "tokei --compact --exclude='*.txt' --exclude='*.json' | tail -n2 | awk 'NR==1 {print $3}'"
+when = '[[ "$(dirname $PWD)" == "$HOME/repos" ]]'                                                    # only in my local repos folder
+format = ' [$output ]($style)'
+style = "blue"
+
+[cmd_duration]
+min_time = 2500
+format = "[󰔟 $duration](bold cyan)"
+
+[time]
+disabled = false
+format = " [$time]($style)"
+time_format = "%H:%M"
+style = "fg:247"            # grey
+
+[custom.alfred]
+description = "Version number of Alfred Workflow"
+when = "[[ -f info.plist ]] || [[ -f ../info.plist ]]"
+command = "if [[ -f ../info.plist ]] ; then ; plist=$(plutil -extract version xml1 -o - ../info.plist) ; else ; plist=$(plutil -extract version xml1 -o - info.plist) ; fi ; echo \"$plist\" | sed -n 4p | cut -d'>' -f2 | cut -d'<' -f1"
+os = "macos"
+format = ' [󰮤 $output]($style)'
+style = "bold yellow"
+
+[python]
+format = ' [${symbol}${pyenv_prefix}($version)]($style)'
+version_format = "$major.$minor"
+symbol = "  "
+style = "bold yellow"
+
+[custom.venv_on]
+format = '[ $output ]($style)'   # extra space for proper nerdfont sizing
+when = '[[ -n "$VIRTUAL_ENV" ]]'
+command = 'echo "󱥒"'             # output is trimmed, so spaces must be added at `format`
+style = "bold yellow"
+
+[custom.venv_off]
+format = '[ $output ]($style)'
+when = '[[ -z "$VIRTUAL_ENV" ]] && [[ -d ".venv" ]]'
+command = 'echo "󱥓"'
+style = "bold red"
+
+[nodejs]
+style = "bold yellow"
+format = ' [$symbol$version]($style)'
+version_format = "$major.$minor"
+# disabled detecting via extensions; detect only via `package.json` or
+# `node_modules` to avoid false positives for stuff like Alfred workflows
+detect_extensions = []
+not_capable_style = "ft:white bg:red"

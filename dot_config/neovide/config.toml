@@ -1,5 +1,4 @@
 frame = "transparent"
-# BUG: https://github.com/neovide/neovide/issues/2342
 title-hidden = true
 idle = true
 

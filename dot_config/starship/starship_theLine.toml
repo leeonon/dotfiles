@@ -1,0 +1,97 @@
+#--------[ LORENS OSMAN ]--------#
+
+
+#--------[ starship_theLine ]
+
+format = """
+${custom.user}\
+[━━━](#eddf31 bold)\
+${custom.host}\
+[━━](fg:#4b494f bold)\
+${custom.dir}\
+[━━](fg:#4b494f bold)\
+${custom.git}\
+$fill\
+$line_break\
+$username\
+$hostname\
+${custom.directory}\
+[ ](fg:#4b494f bold)\
+$git_branch\
+$line_break\
+$character
+"""
+
+
+#--------[CUSTOM COMMANDS]
+
+[custom.directory]
+description = "Replace the default directory command"
+command = """echo "${PWD/$HOME/~}" """
+style = "fg:#33dd2d "
+format = "[  󰉋 $output]($style)"
+when = "true"
+
+[custom.dir]
+description = "the line above custom directory "
+command = """echo $(pwd | sed "s|$HOME|~|") | wc -m | tr -d '\\n' | xargs -I {} seq -s '━' {} | tr -d '[:digit:]' """
+style = "fg:#33dd2d"
+format = "[━━$output]($style)"
+when = "true"
+
+[custom.user]
+description = "the line above username"
+command = "echo $USER  2>/dev/null | wc -m | tr -d '\\n' | xargs -I {} seq -s '━' {} | tr -d '[:digit:]' "
+style = "#313fed bold"
+format = "[$output]($style)"
+when = "true"
+
+[custom.host]
+description = "the line above hostname"
+command = "echo $HOST  2>/dev/null | wc -m | tr -d '\\n' | xargs -I {} seq -s '━' {} | tr -d '[:digit:]' "
+style = "red bold"
+format = "[$output]($style)"
+when = "true"
+
+[custom.git]
+description = "the line above branch name"
+command = "git rev-parse --abbrev-ref HEAD 2>/dev/null | wc -m | tr -d '\\n' | xargs -I {} seq -s '━' {} | tr -d '[:digit:]'| awk '{print $0 \"━━\"}'"
+when = "git rev-parse --abbrev-ref HEAD 2>/dev/null"
+shell = ["bash", "--noprofile", "--norc"]
+style = "fg:#e5e513"
+format = "[$output]($style)"
+
+
+#--------[COMMANDS]
+
+[username]
+style_user = '#313fed bold'
+style_root = 'black bold'
+format = '[$user]($style)[ @ ](#eddf31 bold)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '[$ssh_symbol](bold blue)[$hostname](bold red)'
+trim_at = '.companyname.com'
+disabled = false
+
+[fill]
+symbol="━"
+style = "fg:#4b494f bold"
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol ='[ ━━](bold green)'
+error_symbol ='[✖ ](bold red)'
+
+#--------[GIT COMMANDS]
+
+[git_branch]
+symbol = " "
+style = "bold fg:#e5e512"
+format = "[ $symbol$branch(:$remote_branch) ]($style)"
+

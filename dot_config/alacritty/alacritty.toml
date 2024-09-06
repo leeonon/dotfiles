@@ -1,8 +1,9 @@
 live_config_reload = true
 
 # import = ["~/.config/alacritty/themes/berlin-night.toml"]
-import = ["~/.config/alacritty/themes/custom.toml"]
+# import = ["~/.config/alacritty/themes/custom.toml"]
 # import = ["~/.config/alacritty/themes/citruszest.toml"]
+import = ["~/.config/alacritty/themes/cyberdream.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = false
@@ -26,19 +27,21 @@ y = 6
 # family = "RecMonoCasual Nerd Font Mono"
 # family = "MonoLisa Nerd Font Mono"
 # family = "Iosevka Nerd Font Mono"
-family = "JetBrainsMono Nerd Font"
-style = "Medium"
+# family = "JetBrainsMono Nerd Font"
+family = "BlexMono Nerd Font"
+# family = "GeistMono Nerd Font Mono"
+# style = "Medium"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Italic"
 
 [scrolling]
@@ -58,8 +61,8 @@ blur = true
 dynamic_title = true
 
 [window.dimensions]
-columns = 120
-lines = 30
+columns = 140
+lines = 40
 
 [window.padding]
 x = 0

@@ -9,6 +9,7 @@ return {
       typescriptreact = { "prettier" },
       svelte = { "prettier" },
       css = { "prettier" },
+      less = { "stylelint" },
       html = { "prettier" },
       json = { "prettier" },
       yaml = { "prettier" },
@@ -16,6 +17,7 @@ return {
       graphql = { "prettier" },
       lua = { "stylua" },
       python = { "isort", "black" },
+      rust = { "rustfmt" },
     },
   },
 }

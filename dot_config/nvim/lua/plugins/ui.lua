@@ -27,23 +27,11 @@ return {
     end,
   },
   -- {
-  --   "nvim-tree/nvim-web-devicons",
-  --   opts = {
-  --     override_by_extension = {
-  --       ["astro"] = {
-  --         icon = "",
-  --         color = "#f1502f",
-  --         name = "Astro",
-  --       },
-  --     },
-  --   },
-  -- },
-  --   {
-  --     "nvimdev/dashboard-nvim",
-  --     event = "VimEnter",
-  --     opts = function(_, opts)
-  --       opts.config.theme = "hyper"
-  --       local logo = [[
+  --   "nvimdev/dashboard-nvim",
+  --   event = "VimEnter",
+  --   opts = function(_, opts)
+  --     opts.config.theme = "hyper"
+  --     local logo = [[
   -- " ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷ ",
   -- " ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇ ",
   -- " ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽ ",
@@ -59,12 +47,10 @@ return {
   -- " ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙ ",
   -- " ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣ ",
   --       ]]
-  --
-  --       logo = string.rep("\n", 8) .. logo .. "\n\n"
-  --       opts.config.header = vim.split(logo, "\n")
-  --       opts.config.week_header.concat = "王子骑士"
-  --     end,
-  --   },
+  --     logo = string.rep("\n", 8) .. logo .. "\n\n"
+  --     opts.config.header = vim.split(logo, "\n")
+  --   end,
+  -- },
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",

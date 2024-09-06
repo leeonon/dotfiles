@@ -1,3 +1,4 @@
+-- 高亮缩进线
 return {
   "shellRaining/hlchunk.nvim",
   event = { "BufReadPre", "BufNewFile" },

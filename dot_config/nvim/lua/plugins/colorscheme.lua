@@ -5,7 +5,117 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "savq/melange-nvim" },
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local theme = require("tokyonight")
+      theme.setup({
+        style = "night",
+        transparent = true,
+        on_colors = function(colors)
+          -- colors.bg_visual = M.colors.grey12
+        end,
+        styles = {
+          comments = { italic = true },
+          sidebars = "transparent",
+        },
+      })
+      -- theme.load()
+    end,
+  },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = function(_, opts)
+      opts.transparent = true
+      opts.italic_comments = true
+      opts.borderless_telescope = false
+    end,
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      require("rose-pine").setup({
+        variant = "moon", -- auto, main, moon, or dawn
+        dark_variant = "main", -- main, moon, or dawn
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = true,
+        },
+
+        highlight_groups = {
+          -- Comment = { fg = "foam" },
+          -- VertSplit = { fg = "muted", bg = "muted" },
+        },
+
+        before_highlight = function(group, highlight, palette)
+          -- Disable all undercurls
+          -- if highlight.undercurl then
+          --     highlight.undercurl = false
+          -- end
+          --
+          -- Change palette colour
+          -- if highlight.fg == palette.pine then
+          --     highlight.fg = palette.foam
+          -- end
+        end,
+      })
+    end,
+  },
+  {
     "rebelot/kanagawa.nvim",
+    opts = function()
+      return {
+        undercurl = false,
+        commentStyle = { italic = false },
+        keywordStyle = { italic = false },
+        statementStyle = { italic = false, bold = false },
+        transparent = false,
+        dimInactive = false,
+        terminalColors = true,
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+          },
+        },
+        overrides = function(colors)
+          local theme = colors.theme
+          return {
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+
+            -- Save an hlgroup with dark background and dimmed foreground
+            -- so that you can use it where your still want darker windows.
+            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+            -- Popular plugins that open floats will link to NormalFloat by default;
+            -- set their background accordingly if you wish to keep them dark and borderless
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            TelescopeTitle = { fg = theme.ui.special, bold = true },
+            -- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+            -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+            -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+            -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+            -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+            -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+          }
+        end,
+      }
+    end,
   },
   { "Shatur/neovim-ayu" },
   -- catppuccin
@@ -107,7 +217,7 @@ return {
       vim.g.everforest_diagnostic_virtual_text = "highlighted"
       vim.g.everforest_background = "hard"
       vim.g.everforest_ui_contrast = "high"
-      vim.g.everforest_current_word = "underline"
+      -- vim.g.everforest_current_word = "underline"
     end,
   },
   {
@@ -120,7 +230,7 @@ return {
     priority = 1000,
     opts = {},
     config = function()
-      require("flow").setup_options({
+      require("flow").setup({
         transparent = true, -- Set transparent background.
         fluo_color = "pink", --  Fluo color: pink, yellow, orange, or green.
         mode = "normal", -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
@@ -131,7 +241,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "solarized-osaka",
+      colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin",
       -- colorscheme = "melange",
       -- colorscheme = "kanagawa",
@@ -141,10 +251,14 @@ return {
       -- colorscheme = "everforest",
       -- colorscheme = "aylin",
       -- colorscheme = "solarized",
-      -- colorscheme = "ayu-mirage",
+      -- colorscheme = "ayu",
       -- colorscheme = "oldworld",
-      colorscheme = "flow",
+      -- colorscheme = "flow",
       -- colorscheme = "mellow",
+      -- colorscheme = "rose-pine",
+      -- colorscheme = "tokyonight",
+      -- colorscheme = "four-symbols",
+      -- colorscheme = "cyberdream",
     },
   },
 }

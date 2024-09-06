@@ -112,6 +112,8 @@ local formatting_style = {
     item.kind = string.format("%s", icon)
     item.abbr = trim(item.abbr)
     item.menu = truncateString(trim(item.menu), 20)
+    -- https://github.com/brenoprata10/nvim-highlight-colors
+    -- return require("nvim-highlight-colors").format(_, item)
     return item
   end,
 }
@@ -183,7 +185,7 @@ return {
       { name = "calc", priority = 650 },
       { name = "path", priority = 500 },
       { name = "buffer", priority = 250 },
-      { name = "copilot", priority = 1000, group_index = 2 },
+      { name = "copilot", priority = 2000, group_index = 1 },
     })
     opts.sorting = {
       comparators = {

@@ -24,6 +24,11 @@ return {
       },
     },
 
+    ui = {
+      -- Markdowon 渲染交给 markview 插件
+      enabled = false,
+    },
+
     -- see below for full list of options 👇
   },
 }

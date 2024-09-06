@@ -115,7 +115,8 @@ local diff = {
 
 local vimIcon = {
   function()
-    return ""
+    -- return ""
+    return "🐳 ♪♫* •♪"
   end,
   color = {
     bg = "None",
@@ -130,10 +131,10 @@ local modes = {
   color = function()
     local mode_color = modecolor
     return {
-      -- bg = mode_color[vim.fn.mode()],
-      bg = "None",
-      -- fg = colors.bg_dark,
-      fg = colors.purple,
+      bg = mode_color[vim.fn.mode()],
+      -- bg = "None",
+      fg = colors.bg_dark,
+      -- fg = colors.purple,
       gui = "bold",
     }
   end,
@@ -206,7 +207,8 @@ local lsp = {
     return getLspName()
   end,
   -- separator = { left = "", right = "" },
-  color = { bg = colors.purple, fg = colors.bg, gui = "italic,bold" },
+  color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
+  -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
 }
 local icons = require("lazyvim.config").icons
 local dia = {
@@ -224,7 +226,8 @@ local dia = {
     info = { fg = colors.purple },
     hint = { fg = colors.cyan },
   },
-  color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
+  -- color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
+  color = { bg = "None", fg = colors.blue, gui = "bold" },
   -- separator = { left = "" },
 }
 
@@ -285,11 +288,11 @@ return {
         lualine_x = {
           space,
                     -- stylua: ignore
-                    {
-                        function() return require("noice").api.status.command.get() end,
-                        cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-                        color = LazyVim.ui.fg("Statement"),
-                    },
+                    -- {
+                    --     function() return require("noice").api.status.command.get() end,
+                    --     cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+                    --     color = LazyVim.ui.fg("Statement"),
+                    -- },
                     -- stylua: ignore
                     {
                         function() return require("noice").api.status.mode.get() end,
@@ -309,11 +312,11 @@ return {
           },
         },
         lualine_y = {
-          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
           -- { "location", padding = { left = 0, right = 1 } },
-          space,
-          macro,
-          space,
+          -- space,
+          -- macro,
+          -- space,
         },
         lualine_z = {
           -- function()

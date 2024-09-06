@@ -7,8 +7,8 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 -- 拼写检查
-vim.opt.spell = true
-vim.opt.spelllang = { "en", "cjk" }
+-- vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
 vim.g.transparent_background = true
 vim.g.autoformat = true
 
@@ -29,7 +29,8 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.formatoptions:append({ "r" })
 
 vim.opt.laststatus = 3
-
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) --启用下划曲线。
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) --关闭下划曲线。
+
+vim.opt.termguicolors = true

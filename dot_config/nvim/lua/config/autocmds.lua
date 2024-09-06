@@ -11,3 +11,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.wo.conceallevel = 0
   end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "markdown" },
+  callback = function()
+    vim.wo.conceallevel = 2
+  end,
+})
+
+-- 设置背景透明
+-- vim.cmd("hi Normal guibg=NONE ctermbg=NONE")

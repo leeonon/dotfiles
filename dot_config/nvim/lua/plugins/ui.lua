@@ -57,20 +57,20 @@ return {
     opts = function()
       -- 宜忌
 
-      local cmd = "node -e \"console.log(require('${HOME}/.config/nvim/scripts/yiji.js').getTodayYiJi())\""
-      local handle = io.popen(cmd)
-      local result = handle:read("*a")
-
-      handle:close()
+      -- local cmd = "node -e \"console.log(require('${HOME}/.config/nvim/scripts/yiji.js').getTodayYiJi())\""
+      -- local handle = io.popen(cmd)
+      -- local result = handle:read("*a")
+      --
+      -- handle:close()
 
       -- vim.notify(tostring(result), vim.log.levels.INFO)
 
-      local yi = string.match(result, "yi: '(.*)',")
-      if yi then
-        yi = "宜: " .. yi
-      else
-        yi = "👑"
-      end
+      -- local yi = string.match(result, "yi: '(.*)',")
+      -- if yi then
+      --   yi = "宜: " .. yi
+      -- else
+      --   yi = "👑"
+      -- end
       -- 宜忌
       local opts = {
         theme = "hyper",
@@ -83,7 +83,7 @@ return {
           packages = { enable = true },
           week_header = {
             enable = true,
-            concat = yi,
+            -- concat = yi,
           },
           shortcut = {
             {

@@ -39,7 +39,7 @@ return {
     name = "rose-pine",
     config = function()
       require("rose-pine").setup({
-        variant = "moon", -- auto, main, moon, or dawn
+        variant = "moon",      -- auto, main, moon, or dawn
         dark_variant = "main", -- main, moon, or dawn
         dim_inactive_windows = false,
         extend_background_behind_borders = true,
@@ -195,13 +195,10 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      comment = {
-        italic = true,
-      },
+      terminal_colors = true,
       styles = {
-        transparent = true,
-        booleans = { bold = true },
-        functions = { italic = true },
+        booleans = { bold = false },
+        -- functions = { italic = true },
         comments = { italic = true },
       },
     },
@@ -221,9 +218,6 @@ return {
     end,
   },
   {
-    "mellow-theme/mellow.nvim",
-  },
-  {
     "0xstepit/flow.nvim",
     name = "Flow",
     lazy = false,
@@ -231,9 +225,9 @@ return {
     opts = {},
     config = function()
       require("flow").setup({
-        transparent = true, -- Set transparent background.
-        fluo_color = "pink", --  Fluo color: pink, yellow, orange, or green.
-        mode = "normal", -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
+        transparent = true,       -- Set transparent background.
+        fluo_color = "pink",      --  Fluo color: pink, yellow, orange, or green.
+        mode = "normal",          -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
         aggressive_spell = false, -- Display colors for spell check.
       })
     end,
@@ -241,7 +235,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "solarized-osaka",
+      -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin",
       -- colorscheme = "melange",
       -- colorscheme = "kanagawa",
@@ -254,10 +248,9 @@ return {
       -- colorscheme = "ayu",
       -- colorscheme = "oldworld",
       -- colorscheme = "flow",
-      -- colorscheme = "mellow",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
-      -- colorscheme = "four-symbols",
+      colorscheme = "four-symbols",
       -- colorscheme = "cyberdream",
     },
   },

@@ -10,10 +10,10 @@ return {
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   keys = {
-    -- { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-    -- { "<leader><tab>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
-    { "<leader><tab>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-    { "<leader>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    { "<leader><tab>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    -- { "<leader><tab>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    -- { "<leader>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
   },
   opts = {
     sources = { "filesystem", "git_status", "buffers" },
@@ -23,8 +23,8 @@ return {
       statusline = false,
     },
     window = {
-      position = "left",
-      -- position = "float",
+      -- position = "left",
+      position = "float",
       mappings = {
         ["o"] = "open",
         ["e"] = function()

@@ -2,7 +2,6 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.opt.list = false
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
@@ -29,8 +28,6 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.formatoptions:append({ "r" })
 
 vim.opt.laststatus = 3
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]]) --启用下划曲线。
-vim.cmd([[let &t_Ce = "\e[4:0m"]]) --关闭下划曲线。
 
+-- 启用真色彩
 vim.opt.termguicolors = true

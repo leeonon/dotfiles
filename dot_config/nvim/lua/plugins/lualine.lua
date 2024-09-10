@@ -131,10 +131,9 @@ local modes = {
   color = function()
     local mode_color = modecolor
     return {
-      bg = mode_color[vim.fn.mode()],
-      -- bg = "None",
-      fg = colors.bg_dark,
-      -- fg = colors.purple,
+      -- bg = mode_color[vim.fn.mode()],
+      bg = "None",
+      fg = colors.purple,
       gui = "bold",
     }
   end,
@@ -207,8 +206,8 @@ local lsp = {
     return getLspName()
   end,
   -- separator = { left = "", right = "" },
-  color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
-  -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
+  -- color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
+  color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
 }
 local icons = require("lazyvim.config").icons
 local dia = {

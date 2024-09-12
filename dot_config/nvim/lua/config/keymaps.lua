@@ -28,13 +28,6 @@ keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", {
 keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<cr>", {
   desc = "🔖 Lspaga Outline",
 })
--- keymap.set('n', '<leader>t', '<cmd>Lspsaga term_toggle<cr>', {
---   desc = "🖥️ Lspaga 终端",
--- })
--- 全局搜索
-keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", {
-  desc = "🔍 全局搜索",
-})
 
 keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
 keymap.set("n", "<leader>gD", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
@@ -44,32 +37,8 @@ keymap.set("n", "<leader>gp", "<cmd>DiffviewFileHistory<CR>", { desc = "Diffview
 keymap.set("n", "<C-a>", "<Nop>")
 keymap.set("n", "<C-x>", "<Nop>")
 
--- legendary
-
-local legendary = require("legendary")
-legendary.keymaps({
-  {
-    description = "Line: duplicate up",
-    mode = { "n" },
-    "<S-A-Up>",
-    "<CMD>LineDuplicate -1<CR>",
-  },
-  {
-    description = "Line: duplicate down",
-    mode = { "n" },
-    "<S-A-Down>",
-    "<CMD>LineDuplicate +1<CR>",
-  },
-  {
-    description = "Selection: duplicate up",
-    mode = { "v" },
-    "<S-A-Up>",
-    "<CMD>VisualDuplicate -1<CR>",
-  },
-  {
-    description = "Selection: duplicate down",
-    mode = { "v" },
-    "<S-A-Down>",
-    "<CMD>VisualDuplicate +1<CR>",
-  },
-})
+-- legendary 多行复制移动
+keymap.set("n", "<S-A-Up>", "<CMD>LineDuplicate -1<CR>", { desc = "Line: duplicate up" })
+keymap.set("n", "<S-A-Down>", "<CMD>LineDuplicate +1<CR>", { desc = "Line: duplicate down" })
+keymap.set("v", "<S-A-Up>", "<CMD>VisualDuplicate -1<CR>", { desc = "Selection: duplicate up" })
+keymap.set("v", "<S-A-Down>", "<CMD>VisualDuplicate +1<CR>", { desc = "Selection: duplicate down" })

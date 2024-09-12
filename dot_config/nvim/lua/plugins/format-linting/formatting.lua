@@ -37,7 +37,7 @@ local function biome_or_prettier(bufnr)
 end
 
 return {
-  "stevearc/conform.nvim",enabled = false,
+  "stevearc/conform.nvim",
   opts = {
     formatters_by_ft = {
       javascript = biome_or_prettier,

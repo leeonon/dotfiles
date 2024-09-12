@@ -1,8 +1,5 @@
 local colors = require("oldworld.palette")
--- gih-blame.nvim
--- vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
--- local git_blame = require('gitblame')
---
+
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -116,14 +113,14 @@ local diff = {
 local vimIcon = {
   function()
     -- return ""
-    return "🐳 ♪♫* •♪"
+    return "󱐋"
   end,
   color = {
     bg = "None",
     fg = colors.green,
     gui = "bold",
   },
-  padding = { right = 2, left = 1 },
+  padding = { right = 0, left = 1 },
 }
 
 local modes = {
@@ -141,7 +138,8 @@ local modes = {
 }
 
 local function getLspName()
-  local buf_clients = vim.lsp.buf_get_clients()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
   local buf_ft = vim.bo.filetype
   if next(buf_clients) == nil then
     return "  No servers"
@@ -180,7 +178,7 @@ local function getLspName()
       end
     end
   end
-
+  --
   local hash = {}
   local unique_client_names = {}
 
@@ -262,65 +260,45 @@ return {
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
       sections = {
-        lualine_a = { vimIcon, modes, filesize },
-        lualine_b = {
-          -- space
+        lualine_a = {
+          vimIcon,
+          modes,
+          -- filesize
         },
+        lualine_b = {},
         lualine_c = {
-          -- 文件路径
-          -- lazyvim normal
-          -- LazyVim.lualine.root_dir(),
-          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          -- { LazyVim.lualine.pretty_path() },
-          --
           filename,
-          filetype,
+          -- filetype,
           -- space,
           branch,
           diff,
-          -- space,
-          location,
-          -- space,
-          -- git-blame.nvim
-          -- { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available }
+          -- location,
         },
         lualine_x = {
           space,
-                    -- stylua: ignore
-                    -- {
-                    --     function() return require("noice").api.status.command.get() end,
-                    --     cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-                    --     color = LazyVim.ui.fg("Statement"),
-                    -- },
-                    -- stylua: ignore
-                    {
-                        function() return require("noice").api.status.mode.get() end,
-                        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-                        color = LazyVim.ui.fg("Constant"),
-                    },
-                    -- stylua: ignore
-                    {
-                        function() return "  " .. require("dap").status() end,
-                        cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-                        color = LazyVim.ui.fg("Debug"),
-                    },
+          {
+            function()
+              return require("noice").api.status.mode.get()
+            end,
+            cond = function()
+              return package.loaded["noice"] and require("noice").api.status.mode.has()
+            end,
+            color = LazyVim.ui.fg("Constant"),
+          },
+          -- stylua: ignore
+          {
+            function() return "  " .. require("dap").status() end,
+            cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+            color = LazyVim.ui.fg("Debug"),
+          },
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
             color = LazyVim.ui.fg("Special"),
           },
         },
-        lualine_y = {
-          -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          -- { "location", padding = { left = 0, right = 1 } },
-          -- space,
-          -- macro,
-          -- space,
-        },
+        lualine_y = {},
         lualine_z = {
-          -- function()
-          --   return " " .. os.date("%R")
-          -- end,
           dia,
           lsp,
         },

@@ -1,4 +1,3 @@
--- 高亮缩进线
 return {
   "shellRaining/hlchunk.nvim",
   event = { "BufReadPre", "BufNewFile" },
@@ -6,6 +5,14 @@ return {
     require("hlchunk").setup({
       chunk = {
         enable = true,
+        chars = {
+          -- horizontal_line = "─",
+          -- vertical_line = "│",
+          -- left_top = "┌",
+          -- left_bottom = "└",
+          -- right_arrow = "─",
+        },
+        style = "#00ffff",
       },
       indent = {
         enable = false,
@@ -18,7 +25,7 @@ return {
       },
       line_num = {
         style = "#806d9c",
-        enable = true,
+        enable = false,
       },
     })
   end,

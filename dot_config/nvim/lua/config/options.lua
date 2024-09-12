@@ -9,7 +9,7 @@ vim.opt.fileencoding = "utf-8"
 -- vim.opt.spell = true
 vim.opt.spelllang = { "en_us" }
 vim.g.transparent_background = true
-vim.g.autoformat = true
+vim.g.autoformat = false
 
 -- 自动缩进
 vim.opt.autoindent = true
@@ -31,3 +31,7 @@ vim.opt.laststatus = 3
 
 -- 启用真色彩
 vim.opt.termguicolors = true
+-- 自动同步缓冲区
+vim.opt.autoread = true
+-- 禁用 neovim 生成交换文件并显示错误
+vim.opt.swapfile = false

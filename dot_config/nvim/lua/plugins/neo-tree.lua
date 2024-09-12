@@ -10,10 +10,10 @@ return {
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   keys = {
-    { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-    { "<leader><tab>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
-    -- { "<leader><tab>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-    -- { "<leader>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    -- { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    -- { "<leader><tab>e", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    { "<leader><tab>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    { "<leader>e",      ":Neotree toggle left<CR>",  silent = true, desc = "Left File Explorer" },
   },
   opts = {
     sources = { "filesystem", "git_status", "buffers" },
@@ -23,8 +23,8 @@ return {
       statusline = false,
     },
     window = {
-      -- position = "left",
-      position = "float",
+      position = "left",
+      -- position = "float",
       mappings = {
         ["o"] = "open",
         ["e"] = function()
@@ -49,12 +49,12 @@ return {
       },
       width = 40,
     },
-    close_if_last_window = true, --关闭最后一个窗口时关闭 neotree
+    close_if_last_window = true,    --关闭最后一个窗口时关闭 neotree
     popup_border_style = "rounded", --弹窗边框样式
-    enable_git_status = true, --启用git状态
+    enable_git_status = true,       --启用git状态
     enable_modified_markers = true, --启用修改标记
-    enable_diagnostics = true, --启用诊断
-    sort_case_insensitive = true, --忽略大小写排序
+    enable_diagnostics = true,      --启用诊断
+    sort_case_insensitive = true,   --忽略大小写排序
     default_component_configs = {
       indent = {
         indent_size = 2,
@@ -107,15 +107,15 @@ return {
     },
     event_handlers = {
       -- 打开文件时自动关闭 neotree
-      {
-        event = "file_opened",
-        handler = function(file_path)
-          -- auto close
-          -- vimc.cmd("Neotree close")
-          -- OR
-          require("neo-tree.command").execute({ action = "close" })
-        end,
-      },
+      -- {
+      --   event = "file_opened",
+      --   handler = function(file_path)
+      --     -- auto close
+      --     -- vimc.cmd("Neotree close")
+      --     -- OR
+      --     require("neo-tree.command").execute({ action = "close" })
+      --   end,
+      -- },
     },
     setup = function()
       vim.api.nvim_exec("Neotree focus filesystem left", true)

@@ -94,8 +94,7 @@ return {
         inputs = {
           RgbHslCmykInput,
         },
-
       })
     end,
-  }
+  },
 }

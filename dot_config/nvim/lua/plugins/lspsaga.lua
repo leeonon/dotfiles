@@ -1,5 +1,6 @@
 return {
   "nvimdev/lspsaga.nvim",
+  enabled = false,
   dependencies = {
     "simrat39/rust-tools.nvim",
   },
@@ -44,6 +45,15 @@ return {
     end
 
     vim.keymap.set("n", "<space>k", show_documentation, { silent = true, desc = "📚  Lspsaga Hover 面板" })
+    vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {
+      desc = "💢 Prev Diagnostic",
+    })
+    vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", {
+      desc = "💢 Next Diagnostic",
+    })
+    vim.keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<cr>", {
+      desc = "🔖 Lspaga Outline",
+    })
 
     -- error lens
     vim.fn.sign_define({

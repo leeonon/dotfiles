@@ -18,17 +18,6 @@ keymap.set("n", "<leader>x", "<cmd>x<cr>")
 -- 快速切换插件
 keymap.set("n", "<leader>i", "<cmd>ToggleAlternate<cr>")
 
--- lspsaga key map
-keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {
-  desc = "💢 Prev Diagnostic",
-})
-keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", {
-  desc = "💢 Next Diagnostic",
-})
-keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<cr>", {
-  desc = "🔖 Lspaga Outline",
-})
-
 keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
 keymap.set("n", "<leader>gD", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
 keymap.set("n", "<leader>gp", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffviewFileHistory" })

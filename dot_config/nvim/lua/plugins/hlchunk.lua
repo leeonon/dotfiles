@@ -12,7 +12,7 @@ return {
           -- left_bottom = "└",
           -- right_arrow = "─",
         },
-        style = "#00ffff",
+        style = "#806d9c",
       },
       indent = {
         enable = false,

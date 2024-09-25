@@ -3,12 +3,15 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
-        virtual_text = false,
+        virtual_text = true,
       },
       setup = {
         -- https://github.com/mrcjkb/rustaceanvim/blob/master/doc/mason.txt
         rust_analyzer = function()
           return true
+        end,
+        lua_ls = function()
+          require("lspconfig.ui.windows").default_options.border = "single"
         end,
       },
       inlay_hints = {

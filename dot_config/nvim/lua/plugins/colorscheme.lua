@@ -39,7 +39,7 @@ return {
     name = "rose-pine",
     config = function()
       require("rose-pine").setup({
-        variant = "moon",      -- auto, main, moon, or dawn
+        variant = "moon", -- auto, main, moon, or dawn
         dark_variant = "main", -- main, moon, or dawn
         dim_inactive_windows = false,
         extend_background_behind_borders = true,
@@ -225,9 +225,9 @@ return {
     opts = {},
     config = function()
       require("flow").setup({
-        transparent = true,       -- Set transparent background.
-        fluo_color = "pink",      --  Fluo color: pink, yellow, orange, or green.
-        mode = "normal",          -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
+        transparent = true, -- Set transparent background.
+        fluo_color = "pink", --  Fluo color: pink, yellow, orange, or green.
+        mode = "normal", -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
         aggressive_spell = false, -- Display colors for spell check.
       })
     end,

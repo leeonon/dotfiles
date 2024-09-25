@@ -117,13 +117,15 @@ alias nv="neovide --frame buttonless --title-hidden"
 # 使用 bat 代替 cat
 alias cat='bat --paging=never'
 # bpytop 终端资源监控器
-alias bpytop='bpytop'
+alias kale='bpytop'
 # lazydocker docker 管理支持鼠标
 alias lazydocker='lazydocker'
 # duf 查看磁盘信息
 alias duf='duf'
 # neofetch 查看系统信息
 alias neofetch='neofetch'
+# sshs ~/.ssh/config file
+alias sshs='sshs'
 # tmux 重载配置文件
 alias tmuxsource='cp ~/.config/tmux-config/.tmux.conf.local ~/.config/tmux/tmux.conf.local && tmux source-file ~/.config/tmux/tmux.conf'
 # yabai 命令
@@ -135,7 +137,17 @@ alias skhdstart='skhd --start-service'
 # mactop 查看 CPU 使用情况
 alias cpu='sudo mactop'
 # sesh 打开 tmux 列表
-alias tmuxls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pick a sesh" --height 50 --prompt "⚡")"'
+alias tls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pick a sesh" --height 50 --prompt "⚡")"'
+function sss() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
 
 # homebrew 安装的软件的环境变量
 eval export HOMEBREW_PREFIX="/opt/homebrew";

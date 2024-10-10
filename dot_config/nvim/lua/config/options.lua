@@ -6,8 +6,8 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 -- 拼写检查
--- vim.opt.spell = true
-vim.opt.spelllang = { "en_us" }
+vim.opt.spell = false
+vim.opt.spelllang = { "en", "cjk" }
 vim.g.transparent_background = true
 vim.g.autoformat = true
 

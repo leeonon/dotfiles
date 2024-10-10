@@ -15,7 +15,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
+    -- { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.astro" },
     { import = "lazyvim.plugins.extras.lang.svelte" },
     { import = "lazyvim.plugins.extras.lang.rust" },
@@ -29,11 +29,14 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.luasnip" },
     -- 一键生成注释 <leader>cn
     { import = "lazyvim.plugins.extras.coding.neogen" },
+    -- 任务管理器
+    { import = "lazyvim.plugins.extras.editor.overseer" },
+    -- Harpoon2
+    { import = "lazyvim.plugins.extras.editor.harpoon2" },
     -- { import = "lazyvim.plugins.extras.ui.edgy" },
     -- { import = "lazyvim.plugins.extras.editor.mini-files" },
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
     -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
-
     { import = "plugins" },
     { import = "plugins.lsp" },
     { import = "plugins.format-linting" },

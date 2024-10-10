@@ -24,9 +24,19 @@ return {
       },
     },
 
+    mappings = {
+      -- Toggle check-boxes.
+      ["<leader>ch"] = {
+        action = function()
+          return require("obsidian").util.toggle_checkbox()
+        end,
+        opts = { buffer = true },
+      },
+    },
+
     ui = {
-      -- Markdowon 渲染交给 markview 插件
-      enabled = false,
+      -- Markdowon 渲染交给 render-markdown 插件
+      ui = { enable = false },
     },
 
     -- see below for full list of options 👇

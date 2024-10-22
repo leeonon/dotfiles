@@ -2,7 +2,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "BufEnter",
+    -- event = "BufEnter",
     opts = {
       suggestion = {
         -- https://github.com/zbirenbaum/copilot.lua/issues/91

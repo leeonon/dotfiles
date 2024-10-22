@@ -14,119 +14,68 @@ return {
   },
   keys = {
     {
-      "<leader>fP",
+      "<leader>,",
+      "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
+      desc = "Switch Buffer",
+    },
+    { "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+    { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+    { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+    -- find
+    { "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
+    { "<leader>ff", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+    { "<leader>fF", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+    { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+    { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
+    -- git
+    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
+    -- search
+    { '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
+    { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+    { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+    { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+    { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
+    { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+    { "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+    { "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+    { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+    { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+    { "<leader>sj", "<cmd>Telescope jumplist<cr>", desc = "Jumplist" },
+    { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+    { "<leader>sl", "<cmd>Telescope loclist<cr>", desc = "Location List" },
+    { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+    { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+    { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
+    { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+    { "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
+    { "<leader>sw", LazyVim.pick("grep_string", { word_match = "-w" }), desc = "Word (Root Dir)" },
+    { "<leader>sW", LazyVim.pick("grep_string", { root = false, word_match = "-w" }), desc = "Word (cwd)" },
+    { "<leader>sw", LazyVim.pick("grep_string"), mode = "v", desc = "Selection (Root Dir)" },
+    { "<leader>sW", LazyVim.pick("grep_string", { root = false }), mode = "v", desc = "Selection (cwd)" },
+    { "<leader>uC", LazyVim.pick("colorscheme", { enable_preview = true }), desc = "Colorscheme with Preview" },
+    {
+      "<leader>ss",
       function()
-        require("telescope.builtin").find_files({
-          cwd = require("lazy.core.config").options.root,
+        require("telescope.builtin").lsp_document_symbols({
+          symbols = LazyVim.config.get_kind_filter(),
         })
       end,
-      desc = "Find Plugin File",
+      desc = "Goto Symbol",
     },
     {
-      "<leader>;f",
+      "<leader>sS",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.find_files({
-          no_ignore = false,
-          hidden = true,
+        require("telescope.builtin").lsp_dynamic_workspace_symbols({
+          symbols = LazyVim.config.get_kind_filter(),
         })
       end,
-      desc = "列出当前工作目录中的文件，遵守 .gitignore 文件。",
+      desc = "Goto Symbol (Workspace)",
     },
-    {
-      "<leader>;r",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.live_grep()
-      end,
-      desc = "在您当前的工作目录中搜索字符串，并在您输入时实时获取结果，遵守.gitignore文件。",
-    },
-    {
-      "\\\\",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.buffers()
-      end,
-      desc = "列出打开的缓冲区",
-    },
-    {
-      "<leader>;t",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.help_tags()
-      end,
-      desc = "列出可用的帮助标签，并在按下<cr>时打开一个新窗口，显示相关的帮助信息。",
-    },
-    {
-      "<leader>;;",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.resume()
-      end,
-      desc = "恢复之前的望远镜选择器",
-    },
-    {
-      "<leader>;e",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.diagnostics()
-      end,
-      desc = "列出所有打开的缓冲区或特定缓冲区的诊断信息。",
-    },
-    {
-      "<leader>;s",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.treesitter()
-      end,
-      desc = "列出函数名称、变量，来自Treesitter",
-    },
-    -- {
-    --   "sf",
-    --   function()
-    --     local telescope = require("telescope")
-    --
-    --     local function telescope_buffer_dir()
-    --       return vim.fn.expand("%:p:h")
-    --     end
-    --
-    --     telescope.extensions.file_browser.file_browser({
-    --       path = "%:p:h",
-    --       cwd = telescope_buffer_dir(),
-    --       respect_gitignore = false,
-    --       hidden = true,
-    --       grouped = true,
-    --       previewer = false,
-    --       initial_mode = "normal",
-    --       layout_config = { height = 40 },
-    --     })
-    --   end,
-    --   desc = "使用当前缓冲区的路径打开文件浏览器",
-    -- },
-    {
-      "<leader>;gb",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.git_branches()
-      end,
-      desc = "列出所有的Git分支",
-    },
-    {
-      "<leader>;gc",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.git_bcommits_range()
-      end,
-      desc = "列出当前缓冲区的 Git 提交",
-    },
-    {
-      "<leader>;gs",
-      function()
-        local builtin = require("telescope.builtin")
-        builtin.git_status()
-      end,
-      desc = "列出Git状态中的所有文件",
-    },
+    -- File Browser
+    { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "Telescope 文件浏览器" },
   },
   config = function(_, opts)
     local telescope = require("telescope")
@@ -134,10 +83,11 @@ return {
     local fb_actions = require("telescope").extensions.file_browser.actions
 
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
+      -- layout_strategy = "vertical", -- horizontal
       wrap_results = true,
+      sorting_strategy = "ascending",
       layout_strategy = "horizontal",
       layout_config = { prompt_position = "top" },
-      sorting_strategy = "ascending",
       winblend = 0,
       mappings = {
         n = {},
@@ -146,8 +96,8 @@ return {
     opts.pickers = {
       diagnostics = {
         theme = "ivy",
-        initial_mode = "normal",
-        layout_config = {
+        initia_mode = "normal",
+        layout_confi = {
           preview_cutoff = 9999,
         },
       },
@@ -157,7 +107,7 @@ return {
         theme = "dropdown",
         -- disables netrw and use telescope-file-browser in its place
         hijack_netrw = true,
-        mappings = {
+        mappins = {
           -- your custom insert mode mappings
           ["n"] = {
             -- your custom normal mode mappings

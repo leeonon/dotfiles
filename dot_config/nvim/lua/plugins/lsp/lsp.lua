@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
-        virtual_text = true,
+        virtual_text = false,
       },
       setup = {
         -- https://github.com/mrcjkb/rustaceanvim/blob/master/doc/mason.txt
@@ -16,7 +16,7 @@ return {
       },
       inlay_hints = {
         enabled = false,
-        exclude = { "vue", "typescript", "javascript" }, -- filetypes for which you don't want to enable inlay hints
+        -- exclude = { "vue", "typescript", "javascript" }, -- filetypes for which you don't want to enable inlay hints
       },
       servers = {
         -- eslint = {

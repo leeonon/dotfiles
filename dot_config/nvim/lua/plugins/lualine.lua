@@ -1,4 +1,38 @@
-local colors = require("oldworld.palette")
+-- source: https://github.com/dgox16/oldworld.nvim/blob/main/lua/oldworld/palette.lua
+local colors = {
+  bg = "#161617",
+  fg = "#c9c7cd",
+  subtext1 = "#b4b1ba",
+  subtext2 = "#9f9ca6",
+  subtext3 = "#8b8693",
+  subtext4 = "#6c6874",
+  bg_dark = "#131314",
+  black = "#27272a",
+  red = "#ea83a5",
+  green = "#90b99f",
+  yellow = "#e6b99d",
+  purple = "#aca1cf",
+  magenta = "#e29eca",
+  orange = "#f5a191",
+  blue = "#92a2d5",
+  cyan = "#85b5ba",
+  bright_black = "#353539",
+  bright_red = "#ed96b3",
+  bright_green = "#a7c8b3",
+  bright_yellow = "#eac5ae",
+  bright_purple = "#b7aed5",
+  bright_magenta = "#e8b0d4",
+  bright_orange = "#f6b0a2",
+  bright_blue = "#a7b3dd",
+  bright_cyan = "#97c0c4",
+  gray0 = "#18181a",
+  gray1 = "#1b1b1c",
+  gray2 = "#2a2a2c",
+  gray3 = "#313134",
+  gray4 = "#3b3b3e",
+  -- Special
+  none = "NONE",
+}
 
 local conditions = {
   buffer_not_empty = function()
@@ -49,6 +83,13 @@ local theme = {
   replace = { a = { fg = colors.bg_dark, bg = colors.green } },
 }
 
+local window = {
+  function()
+    return " " .. vim.api.nvim_win_get_number(0)
+  end,
+  color = { bg = "None", fg = colors.blue, gui = "bold" },
+}
+
 local space = {
   function()
     return " "
@@ -58,8 +99,10 @@ local space = {
 
 local filename = {
   "filename",
-  color = { bg = "None", fg = colors.green, gui = "bold" },
-  -- color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+  path = 5,
+  padding = 1,
+  -- color = { bg = "None", fg = colors.green, gui = "bold" },
+  color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
   -- separator = { left = "", right = "" },
 }
 
@@ -112,14 +155,19 @@ local diff = {
 
 local vimIcon = {
   function()
-    -- return ""
-    return "󱐋"
+    return ""
+    -- return "󱐋"
   end,
-  color = {
-    bg = "None",
-    fg = colors.green,
-    gui = "bold",
-  },
+  color = function()
+    local mode_color = modecolor
+    return {
+      bg = mode_color[vim.fn.mode()],
+      -- bg = "None",
+      fg = colors.dark,
+      gui = "bold",
+    }
+  end,
+
   padding = { right = 0, left = 1 },
 }
 
@@ -128,9 +176,9 @@ local modes = {
   color = function()
     local mode_color = modecolor
     return {
-      -- bg = mode_color[vim.fn.mode()],
-      bg = "None",
-      fg = colors.purple,
+      bg = mode_color[vim.fn.mode()],
+      -- bg = "None",
+      fg = colors.dark,
       gui = "bold",
     }
   end,
@@ -199,13 +247,20 @@ local macro = {
   color = { fg = colors.red, bg = colors.bg_dark, gui = "italic,bold" },
 }
 
+local function keymap()
+  if vim.opt.iminsert:get() > 0 and vim.b.keymap_name then
+    return "⌨ " .. vim.b.keymap_name
+  end
+  return ""
+end
+
 local lsp = {
   function()
     return getLspName()
   end,
   -- separator = { left = "", right = "" },
-  -- color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
-  color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
+  color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
+  -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
 }
 local icons = require("lazyvim.config").icons
 local dia = {
@@ -263,16 +318,16 @@ return {
         lualine_a = {
           vimIcon,
           modes,
-          -- filesize
+          -- filesize,
         },
         lualine_b = {},
         lualine_c = {
           filename,
-          -- filetype,
+          filetype,
           -- space,
           branch,
           diff,
-          -- location,
+          location,
         },
         lualine_x = {
           space,
@@ -300,6 +355,7 @@ return {
         lualine_y = {},
         lualine_z = {
           dia,
+          window,
           lsp,
         },
       },

@@ -1,15 +1,15 @@
 live_config_reload = true
 
 # import = ["~/.config/alacritty/themes/berlin-night.toml"]
-# import = ["~/.config/alacritty/themes/custom.toml"]
+import = ["~/.config/alacritty/themes/custom.toml"]
 # import = ["~/.config/alacritty/themes/citruszest.toml"]
-import = ["~/.config/alacritty/themes/cyberdream.toml"]
+# import = ["~/.config/alacritty/themes/cyberdream.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = false
 
 [font]
-size = 14
+size = 14.0
 
 [font.offset]
 # y = 6
@@ -28,9 +28,10 @@ size = 14
 # family = "MonoLisa Nerd Font Mono"
 # family = "Iosevka Nerd Font Mono"
 # family = "JetBrainsMono Nerd Font"
+# family = "CartographCF Nerd Font"
+# style = "Regular"
 family = "BlexMono Nerd Font"
-# family = "GeistMono Nerd Font Mono"
-# style = "Medium"
+style = "Medium"
 
 [font.bold]
 family = "BlexMono Nerd Font"
@@ -38,11 +39,20 @@ style = "Bold"
 
 [font.bold_italic]
 family = "BlexMono Nerd Font"
-style = "Italic"
+style = "Bold Italic"
+# family = "CartographCF Nerd Font"
+# style = "Bold Italic"
 
 [font.italic]
+# family = "CartographCF Nerd Font"
+# style = "Regular Italic"
 family = "BlexMono Nerd Font"
 style = "Italic"
+
+
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
 
 [scrolling]
 history = 100000
@@ -54,11 +64,11 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
 opacity = 0.8
-# decorations = "transparent"
-decorations = "buttonless"
+decorations = "buttonless" # Transparent | Buttonless | Full | None
 blur = true
+title = "Yang"
 dynamic_padding = false
-dynamic_title = true
+dynamic_title = false
 
 [window.dimensions]
 columns = 140

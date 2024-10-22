@@ -27,4 +27,3 @@ tmux source-file .config/tmux/tmux.conf 重载配置文件
 ## 某些tmux 插件无法通过 tpm 安装问题
 
 例如 之前安装过 catppuccin/tmux 插件，就会在 plugin 下创建一个 tmux 文件夹，这时候再安装 rose-pine/tmux 。因为已经有了 tmux 文件夹了，所以不会重新安装，解决办法是手动删除 tmux 文件夹，然后 Prefix + I 进行安装 -> https://github.com/rose-pine/tmux/issues/28
-

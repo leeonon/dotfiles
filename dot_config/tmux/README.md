@@ -20,9 +20,11 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 run '~/.tmux/plugins/tpm/tpm'
 ```
 
+## 命令
+
 tmux kill-server 关闭所有回话
 
-tmux source-file .config/tmux/tmux.conf 重载配置文件
+tmux source-file ~/.config/tmux/tmux.conf 重载配置文件
 
 ## 某些tmux 插件无法通过 tpm 安装问题
 

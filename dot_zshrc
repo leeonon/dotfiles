@@ -122,8 +122,12 @@ alias kale='bpytop'
 alias lazydocker='lazydocker'
 # duf 查看磁盘信息
 alias duf='duf'
+# onefetch 查看仓库信息
+alias of="onefetch"
 # neofetch 查看系统信息
 alias neofetch='neofetch'
+# nerdfetch
+alias nerdfetch='nerdfetch'
 # sshs ~/.ssh/config file
 alias sshs='sshs'
 # tmux 重载配置文件

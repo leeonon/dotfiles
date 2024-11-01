@@ -250,10 +250,7 @@ return {
       -- colorscheme = "flow",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
-      -- colorscheme = "four-symbols",
-      colorscheme = "four-symbols-vermilion-bird",
-      -- colorscheme = "four-symbols-black-tortoise",
-      -- colorscheme = "cyberdream",
+      colorscheme = "four-symbols",
     },
   },
 }

@@ -60,3 +60,5 @@ vim.diagnostic.config({
   float = { border = _border },
   virtual_text = false,
 })
+
+vim.o.termguicolors = true

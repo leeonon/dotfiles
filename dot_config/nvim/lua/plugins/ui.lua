@@ -1,16 +1,5 @@
 -- https://meatfighter.com/ascii-silhouettify/color-gallery.html
 return {
-  -- 终端
-  {
-
-    "akinsho/toggleterm.nvim",
-    config = function()
-      require("toggleterm").setup({
-        open_mapping = [[<c-\>]],
-        direction = "float", -- 'vertical' | 'horizontal' | 'tab' | 'float',
-      })
-    end,
-  },
   -- 窗口设置
   {
     "szw/vim-maximizer",

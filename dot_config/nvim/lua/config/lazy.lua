@@ -33,6 +33,10 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.overseer" },
     -- Harpoon2
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    -- 重构
+    { import = "lazyvim.plugins.extras.editor.refactoring" },
+    -- 基于 LSP 的重构
+    { import = "lazyvim.plugins.extras.editor.inc-rename" },
     -- { import = "lazyvim.plugins.extras.ui.edgy" },
     -- { import = "lazyvim.plugins.extras.editor.mini-files" },
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },

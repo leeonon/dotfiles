@@ -33,6 +33,7 @@ local colors = {
   -- Special
   none = "NONE",
 }
+-- local colors = require("four-symbols.palette").get_palette("azure-dragon")
 
 local conditions = {
   buffer_not_empty = function()
@@ -103,6 +104,7 @@ local filename = {
   padding = 1,
   -- color = { bg = "None", fg = colors.green, gui = "bold" },
   color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+  separator = { left = "", right = "" },
   -- separator = { left = "", right = "" },
 }
 
@@ -182,7 +184,7 @@ local modes = {
       gui = "bold",
     }
   end,
-  -- separator = { left = "", right = "" },
+  separator = { left = "", right = "" },
 }
 
 local function getLspName()
@@ -259,6 +261,7 @@ local lsp = {
     return getLspName()
   end,
   -- separator = { left = "", right = "" },
+  separator = { left = "", right = "" },
   color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
   -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
 }

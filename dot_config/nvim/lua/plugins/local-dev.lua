@@ -2,8 +2,66 @@ return {
   {
     dir = "~/code/github/four-symbols/nvim",
     priority = 1000,
+    name = "Four Symbols",
     opts = {
-      transparent = true,
+      -- theme = "white-tiger",
+      theme = "vermilion-bird",
+      -- theme = "black-tortoise",
+      transparent = false,
+      dim_inactive = true,
+      terminal_colors = true,
+      styles = {
+        comments = {},
+        keywords = {},
+        identifiers = {},
+        functions = {},
+        variables = {},
+        booleans = {},
+      },
+      plugins = {
+        editor = true,
+        syntax = true,
+        alpha = true,
+        cmp = true,
+        flash = true,
+        gitsigns = true,
+        hop = true,
+        illuminate = true,
+        indent_blankline = true,
+        lazy = true,
+        lsp = true,
+        markdown = true,
+        mason = true,
+        mini = true,
+        navic = true,
+        neotree = true,
+        neorg = true,
+        noice = true,
+        notify = true,
+        rainbow_delimiters = true,
+        telescope = true,
+        treesitter = true,
+        trouble = true,
+        dashboard = true,
+      },
+      -- overrides = function(colors)
+      --     local theme = colors.theme
+      --     return {
+      --       NormalFloat = { bg = "none" },
+      --       FloatBorder = { bg = "none" },
+      --       FloatTitle = { bg = "none" },
+      --       -- Save an hlgroup with dark background and dimmed foreground
+      --       -- so that you can use it where your still want darker windows.
+      --       -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+      --       NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+      --
+      --       -- Popular plugins that open floats will link to NormalFloat by default;
+      --       -- set their background accordingly if you wish to keep them dark and borderless
+      --       LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+      --       MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+      --     }
+      --   end,
+      -- }
     },
   },
   {

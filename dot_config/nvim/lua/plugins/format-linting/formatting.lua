@@ -36,6 +36,7 @@ local function biome_or_prettier(bufnr)
   return { "prettierd", stop_after_first = true }
 end
 
+-- TODO: prettier 感觉很卡,换成 prettierd 试试
 return {
   "stevearc/conform.nvim",
   opts = {

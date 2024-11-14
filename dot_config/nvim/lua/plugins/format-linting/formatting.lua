@@ -29,11 +29,11 @@ local function biome_or_prettier(bufnr)
     "prettier.config.cjs",
   })
   if has_prettier_config then
-    return { "prettier", stop_after_first = true }
+    return { "prettierd", stop_after_first = true }
   end
 
   -- Default to Prettier if no config is found
-  return { "prettier", stop_after_first = true }
+  return { "prettierd", stop_after_first = true }
 end
 
 return {
@@ -45,13 +45,13 @@ return {
       javascriptreact = biome_or_prettier,
       typescriptreact = biome_or_prettier,
       svelte = biome_or_prettier,
-      css = { "prettier" },
+      css = { "prettierd" },
       less = { "stylelint" },
       html = biome_or_prettier,
-      json = { "prettier" },
-      yaml = { "prettier" },
-      markdown = { "prettier" },
-      graphql = { "prettier" },
+      json = { "prettierd" },
+      yaml = { "prettierd" },
+      markdown = { "prettierd" },
+      graphql = { "prettierd" },
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt" },

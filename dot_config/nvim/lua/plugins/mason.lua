@@ -51,6 +51,7 @@ return {
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
+        "prettierd",
         "stylelint",
         "stylua", -- lua formatter
         "prisma-language-server",

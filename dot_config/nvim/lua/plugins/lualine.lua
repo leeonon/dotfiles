@@ -30,11 +30,9 @@ local colors = {
   gray2 = "#2a2a2c",
   gray3 = "#313134",
   gray4 = "#3b3b3e",
-  -- Special
   none = "NONE",
 }
 -- local colors = require("four-symbols.palette").get_palette("azure-dragon")
-
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -88,7 +86,7 @@ local window = {
   function()
     return " " .. vim.api.nvim_win_get_number(0)
   end,
-  color = { bg = "None", fg = colors.blue, gui = "bold" },
+  color = { bg = "None", fg = colors.blue },
 }
 
 local space = {
@@ -102,18 +100,14 @@ local filename = {
   "filename",
   path = 5,
   padding = 1,
-  -- color = { bg = "None", fg = colors.green, gui = "bold" },
-  color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+  color = { bg = colors.blue, fg = colors.bg },
   separator = { left = "", right = "" },
-  -- separator = { left = "", right = "" },
 }
 
 local filetype = {
   "filetype",
   icons_enabled = false,
-  -- color = { bg = colors.gray2, fg = colors.blue, gui = "italic,bold" },
-  color = { bg = "None", fg = colors.blue, gui = "italic,bold" },
-  -- separator = { left = "", right = "" },
+  color = { bg = "None", fg = colors.blue, gui = "italic" },
 }
 
 local filesize = {
@@ -125,8 +119,7 @@ local filesize = {
 local branch = {
   "branch",
   icon = "",
-  color = { bg = "None", fg = colors.bright_cyan, gui = "bold" },
-  -- color = { bg = colors.green, fg = colors.bg, gui = "bold" },
+  color = { bg = "None", fg = colors.bright_cyan },
   -- separator = { left = "", right = "" },
 }
 
@@ -136,7 +129,6 @@ local location = {
     -- bg = colors.yellow,
     -- fg = colors.bg,
     fg = colors.yellow,
-    gui = "bold",
   },
   -- separator = { left = "", right = "" },
 }
@@ -262,7 +254,7 @@ local lsp = {
   end,
   -- separator = { left = "", right = "" },
   separator = { left = "", right = "" },
-  color = { bg = colors.bright_cyan, fg = colors.bg, gui = "bold" },
+  color = { bg = colors.bright_cyan, fg = colors.bg },
   -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
 }
 local icons = require("lazyvim.config").icons
@@ -282,7 +274,7 @@ local dia = {
     hint = { fg = colors.cyan },
   },
   -- color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
-  color = { bg = "None", fg = colors.blue, gui = "bold" },
+  color = { bg = "None", fg = colors.blue },
   -- separator = { left = "" },
 }
 

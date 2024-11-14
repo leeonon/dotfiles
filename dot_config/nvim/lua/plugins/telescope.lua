@@ -98,7 +98,13 @@ return {
       layout_config = { prompt_position = "top" },
       winblend = 0,
       mappings = {
-        n = {},
+        n = {
+          -- 缓冲区列表 leader + ,
+          -- 删除缓冲区
+          ["d"] = require("telescope.actions").delete_buffer,
+          -- 退出buffexplorer
+          ["q"] = require("telescope.actions").close,
+        },
       },
     })
     opts.pickers = {

@@ -22,20 +22,6 @@ return {
       })
     end,
   },
-  -- Bufferline
-  {
-    "akinsho/bufferline.nvim",
-    enabled = false,
-    opts = {
-      -- options = {
-      --   buffer_close_icon = "",
-      --   numbers = "ordinal",
-      --   mode = "tabs",
-      --   show_buffer_close_icons = false,
-      --   show_close_icon = false,
-      -- },
-    },
-  },
   -- 有趣的小插件，可以用作屏幕保护程序和仪表板。
   -- {
   --   "folke/drop.nvim",

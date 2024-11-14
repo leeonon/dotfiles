@@ -233,6 +233,12 @@ return {
     end,
   },
   {
+    "2nthony/vitesse.nvim",
+    dependencies = {
+      "tjdevries/colorbuddy.nvim",
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "solarized-osaka",

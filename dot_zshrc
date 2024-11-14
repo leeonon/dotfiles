@@ -142,6 +142,8 @@ alias skhdstart='skhd --start-service'
 alias cpu='sudo mactop'
 # sesh 打开 tmux 列表
 alias tls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pick a sesh" --height 50 --prompt "⚡")"'
+# 检测项目 package.json 依赖版本
+alias taze='npx taze'
 function sss() {
   {
     exec </dev/tty

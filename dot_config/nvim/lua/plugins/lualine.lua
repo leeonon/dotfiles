@@ -1,183 +1,8 @@
--- source: https://github.com/dgox16/oldworld.nvim/blob/main/lua/oldworld/palette.lua
-local colors = {
-  bg = "#161617",
-  fg = "#c9c7cd",
-  subtext1 = "#b4b1ba",
-  subtext2 = "#9f9ca6",
-  subtext3 = "#8b8693",
-  subtext4 = "#6c6874",
-  bg_dark = "#131314",
-  black = "#27272a",
-  red = "#ea83a5",
-  green = "#90b99f",
-  yellow = "#e6b99d",
-  purple = "#aca1cf",
-  magenta = "#e29eca",
-  orange = "#f5a191",
-  blue = "#92a2d5",
-  cyan = "#85b5ba",
-  bright_black = "#353539",
-  bright_red = "#ed96b3",
-  bright_green = "#a7c8b3",
-  bright_yellow = "#eac5ae",
-  bright_purple = "#b7aed5",
-  bright_magenta = "#e8b0d4",
-  bright_orange = "#f6b0a2",
-  bright_blue = "#a7b3dd",
-  bright_cyan = "#97c0c4",
-  gray0 = "#18181a",
-  gray1 = "#1b1b1c",
-  gray2 = "#2a2a2c",
-  gray3 = "#313134",
-  gray4 = "#3b3b3e",
-  none = "NONE",
-}
--- local colors = require("four-symbols.palette").get_palette("azure-dragon")
-local conditions = {
-  buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-  end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
-  end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand("%:p:h")
-    local gitdir = vim.fn.finddir(".git", filepath .. ";")
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end,
-}
-
-local modecolor = {
-  n = colors.red,
-  i = colors.cyan,
-  v = colors.purple,
-  [""] = colors.purple,
-  V = colors.red,
-  c = colors.yellow,
-  no = colors.red,
-  s = colors.yellow,
-  S = colors.yellow,
-  [""] = colors.yellow,
-  ic = colors.yellow,
-  R = colors.green,
-  Rv = colors.purple,
-  cv = colors.red,
-  ce = colors.red,
-  r = colors.cyan,
-  rm = colors.cyan,
-  ["r?"] = colors.cyan,
-  ["!"] = colors.red,
-  t = colors.bright_red,
-}
-
-local theme = {
-  normal = {
-    a = { fg = colors.bg_dark, bg = colors.blue },
-    b = { fg = colors.blue, bg = colors.white },
-    c = { fg = colors.white, bg = "None" },
-    z = { fg = colors.white, bg = "None" },
-  },
-  insert = { a = { fg = colors.bg_dark, bg = colors.orange } },
-  visual = { a = { fg = colors.bg_dark, bg = colors.green } },
-  replace = { a = { fg = colors.bg_dark, bg = colors.green } },
-}
-
-local window = {
-  function()
-    return " " .. vim.api.nvim_win_get_number(0)
-  end,
-  color = { bg = "None", fg = colors.blue },
-}
-
-local space = {
-  function()
-    return " "
-  end,
-  color = { bg = "None", fg = colors.blue },
-}
-
-local filename = {
-  "filename",
-  path = 5,
-  padding = 1,
-  color = { bg = colors.blue, fg = colors.bg },
-  separator = { left = "", right = "" },
-}
-
-local filetype = {
-  "filetype",
-  icons_enabled = false,
-  color = { bg = "None", fg = colors.blue, gui = "italic" },
-}
-
-local filesize = {
-  "filesize",
-  color = { bg = "None", fg = colors.blue, gui = "italic,bold" },
-  cond = conditions.buffer_not_empty,
-}
-
-local branch = {
-  "branch",
-  icon = "",
-  color = { bg = "None", fg = colors.bright_cyan },
-  -- separator = { left = "", right = "" },
-}
-
-local location = {
-  "location",
-  color = {
-    -- bg = colors.yellow,
-    -- fg = colors.bg,
-    fg = colors.yellow,
-  },
-  -- separator = { left = "", right = "" },
-}
-
-local diff = {
-  "diff",
-  -- color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
-  color = { bg = "None", fg = colors.bg, gui = "bold" },
-  -- separator = { left = "", right = "" },
-  symbols = { added = " ", modified = " ", removed = " " },
-
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.yellow },
-    removed = { fg = colors.red },
-  },
-}
-
-local vimIcon = {
-  function()
-    return ""
-    -- return "󱐋"
-  end,
-  color = function()
-    local mode_color = modecolor
-    return {
-      bg = mode_color[vim.fn.mode()],
-      -- bg = "None",
-      fg = colors.dark,
-      gui = "bold",
-    }
-  end,
-
-  padding = { right = 0, left = 1 },
-}
-
-local modes = {
-  "mode",
-  color = function()
-    local mode_color = modecolor
-    return {
-      bg = mode_color[vim.fn.mode()],
-      -- bg = "None",
-      fg = colors.dark,
-      gui = "bold",
-    }
-  end,
-  separator = { left = "", right = "" },
-}
+local function get_lualine_colors()
+  local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "azure-dragon"
+  local c = require("four-symbols.palette").get_palette(colorname)
+  return c
+end
 
 local function getLspName()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -235,49 +60,7 @@ local function getLspName()
   return "  " .. language_servers
 end
 
-local macro = {
-  require("noice").api.status.mode.get,
-  cond = require("noice").api.status.mode.has,
-  color = { fg = colors.red, bg = colors.bg_dark, gui = "italic,bold" },
-}
-
-local function keymap()
-  if vim.opt.iminsert:get() > 0 and vim.b.keymap_name then
-    return "⌨ " .. vim.b.keymap_name
-  end
-  return ""
-end
-
-local lsp = {
-  function()
-    return getLspName()
-  end,
-  -- separator = { left = "", right = "" },
-  separator = { left = "", right = "" },
-  color = { bg = colors.bright_cyan, fg = colors.bg },
-  -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
-}
 local icons = require("lazyvim.config").icons
-local dia = {
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  symbols = {
-    error = icons.diagnostics.Error,
-    warn = icons.diagnostics.Warn,
-    info = icons.diagnostics.Info,
-    hint = icons.diagnostics.Hint,
-  },
-  diagnostics_color = {
-    error = { fg = colors.red },
-    warn = { fg = colors.yellow },
-    info = { fg = colors.purple },
-    hint = { fg = colors.cyan },
-  },
-  -- color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
-  color = { bg = "None", fg = colors.blue },
-  -- separator = { left = "" },
-}
-
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
@@ -294,9 +77,51 @@ return {
   opts = function()
     -- PERF: we don't need this lualine require madness 🤷
     local lualine_require = require("lualine_require")
+    local colors = get_lualine_colors()
     lualine_require.require = require
 
     vim.o.laststatus = vim.g.lualine_laststatus
+    local space = {
+      function()
+        return " "
+      end,
+      color = { bg = "None", fg = colors.blue },
+    }
+
+    local modecolor = {
+      n = colors.red,
+      i = colors.fg,
+      v = colors.purple,
+      [""] = colors.purple,
+      V = colors.red,
+      c = colors.yellow,
+      no = colors.red,
+      s = colors.yellow,
+      S = colors.yellow,
+      [""] = colors.yellow,
+      ic = colors.yellow,
+      R = colors.green,
+      Rv = colors.purple,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.fg,
+      rm = colors.fg,
+      ["r?"] = colors.fg,
+      ["!"] = colors.red,
+      t = colors.orange,
+    }
+
+    local theme = {
+      normal = {
+        a = { fg = colors.bg, bg = colors.blue },
+        b = { fg = colors.blue, bg = colors.white },
+        c = { fg = colors.white, bg = "None" },
+        z = { fg = colors.white, bg = "None" },
+      },
+      insert = { a = { fg = colors.bg, bg = colors.orange } },
+      visual = { a = { fg = colors.bg, bg = colors.green } },
+      replace = { a = { fg = colors.bg, bg = colors.green } },
+    }
 
     return {
       options = {
@@ -311,18 +136,81 @@ return {
       },
       sections = {
         lualine_a = {
-          vimIcon,
-          modes,
+          {
+            function()
+              return ""
+              -- return "󱐋"
+            end,
+            color = function()
+              local mode_color = modecolor
+              return {
+                bg = mode_color[vim.fn.mode()],
+                -- bg = "None",
+                fg = colors.black,
+                gui = "bold",
+              }
+            end,
+            padding = { right = 0, left = 1 },
+          },
+          {
+            "mode",
+            color = function()
+              local mode_color = modecolor
+              return {
+                bg = mode_color[vim.fn.mode()],
+                -- bg = "None",
+                fg = colors.black,
+                gui = "bold",
+              }
+            end,
+            separator = { left = "", right = "" },
+          },
           -- filesize,
         },
         lualine_b = {},
         lualine_c = {
-          filename,
-          filetype,
+          {
+            "filename",
+            path = 5,
+            padding = 1,
+            color = { bg = colors.fg_muted, fg = colors.bg },
+            separator = { left = "", right = "" },
+          },
+
+          {
+            "filetype",
+            icons_enabled = false,
+            color = { bg = "None", fg = colors.blue, gui = "italic" },
+          },
           -- space,
-          branch,
-          diff,
-          location,
+          {
+            "branch",
+            icon = "",
+            color = { bg = "None", fg = colors.cyan },
+            -- separator = { left = "", right = "" },
+          },
+          {
+            "diff",
+            -- color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
+            color = { bg = "None", fg = colors.fg, gui = "bold" },
+            -- separator = { left = "", right = "" },
+            symbols = { added = " ", modified = " ", removed = " " },
+
+            diff_color = {
+              added = { fg = colors.green },
+              modified = { fg = colors.yellow },
+              removed = { fg = colors.red },
+            },
+          },
+          {
+            "location",
+            color = {
+              -- bg = colors.yellow,
+              -- fg = colors.bg,
+              fg = colors.yellow,
+            },
+            -- separator = { left = "", right = "" },
+          },
         },
         lualine_x = {
           space,
@@ -349,9 +237,46 @@ return {
         },
         lualine_y = {},
         lualine_z = {
-          dia,
-          window,
-          lsp,
+          {
+            "diagnostics",
+            sources = { "nvim_diagnostic" },
+            symbols = {
+              error = icons.diagnostics.Error,
+              warn = icons.diagnostics.Warn,
+              info = icons.diagnostics.Info,
+              hint = icons.diagnostics.Hint,
+            },
+            diagnostics_color = {
+              error = { fg = colors.red },
+              warn = { fg = colors.yellow },
+              info = { fg = colors.purple },
+              hint = { fg = colors.cyan },
+            },
+            -- color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
+            color = { bg = "None", fg = colors.blue },
+            -- separator = { left = "" },
+          },
+          -- {
+          --
+          --   function()
+          --     return " " .. vim.api.nvim_win_get_number(0)
+          --   end,
+          --   color = { bg = "None", fg = colors.blue },
+          -- },
+          {
+            require("noice").api.status.mode.get,
+            cond = require("noice").api.status.mode.has,
+            color = { fg = colors.red, bg = colors.magenta, gui = "italic,bold" },
+          },
+          {
+            function()
+              return getLspName()
+            end,
+            -- separator = { left = "", right = "" },
+            separator = { left = "", right = "" },
+            color = { bg = colors.fg_caption, fg = colors.bg },
+            -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
+          },
         },
       },
       extensions = { "neo-tree", "lazy" },

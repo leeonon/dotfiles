@@ -2,6 +2,7 @@ return {
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },
+    lazy = true,
     enabled = true,
     keys = {
       { "<leader>co", "<cmd>HighlightColors toggle<CR>" },

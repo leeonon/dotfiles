@@ -66,6 +66,8 @@ return {
   },
   {
     "uga-rosa/ccc.nvim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local ColorInput = require("ccc.input")
       local convert = require("ccc.utils.convert")

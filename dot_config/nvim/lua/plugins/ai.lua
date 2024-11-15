@@ -2,7 +2,8 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    -- event = "BufEnter",
+    lazy = true,
+    event = "BufEnter",
     opts = {
       suggestion = {
         -- https://github.com/zbirenbaum/copilot.lua/issues/91
@@ -24,7 +25,7 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    lazy = false,
+    lazy = true,
     version = false, -- set this if you want to always pull the latest change
     opts = {
       provider = "copilot",

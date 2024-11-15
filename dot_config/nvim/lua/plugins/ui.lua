@@ -22,13 +22,6 @@ return {
       })
     end,
   },
-  -- 有趣的小插件，可以用作屏幕保护程序和仪表板。
-  -- {
-  --   "folke/drop.nvim",
-  --   opts = {
-  --     -- ...
-  --   },
-  -- },
   {
     "echasnovski/mini.icons",
     lazy = true,
@@ -48,35 +41,15 @@ return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function()
-      -- 宜忌
-
-      -- local cmd = "node -e \"console.log(require('${HOME}/.config/nvim/scripts/yiji.js').getTodayYiJi())\""
-      -- local handle = io.popen(cmd)
-      -- local result = handle:read("*a")
-      --
-      -- handle:close()
-
-      -- vim.notify(tostring(result), vim.log.levels.INFO)
-
-      -- local yi = string.match(result, "yi: '(.*)',")
-      -- if yi then
-      --   yi = "宜: " .. yi
-      -- else
-      --   yi = "👑"
-      -- end
-      -- 宜忌
       local opts = {
         theme = "hyper",
         hide = {
-          -- this is taken care of by lualine
-          -- enabling this messes up the actual laststatus setting after loading a file
           statusline = false,
         },
         config = {
           packages = { enable = true },
           week_header = {
             enable = true,
-            -- concat = yi,
           },
           shortcut = {
             {
@@ -100,18 +73,6 @@ return {
           end,
         },
       }
-
-      -- close Lazy and re-open when the dashboard is ready
-      if vim.o.filetype == "lazy" then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "DashboardLoaded",
-          callback = function()
-            require("lazy").show()
-          end,
-        })
-      end
-
       return opts
     end,
   },

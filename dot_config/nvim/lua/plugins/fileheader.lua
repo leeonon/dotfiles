@@ -1,3 +1,0 @@
-return {
-  "ahonn/vim-fileheader",
-}

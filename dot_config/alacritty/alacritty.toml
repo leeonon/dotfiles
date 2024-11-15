@@ -1,7 +1,3 @@
-live_config_reload = true
-
-# import = ["~/.config/alacritty/themes/berlin-night.toml"]
-import = ["~/.config/alacritty/themes/custom.toml"]
 # import = ["~/.config/alacritty/themes/citruszest.toml"]
 # import = ["~/.config/alacritty/themes/cyberdream.toml"]
 
@@ -70,7 +66,7 @@ opacity = 0.8
 decorations = "buttonless" # Transparent | Buttonless | Full | None
 blur = true
 title = "Yang"
-dynamic_padding = false
+dynamic_padding = true
 dynamic_title = false
 
 [window.dimensions]
@@ -239,3 +235,9 @@ chars = ":Telescope live_grep\r"
 key = "P"
 mods = "Command"
 chars = ":Telescope find_files\r"
+
+[general]
+live_config_reload = true
+
+# import = ["~/.config/alacritty/themes/berlin-night.toml"]
+import = ["~/.config/alacritty/themes/custom.toml"]

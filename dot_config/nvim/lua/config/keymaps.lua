@@ -26,7 +26,7 @@ keymap.set("n", "<leader>gp", "<cmd>DiffviewFileHistory<CR>", { desc = "Diffview
 keymap.set("n", "<C-a>", "<Nop>")
 keymap.set("n", "<C-x>", "<Nop>")
 
--- legendary 多行复制移动
+-- hinell/duplicate.nvim 多行复制移动
 keymap.set("n", "<S-A-Up>", "<CMD>LineDuplicate -1<CR>", { desc = "Line: duplicate up" })
 keymap.set("n", "<S-A-Down>", "<CMD>LineDuplicate +1<CR>", { desc = "Line: duplicate down" })
 keymap.set("v", "<S-A-Up>", "<CMD>VisualDuplicate -1<CR>", { desc = "Selection: duplicate up" })

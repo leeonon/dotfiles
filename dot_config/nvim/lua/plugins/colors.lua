@@ -1,5 +1,4 @@
 return {
-  { "NvChad/nvim-colorizer.lua", enabled = false },
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },

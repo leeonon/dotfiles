@@ -43,5 +43,3 @@ vim.diagnostic.config({
 })
 
 vim.o.termguicolors = true
-
-vim.g.lazyvim_blink_main = false

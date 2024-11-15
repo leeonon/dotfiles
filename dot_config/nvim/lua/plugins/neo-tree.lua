@@ -18,7 +18,7 @@ return {
       },
       buffers = { follow_current_file = { enabled = true } },
       window = {
-        position = "left",
+        position = "right",
         mappings = {
           -- 打开文件而不失去侧边栏焦点
           ["<tab>"] = function(state)
@@ -68,6 +68,6 @@ return {
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
     })
-    vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
+    vim.keymap.set("n", "<M-i>", ":Neotree filesystem reveal right<CR>", {})
   end,
 }

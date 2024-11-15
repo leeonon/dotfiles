@@ -3,7 +3,6 @@
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
-  { "savq/melange-nvim" },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -177,33 +176,6 @@ return {
     },
   },
   {
-    "craftzdog/solarized-osaka.nvim",
-    name = "solarized-osaka",
-    lazy = false,
-    priority = 1000,
-    opts = function()
-      return {
-        transparent = true,
-        styles = {
-          sidebars = "transparent",
-        },
-      }
-    end,
-  },
-  {
-    "dgox16/oldworld.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      terminal_colors = true,
-      styles = {
-        booleans = { bold = false },
-        -- functions = { italic = true },
-        comments = { italic = true },
-      },
-    },
-  },
-  {
     "sainnhe/everforest",
     priority = 1000,
     config = function()
@@ -218,42 +190,14 @@ return {
     end,
   },
   {
-    "0xstepit/flow.nvim",
-    name = "Flow",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      require("flow").setup({
-        transparent = true, -- Set transparent background.
-        fluo_color = "pink", --  Fluo color: pink, yellow, orange, or green.
-        mode = "normal", -- Intensity of the palette: normal, dark, or bright. Notice that dark is ugly!
-        aggressive_spell = false, -- Display colors for spell check.
-      })
-    end,
-  },
-  {
-    "2nthony/vitesse.nvim",
-    dependencies = {
-      "tjdevries/colorbuddy.nvim",
-    },
-  },
-  {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin",
-      -- colorscheme = "melange",
       -- colorscheme = "kanagawa",
       -- colorscheme = "gruvbox",
       -- colorscheme = "citruszest",
-      -- colorscheme = "night-owl",
       -- colorscheme = "everforest",
-      -- colorscheme = "aylin",
-      -- colorscheme = "solarized",
       -- colorscheme = "ayu",
-      -- colorscheme = "oldworld",
-      -- colorscheme = "flow",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
       colorscheme = "four-symbols",

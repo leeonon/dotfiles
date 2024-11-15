@@ -68,6 +68,6 @@ return {
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
     })
-    vim.keymap.set("n", "<M-i>", ":Neotree filesystem reveal right<CR>", {})
+    vim.keymap.set("n", "<C-i>", ":Neotree filesystem reveal right<CR>", {})
   end,
 }

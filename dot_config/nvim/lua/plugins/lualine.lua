@@ -88,39 +88,17 @@ return {
       color = { bg = "None", fg = colors.blue },
     }
 
-    local modecolor = {
-      n = colors.red,
-      i = colors.fg,
-      v = colors.purple,
-      [""] = colors.purple,
-      V = colors.red,
-      c = colors.yellow,
-      no = colors.red,
-      s = colors.yellow,
-      S = colors.yellow,
-      [""] = colors.yellow,
-      ic = colors.yellow,
-      R = colors.green,
-      Rv = colors.purple,
-      cv = colors.red,
-      ce = colors.red,
-      r = colors.fg,
-      rm = colors.fg,
-      ["r?"] = colors.fg,
-      ["!"] = colors.red,
-      t = colors.orange,
-    }
-
     local theme = {
       normal = {
-        a = { fg = colors.bg, bg = colors.blue },
+        a = { fg = colors.bg, bg = colors.fg_muted },
         b = { fg = colors.blue, bg = colors.white },
         c = { fg = colors.white, bg = "None" },
         z = { fg = colors.white, bg = "None" },
       },
-      insert = { a = { fg = colors.bg, bg = colors.orange } },
-      visual = { a = { fg = colors.bg, bg = colors.green } },
+      insert = { a = { fg = colors.bg, bg = colors.fg } },
+      visual = { a = { fg = colors.bg, bg = colors.yellow } },
       replace = { a = { fg = colors.bg, bg = colors.green } },
+      command = { a = { fg = colors.bg, bg = colors.red } },
     }
 
     return {
@@ -142,10 +120,7 @@ return {
               -- return "󱐋"
             end,
             color = function()
-              local mode_color = modecolor
               return {
-                bg = mode_color[vim.fn.mode()],
-                -- bg = "None",
                 fg = colors.black,
                 gui = "bold",
               }
@@ -155,10 +130,7 @@ return {
           {
             "mode",
             color = function()
-              local mode_color = modecolor
               return {
-                bg = mode_color[vim.fn.mode()],
-                -- bg = "None",
                 fg = colors.black,
                 gui = "bold",
               }
@@ -173,7 +145,7 @@ return {
             "filename",
             path = 5,
             padding = 1,
-            color = { bg = colors.fg_muted, fg = colors.bg },
+            color = { bg = colors.bg_muted, fg = colors.fg },
             separator = { left = "", right = "" },
           },
 
@@ -274,7 +246,7 @@ return {
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
-            color = { bg = colors.fg_caption, fg = colors.bg },
+            color = { bg = colors.bg_muted, fg = colors.fg },
             -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
           },
         },

@@ -14,6 +14,11 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 -- 在块注释中自动插入 * 号。
 vim.opt.formatoptions:append({ "r" })
 vim.opt.laststatus = 3
+-- 自动缩进
+vim.opt.autoindent = true
+-- 智能缩进
+vim.opt.smartindent = true
+vim.cmd([[let &t_Ce = "\e[4:0m"]]) --关闭下划曲线。
 -- 启用真色彩
 vim.opt.termguicolors = true
 -- 禁用 neovim 生成交换文件并显示错误

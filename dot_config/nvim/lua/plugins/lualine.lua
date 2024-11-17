@@ -91,9 +91,9 @@ return {
     local theme = {
       normal = {
         a = { fg = colors.bg, bg = colors.fg_muted },
-        b = { fg = colors.blue, bg = colors.white },
-        c = { fg = colors.white, bg = "None" },
-        z = { fg = colors.white, bg = "None" },
+        b = { fg = colors.blue, bg = "None" },
+        c = { fg = colors.fg, bg = "None" },
+        z = { fg = colors.fg, bg = "None" },
       },
       insert = { a = { fg = colors.bg, bg = colors.fg } },
       visual = { a = { fg = colors.bg, bg = colors.yellow } },

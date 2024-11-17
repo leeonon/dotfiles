@@ -20,6 +20,9 @@ return {
         --   dismiss = "<C-]>",
         -- },
       },
+      file_types = {
+        markdown = false,
+      },
     },
   },
   {

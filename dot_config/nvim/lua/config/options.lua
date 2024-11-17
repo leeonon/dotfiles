@@ -47,4 +47,13 @@ vim.diagnostic.config({
   virtual_text = false,
 })
 
+-- 用于控制是否显示不可见字符（如空格、制表符、换行符等
+vim.opt.list = false
+vim.opt.listchars = "tab:» ,lead:·,trail:·"
+-- vim.opt.listchars = {
+--   tab = "→ ", -- 制表符显示为 → 和一个空格
+--   space = "·", -- 空格显示为 ·
+--   eol = "↴", -- 换行符显示为 ↴
+-- }
+
 vim.o.termguicolors = true

@@ -44,7 +44,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 vim.diagnostic.config({
   float = { border = _border },
-  virtual_text = false,
 })
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等

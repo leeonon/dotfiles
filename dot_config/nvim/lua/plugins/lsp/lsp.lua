@@ -41,6 +41,47 @@ return {
             },
           },
         },
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              lint = {
+                invalidApply = false,
+              },
+            },
+          },
+        },
+        volar = {
+          settings = {
+            css = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+            scss = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
+        cssls = {
+          settings = {
+            css = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+            scss = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
       },
       -- 代码折叠相关
       capabilities = {

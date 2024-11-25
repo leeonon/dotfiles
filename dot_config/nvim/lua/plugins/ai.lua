@@ -6,22 +6,18 @@ return {
     event = "BufEnter",
     opts = {
       suggestion = {
-        -- https://github.com/zbirenbaum/copilot.lua/issues/91
-        accept = false,
-        -- enabled = true,
-        -- auto_trigger = true,
-        -- debounce = 150,
-        -- keymap = {
-        --   accept = "<M-;>",
-        --   accept_word = false,
-        --   accept_line = false,
-        --   next = "<M-]>",
-        --   prev = "<M-[>",
-        --   dismiss = "<C-]>",
-        -- },
+        enabled = not vim.g.ai_cmp,
+        auto_trigger = true,
+        keymap = {
+          accept = false, -- handled by nvim-cmp / blink.cmp
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
       },
-      file_types = {
-        markdown = false,
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
       },
     },
   },

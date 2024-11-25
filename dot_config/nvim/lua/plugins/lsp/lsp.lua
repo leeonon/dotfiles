@@ -19,12 +19,17 @@ return {
         -- exclude = { "vue", "typescript", "javascript" }, -- filetypes for which you don't want to enable inlay hints
       },
       servers = {
-        -- eslint = {
-        --   settings = {
-        --     useFlatConfig = true,
-        --   },
-        --   workingDirectories = { mode = "auto" },
-        -- },
+        eslint = {
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectories = { mode = "auto" },
+            useFlatConfig = true,
+            experimental = {
+              -- allows to use flat config format
+              useFlatConfig = true,
+            },
+          },
+        },
         -- ["rust_analyzer"] = {
         --   settings = {
         --     cargo = { allFeatures = true },

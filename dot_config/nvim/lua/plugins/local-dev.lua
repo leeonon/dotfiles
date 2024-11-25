@@ -5,7 +5,7 @@ return {
     name = "Four Symbols",
     opts = {
       -- theme = "white-tiger",
-      theme = "vermilion-bird",
+      -- theme = "vermilion-bird",
       -- theme = "black-tortoise",
       transparent = false,
       dim_inactive = true,

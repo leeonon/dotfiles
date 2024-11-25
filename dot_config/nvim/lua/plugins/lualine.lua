@@ -90,15 +90,15 @@ return {
 
     local theme = {
       normal = {
-        a = { fg = colors.bg, bg = colors.fg_muted },
+        a = { fg = colors.bg_01, bg = colors.fg_02 },
         b = { fg = colors.blue, bg = "None" },
-        c = { fg = colors.fg, bg = "None" },
-        z = { fg = colors.fg, bg = "None" },
+        c = { fg = colors.fg_01, bg = "None" },
+        z = { fg = colors.fg_01, bg = "None" },
       },
-      insert = { a = { fg = colors.bg, bg = colors.fg } },
-      visual = { a = { fg = colors.bg, bg = colors.yellow } },
-      replace = { a = { fg = colors.bg, bg = colors.green } },
-      command = { a = { fg = colors.bg, bg = colors.red } },
+      insert = { a = { fg = colorsbg_01, bg = colors.fg_01 } },
+      visual = { a = { fg = colorsbg_01, bg = colors.yellow } },
+      replace = { a = { fg = colorsbg_01, bg = colors.green } },
+      command = { a = { fg = colorsbg_01, bg = colors.red } },
     }
 
     return {
@@ -145,7 +145,7 @@ return {
             "filename",
             path = 5,
             padding = 1,
-            color = { bg = colors.bg_muted, fg = colors.fg },
+            color = { bg = colorsbg_02, fg = colors.fg_01 },
             separator = { left = "", right = "" },
           },
 
@@ -163,8 +163,8 @@ return {
           },
           {
             "diff",
-            -- color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
-            color = { bg = "None", fg = colors.fg, gui = "bold" },
+            -- color = { bg = colors.gray2, fg = colorsbg_01, gui = "bold" },
+            color = { bg = "None", fg = colors.fg_01, gui = "bold" },
             -- separator = { left = "", right = "" },
             symbols = { added = " ", modified = " ", removed = " " },
 
@@ -178,7 +178,7 @@ return {
             "location",
             color = {
               -- bg = colors.yellow,
-              -- fg = colors.bg,
+              -- fg = colorsbg_01,
               fg = colors.yellow,
             },
             -- separator = { left = "", right = "" },
@@ -246,7 +246,7 @@ return {
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
-            color = { bg = colors.bg_muted, fg = colors.fg },
+            color = { bg = colors.bg_02, fg = colors.fg_01 },
             -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
           },
         },

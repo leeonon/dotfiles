@@ -190,6 +190,11 @@ return {
     end,
   },
   {
+    "bettervim/yugen.nvim",
+    config = function() end,
+  },
+  { "nuvic/flexoki-nvim", as = "flexoki" },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "catppuccin",

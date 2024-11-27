@@ -5,8 +5,8 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 -- 拼写检查
--- vim.opt.spell = false
--- vim.opt.spelllang = { "en", "cjk" }
+vim.opt.spell = false
+vim.opt.spelllang = { "en", "cjk" }
 vim.g.transparent_background = true
 
 -- 忽略 node_modules 目录中的文件。

@@ -6,8 +6,8 @@ return {
     opts = {
       -- theme = "white-tiger",
       -- theme = "vermilion-bird",
-      -- theme = "black-tortoise",
-      transparent = false,
+      theme = "black-tortoise",
+      transparent = true,
       dim_inactive = true,
       terminal_colors = true,
       styles = {

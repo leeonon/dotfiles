@@ -56,3 +56,5 @@ vim.opt.listchars = "tab:» ,lead:·,trail:·"
 -- }
 
 vim.o.termguicolors = true
+-- 开启ESLint 自动格式化
+vim.g.lazyvim_eslint_auto_format = true

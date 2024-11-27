@@ -1,10 +1,10 @@
 return {
   "akinsho/bufferline.nvim",
-  enabled = true,
+  enabled = false,
   opts = {
     options = {
       themable = true,
-      separator_style = "slant", -- slant | padded_slant | slope | padded_slope | thin
+      separator_style = "thin", -- slant | padded_slant | slope | padded_slope | thin
       hover = {
         enabled = true,
         delay = 200,

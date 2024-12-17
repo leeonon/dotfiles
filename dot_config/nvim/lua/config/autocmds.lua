@@ -21,5 +21,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
+  -- markdown 文件不启用拼写检查
   command = "setlocal nospell",
 })

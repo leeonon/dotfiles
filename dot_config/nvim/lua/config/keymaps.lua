@@ -10,7 +10,8 @@ local keymap = vim.keymap
 
 keymap.set("i", "jk", "<Esc>")
 keymap.set("n", "<c-a>", "ggVG")
-
+-- 复制一行并注释掉第一行
+keymap.set("n", "yc", "yygccp")
 keymap.set("n", "<leader>q", "<cmd>q<cr>")
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
 keymap.set("n", "<leader>x", "<cmd>x<cr>")

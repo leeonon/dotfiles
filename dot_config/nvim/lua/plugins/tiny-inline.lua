@@ -2,8 +2,10 @@
 return {
   "rachartier/tiny-inline-diagnostic.nvim",
   event = "VeryLazy", -- Or `LspAttach`
-  enabled = false,
+  enabled = true,
   config = function()
-    require("tiny-inline-diagnostic").setup()
+    require("tiny-inline-diagnostic").setup({
+      preset = "monerdfont",
+    })
   end,
 }

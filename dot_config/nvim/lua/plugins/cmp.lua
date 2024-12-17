@@ -103,6 +103,7 @@ return {
       -- 在CSS文件中输入要转换为 css 代码的 tailwindcss 类，自动转为CSS
       "jcha0713/cmp-tw2css",
     },
+    enabled = false,
     opts = function(_, opts)
       table.insert(opts.sources, { name = "emoji" })
       table.insert(opts.sources, { name = "tmux" })

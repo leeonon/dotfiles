@@ -56,3 +56,4 @@ install wget
 install yarn
 install yazi
 install zellij
+install qlstephen

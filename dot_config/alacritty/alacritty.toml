@@ -28,25 +28,25 @@ size = 14.0
 # family = "DankMono Nerd Font"
 # family = "BlexMono Nerd Font"
 # style = "Regular"
-family = "BlexMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 # style = "Medium"
 style = "Regular"
 
 [font.bold]
-family = "BlexMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "BlexMono Nerd Font"
-style = "Bold Italic"
-# family = "CartographCF Nerd Font"
+# family = "BlexMono Nerd Font"
 # style = "Bold Italic"
+family = "CartographCF Nerd Font"
+style = "Bold Italic"
 
 [font.italic]
-# family = "CartographCF Nerd Font"
-# style = "Regular Italic"
-family = "BlexMono Nerd Font"
-style = "Italic"
+family = "CartographCF Nerd Font"
+style = "Regular Italic"
+# family = "BlexMono Nerd Font"
+# style = "Italic"
 
 
 [cursor.style]

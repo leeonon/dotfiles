@@ -45,6 +45,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 vim.diagnostic.config({
   float = { border = _border },
 })
+vim.diagnostic.config({ virtual_text = false })
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false
@@ -58,3 +59,6 @@ vim.opt.listchars = "tab:» ,lead:·,trail:·"
 vim.o.termguicolors = true
 -- 开启ESLint 自动格式化
 vim.g.lazyvim_eslint_auto_format = true
+
+vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_blink_main = true

@@ -14,7 +14,6 @@ require("lazy").setup({
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.astro" },
     { import = "lazyvim.plugins.extras.lang.svelte" },
@@ -41,7 +40,8 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.editor.mini-files" },
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
     -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-    -- { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.vscode" },
     { import = "plugins" },
     { import = "plugins.lsp" },

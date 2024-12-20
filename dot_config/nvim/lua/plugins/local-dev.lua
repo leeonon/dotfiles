@@ -7,7 +7,7 @@ return {
       -- theme = "white-tiger",
       -- theme = "vermilion-bird",
       -- theme = "black-tortoise",
-      transparent = true,
+      transparent = false,
       dim_inactive = true,
       terminal_colors = true,
       styles = {

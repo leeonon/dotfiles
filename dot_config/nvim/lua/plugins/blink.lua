@@ -1,4 +1,5 @@
 return {
+  -- https://github.com/Saghen/blink.cmp/discussions/620
   {
     "saghen/blink.cmp",
     enabled = false,

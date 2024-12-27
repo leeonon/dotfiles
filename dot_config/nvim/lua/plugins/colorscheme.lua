@@ -34,6 +34,15 @@ return {
     end,
   },
   {
+    "0xstepit/flow.nvim",
+    lazy = false,
+    priority = 1000,
+    tag = "v2.0.0",
+    opts = {
+      -- Your configuration options here.
+    },
+  },
+  {
     "rose-pine/neovim",
     name = "rose-pine",
     config = function()
@@ -194,6 +203,7 @@ return {
     config = function() end,
   },
   { "nuvic/flexoki-nvim", as = "flexoki" },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
   {
     "LazyVim/LazyVim",
     opts = {
@@ -205,7 +215,9 @@ return {
       -- colorscheme = "ayu",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
-      colorscheme = "four-symbols",
+      -- colorscheme = "four-symbols",
+      -- colorscheme = "flow",
+      colorscheme = "moonfly",
     },
   },
 }

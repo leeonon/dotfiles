@@ -1,3 +1,5 @@
+local harpoon_files = require("harpoon_files")
+
 local function get_lualine_colors()
   local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "azure-dragon"
   local name = colorname:match("^four%-symbols%-") and colorname or "azure-dragon"
@@ -208,7 +210,9 @@ return {
             color = { fg = Snacks.util.color("Special") },
           },
         },
-        lualine_y = {},
+        lualine_y = {
+          { harpoon_files.lualine_component },
+        },
         lualine_z = {
           {
             "diagnostics",
@@ -230,13 +234,6 @@ return {
             -- separator = { left = "" },
           },
           {
-
-            function()
-              return " " .. vim.api.nvim_win_get_number(0)
-            end,
-            color = { bg = "None", fg = colors.blue },
-          },
-          {
             require("noice").api.status.mode.get,
             cond = require("noice").api.status.mode.has,
             color = { fg = colors.red, bg = colors.magenta, gui = "italic,bold" },
@@ -247,7 +244,7 @@ return {
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
-            color = { bg = colors.bg_02, fg = colors.fg_01 },
+            color = { bg = colors.bg_04, fg = colors.fg_01 },
             -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
           },
         },

@@ -1,0 +1,50 @@
+# UI
+background-opacity = 1
+background-blur-radius = 70
+theme = rose-pine
+title = Ghostty 👻
+
+# Window
+# macos-titlebar-style = hidden
+window-theme = ghostty
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = false
+
+# Font
+font-size = 14
+font-family = "JetBrainsMono Nerd Font"
+font-family-bold = "JetBrainsMono Nerd Font"
+font-family-italic = "CartographCF Nerd Font"
+font-family-bold-italic = "CartographCF Nerd Font Bold Italic"
+font-thicken = true
+
+# Keybinds
+keybind = super+shift+r=reload_config
+keybind = super+s=text:\x13
+
+# Keybinds Tmux
+# \x02 is ctrl+b (default tmux prefix)
+# \x01 is ctrl+a (common alternative tmux prefix)
+# \x00 is ctrl+space (common alternative tmux prefix)
+keybind = super+one=text:\x01\x31
+keybind = super+two=text:\x01\x32
+keybind = super+three=text:\x01\x33
+keybind = super+four=text:\x01\x34
+keybind = super+five=text:\x01\x35
+keybind = super+six=text:\x01\x36
+keybind = super+seven=text:\x01\x37
+keybind = super+eight=text:\x01\x38
+keybind = super+nine=text:\x01\x39
+keybind = super+t=text:\x01\x63
+keybind = super+x=text:\x01\x78
+keybind = super+,=text:\x01\x2c
+keybind = super+l=text:\x01\x73
+keybind = super+k=text:\x01\x4b
+
+# Other
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+shell-integration-features = cursor,sudo,no-title
+

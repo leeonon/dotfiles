@@ -1,11 +1,14 @@
 # UI
-background-opacity = 1
-background-blur-radius = 70
+background-opacity = 0.9
+background-blur-radius = 80
 theme = rose-pine
 title = Ghostty 👻
+macos-titlebar-style = hidden
+# macos-titlebar-style           = tabs
+macos-titlebar-proxy-icon      = hidden
+mouse-hide-while-typing        = true
 
 # Window
-# macos-titlebar-style = hidden
 window-theme = ghostty
 window-padding-x = 0
 window-padding-y = 0
@@ -14,9 +17,10 @@ window-padding-balance = false
 # Font
 font-size = 14
 font-family = "JetBrainsMono Nerd Font"
-font-family-bold = "JetBrainsMono Nerd Font"
-font-family-italic = "CartographCF Nerd Font"
-font-family-bold-italic = "CartographCF Nerd Font Bold Italic"
+# font-family = "IBM Plex Mono"
+# font-family-bold = "JetBrainsMono Nerd Font"
+# font-family-italic = "CartographCF Nerd Font"
+# font-family-bold-italic = "CartographCF Nerd Font Bold Italic"
 font-thicken = true
 
 # Keybinds
@@ -42,9 +46,28 @@ keybind = super+,=text:\x01\x2c
 keybind = super+l=text:\x01\x73
 keybind = super+k=text:\x01\x4b
 
+# Shader
+# custom-shader = ./ghostty-shaders/crt.glsl
+# custom-shader = ./ghostty-shaders/drunkard.glsl
+custom-shader = ./ghostty-shaders/just-snow.glsl
+# custom-shader = ./ghostty-shaders/smoke-and-ghost.glsl
+# custom-shader = ./ghostty-shaders/starfield.glsl
+# custom-shader = ./ghostty-shaders/retro-terminal.glsl
+# custom-shader = ./ghostty-shaders/bettercrt.glsl
+# custom-shader = ./ghostty-shaders/starfield-colors.glsl
+# custom-shader = ./ghostty-shaders/gradient-background.glsl
+# custom-shader-animation = true
+
 # Other
 copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow
+copy-on-select                 = true
 shell-integration-features = cursor,sudo,no-title
-
+clipboard-paste-protection     = true
+clipboard-trim-trailing-spaces = true
+macos-auto-secure-input        = true
+macos-secure-input-indication  = true
+quit-after-last-window-closed  = false
+scrollback-limit               = 4200
+shell-integration              = fish

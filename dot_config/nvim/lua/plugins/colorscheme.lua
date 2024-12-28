@@ -215,9 +215,9 @@ return {
       -- colorscheme = "ayu",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
-      -- colorscheme = "four-symbols",
+      colorscheme = "four-symbols",
       -- colorscheme = "flow",
-      colorscheme = "moonfly",
+      -- colorscheme = "moonfly",
     },
   },
 }

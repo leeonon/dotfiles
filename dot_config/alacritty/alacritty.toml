@@ -62,7 +62,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
-opacity = 0.8
+opacity = 1
 decorations = "buttonless" # Transparent | Buttonless | Full | None
 blur = true
 title = "Yang"
@@ -70,8 +70,8 @@ dynamic_padding = true
 dynamic_title = false
 
 [window.dimensions]
-columns = 140
-lines = 40
+columns = 160
+lines = 60
 
 [window.padding]
 x = 0

@@ -2,7 +2,7 @@ local harpoon_files = require("harpoon_files")
 
 local function get_lualine_colors()
   local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "azure-dragon"
-  local name = colorname:match("^four%-symbols%-") and colorname or "azure-dragon"
+  local name = vim.g.colors_name:match("^four%-symbols%-") and colorname or "azure-dragon"
   local c = require("four-symbols.palette").get_palette(name)
   return c
 end

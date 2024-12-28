@@ -4,7 +4,7 @@ local k = require("utils/keys")
 local config = wezterm.config_builder()
 local act = wezterm.action
 
-config.font_size = 14.0
+config.font_size = 15.0
 config.font = wezterm.font_with_fallback({
 	{ family = "BlexMono Nerd Font", weight = "Medium" },
 	-- { family = "Monaspace Neon" },
@@ -52,12 +52,9 @@ config.freetype_render_target = "HorizontalLcd"
 config.freetype_load_flags = "NO_HINTING"
 -- config.cell_width = 1.0
 
-local custom = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
-custom.background = "#000000"
-custom.tab_bar.background = "#040404"
-custom.tab_bar.inactive_tab.bg_color = "#0f0f0f"
-custom.tab_bar.new_tab.bg_color = "#080808"
-config.color_scheme = custom
+config.color_scheme = "Tokyo Night"
+-- config.color_scheme = "Catppuccin Mocha"
+-- config.colors = require("themes/rose-pine").main.colors()
 config.window_decorations = "RESIZE"
 
 config.native_macos_fullscreen_mode = false

@@ -1,0 +1,265 @@
+# https://github.com/starship/starship/discussions/1107?sort=new#discussioncomment-11363178https://github.com/starship/starship/discussions/1107?sort=new#discussioncomment-11363178
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$status\
+$cmd_duration\
+$java\
+$python\
+$nodejs\
+$c\
+$bun\
+$dotnet\
+$deno\
+$sudo\
+$time\
+$shell\
+$username\
+$hostname \
+$line_break\
+$character\
+"""
+add_newline = false
+
+[os]
+format = '[$symbol ]($style)'
+style = 'bold white'
+disabled = true
+
+[os.symbols]
+Alpine = ''
+Amazon = ''
+Android = ''
+Arch = ''
+CentOS = ''
+Debian = ''
+EndeavourOS = ''
+Fedora = ''
+FreeBSD = ''
+Garuda = ''
+Gentoo = ''
+Linux = ''
+Macos = ''
+Manjaro = ''
+Mariner = ''
+Mint = ''
+NetBSD = ''
+NixOS = ''
+OpenBSD = ''
+OpenCloudOS = ''
+openEuler = ''
+openSUSE = ''
+OracleLinux = '⊂⊃'
+Pop = ''
+Raspbian = ''
+Redhat = ''
+RedHatEnterprise = ''
+Solus = ''
+SUSE = ''
+Ubuntu = ''
+Unknown = ''
+Windows = ''
+
+[directory]
+#   📂     |
+format = '[ $path]($style)[$read_only]($read_only_style) '
+style = 'bold bright-cyan'
+read_only_style = 'red'
+home_symbol = "~"
+truncation_symbol = '…/'
+truncation_length = 3
+read_only = ' 🔒'
+use_os_path_sep = true
+#fish_style_pwd_dir_length = 1
+truncate_to_repo = true
+
+[git_branch]
+format = """
+[$symbol$branch]($style)\
+[(:$remote_name/$remote_branch)]($style)\
+"""
+#               |
+symbol = ' '
+style = 'bold purple'
+always_show_remote = false
+disabled = false
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style)) '
+style = 'bold red'
+# untracked:'?'; staged:'+'; modified:'!'; deleted:'x';
+#windows_starship = '/mnt/c/Users/username/scoop/apps/starship/current/starship.exe'
+
+[fill]
+symbol = ' '
+style = 'bright-black'
+disabled = false
+
+[status]
+# '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+format = '$symbol'
+symbol = '[●\($status\)](bright-red) '
+success_symbol = '[●](green) '
+not_executable_symbol = '[⌽\($status\)](bright-red) '
+not_found_symbol = '[◎\($status\)](bright-red) '
+sigint_symbol = '[✶\($status\)](bright-red) '
+signal_symbol = '[✕\($status\)](bright-red) '
+recognize_signal_code = true
+map_symbol = true
+disabled = false
+
+[cmd_duration] #        |
+format = '[☗](bright-red)[ $duration]($style) '
+style = 'bold yellow'
+min_time = 2000
+show_milliseconds = false
+
+[java]
+# ⚰︎ ♲ ⇞ ⚕︎ ☥ º                                 |
+format = '[ ](bold green)[${symbol}(${version} )]($style)'
+symbol = 'Java'
+style = 'bright-purple'
+detect_extensions = ['java', 'class', 'gradle', 'jar', 'cljs', 'cljc']
+detect_files = [
+  'pom.xml',
+  'build.gradle.kts',
+  'build.sbt',
+  '.java-version',
+  'deps.edn',
+  'project.clj',
+  'build.boot',
+  '.sdkmanrc',
+]
+version_format = '${major}.${minor}'
+disabled = false
+
+[python]
+format = '[ ](bold green)[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style) '
+symbol = 'PY'                                                                               # 󰌠  🐍 👾  |
+style = 'bright-purple'
+#detect_files = [['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py', 'tox.ini', 'pixi.toml']]
+version_format = '${major}.${minor}'
+disabled = false
+
+[nodejs]
+format = '[ ](bold green)[$symbol($version)]($style) '
+symbol = 'Node'
+style = 'bright-purple'
+#detect_extensions = []
+detect_files = ['package.json', '.node-version', '.nvmrc']
+detect_folders = ['node_modules']
+not_capable_style = 'red'
+version_format = '${major}.${minor}'
+disabled = false
+
+[c]
+format = '[ ](bold green)[$symbol]($style)[$version(\($name\))]($style) '
+symbol = 'C'                                                               #    |
+style = 'bright-purple'
+detect_extensions = ['c', 'h']
+#commands = [['cc', '--version'], ['gcc', '--version'], ['clang', '--version']]
+version_format = '${major}.${minor}'
+disabled = false
+
+[bun]
+format = '[ ](bold green)[$symbol($version)]($style) '
+symbol = 'Bun'
+style = 'bright-purple'
+detect_files = ['bun.lockb', 'bunfig.toml']
+version_format = '${major}.${minor}'
+disabled = true
+
+[dotnet]
+format = '[ ](bold green)[$symbol($version)(\($tfm\))]($style) '
+symbol = '.NET'
+style = 'bright-purple'
+detect_extensions = ['csproj', 'fsproj', 'xproj']
+detect_files = [
+  'global.json',
+  'project.json',
+  'Directory.Build.props',
+  'Directory.Build.targets',
+  'Packages.props',
+]
+version_format = '${major}.${minor}'
+disabled = true
+
+[deno]
+format = '[ ](bold green)[$symbol($version)]($style) '
+symbol = 'Deno'
+style = 'bright-purple'
+detect_files = [
+  'deno.json',
+  'deno.jsonc',
+  'deno.lock',
+  'mod.ts',
+  'mod.js',
+  'deps.ts',
+  'deps.js',
+]
+version_format = '${major}.${minor}'
+disabled = true
+
+[aws]
+# 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+format = '[$symbol](bold green)[( $profile)]($style) '
+symbol = ' '
+style = 'bright-purple'
+disabled = true
+
+[sudo]
+#           |
+format = '[$symbol]($style)'
+symbol = ' '
+style = 'bold 9'
+allow_windows = false
+disabled = false
+
+[time]
+#  🕙                  |
+format = '[ ](bold 248)[$time]($style) '
+style = 'bold bright-cyan'
+time_format = '%H:%M'
+use_12hr = false
+disabled = false
+
+[shell] #      _ |
+format = '[ ](bold 248)[$indicator]($style) '
+style = 'bold bright-blue'
+unknown_indicator = 'shell'
+powershell_indicator = 'powershell'
+fish_indicator = 'fish'
+bash_indicator = 'bash'
+zsh_indicator = 'zsh'
+disabled = false
+
+[username]
+#           |
+format = '[ ](bold 248)[$user]($style)'
+style_user = 'bold yellow'
+style_root = 'bold red'
+show_always = true
+
+[hostname]
+format = '[([ ]($style)$hostname)](bold bright-cyan)'
+ssh_symbol = '🌐 '                                      #   |
+style = 'bold green'
+ssh_only = true
+trim_at = ''
+aliases = { "loganmac.local" = "mac" }
+# detect_env_vars = ['!TMUX', 'SSH_CONNECTION']
+disabled = false
+
+[character]
+format = '$symbol '
+#success_symbol = '[](fg:bold light_green)'
+#success_symbol = '[☍](fg:bold light_green)'
+#success_symbol = '[☡](fg:bold light_green)'
+success_symbol = '[](bold green)'
+error_symbol = '[✘](bold red)'
+vimcmd_symbol = '[V](bold green)'

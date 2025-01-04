@@ -1,7 +1,53 @@
-format = "$username $directory $git_branch$fill $time\n  [󱞪](fg:#c4a7e7) "
+format = """
+$os\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$c\
+$rust\
+$golang\
+$nodejs\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+$docker_context\
+$conda\
+$fill\
+$time\n [󱞪](fg:#d6b0f4) """
+
+[os]
+disabled = true
+style = "bg:color_orange fg:color_fg0"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+
 [directory]
-format = "[](fg:#26233a)[ $path ]($style)[](fg:#26233a)"
-style = "bg:#26233a fg:#31748f"
+format = "[ $path ]($style)"
+style = "fg:#97bed5"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -16,8 +62,8 @@ style = "fg:#26233a"
 symbol = " "
 
 [git_branch]
-format = "[](fg:#26233a)[ $symbol $branch ]($style)[](fg:#26233a)"
-style = "bg:#26233a fg:#9ccfd8"
+format = "[ $symbol $branch ]($style)"
+style = "fg:#9ccfd8"
 symbol = ""
 
 [time]
@@ -29,7 +75,57 @@ use_12hr = true
 
 [username]
 disabled = false
-format = "[](fg:#26233a)[ 󰧱 $user ]($style)[](fg:#26233a)"
+format = "[ 󰧱 $user ]($style)"
 show_always = true
-style_root = "bg:#26233a fg:#c4a7e7"
-style_user = "bg:#26233a fg:#c4a7e7"
+style_root = "fg:#d6b0f4"
+style_user = "fg:#d6b0f4"
+
+[c]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = " "
+format = '[ $symbol $context ]($style)'
+
+[elixir]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[git_status]
+format = '[$all_status$ahead_behind ]($style)'
+
+[golang]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[gradle]
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[julia]
+symbol = " "
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = ""
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = "󰆥 "
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+format = '[ $symbol ($version) ]($style)'

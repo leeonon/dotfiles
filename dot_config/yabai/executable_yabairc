@@ -147,5 +147,6 @@ yabai -m rule --add app="^CleanShot X$" manage=off
 yabai -m rule --add app="^钉钉$" manage=off
 yabai -m rule --add app="^DingTalk$" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
+yabai -m rule --add app="^QQ音乐$" manage=off
 
 echo "yabai configuration loaded.."

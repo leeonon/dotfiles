@@ -2,7 +2,35 @@
 -- lazy = false 可以编辑器中 <leader>uC 快速切换
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+      require("gruvbox").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = true,
+      })
+    end,
+  },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -82,10 +110,10 @@ return {
     opts = function()
       return {
         undercurl = false,
-        commentStyle = { italic = false },
+        commentStyle = { italic = true },
         keywordStyle = { italic = false },
         statementStyle = { italic = false, bold = false },
-        transparent = false,
+        transparent = true,
         dimInactive = false,
         terminalColors = true,
         colors = {
@@ -205,6 +233,12 @@ return {
   { "nuvic/flexoki-nvim", as = "flexoki" },
   { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
   {
+    "xero/miasma.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "catppuccin",
@@ -216,6 +250,7 @@ return {
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
       colorscheme = "four-symbols",
+      -- colorscheme = "miasma",
       -- colorscheme = "flow",
       -- colorscheme = "moonfly",
     },

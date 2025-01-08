@@ -138,7 +138,7 @@ return {
                 gui = "bold",
               }
             end,
-            separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
           },
           -- filesize,
         },
@@ -243,7 +243,7 @@ return {
               return getLspName()
             end,
             -- separator = { left = "", right = "" },
-            separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
             color = { bg = colors.bg_04, fg = colors.fg_01 },
             -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
           },

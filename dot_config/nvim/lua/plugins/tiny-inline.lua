@@ -5,7 +5,24 @@ return {
   enabled = true,
   config = function()
     require("tiny-inline-diagnostic").setup({
-      preset = "monerdfont",
+      -- "modern", "classic", "minimal", "powerline",
+      -- "ghost", "simple", "nonerdfont", "amongus"
+      preset = "powerline",
+      options = {
+        show_source = true,
+        use_icons_from_diagnostic = true,
+        multilines = {
+          -- Enable multiline diagnostic messages
+          enabled = true,
+
+          -- Always show messages on all lines for multiline diagnostics
+          always_show = true,
+        },
+        virt_texts = {
+          -- Priority for virtual text display
+          priority = 3048,
+        },
+      },
     })
   end,
 }

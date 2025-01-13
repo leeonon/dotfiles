@@ -239,6 +239,15 @@ return {
     config = function() end,
   },
   {
+    "comfysage/evergarden",
+    priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
+    opts = {
+      transparent_background = true,
+      variant = "medium", -- 'hard'|'medium'|'soft'
+      overrides = {}, -- add custom overrides
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "catppuccin",
@@ -250,6 +259,7 @@ return {
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
       colorscheme = "four-symbols",
+      -- colorscheme = "evergarden",
       -- colorscheme = "miasma",
       -- colorscheme = "flow",
       -- colorscheme = "moonfly",

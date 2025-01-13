@@ -18,7 +18,6 @@ vim.opt.laststatus = 3
 vim.opt.autoindent = true
 -- 智能缩进
 vim.opt.smartindent = true
-vim.cmd([[let &t_Ce = "\e[4:0m"]]) --关闭下划曲线。
 -- 启用真色彩
 vim.opt.termguicolors = true
 -- 禁用 neovim 生成交换文件并显示错误
@@ -49,12 +48,12 @@ vim.diagnostic.config({ virtual_text = false })
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false
-vim.opt.listchars = "tab:» ,lead:·,trail:·"
--- vim.opt.listchars = {
---   tab = "→ ", -- 制表符显示为 → 和一个空格
---   space = "·", -- 空格显示为 ·
---   eol = "↴", -- 换行符显示为 ↴
--- }
+-- vim.opt.listchars = "tab:» ,lead:·,trail:·"
+vim.opt.listchars = {
+  tab = "→ ", -- 制表符显示为 → 和一个空格
+  space = "·", -- 空格显示为 ·
+  eol = "↴", -- 换行符显示为 ↴
+}
 
 vim.o.termguicolors = true
 -- 开启ESLint 自动格式化

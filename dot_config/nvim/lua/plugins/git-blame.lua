@@ -18,13 +18,22 @@ return {
   -- vim.g.gitblame_clear_event = "CursorHoldI"
   -- end,
   opts = {
-    enabled = true,
+    enabled = false,
     date_format = "%r",
     message_template = " <author> 󰔠 <date> 󰈚 <summary>  <sha>",
     message_when_not_committed = "  Not Committed Yet",
   },
   keys = {
     { "<Leader>gB", mode = { "n" }, desc = "Git Blame Functions" },
+    {
+      "<Leader>gBb",
+      mode = { "n" },
+      function()
+        vim.cmd([[GitBlameToggle]])
+      end,
+      desc = "Git Blame Toggle",
+    },
+
     {
       "<Leader>gBc",
       mode = { "n" },

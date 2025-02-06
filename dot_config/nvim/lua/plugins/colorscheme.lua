@@ -182,29 +182,6 @@ return {
       },
       color_overrides = {
         mocha = {
-          rosewater = "#ffc9c9",
-          flamingo = "#ff9f9a",
-          pink = "#ffa9c9",
-          mauve = "#df95cf",
-          lavender = "#a990c9",
-          red = "#ff6960",
-          maroon = "#f98080",
-          peach = "#f9905f",
-          yellow = "#f9bd69",
-          green = "#b0d080",
-          teal = "#a0dfa0",
-          sky = "#a0d0c0",
-          sapphire = "#95b9d0",
-          blue = "#89a0e0",
-          text = "#e0d0b0",
-          subtext1 = "#d5c4a1",
-          subtext0 = "#bdae93",
-          overlay2 = "#928374",
-          overlay1 = "#7c6f64",
-          overlay0 = "#665c54",
-          surface2 = "#504844",
-          surface1 = "#3a3634",
-          surface0 = "#252525",
           base = "#151515",
           mantle = "#0e0e0e",
           crust = "#080808",
@@ -248,8 +225,54 @@ return {
     },
   },
   {
+    "sainnhe/gruvbox-material",
+    enabled = true,
+    priority = 1000,
+    config = function()
+      vim.g.gruvbox_material_transparent_background = 0
+      vim.g.gruvbox_material_foreground = "mix"
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_ui_contrast = "high"
+      vim.g.gruvbox_material_float_style = "bright"
+      vim.g.gruvbox_material_statusline_style = "material"
+      vim.g.gruvbox_material_cursor = "auto"
+
+      -- vim.g.gruvbox_material_colors_override = { bg0 = '#16181A' } -- #0e1010
+      -- vim.g.gruvbox_material_better_performance = 1
+    end,
+  },
+  {
+    "dgox16/oldworld.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("oldworld").setup({
+        variant = "default", -- default, oled, cooler
+        styles = {
+          comments = { italic = true },
+        },
+      })
+    end,
+  },
+  {
+    "timmypidashev/darkbox.nvim",
+    lazy = false,
+    config = function() end,
+  },
+  {
+    "wtfox/jellybeans.nvim",
+    priority = 1000,
+    config = function()
+      require("jellybeans").setup()
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
+      -- colorscheme = "oldworld",
+      -- colorscheme = "darkbox",
+      colorscheme = "jellybeans",
+      -- colorscheme = "gruvbox-material",
       -- colorscheme = "catppuccin",
       -- colorscheme = "kanagawa",
       -- colorscheme = "gruvbox",
@@ -258,7 +281,7 @@ return {
       -- colorscheme = "ayu",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
-      colorscheme = "four-symbols",
+      -- colorscheme = "four-symbols",
       -- colorscheme = "evergarden",
       -- colorscheme = "miasma",
       -- colorscheme = "flow",

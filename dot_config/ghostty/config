@@ -1,12 +1,12 @@
 # UI
-background-opacity = 0.9
-background-blur-radius = 80
-theme = rose-pine
+background-opacity = 1
+background-blur-radius = 40
+# theme = rose-pine
+# theme = ayu
+# theme = Kanagawa Dragon
 title = Ghostty 👻
-macos-titlebar-style = hidden
-# macos-titlebar-style           = tabs
-macos-titlebar-proxy-icon      = hidden
-mouse-hide-while-typing        = true
+# macos-titlebar-style = hidden
+# macos-titlebar-proxy-icon      = hidden
 
 # Window
 window-theme = ghostty
@@ -15,22 +15,59 @@ window-padding-y = 0
 window-padding-balance = false
 
 # Font
-font-size = 14
-font-family = "JetBrainsMono Nerd Font"
-# font-family = "IBM Plex Mono"
-# font-family-bold = "JetBrainsMono Nerd Font"
+font-size = 13.0
+font-family = MonoLisa
+# font-style = Medium
+font-style = Regular
+font-style-bold = Black
+font-style-italic = Regular Italic
+font-style-bold-italic = Black Italic
+
+# font-family = "IBM Plex Mono Medium"
+# font-family = "BlexMono Nerd Font"
+# font-family = "Iosevka Term"
+# font-family = "Iosevka Nerd Font"
+# font-family = "Iosevka Nerd Font Mono"
+# font-family = "Maple Mono"
+# font-family = "DankMono Nerd Font"
+# font-family = "JetBrains Mono"
+# font-family = "JetBrainsMono Nerd Font"
+# font-family = "MonoLisa"
+# font-family-bold
 # font-family-italic = "CartographCF Nerd Font"
-# font-family-bold-italic = "CartographCF Nerd Font Bold Italic"
+# font-family-bold-italic = "CartographCF Nerd Font"
+# font-family = "JetBrainsMono Nerd Font Mono"
+# font-family-bold = "JetBrainsMono Nerd Font Mono"
+# font-family-italic = "JetBrainsMono Nerd Font Mono"
+# font-family-bold-italic = "JetBrainsMono Nerd Font Mono"
+
+# font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
+# font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
+
+adjust-cell-height = 3
+adjust-cursor-height = 3
+
+# 使用更粗的笔触绘制字体
 font-thicken = true
+
+# Font features
+font-feature = ss02
+font-feature = ss07
+font-feature = ss11
+font-feature = ss14
+font-feature = ss16
+font-feature = zero
+font-feature = ss04
+font-feature = ss08
+font-feature = ss11
+font-feature = ss17
 
 # Keybinds
 keybind = super+shift+r=reload_config
 keybind = super+s=text:\x13
+keybind = f4=toggle_fullscreen
 
 # Keybinds Tmux
-# \x02 is ctrl+b (default tmux prefix)
-# \x01 is ctrl+a (common alternative tmux prefix)
-# \x00 is ctrl+space (common alternative tmux prefix)
 keybind = super+one=text:\x01\x31
 keybind = super+two=text:\x01\x32
 keybind = super+three=text:\x01\x33
@@ -47,27 +84,37 @@ keybind = super+l=text:\x01\x73
 keybind = super+k=text:\x01\x4b
 
 # Shader
-# custom-shader = ./ghostty-shaders/crt.glsl
 # custom-shader = ./ghostty-shaders/drunkard.glsl
-custom-shader = ./ghostty-shaders/just-snow.glsl
-# custom-shader = ./ghostty-shaders/smoke-and-ghost.glsl
+# custom-shader = ./ghostty-shaders/just-snow.glsl
 # custom-shader = ./ghostty-shaders/starfield.glsl
 # custom-shader = ./ghostty-shaders/retro-terminal.glsl
 # custom-shader = ./ghostty-shaders/bettercrt.glsl
 # custom-shader = ./ghostty-shaders/starfield-colors.glsl
 # custom-shader = ./ghostty-shaders/gradient-background.glsl
+# custom-shader = ./ghostty-shaders/bloom.glsl
+# custom-shader = ./ghostty-shaders/water.glsl
+# custom-shader = ./ghostty-shaders/underwater.glsl
+# custom-shader = ./ghostty-shaders/gears-and-belts.glsl
+# custom-shader = ./ghostty-shaders/glow-rgbsplit-twitchy.glsl
+# custom-shader = ./ghostty-shaders/inside-the-matrix.glsl
+# custom-shader = ./ghostty-shaders/spotlight.glsl
+# custom-shader = ./ghostty-shaders/matrix-hallway.glsl
+# custom-shader = ./ghostty-shaders/sparks-from-fire.glsl
+# custom-shader = ./ghostty-shaders/fireworks.glsl
+# custom-shader = ./ghostty-shaders/fireworks-rockets.glsl
 # custom-shader-animation = true
 
 # Other
+link-url = true
 copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow
 copy-on-select                 = true
-shell-integration-features = cursor,sudo,no-title
 clipboard-paste-protection     = true
 clipboard-trim-trailing-spaces = true
 macos-auto-secure-input        = true
 macos-secure-input-indication  = true
 quit-after-last-window-closed  = false
 scrollback-limit               = 4200
+cursor-style                  = bar
 shell-integration              = fish

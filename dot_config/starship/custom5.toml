@@ -1,0 +1,110 @@
+format = """
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$line_break\
+$character"""
+
+right_format = """
+$typst\
+$rust\
+$ocaml\
+$python\
+$os\
+$sudo\
+$battery\
+$cmd_duration\
+$time"""
+
+[fill]
+symbol = ' '
+
+[directory]
+style = "blue"
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[sudo]
+format = "[$symbol]($style)"
+style = "bold italic bright-purple"
+symbol = "   "
+disabled = false
+
+[os]
+disabled = false
+style = "bold blue"
+
+[os.symbols]
+Fedora = " "
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[( *$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+
+[git_metrics]
+disabled = false
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = " [$duration]($style) "
+style = "yellow"
+
+[typst]
+symbol = "𝐭"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+format = '[ $symbol ($version) ]($style)'
+
+[ocaml]
+format = '[ $symbol($version) ]($style)'
+style = 'bold yellow'
+
+[python]
+format = '[ $symbol($version) ]($style)'
+style = 'bright-green'
+
+[battery]
+format = "[ $percentage $symbol]($style)"
+full_symbol = "█"
+charging_symbol = "[↑](italic bold green)"
+discharging_symbol = "↓"
+unknown_symbol = "░"
+empty_symbol = "▃"
+
+[[battery.display]]
+threshold = 20
+style = "italic bold red"
+
+[[battery.display]]
+threshold = 50
+style = "italic dimmed bright-purple"
+
+[[battery.display]]
+threshold = 70
+style = "italic dimmed yellow"
+
+[[battery.display]]
+threshold = 100
+style = "italic dimmed bright-green"
+
+[time]
+disabled = false
+format = "[ $time]($style)"
+time_format = "%R"
+utc_time_offset = "local"
+style = "italic dimmed white"

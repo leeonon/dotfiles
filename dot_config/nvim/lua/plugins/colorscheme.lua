@@ -58,7 +58,7 @@ return {
     opts = function(_, opts)
       opts.transparent = true
       opts.italic_comments = true
-      opts.borderless_telescope = false
+      opts.borderless_pickers = false
     end,
   },
   {
@@ -267,11 +267,18 @@ return {
     end,
   },
   {
+    "rjshkhr/shadow.nvim",
+    priority = 1000,
+    config = function()
+      vim.opt.termguicolors = true
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "oldworld",
       -- colorscheme = "darkbox",
-      colorscheme = "jellybeans",
+      -- colorscheme = "jellybeans",
       -- colorscheme = "gruvbox-material",
       -- colorscheme = "catppuccin",
       -- colorscheme = "kanagawa",
@@ -286,6 +293,7 @@ return {
       -- colorscheme = "miasma",
       -- colorscheme = "flow",
       -- colorscheme = "moonfly",
+      colorscheme = "shadow",
     },
   },
 }

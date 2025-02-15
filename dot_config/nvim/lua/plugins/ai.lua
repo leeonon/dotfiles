@@ -7,7 +7,8 @@ return {
     event = "BufEnter",
     opts = {
       suggestion = {
-        enabled = not vim.g.ai_cmp,
+        -- enabled = not vim.g.ai_cmp,
+        enabled = true,
         auto_trigger = true,
         keymap = {
           accept = false, -- handled by nvim-cmp / blink.cmp
@@ -77,47 +78,4 @@ return {
   --     },
   --   },
   -- },
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    keys = {
-      {
-        "<leader>ac",
-        "<cmd>CodeCompanionActions<cr>",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>aa",
-        "<cmd>CodeCompanionChat Toggle<cr>",
-        mode = { "n", "v" },
-      },
-      { "<leader>ad", "<cmd>CodeCompanionChat Add<cr>", mode = { "v" } },
-    },
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "anthropic",
-            keymap = {
-              send = {
-                modes = { n = "<C-s>", i = "<C-s>" },
-              },
-              close = {
-                modes = { n = "<C-c>", i = "<C-c>" },
-              },
-            },
-          },
-          inline = {
-            adapter = "anthropic",
-          },
-        },
-        opts = {
-          language = "Zh",
-        },
-      })
-    end,
-  },
 }

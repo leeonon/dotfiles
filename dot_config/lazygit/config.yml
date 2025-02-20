@@ -4,10 +4,10 @@ customCommands:
   - command: git cz
     context: files
     subprocess: true
-    key: C
+    key: "C"
 
 gui:
-  language: "en"
+  language: "zh-CN"
   showIcons: true
 
 git:

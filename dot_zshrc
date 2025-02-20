@@ -224,3 +224,5 @@ eval "$(zoxide init zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# 修改 Lazygit 配置文件位置
+export XDG_CONFIG_HOME="$HOME/.config"

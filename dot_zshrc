@@ -1,8 +1,12 @@
 # 当前文件放在 .config 文件夹下，修改 .zshrc 文件位置aaa
 # ln -s .config/zsh/.zshrc ~/.zshrc
 
+# Abbr
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH="/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.config/zsh/.oh-my-zsh"
@@ -145,6 +149,11 @@ alias cpu='sudo mactop'
 alias tls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pick a sesh" --height 50 --prompt "⚡")"'
 # 检测项目 package.json 依赖版本
 alias taze='npx taze'
+
+# Abbr
+# Lazygit
+abbr -S lg='lazygit' >>/dev/null
+
 function sss() {
   {
     exec </dev/tty
@@ -208,3 +217,10 @@ export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 source /Users/ly/.config/broot/launcher/bash/br
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/Users/ly/.bun/_bun" ] && source "/Users/ly/.bun/_bun"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+

@@ -2,7 +2,7 @@
 # startup_command = "nvim +GoToFile"
 
 [[session]]
-name = "Yang 🔥"
+name = "Yang"
 path = "~/code/github"
 
 [[session]]
@@ -20,6 +20,10 @@ path = "~/code/5eplay"
 [[session]]
 name = "GGPlay"
 path = "~/code/5eplay/gg-play/"
+
+[[session]]
+name = "Github"
+path = "~/code/github/"
 
 [[session]]
 name = "Home 🛖"

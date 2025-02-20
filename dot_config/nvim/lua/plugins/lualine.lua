@@ -1,8 +1,79 @@
+local git_status_cache = {}
+
+local on_exit_fetch = function(result)
+  if result.code == 0 then
+    git_status_cache.fetch_success = true
+  end
+end
+
+local function handle_numeric_result(cache_key)
+  return function(result)
+    if result.code == 0 then
+      git_status_cache[cache_key] = tonumber(result.stdout:match("(%d+)")) or 0
+    end
+  end
+end
+
+local async_cmd = function(cmd_str, on_exit)
+  local cmd = vim.tbl_filter(function(element)
+    return element ~= ""
+  end, vim.split(cmd_str, " "))
+
+  vim.system(cmd, { text = true }, on_exit)
+end
+
+local async_git_status_update = function()
+  -- Fetch the latest changes from the remote repository (replace 'origin' if needed)
+  async_cmd("git fetch origin", on_exit_fetch)
+  if not git_status_cache.fetch_success then
+    return
+  end
+
+  -- Get the number of commits behind
+  -- the @{upstream} notation is inspired by post: https://www.reddit.com/r/neovim/comments/t48x5i/git_branch_aheadbehind_info_status_line_component/
+  -- note that here we should use double dots instead of triple dots
+  local behind_cmd_str = "git rev-list --count HEAD..@{upstream}"
+  async_cmd(behind_cmd_str, handle_numeric_result("behind_count"))
+
+  -- Get the number of commits ahead
+  local ahead_cmd_str = "git rev-list --count @{upstream}..HEAD"
+  async_cmd(ahead_cmd_str, handle_numeric_result("ahead_count"))
+end
+
+local function get_ahead_behind_info()
+  local status = git_status_cache
+
+  if not status then
+    return ""
+  end
+
+  local msg = ""
+
+  if type(status.ahead_count) == "number" and status.ahead_count > 0 then
+    local ahead_str = string.format("↑[%d] ", status.ahead_count)
+    msg = msg .. ahead_str
+  end
+
+  if type(status.behind_count) == "number" and status.behind_count > 0 then
+    local behind_str = string.format("↓[%d] ", status.behind_count)
+    msg = msg .. behind_str
+  end
+
+  return msg
+end
+
+local timer = vim.uv.new_timer()
+if timer then
+  timer:start(0, 1000, async_git_status_update)
+else
+  vim.notify("Failed to create timer", vim.log.levels.WARN)
+end
+
 local harpoon_files = require("harpoon_files")
 
 local function get_lualine_colors()
-  local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "azure-dragon"
-  local name = vim.g.colors_name:match("^four%-symbols%-") and colorname or "azure-dragon"
+  local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "black-tortoise"
+  local name = vim.g.colors_name:match("^four%-symbols%-") and colorname or "black-tortoise"
   local c = require("four-symbols.palette").get_palette(name)
   return c
 end
@@ -98,10 +169,10 @@ return {
         c = { fg = colors.fg_01, bg = "None" },
         z = { fg = colors.fg_01, bg = "None" },
       },
-      insert = { a = { fg = colorsbg_01, bg = colors.fg_01 } },
-      visual = { a = { fg = colorsbg_01, bg = colors.yellow } },
-      replace = { a = { fg = colorsbg_01, bg = colors.green } },
-      command = { a = { fg = colorsbg_01, bg = colors.red } },
+      insert = { a = { fg = colors.bg_01, bg = colors.fg_01 } },
+      visual = { a = { fg = colors.bg_01, bg = colors.yellow } },
+      replace = { a = { fg = colors.bg_01, bg = colors.green } },
+      command = { a = { fg = colors.bg_01, bg = colors.red } },
     }
 
     return {
@@ -148,21 +219,24 @@ return {
             "filename",
             path = 5,
             padding = 1,
-            color = { bg = colorsbg_02, fg = colors.fg_01 },
+            color = { fg = colors.fg_01 },
             separator = { left = "", right = "" },
           },
-
-          {
-            "filetype",
-            icons_enabled = false,
-            color = { bg = "None", fg = colors.blue, gui = "italic" },
-          },
+          -- {
+          --   "filetype",
+          --   icons_enabled = false,
+          --   color = { bg = "None", fg = colors.blue, gui = "italic" },
+          -- },
           -- space,
           {
             "branch",
             icon = "",
             color = { bg = "None", fg = colors.cyan },
-            -- separator = { left = "", right = "" },
+            separator = { left = "", right = "" },
+          },
+          {
+            get_ahead_behind_info,
+            color = { fg = colors.cyan },
           },
           {
             "diff",

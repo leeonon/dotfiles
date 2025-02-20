@@ -1,7 +1,7 @@
 return {
   "b0o/incline.nvim",
   dependencies = { "SmiteshP/nvim-navic" },
-  enabled = true,
+  enabled = false,
   config = function()
     local helpers = require("incline.helpers")
     local navic = require("nvim-navic")

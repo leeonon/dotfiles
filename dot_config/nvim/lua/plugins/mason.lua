@@ -45,6 +45,7 @@ return {
         -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-142170603
         "eslint",
         "biome",
+        "stylua",
       },
     })
 

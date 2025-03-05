@@ -1,5 +1,4 @@
 return {
-  { "nvzone/timerly", cmd = "TimerlyToggle" },
   { "nvzone/menu", lazy = true },
   {
     "nvzone/showkeys",
@@ -8,6 +7,9 @@ return {
       timeout = 1,
       maxkeys = 5,
       -- more opts
+    },
+    keys = {
+      { "<leader>sK", "<cmd>ShowkeysToggle<cr>", desc = "Showkeys" },
     },
   },
   {

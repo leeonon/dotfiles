@@ -13,6 +13,8 @@ gui:
 git:
   branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' {{branchName}} --"
   allBranchesLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
+  # 自定义分页器
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   paging:
     colorArg: always
-    pager: delta --dark --paging=never # ここの設定を使用する場合はdeltaのインストールが必要
+    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

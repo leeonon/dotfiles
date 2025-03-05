@@ -41,12 +41,15 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.editor.mini-files" },
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
     -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-    -- { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.vscode" },
+    -- Rest 请求
+    { import = "lazyvim.plugins.extras.util.rest" },
     { import = "plugins" },
     { import = "plugins.lsp" },
     { import = "plugins.format-linting" },
+    { import = "plugins.git" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

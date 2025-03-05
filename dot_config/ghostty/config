@@ -17,7 +17,7 @@ macos-titlebar-proxy-icon      = hidden
 # paper
 # retro
 # xray
-macos-icon = paper
+macos-icon = xray
 
 # Window
 window-theme = ghostty
@@ -93,8 +93,12 @@ keybind = super+nine=text:\x01\x39
 keybind = super+t=text:\x01\x63
 keybind = super+x=text:\x01\x78
 keybind = super+,=text:\x01\x2c
-keybind = super+l=text:\x01\x73
+# keybind = super+l=text:\x01\x73 #Ctrl + a + s 列出所有会话
+keybind = super+l=text:\x01\x77 #Ctrl + a + w 列出所有窗口
 keybind = super+k=text:\x01\x4b
+
+# nvim 搜索
+keybind = super+f=text:\x1b:GrugFar\r
 
 # Shader
 # custom-shader = ./ghostty-shaders/drunkard.glsl

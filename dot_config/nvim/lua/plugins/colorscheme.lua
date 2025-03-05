@@ -40,7 +40,7 @@ return {
       theme.setup({
         style = "night",
         transparent = true,
-        on_colors = function(colors)
+        on_colors = function()
           -- colors.bg_visual = M.colors.grey12
         end,
         styles = {
@@ -263,7 +263,7 @@ return {
     "wtfox/jellybeans.nvim",
     priority = 1000,
     config = function()
-      require("jellybeans").setup()
+      -- require("jellybeans").setup()
     end,
   },
   {
@@ -284,11 +284,11 @@ return {
       -- colorscheme = "kanagawa",
       -- colorscheme = "gruvbox",
       -- colorscheme = "citruszest",
-      -- colorscheme = "everforest",
+      colorscheme = "everforest",
       -- colorscheme = "ayu",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
-      colorscheme = "four-symbols",
+      -- colorscheme = "four-symbols",
       -- colorscheme = "evergarden",
       -- colorscheme = "miasma",
       -- colorscheme = "flow",

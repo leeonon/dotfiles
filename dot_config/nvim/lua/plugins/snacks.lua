@@ -53,11 +53,19 @@ return {
       enabled = false,
     },
     bigfile = { enabled = true },
-    input = { enabled = false },
     quickfile = { enabled = true },
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    input = {
+      enabled = true,
+      icon = " ",
+      icon_hl = "SnacksInputIcon",
+      icon_pos = "left",
+      prompt_pos = "title",
+      win = { style = "input" },
+      expand = true,
+    },
   },
   keys = {
     {

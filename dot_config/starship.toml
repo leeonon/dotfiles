@@ -171,12 +171,9 @@ format = """
 """
 
 [character]
-# format = """
-# [╰─$symbol](fg:#FCA17D) """
-success_symbol = ' [󱞪](fg:#FCA17D)' #╰─  󱞩   󰁔 󱦰 󱞪   👉
-error_symbol = '[😅](fg:#eb3b5a)'    # 💤💥💣💬😅×
+success_symbol = '[](fg:#FCA17D)' #╰─  󱞩   󰁔 󱦰 󱞪   👉
+error_symbol = '[](fg:#eb3b5a)'   # 💤💥💣💬😅
 vimcmd_symbol = '[](fg:#1ac0c6)'
-
 
 [line_break]
 disabled = true

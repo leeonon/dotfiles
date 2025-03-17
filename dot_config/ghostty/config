@@ -1,5 +1,5 @@
 # UI
-background-opacity = 1
+background-opacity = 0.9
 background-blur-radius = 60
 # theme = rose-pine
 theme = ayu
@@ -24,24 +24,19 @@ window-theme = ghostty
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = false
+window-save-state = always
 
 # Font
 font-size = 13.0
-font-family = MonoLisa
+# font-family = MonoLisa
 # font-style = Medium
 font-style = Regular
 # font-style-bold = Regular Bold
 # font-style-italic = Regular Italic
 # font-style-bold-italic = Black Italic
 
-# font-family = CaskaydiaCove Nerd Font
-# font-family = "Monaspace Neon"
-# font-family = "IBM Plex Mono Medium"
-# font-family = "BlexMono Nerd Font"
-# font-family = "Iosevka Term"
-# font-family = "Iosevka Nerd Font"
-# font-family = "Iosevka Nerd Font Mono"
-# font-family = "Maple Mono"
+font-family = "IBM Plex Mono"
+# font-family = "Roboto Mono"
 # font-family = "DankMono Nerd Font"
 # font-family = "JetBrains Mono"
 # font-family = "JetBrainsMono Nerd Font"
@@ -57,8 +52,8 @@ font-style = Regular
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
 # font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
 
-adjust-cell-height = 6
-adjust-cursor-height = 6
+adjust-cell-height = 4
+adjust-cursor-height = 8
 
 # 使用更粗的笔触绘制字体
 font-thicken = true
@@ -78,7 +73,7 @@ font-feature = ss17
 # Keybinds
 keybind = super+shift+r=reload_config
 keybind = super+s=text:\x13
-keybind = f4=toggle_fullscreen
+keybind = ctrl+shift+w=toggle_fullscreen
 
 # Keybinds Tmux
 keybind = super+one=text:\x01\x31

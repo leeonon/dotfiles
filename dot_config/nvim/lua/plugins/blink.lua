@@ -81,6 +81,7 @@ return {
       },
       completion = {
         accept = {
+          dot_repeat = false,
           -- 自动括号
           auto_brackets = {
             enabled = true,

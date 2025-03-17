@@ -49,6 +49,7 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.lsp" },
     { import = "plugins.format-linting" },
+    { import = "plugins.codecompanion.init" },
     { import = "plugins.git" },
   },
   defaults = {

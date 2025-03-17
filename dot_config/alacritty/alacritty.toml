@@ -5,10 +5,10 @@
 draw_bold_text_with_bright_colors = false
 
 [font]
-size = 14.0
+size = 13.5
 
 [font.offset]
-# y = 6
+y = 6
 
 [font.normal]
 ## # family = "ComicMono NF"
@@ -28,6 +28,7 @@ size = 14.0
 # family = "DankMono Nerd Font"
 # family = "BlexMono Nerd Font"
 # style = "Regular"
+
 family = "JetBrainsMono Nerd Font"
 # style = "Medium"
 style = "Regular"
@@ -62,7 +63,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
-opacity = 1
+opacity = 0.9
 decorations = "buttonless" # Transparent | Buttonless | Full | None
 blur = true
 title = "Yang"

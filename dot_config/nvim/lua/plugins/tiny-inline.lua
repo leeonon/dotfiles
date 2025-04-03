@@ -15,7 +15,8 @@ return {
       require("tiny-inline-diagnostic").setup({
         -- "modern", "classic", "minimal", "powerline",
         -- "ghost", "simple", "nonerdfont", "amongus"
-        preset = "powerline",
+        preset = "ghost",
+        transparent_bg = false,
         options = {
           show_source = true,
           use_icons_from_diagnostic = true,

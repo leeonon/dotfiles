@@ -12,13 +12,12 @@ return {
       close_if_last_window = true,
       sources = { "filesystem", "git_status", "buffers" },
       source_selector = {
-        -- 是否展示 winbar
         winbar = true,
-        statusline = false,
+        statusline = true,
       },
       buffers = { follow_current_file = { enabled = true } },
       window = {
-        position = "left",
+        position = "float",
         mappings = {
           -- 打开文件而不失去侧边栏焦点
           ["<tab>"] = function(state)
@@ -34,11 +33,13 @@ return {
       },
       default_component_configs = {
         indent = {
-          indent_size = 2,
-          padding = 0, -- extra padding on left hand side
-          with_markers = false,
+          -- enabled = false,
+          indent_size = 3,
+          padding = 1, -- extra padding on left hand side
+          -- indent guides
+          -- with_markers = true,
           -- indent_marker = "",
-          -- last_indent_marker = "",
+          -- last_indent_marker = "└",
           -- highlight = "NeoTreeIndentMarker",
           -- -- expander config, needed for nesting files
           -- with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
@@ -48,6 +49,12 @@ return {
         },
       },
       filesystem = {
+        window = {
+          mappings = {
+            -- 使用 o 快捷键用本机系统查看器打开文件或者目录
+            ["o"] = "system_open",
+          },
+        },
         filtered_items = {
           visible = false,
           show_hidden_count = true,
@@ -67,7 +74,27 @@ return {
         enabled = true, -- 这将在每次激活缓冲区时查找并聚焦该文件
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
+      commands = {
+        system_open = function(state)
+          local node = state.tree:get_node()
+          local path = node:get_id()
+          -- macOs: open file in default application in the background.
+          vim.fn.jobstart({ "open", path }, { detach = true })
+          -- Linux: open file in default application
+          vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+
+          -- Windows: Without removing the file from the path, it opens in code.exe instead of explorer.exe
+          local p
+          local lastSlashIndex = path:match("^.+()\\[^\\]*$") -- Match the last slash and everything before it
+          if lastSlashIndex then
+            p = path:sub(1, lastSlashIndex - 1) -- Extract substring before the last slash
+          else
+            p = path -- If no slash found, return original path
+          end
+          vim.cmd("silent !start explorer " .. p)
+        end,
+      },
     })
-    vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
+    vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal float<CR>", {})
   end,
 }

@@ -43,8 +43,15 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 vim.diagnostic.config({
   float = { border = _border },
+  virtual_text = false,
+  virtual_lines = false,
+  -- virtual_lines = {
+  -- Only show virtual line diagnostics for the current cursor line
+  --  仅显示当前光标所在行的虚拟行诊断信息
+  --  current_line = true,
+  -- },
 })
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({})
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false

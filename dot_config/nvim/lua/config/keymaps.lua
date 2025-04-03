@@ -46,9 +46,6 @@ keymap.set("n", "<S-F>", function()
   })
 end, { desc = "Lens" })
 
--- buvvers.nvim
-keymap.set("n", "<leader>bl", require("buvvers").toggle, { desc = "Buvvers Toggle" })
--- buvvers.nvim 面板的快捷键
 vim.api.nvim_create_autocmd("User", {
   group = vim.api.nvim_create_augroup("buvvers_keymap", { clear = true }),
   pattern = "BuvversAttach",

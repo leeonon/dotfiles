@@ -1,6 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
-  enabled = false,
+  -- enabled = false,
   opts = {
     options = {
       themable = true,

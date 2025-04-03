@@ -39,7 +39,24 @@ return {
   end,
   config = function()
     require("codecompanion").setup({
-      adapters = {},
+      adapters = {
+        deepseek = function()
+          return require("codecompanion.adapters").extend("deepseek", {
+            env = {
+              api_key = os.getenv("DEEPSEEK_API_KEY"),
+            },
+            schema = {
+              model = {
+                default = "deepseek-chat",
+                -- default = "deepseek-reasoner",
+              },
+              temperature = {
+                default = 0.6, -- official recommendation
+              },
+            },
+          })
+        end,
+      },
       prompt_library = {
         ["自定义Prompt"] = {
           strategy = "chat",
@@ -157,7 +174,8 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "anthropic",
+          -- adapter = "anthropic",
+          adapter = "deepseek",
           keymap = {
             send = {
               modes = { n = "<C-s>", i = "<C-s>" },
@@ -169,7 +187,18 @@ return {
           slash_commands = require("plugins.codecompanion.slash_commands"),
         },
         inline = {
-          adapter = "anthropic",
+          -- adapter = "anthropic",
+          adapter = "deepseek",
+          keymaps = {
+            accept_change = {
+              modes = { n = "ga" },
+              description = "Accept the suggested change",
+            },
+            reject_change = {
+              modes = { n = "gr" },
+              description = "Reject the suggested change",
+            },
+          },
         },
       },
       display = {

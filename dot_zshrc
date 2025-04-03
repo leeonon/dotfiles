@@ -149,6 +149,8 @@ alias cpu='sudo mactop'
 alias tls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pick a sesh" --height 50 --prompt "⚡")"'
 # 检测项目 package.json 依赖版本
 alias taze='npx taze'
+# tmuxinator
+alias mux='tmuxinator'
 
 # Abbr
 # Lazygit

@@ -5,10 +5,10 @@
 draw_bold_text_with_bright_colors = false
 
 [font]
-size = 13.5
+size = 13.0
 
 [font.offset]
-y = 6
+y = 8
 
 [font.normal]
 ## # family = "ComicMono NF"
@@ -29,12 +29,14 @@ y = 6
 # family = "BlexMono Nerd Font"
 # style = "Regular"
 
-family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+family = "Iosevka Nerd Font"
 # style = "Medium"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+family = "Iosevka Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
@@ -71,7 +73,7 @@ dynamic_padding = true
 dynamic_title = false
 
 [window.dimensions]
-columns = 160
+columns = 180
 lines = 60
 
 [window.padding]

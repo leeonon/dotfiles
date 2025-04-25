@@ -276,10 +276,4 @@ return {
       }
     end,
   },
-  -- Git related plugins
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
-
-  -- not git, but it's okay
-  "mbbill/undotree",
 }

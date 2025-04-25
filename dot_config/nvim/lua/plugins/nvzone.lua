@@ -16,10 +16,4 @@ return {
     "nvzone/minty",
     cmd = { "Shades", "Huefy" },
   },
-  {
-    "nvzone/typr",
-    cmd = "TyprStats",
-    dependencies = "nvzone/volt",
-    opts = {},
-  },
 }

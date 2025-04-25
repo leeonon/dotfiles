@@ -34,9 +34,9 @@ return {
     end,
   },
   -- 展示尾随空格
-  {
-    "johnfrankmorgan/whitespace.nvim",
-  },
+  -- {
+  --   "johnfrankmorgan/whitespace.nvim",
+  -- },
   -- {
   --   "nvimdev/dashboard-nvim",
   --   event = "VimEnter",

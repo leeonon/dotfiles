@@ -23,6 +23,7 @@ local function biome_or_prettier(bufnr)
     ".prettierrc.yaml",
     ".prettierrc.json5",
     ".prettierrc.js",
+    ".prettierrc.mjs",
     ".prettierrc.cjs",
     ".prettierrc.toml",
     "prettier.config.js",
@@ -33,7 +34,7 @@ local function biome_or_prettier(bufnr)
   end
 
   -- Default to Prettier if no config is found
-  return { "prettierd", stop_after_first = true }
+  return {}
 end
 
 -- TODO: prettier 感觉很卡,换成 prettierd 试试

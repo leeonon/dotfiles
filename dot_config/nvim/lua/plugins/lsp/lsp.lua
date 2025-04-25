@@ -23,25 +23,18 @@ return {
           settings = {
             workingDirectories = { mode = "auto" },
             -- useFlatConfig = true,
-            experimental = {
-              -- useFlatConfig = true,
-            },
+            -- experimental = {
+            --   useFlatConfig = true,
+            -- },
           },
           on_attach = function(client, bufnr)
             -- eslint auto fix on save
-            -- vim.api.nvim_create_autocmd("BufWritePre", {
-            --   buffer = bufnr,
-            --   command = "EslintFixAll",
-            -- })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
           end,
         },
-        -- ["rust_analyzer"] = {
-        --   settings = {
-        --     cargo = { allFeatures = true },
-        --     hint = { enable = true },
-        --     checkOnSave = { command = "clippy" },
-        --   },
-        -- },
         lua_ls = {
           settings = {
             Lua = {

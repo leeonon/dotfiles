@@ -48,7 +48,9 @@ require("lazy").setup({
     -- Rest 请求
     { import = "lazyvim.plugins.extras.util.rest" },
     { import = "plugins" },
-    { import = "plugins.lsp" },
+    { import = "plugins.lsp.lsp" },
+    { import = "plugins.lsp.rust" },
+    { import = "plugins.lsp.tailwindcss" },
     { import = "plugins.format-linting" },
     { import = "plugins.codecompanion.init" },
     { import = "plugins.git" },

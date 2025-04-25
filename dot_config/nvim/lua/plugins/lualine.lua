@@ -138,6 +138,9 @@ local icons = require("lazyvim.config").icons
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
+  dependencies = {
+    "bwpge/lualine-pretty-path",
+  },
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then
@@ -216,7 +219,16 @@ return {
         lualine_b = {},
         lualine_c = {
           {
-            "filename",
+            "pretty_path",
+            icon_show = true,
+            highlights = {
+              modified = { fg = "#ff00ff", bold = true, italic = true },
+              path_sep = "Comment",
+            },
+            icon_padding = {
+              [""] = 0, -- disable extra padding for terminal icon
+            },
+            -- "filename",
             path = 5,
             padding = 1,
             color = { fg = colors.fg_01 },
@@ -285,6 +297,7 @@ return {
           },
         },
         lualine_y = {
+          { "lsp_progress" },
           { harpoon_files.lualine_component },
         },
         lualine_z = {
@@ -320,6 +333,9 @@ return {
             -- separator = { left = "", right = "" },
             color = { bg = colors.bg_04, fg = colors.fg_01 },
             -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
+          },
+          {
+            color = { bg = colors.bg_04, fg = colors.fg_01 },
           },
         },
       },

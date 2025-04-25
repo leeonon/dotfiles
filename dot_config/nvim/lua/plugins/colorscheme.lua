@@ -40,8 +40,15 @@ return {
       theme.setup({
         style = "night",
         transparent = true,
-        on_colors = function()
-          -- colors.bg_visual = M.colors.grey12
+        on_colors = function(c)
+          -- Because lualine broke stuff with the latest commit
+          c.bg_statusline = c.none
+        end,
+        on_highlights = function(hl, c)
+          -- TabLineFill is currently set to black
+          hl.TabLineFill = {
+            bg = c.none,
+          }
         end,
         styles = {
           comments = { italic = true },
@@ -203,12 +210,7 @@ return {
       -- vim.g.everforest_current_word = "underline"
     end,
   },
-  {
-    "bettervim/yugen.nvim",
-    config = function() end,
-  },
   { "nuvic/flexoki-nvim", as = "flexoki" },
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
   {
     "xero/miasma.nvim",
     lazy = false,
@@ -216,32 +218,56 @@ return {
     config = function() end,
   },
   {
+    "comfysage/cuddlefish.nvim",
+    config = function()
+      require("cuddlefish").setup({
+        theme = {
+          accent = "pink",
+        },
+        editor = {
+          transparent_background = true,
+        },
+        style = {
+          tabline = { "reverse" },
+          search = { "italic", "reverse" },
+          incsearch = { "italic", "reverse" },
+          types = { "italic" },
+          keyword = { "italic" },
+          comment = { "italic" },
+        },
+        overrides = function(colors)
+          return {}
+        end,
+      })
+    end,
+  },
+  {
     "comfysage/evergarden",
     priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
     opts = {
-      theme = {
-        variant = "fall", -- 'winter'|'fall'|'spring'
-        accent = "green",
-      },
+      -- theme = {
+      --   variant = "fall", -- 'winter'|'fall'|'spring'
+      --   accent = "green",
+      -- },
       editor = {
-        transparent_background = false,
-        sign = { color = "none" },
-        float = {
-          color = "mantle",
-          invert_border = false,
-        },
-        completion = {
-          color = "surface0",
-        },
+        transparent_background = true,
+        -- sign = { color = "none" },
+        -- float = {
+        --   color = "mantle",
+        --   invert_border = false,
+        -- },
+        -- completion = {
+        --   color = "surface0",
+        -- },
       },
-      style = {
-        tabline = { "reverse" },
-        search = { "italic", "reverse" },
-        incsearch = { "italic", "reverse" },
-        types = { "italic" },
-        keyword = { "italic" },
-        comment = { "italic" },
-      },
+      -- style = {
+      --   tabline = { "reverse" },
+      --   search = { "italic", "reverse" },
+      --   incsearch = { "italic", "reverse" },
+      --   types = { "italic" },
+      --   keyword = { "italic" },
+      --   comment = { "italic" },
+      -- },
       overrides = {},
       color_overrides = {},
     },
@@ -266,7 +292,7 @@ return {
     enabled = true,
     priority = 1000,
     config = function()
-      vim.g.gruvbox_material_transparent_background = 0
+      vim.g.gruvbox_material_transparent_background = 1
       vim.g.gruvbox_material_foreground = "mix"
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_ui_contrast = "high"
@@ -287,6 +313,17 @@ return {
         variant = "default", -- default, oled, cooler
         styles = {
           comments = { italic = true },
+        },
+
+        integrations = {
+          navic = true,
+          alpha = false,
+          rainbow_delimiters = false,
+        },
+        highlight_overrides = {
+          Normal = { bg = "NONE" },
+          NormalNC = { bg = "NONE" },
+          CursorLine = { bg = "#222128" },
         },
       })
     end,
@@ -353,19 +390,118 @@ return {
     opts = {
       -- custom options here
       transparent_background = true,
+      -- gamma = 0.9,
+      custom_highlights = function(hl, p)
+        return {
+          -- https://github.com/folke/tokyonight.nvim/issues/703
+          TabLineFill = {
+            bg = "None",
+          },
+        }
+      end,
     },
     config = function(_, opts)
       require("tokyodark").setup(opts) -- calling setup is optional
     end,
   },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  {
+    "ptdewey/monalisa-nvim",
+    priority = 1000,
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nordic").setup({
+        -- This callback can be used to override the colors used in the base palette.
+        on_palette = function(palette) end,
+        -- This callback can be used to override the colors used in the extended palette.
+        after_palette = function(palette) end,
+        -- This callback can be used to override highlights before they are applied.
+        on_highlight = function(highlights, palette) end,
+        -- Enable bold keywords.
+        bold_keywords = false,
+        -- Enable italic comments.
+        italic_comments = true,
+        -- Enable editor background transparency.
+        transparent = {
+          -- Enable transparent background.
+          bg = true,
+          -- Enable transparent background for floating windows.
+          float = true,
+        },
+        -- Enable brighter float border.
+        bright_border = false,
+        -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+        reduced_blue = true,
+        -- Swap the dark background with the normal one.
+        swap_backgrounds = false,
+        -- Cursorline options.  Also includes visual/selection.
+        cursorline = {
+          -- Bold font in cursorline.
+          bold = false,
+          -- Bold cursorline number.
+          bold_number = true,
+          -- Available styles: 'dark', 'light'.
+          theme = "dark",
+          -- Blending the cursorline bg with the buffer bg.
+          blend = 0.85,
+        },
+        noice = {
+          -- Available styles: `classic`, `flat`.
+          style = "classic",
+        },
+        telescope = {
+          -- Available styles: `classic`, `flat`.
+          style = "flat",
+        },
+        leap = {
+          -- Dims the backdrop when using leap.
+          dim_backdrop = false,
+        },
+        ts_context = {
+          -- Enables dark background for treesitter-context window
+          dark_background = true,
+        },
+      })
+    end,
+  },
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.moonflyTransparent = true
+    end,
+  },
+  {
+    "metalelf0/black-metal-theme-neovim",
+    lazy = false,
+    priority = 1000,
+    name = "black-metal",
+    config = function()
+      require("black-metal").setup({
+        theme = "bathory",
+        variant = "dark",
+      })
+      -- require("black-metal").load()
+    end,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyodark",
-      -- colorscheme = "oldworld",
+      -- colorscheme = "nordic",
+      -- colorscheme = "moonfly",
+      -- colorscheme = "tokyodark",
+      colorscheme = "oldworld",
       -- colorscheme = "darkbox",
       -- colorscheme = "jellybeans",
       -- colorscheme = "gruvbox-material",
+      -- colorscheme = "oxocarbon",
+      -- colorscheme = "monalisa",
       -- colorscheme = "catppuccin",
       -- colorscheme = "kanagawa",
       -- colorscheme = "gruvbox",
@@ -376,6 +512,7 @@ return {
       -- colorscheme = "tokyonight",
       -- colorscheme = "four-symbols",
       -- colorscheme = "evergarden",
+      -- colorscheme = "cuddlefish",
       -- colorscheme = "gruvboxed",
       -- colorscheme = "nord",
       -- colorscheme = "miasma",

@@ -2,6 +2,9 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  init = function()
+    vim.b.miniindentscope_disable = true
+  end,
   opts = {
     image = {
       enabled = true,
@@ -10,12 +13,13 @@ return {
       enabled = true,
       preset = {
         header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+████ ██████           █████      ██                    
+     ███████████             █████                            
+     █████████ ███████████████████ ███   ███████████  
+    █████████  ███    █████████████ █████ ██████████████  
+   █████████ ██████████ █████████ █████ █████ ████ █████  
+ ███████████ ███    ███ █████████ █████ █████ ████ █████ 
+██████  █████████████████████ ████ █████ █████ ████ ██████]],
       },
       formats = {
         key = function(item)
@@ -23,30 +27,40 @@ return {
         end,
       },
       sections = {
-        { section = "header" },
         {
-          pane = 2,
-          section = "terminal",
-          cmd = "colorscript -e square",
-          height = 5,
-          padding = 1,
+          section = "header",
+          padding = 4,
         },
         { section = "keys", gap = 1, padding = 1 },
-        { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
         {
           pane = 2,
-          icon = " ",
-          title = "Git Status",
-          section = "terminal",
-          enabled = vim.fn.isdirectory(".git") == 1,
-          cmd = "hub status --short --branch --renames",
-          height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
+          {
+            function()
+              local in_git = Snacks.git.get_root() ~= nil
+              local cmds = {
+                {
+                  title = "Git Graph",
+                  icon = " ",
+                  cmd = [[echo -e "$(git-graph --style round --color always --wrap 50 0 8 -f 'oneline')"]],
+                  indent = 1,
+                  height = 25,
+                },
+              }
+              return vim.tbl_map(function(cmd)
+                return vim.tbl_extend("force", {
+                  pane = 2,
+                  section = "terminal",
+                  enabled = function()
+                    return in_git and vim.o.columns > 130
+                  end,
+                  padding = 1,
+                  -- ttl = 5 * 60,
+                }, cmd)
+              end, cmds)
+            end,
+            { section = "startup" },
+          },
         },
-        { section = "startup" },
       },
     },
     indent = {

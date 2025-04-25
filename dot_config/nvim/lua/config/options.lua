@@ -43,15 +43,13 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 vim.diagnostic.config({
   float = { border = _border },
-  virtual_text = false,
+  virtual_text = true,
   virtual_lines = false,
   -- virtual_lines = {
-  -- Only show virtual line diagnostics for the current cursor line
-  --  仅显示当前光标所在行的虚拟行诊断信息
-  --  current_line = true,
+  --   -- 仅显示当前光标所在行的虚拟行诊断信息
+  --   current_line = true,
   -- },
 })
-vim.diagnostic.config({})
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false
@@ -69,3 +67,12 @@ vim.g.lazyvim_eslint_auto_format = true
 vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_blink_main = false
 vim.g.lazyvim_cmp = "blink.cmp"
+
+-- 始终保持光标位于终端的垂直中心
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+  callback = function()
+    if vim.fn.mode() == "n" then
+      vim.cmd("normal! zz")
+    end
+  end,
+})

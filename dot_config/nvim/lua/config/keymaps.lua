@@ -72,3 +72,29 @@ vim.api.nvim_create_autocmd("User", {
 
 -- legendary.nvim
 keymap.set("n", "<leader>le", "<cmd>Legendary<cr>", { desc = "Legendary" })
+
+-- 复制一行并注释掉第一行
+keymap.set("n", "ycc", "yygccp", { remap = true })
+-- 在 INSERT 和 NORMAL 模式下自动在行尾添加分号或逗号
+keymap.set("i", ";;", "<ESC>A;")
+keymap.set("i", ",,", "<ESC>A,")
+keymap.set("n", ";;", "A;<ESC>")
+keymap.set("n", ",,", "A,<ESC>")
+
+-- 上下移动文本行
+-- 正常模式
+keymap.set("n", "<A-Down>", ":m .+1<CR>==")
+keymap.set("n", "<A-Up>", ":m .-2<CR>==")
+-- 插入模式
+keymap.set("i", "<A-Down>", "<esc>:m .+1<CR>==gi")
+keymap.set("i", "<A-Up>", "<esc>:m .-2<CR>==gi")
+-- 视觉模式
+keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv")
+keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv")
+
+keymap.set("v", "<leader>wd", 'xi""<ESC>hp', { desc = "用双引号包裹选定文本" })
+keymap.set("v", "<leader>ws", "xi''<ESC>hp", { desc = "用单引号包裹选定文本" })
+
+keymap.set("n", "<leader>ca", function()
+  require("tiny-code-action").code_action()
+end, { noremap = true, silent = true })

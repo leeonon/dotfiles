@@ -1,64 +1,71 @@
 return {
-  "williamboman/mason.nvim",
-  dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-  },
-  config = function()
-    -- import mason
-    local mason = require("mason")
+  -- TODO 还未适配 Lazyvim, 需要固定版本 1.x 等待
+  -- https://github.com/mason-org/mason-lspconfig.nvim/issues/545
+  { "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
+  -- { "mason-org/mason-lspconfig.nvim" },
+  {
+    "williamboman/mason.nvim",
+    version = "1.11.0",
+    dependencies = {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+    config = function()
+      -- import mason
+      local mason = require("mason")
 
-    -- import mason-lspconfig
-    local mason_lspconfig = require("mason-lspconfig")
+      -- import mason-lspconfig
+      local mason_lspconfig = require("mason-lspconfig")
 
-    local mason_tool_installer = require("mason-tool-installer")
+      local mason_tool_installer = require("mason-tool-installer")
 
-    -- enable mason and configure icons
-    mason.setup({
-      ui = {
-        icons = {
-          package_installed = "✅",
-          package_pending = "➡️",
-          package_uninstalled = "❌",
+      -- enable mason and configure icons
+      mason.setup({
+        ui = {
+          icons = {
+            package_installed = "✅",
+            package_pending = "➡️",
+            package_uninstalled = "❌",
+          },
         },
-      },
-    })
+      })
 
-    mason_lspconfig.setup({
-      -- list of servers for mason to install
-      ensure_installed = {
-        "tsserver",
-        "html",
-        "cssls",
-        "tailwindcss",
-        "svelte",
-        "lua_ls",
-        "emmet_ls",
-        "prismals",
-        "rust-analyzer",
-        "cssls",
-        "cssmodules_ls",
-        "astro",
-        -- eslint 无法自动Fix问题
-        -- https://github.com/neovim/nvim-lspconfig/issues/3146
-        -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-141868488
-        -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-142170603
-        "eslint",
-        "biome",
-        "stylua",
-      },
-    })
+      mason_lspconfig.setup({
+        automatic_installation = true,
+        -- list of servers for mason to install
+        ensure_installed = {
+          "tsserver",
+          "html",
+          "cssls",
+          "tailwindcss",
+          "svelte",
+          "lua_ls",
+          "emmet_ls",
+          "prismals",
+          "rust-analyzer",
+          "cssls",
+          "cssmodules_ls",
+          "astro",
+          -- eslint 无法自动Fix问题
+          -- https://github.com/neovim/nvim-lspconfig/issues/3146
+          -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-141868488
+          -- https://github.com/hrsh7th/vscode-langservers-extracted/commit/859ca87fd778a862ee2c9f4c03017775208d033a#commitcomment-142170603
+          "eslint",
+          "biome",
+          "stylua",
+        },
+      })
 
-    mason_tool_installer.setup({
-      ensure_installed = {
-        "prettier", -- prettier formatter
-        "prettierd",
-        "stylelint",
-        "stylua", -- lua formatter
-        "prisma-language-server",
-        "markdownlint",
-        "biome",
-      },
-    })
-  end,
+      mason_tool_installer.setup({
+        ensure_installed = {
+          "prettier", -- prettier formatter
+          "prettierd",
+          "stylelint",
+          "stylua", -- lua formatter
+          "prisma-language-server",
+          "markdownlint",
+          "biome",
+        },
+      })
+    end,
+  },
 }

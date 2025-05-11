@@ -9,6 +9,11 @@ return {
     image = {
       enabled = true,
     },
+    terminal = {
+      win = {
+        position = "float",
+      },
+    },
     dashboard = {
       enabled = true,
       preset = {

@@ -1,5 +1,31 @@
 local git_status_cache = {}
 
+local colors = {
+  bg = "#161617",
+  fg = "#c9c7cd",
+  subtext1 = "#b4b1ba",
+  subtext2 = "#9f9ca6",
+  subtext3 = "#8b8693",
+  subtext4 = "#6c6874",
+  bg_dark = "#131314",
+  black = "#27272a",
+  red = "#ea83a5",
+  green = "#90b99f",
+  yellow = "#e6b99d",
+  purple = "#aca1cf",
+  magenta = "#e29eca",
+  orange = "#f5a191",
+  blue = "#92a2d5",
+  cyan = "#85b5ba",
+  gray0 = "#18181a",
+  gray1 = "#1b1b1c",
+  gray2 = "#2a2a2c",
+  gray3 = "#313134",
+  gray4 = "#3b3b3e",
+  gray5 = "#444448",
+  none = "NONE",
+}
+
 local on_exit_fetch = function(result)
   if result.code == 0 then
     git_status_cache.fetch_success = true
@@ -68,8 +94,6 @@ if timer then
 else
   vim.notify("Failed to create timer", vim.log.levels.WARN)
 end
-
-local harpoon_files = require("harpoon_files")
 
 local function get_lualine_colors()
   local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "black-tortoise"
@@ -154,7 +178,7 @@ return {
   opts = function()
     -- PERF: we don't need this lualine require madness 🤷
     local lualine_require = require("lualine_require")
-    local colors = get_lualine_colors()
+    -- local colors = get_lualine_colors()
     lualine_require.require = require
 
     vim.o.laststatus = vim.g.lualine_laststatus
@@ -162,20 +186,42 @@ return {
       function()
         return " "
       end,
-      color = { bg = "None", fg = colors.blue },
+      color = { bg = nil, fg = nil },
+    }
+
+    local modecolor = {
+      n = colors.red,
+      i = colors.cyan,
+      v = colors.purple,
+      [""] = colors.purple,
+      V = colors.red,
+      c = colors.yellow,
+      no = colors.red,
+      s = colors.yellow,
+      S = colors.yellow,
+      [""] = colors.yellow,
+      ic = colors.yellow,
+      R = colors.green,
+      Rv = colors.purple,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ["r?"] = colors.cyan,
+      ["!"] = colors.red,
+      t = colors.bright_red,
     }
 
     local theme = {
       normal = {
-        a = { fg = colors.bg_01, bg = colors.fg_02 },
-        b = { fg = colors.blue, bg = "None" },
-        c = { fg = colors.fg_01, bg = "None" },
-        z = { fg = colors.fg_01, bg = "None" },
+        a = { fg = colors.bg_dark, bg = colors.blue },
+        b = { fg = colors.blue, bg = colors.white },
+        c = { fg = colors.white, bg = colors.bg_dark },
+        z = { fg = colors.white, bg = nil },
       },
-      insert = { a = { fg = colors.bg_01, bg = colors.fg_01 } },
-      visual = { a = { fg = colors.bg_01, bg = colors.yellow } },
-      replace = { a = { fg = colors.bg_01, bg = colors.green } },
-      command = { a = { fg = colors.bg_01, bg = colors.red } },
+      insert = { a = { fg = colors.bg_dark, bg = colors.orange } },
+      visual = { a = { fg = colors.bg_dark, bg = colors.green } },
+      replace = { a = { fg = colors.bg_dark, bg = colors.green } },
     }
 
     return {
@@ -193,25 +239,22 @@ return {
         lualine_a = {
           {
             function()
-              return ""
-              -- return "󱐋"
+              -- 󰂵           󰝨 󰙴  󰊠 󱙝  
+              return "󱙝"
             end,
             color = function()
-              return {
-                fg = colors.black,
-                -- gui = "bold",
-              }
+              local mode_color = modecolor
+              return { bg = mode_color[vim.fn.mode()], fg = colors.bg_dark, gui = "bold" }
             end,
             padding = { right = 0, left = 1 },
           },
           {
             "mode",
             color = function()
-              return {
-                fg = colors.black,
-                -- gui = "bold",
-              }
+              local mode_color = modecolor
+              return { bg = mode_color[vim.fn.mode()], fg = colors.bg_dark, gui = "bold" }
             end,
+            -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
           },
           -- filesize,
@@ -234,17 +277,12 @@ return {
             color = { fg = colors.fg_01 },
             separator = { left = "", right = "" },
           },
-          -- {
-          --   "filetype",
-          --   icons_enabled = false,
-          --   color = { bg = "None", fg = colors.blue, gui = "italic" },
-          -- },
-          -- space,
           {
             "branch",
             icon = "",
-            color = { bg = "None", fg = colors.cyan },
-            separator = { left = "", right = "" },
+            color = { bg = colors.green, fg = colors.bg, gui = "bold" },
+            -- separator = { left = "", right = "" },
+            separator = { left = "", right = "" },
           },
           {
             get_ahead_behind_info,
@@ -253,8 +291,9 @@ return {
           {
             "diff",
             -- color = { bg = colors.gray2, fg = colorsbg_01, gui = "bold" },
-            color = { bg = "None", fg = colors.fg_01, gui = "bold" },
+            color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
             -- separator = { left = "", right = "" },
+            separator = { left = "", right = "" },
             symbols = { added = " ", modified = " ", removed = " " },
 
             diff_color = {
@@ -263,15 +302,12 @@ return {
               removed = { fg = colors.red },
             },
           },
-          {
-            "location",
-            color = {
-              -- bg = colors.yellow,
-              -- fg = colorsbg_01,
-              fg = colors.yellow,
-            },
-            -- separator = { left = "", right = "" },
-          },
+          -- {
+          --   "location",
+          --   color = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
+          --   separator = { left = "", right = "" },
+          --   -- separator = { left = "", right = "" },
+          -- },
         },
         lualine_x = {
           space,
@@ -298,9 +334,14 @@ return {
         },
         lualine_y = {
           { "lsp_progress" },
-          { harpoon_files.lualine_component },
         },
         lualine_z = {
+          {
+            function()
+              return require("plugins.codecompanion.utils.companion_lualine.lua")
+            end,
+            color = { bg = nil },
+          },
           {
             "diagnostics",
             sources = { "nvim_diagnostic" },
@@ -316,26 +357,18 @@ return {
               info = { fg = colors.purple },
               hint = { fg = colors.cyan },
             },
-            -- color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
-            color = { bg = "None", fg = colors.blue },
+            color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
+            -- color = { bg = nil, fg = colors.blue },
             -- separator = { left = "" },
-          },
-          {
-            require("noice").api.status.mode.get,
-            cond = require("noice").api.status.mode.has,
-            color = { fg = colors.red, bg = colors.magenta, gui = "italic,bold" },
+            separator = { left = "", right = "" },
           },
           {
             function()
               return getLspName()
             end,
-            separator = { left = "", right = "" },
-            -- separator = { left = "", right = "" },
-            color = { bg = colors.bg_04, fg = colors.fg_01 },
-            -- color = { bg = "None", fg = colors.purple, gui = "italic,bold" },
-          },
-          {
-            color = { bg = colors.bg_04, fg = colors.fg_01 },
+            -- separator = { left = "", right = "" },
+            separator = { left = "", right = "" },
+            color = { bg = colors.purple, fg = colors.bg, gui = "italic,bold" },
           },
         },
       },

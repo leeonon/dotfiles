@@ -32,7 +32,7 @@ window-decoration = none
 font-size = 13.5
 # font-family = MonoLisa
 # font-style = Medium
-font-style = Regular
+# font-style = Regular
 # font-style-bold = Regular Bold
 # font-style-italic = Regular Italic
 # font-style-bold-italic = Black Italic
@@ -42,9 +42,10 @@ font-style = Regular
 # font-family = "DankMono Nerd Font"
 # font-family = "JetBrains Mono"
 # font-family = "JetBrainsMono Nerd Font"
-font-family = "Iosevka Nerd Font"
+# font-family = "Iosevka Nerd Font"
 # font-family = "Iosevka Term"
-
+font-family = "DM Mono"
+# font-family = "Annotation Mono"
 
 # font-family = "MonoLisa"
 # font-family-bold
@@ -62,7 +63,7 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
 # font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
 
-adjust-cell-height = 4
+adjust-cell-height = 8
 adjust-cursor-height = 8
 
 # 使用更粗的笔触绘制字体

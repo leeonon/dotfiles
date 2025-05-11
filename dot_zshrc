@@ -228,3 +228,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # 修改 Lazygit 配置文件位置
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Tauri 编译
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+

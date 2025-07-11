@@ -1,11 +1,7 @@
 return {
-  -- TODO 还未适配 Lazyvim, 需要固定版本 1.x 等待
-  -- https://github.com/mason-org/mason-lspconfig.nvim/issues/545
-  { "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
-  -- { "mason-org/mason-lspconfig.nvim" },
+  { "mason-org/mason-lspconfig.nvim" },
   {
-    "williamboman/mason.nvim",
-    version = "1.11.0",
+    "mason-org/mason.nvim",
     dependencies = {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },

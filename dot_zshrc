@@ -214,6 +214,7 @@ export PATH=${MY_PING_PATH}:$PATH
 export PATH="/opt/homebrew/bin:/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
 # 添加 pipx 安装的工具路径到 PATH
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
 source /Users/ly/.config/broot/launcher/bash/br

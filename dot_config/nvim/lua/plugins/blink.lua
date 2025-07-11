@@ -84,7 +84,7 @@ return {
           dot_repeat = false,
           -- 自动括号
           auto_brackets = {
-            enabled = true,
+            enabled = false,
           },
         },
         -- 幽灵文本
@@ -123,7 +123,6 @@ return {
               { "source_name" },
             },
             components = {
-              -- 定义建议的index，可通过快捷键 A ~ index 来选择
               item_idx = {
                 text = function(ctx)
                   return ctx.idx == 10 and "0" or ctx.idx >= 10 and " " or tostring(ctx.idx)
@@ -135,6 +134,7 @@ return {
                   return "[" .. ctx.source_name .. "]"
                 end,
               },
+
               label = {
                 text = function(ctx)
                   if not vim.g.rime_enabled then
@@ -159,6 +159,24 @@ return {
                     code = " <" .. code .. ">"
                   end
                   return ctx.label .. code
+                end,
+              },
+              kind_icon = {
+                text = function(ctx)
+                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return kind_icon
+                end,
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
+                end,
+              },
+              kind = {
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
                 end,
               },
             },

@@ -2,16 +2,25 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = true,
-  enabled = false,
+  enabled = true,
   version = false, -- set this if you want to always pull the latest change
   opts = {
-    provider = "claude",
-    -- auto_suggestions_provider = "claude",
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      model = "claude-3-7-sonnet-20250219",
-      temperature = 0,
-      max_tokens = 4096,
+    -- provider = "claude",
+    -- -- auto_suggestions_provider = "claude",
+    -- claude = {
+    --   endpoint = "https://api.anthropic.com",
+    --   model = "claude-3-7-sonnet-20250219",
+    --   temperature = 0,
+    --   max_tokens = 4096,
+    -- },
+    provider = "deepseek",
+    providers = {
+      deepseek = {
+        __inherited_from = "openai",
+        api_key_name = "DEEPSEEK_API_KEY",
+        endpoint = "https://api.deepseek.com",
+        model = "deepseek-coder",
+      },
     },
     behaviour = {
       auto_focus_sidebar = true,

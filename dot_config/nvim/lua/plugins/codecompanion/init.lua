@@ -1,6 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
+    enabled = false,
     dependencies = {
       --other plugins
       "ravitemer/codecompanion-history.nvim",

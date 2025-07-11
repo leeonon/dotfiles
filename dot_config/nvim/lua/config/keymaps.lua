@@ -11,13 +11,11 @@ local keymap = vim.keymap
 keymap.set("i", "jk", "<Esc>")
 keymap.set("n", "<c-a>", "ggVG")
 -- 复制一行并注释掉第一行
-keymap.set("n", "yc", "yygccp")
 keymap.set("n", "<leader>q", "<cmd>q<cr>")
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
 keymap.set("n", "<leader>x", "<cmd>x<cr>")
 
--- 快速切换插件
-keymap.set("n", "<leader>i", "<cmd>ToggleAlternate<cr>")
+keymap.set("n", "<leader>i", ":Neotree filesystem reveal float<CR>", {})
 
 keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
 keymap.set("n", "<leader>gD", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
@@ -32,6 +30,17 @@ keymap.set("n", "<S-A-Up>", "<CMD>LineDuplicate -1<CR>", { desc = "Line: duplica
 keymap.set("n", "<S-A-Down>", "<CMD>LineDuplicate +1<CR>", { desc = "Line: duplicate down" })
 keymap.set("v", "<S-A-Up>", "<CMD>VisualDuplicate -1<CR>", { desc = "Selection: duplicate up" })
 keymap.set("v", "<S-A-Down>", "<CMD>VisualDuplicate +1<CR>", { desc = "Selection: duplicate down" })
+
+-- 行号
+keymap.set("n", "<leader>ul", function()
+  if vim.wo.relativenumber then
+    vim.wo.relativenumber = false
+    vim.wo.number = false
+  else
+    vim.wo.relativenumber = true
+    vim.wo.number = true
+  end
+end, { desc = "Toggle Line Numbers" })
 
 -- 搜索
 keymap.set("n", "<S-F>", function()

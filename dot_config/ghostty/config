@@ -1,13 +1,14 @@
 # UI
-background-opacity = 0.9
+background-opacity = 0.8
 background-blur-radius = 60
 # theme = rose-pine
-# theme = ayu
+theme = ayu
+# theme = aura
 # theme = Kanagawa Dragon
 title = Ghostty 👻
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon      = hidden
-background = #000000
+# cursor-color = #4AF626
 
 # -------
 #blueprint
@@ -21,15 +22,16 @@ background = #000000
 macos-icon = xray
 
 # Window
+maximize = true
 window-theme = ghostty
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = false
 window-save-state = always
-window-decoration = none
+# window-decoration = none
 
 # Font
-font-size = 13.5
+font-size = 14.0
 # font-family = MonoLisa
 # font-style = Medium
 # font-style = Regular
@@ -44,8 +46,7 @@ font-size = 13.5
 # font-family = "JetBrainsMono Nerd Font"
 # font-family = "Iosevka Nerd Font"
 # font-family = "Iosevka Term"
-font-family = "DM Mono"
-# font-family = "Annotation Mono"
+# font-family = "DM Mono"
 
 # font-family = "MonoLisa"
 # font-family-bold
@@ -54,7 +55,7 @@ font-family-italic = "CartographCF Nerd Font"
 font-style-italic = Regular Italic
 font-family-bold-italic = "CartographCF Nerd Font"
 
-# font-family = "JetBrainsMono Nerd Font"
+font-family = "JetBrainsMono Nerd Font"
 # font-family-bold = "JetBrainsMono Nerd Font Mono"
 # font-family-italic = "JetBrainsMono Nerd Font Mono"
 # font-family-bold-italic = "JetBrainsMono Nerd Font Mono"
@@ -82,11 +83,23 @@ font-feature = ss11
 font-feature = ss17
 
 # Keybinds
-keybind = super+shift+r=reload_config
-keybind = super+s=text:\x13
 keybind = ctrl+shift+w=toggle_fullscreen
+keybind = super+shift+r=reload_config
 
-# Keybinds Tmux
+# --------- Neovim -------
+# 保存
+keybind = super+s=text:\x13
+# nvim 翻页 Ctrl + u/d
+keybind = super+d=text:\x04
+keybind = super+u=text:\x15
+# 上一次编辑
+keybind = super+o=text:\x0f
+# 搜索
+keybind = super+f=text:\x1b:GrugFar\r
+# --------- Neovim --------
+
+
+# --------- Keybinds Tmux ---------
 keybind = super+one=text:\x01\x31
 keybind = super+two=text:\x01\x32
 keybind = super+three=text:\x01\x33
@@ -102,30 +115,56 @@ keybind = super+,=text:\x01\x2c
 # keybind = super+l=text:\x01\x73 #Ctrl + a + s 列出所有会话
 keybind = super+l=text:\x01\x77 #Ctrl + a + w 列出所有窗口
 keybind = super+k=text:\x01\x4b
-
-# nvim 搜索
-keybind = super+f=text:\x1b:GrugFar\r
+# 放大当前窗口
+keybind = super+z=text:\x01\x7a
+# --------- Keybinds Tmux ---------
 
 # Shader
-# custom-shader = ./ghostty-shaders/drunkard.glsl
-# custom-shader = ./ghostty-shaders/just-snow.glsl
+# 扭曲
+# custom-shader = ./ghostty-shaders/drunkard.glsl 
+# 雪花
+# custom-shader = ./ghostty-shaders/just-snow.glsl 
+# 星空
 # custom-shader = ./ghostty-shaders/starfield.glsl
+# 星空
 # custom-shader = ./ghostty-shaders/retro-terminal.glsl
+# 扭曲 静态
 # custom-shader = ./ghostty-shaders/bettercrt.glsl
 # custom-shader = ./ghostty-shaders/starfield-colors.glsl
+# 渐变
 # custom-shader = ./ghostty-shaders/gradient-background.glsl
+# 荧光高亮
 # custom-shader = ./ghostty-shaders/bloom.glsl
+# 扭曲 水波
 # custom-shader = ./ghostty-shaders/water.glsl
+# 光线
 # custom-shader = ./ghostty-shaders/underwater.glsl
+# 齿轮
 # custom-shader = ./ghostty-shaders/gears-and-belts.glsl
+# 抖音抖动
 # custom-shader = ./ghostty-shaders/glow-rgbsplit-twitchy.glsl
+# 黑客终端符号
 # custom-shader = ./ghostty-shaders/inside-the-matrix.glsl
-# custom-shader = ./ghostty-shaders/spotlight.glsl
-# custom-shader = ./ghostty-shaders/matrix-hallway.glsl
+# 火星
 # custom-shader = ./ghostty-shaders/sparks-from-fire.glsl
 # custom-shader = ./ghostty-shaders/fireworks.glsl
 # custom-shader = ./ghostty-shaders/fireworks-rockets.glsl
-# custom-shader = ./noise.glsl
+# custom-shader = ./ghostty-shaders/tft.glsl
+# 动画渐变
+# custom-shader = ./ghostty-shaders/animated-gradient-shader.glsl 
+# custom-shader = ./ghostty-shaders/sin-interference.glsl
+
+# Cursor
+# custom-shader = ./shaders-cursor/cursor_smear_fade.glsl
+# custom-shader = ./shaders-cursor/manga_slash.glsl
+# custom-shader = ./shaders-cursor/cursor_frozen.glsl
+# custom-shader = ./shaders-cursor/cursor_blaze.glsl
+# custom-shader = ./shaders-cursor/cursor_smear.glsl
+custom-shader = ./shaders-cursor/cursor_blaze_tapered.glsl
+# custom-shader = ./shaders-cursor/cursor_blaze_lightning.glsl
+# custom-shader = ./shaders-cursor/cursor_blaze_lightning_boom.glsl
+# custom-shader = ./shaders-cursor/cursor_smear_fade_v2.glsl
+
 # custom-shader-animation = true
 
 # Other

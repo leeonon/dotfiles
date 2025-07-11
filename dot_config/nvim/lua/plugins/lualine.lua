@@ -161,6 +161,7 @@ end
 local icons = require("lazyvim.config").icons
 return {
   "nvim-lualine/lualine.nvim",
+  enabled = true,
   event = "VeryLazy",
   dependencies = {
     "bwpge/lualine-pretty-path",
@@ -209,19 +210,19 @@ return {
       rm = colors.cyan,
       ["r?"] = colors.cyan,
       ["!"] = colors.red,
-      t = colors.bright_red,
+      t = colors.red,
     }
 
     local theme = {
       normal = {
-        a = { fg = colors.bg_dark, bg = colors.blue },
-        b = { fg = colors.blue, bg = colors.white },
-        c = { fg = colors.white, bg = colors.bg_dark },
+        a = { fg = colors.bg_dark, bg = nil },
+        b = { fg = colors.blue, bg = nil },
+        c = { fg = colors.white, bg = nil },
         z = { fg = colors.white, bg = nil },
       },
-      insert = { a = { fg = colors.bg_dark, bg = colors.orange } },
-      visual = { a = { fg = colors.bg_dark, bg = colors.green } },
-      replace = { a = { fg = colors.bg_dark, bg = colors.green } },
+      insert = { a = { fg = colors.bg_dark, bg = nil } },
+      visual = { a = { fg = colors.bg_dark, bg = nil } },
+      replace = { a = { fg = colors.bg_dark, bg = nil } },
     }
 
     return {
@@ -244,7 +245,7 @@ return {
             end,
             color = function()
               local mode_color = modecolor
-              return { bg = mode_color[vim.fn.mode()], fg = colors.bg_dark, gui = "bold" }
+              return { bg = nil, fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
             padding = { right = 0, left = 1 },
           },
@@ -252,7 +253,7 @@ return {
             "mode",
             color = function()
               local mode_color = modecolor
-              return { bg = mode_color[vim.fn.mode()], fg = colors.bg_dark, gui = "bold" }
+              return { bg = nil, fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
@@ -275,14 +276,14 @@ return {
             path = 5,
             padding = 1,
             color = { fg = colors.fg_01 },
-            separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
           },
           {
             "branch",
             icon = "",
-            color = { bg = colors.green, fg = colors.bg, gui = "bold" },
+            color = { bg = nil, fg = colors.green, gui = "bold" },
             -- separator = { left = "", right = "" },
-            separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
           },
           {
             get_ahead_behind_info,
@@ -291,9 +292,9 @@ return {
           {
             "diff",
             -- color = { bg = colors.gray2, fg = colorsbg_01, gui = "bold" },
-            color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
+            color = { bg = nil, fg = colors.orange, gui = "bold" },
             -- separator = { left = "", right = "" },
-            separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
             symbols = { added = " ", modified = " ", removed = " " },
 
             diff_color = {
@@ -357,7 +358,7 @@ return {
               info = { fg = colors.purple },
               hint = { fg = colors.cyan },
             },
-            color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
+            color = { bg = nil, fg = colors.orange, gui = "bold" },
             -- color = { bg = nil, fg = colors.blue },
             -- separator = { left = "" },
             separator = { left = "", right = "" },
@@ -368,7 +369,7 @@ return {
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
-            color = { bg = colors.purple, fg = colors.bg, gui = "italic,bold" },
+            color = { bg = nil, fg = colors.purple, gui = "italic,bold" },
           },
         },
       },

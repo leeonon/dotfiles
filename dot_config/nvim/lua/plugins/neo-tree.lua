@@ -53,6 +53,8 @@ return {
           mappings = {
             -- 使用 o 快捷键用本机系统查看器打开文件或者目录
             ["o"] = "system_open",
+            -- 将文件/文件夹添加到 avante 文件选择器
+            ["va"] = "avante_add_files",
           },
         },
         filtered_items = {
@@ -75,6 +77,27 @@ return {
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       commands = {
+        avante_add_files = function(state)
+          local node = state.tree:get_node()
+          local filepath = node:get_id()
+          local relative_path = require("avante.utils").relative_path(filepath)
+
+          local sidebar = require("avante").get()
+
+          local open = sidebar:is_open()
+          -- 确保 avante 侧边栏已打开
+          if not open then
+            require("avante.api").ask()
+            sidebar = require("avante").get()
+          end
+
+          sidebar.file_selector:add_selected_file(relative_path)
+
+          -- 删除 neo tree 缓冲区
+          if not open then
+            sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+          end
+        end,
         system_open = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()

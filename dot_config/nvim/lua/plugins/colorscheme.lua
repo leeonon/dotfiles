@@ -3,6 +3,84 @@
 return {
   -- add gruvbox
   {
+    "tiagovla/tokyodark.nvim",
+    opts = {
+      transparent_background = true,
+      gamma = 1.00,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        identifiers = { italic = true },
+        functions = {},
+        variables = {},
+      },
+      custom_highlights = {} or function(highlights, palette)
+        return {}
+      end, -- extend highlights
+      custom_palette = {} or function(palette)
+        return {}
+      end, -- extend palette
+      terminal_colors = true, -- enable terminal colors
+    },
+    config = function(_, opts)
+      require("tokyodark").setup(opts) -- calling setup is optional
+    end,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup({
+        compile = false, -- enable compiling the colorscheme
+        undercurl = true, -- enable undercurls
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = { bold = true },
+        typeStyle = {},
+        transparent = true, -- do not set background color
+        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        terminalColors = true, -- define vim.g.terminal_color_{0,17}
+        colors = { -- add/modify theme and palette colors
+          palette = {},
+          theme = {
+            wave = {},
+            lotus = {},
+            dragon = {},
+            all = {
+              ui = {
+                bg = "none",
+                bg_gutter = "none", -- set background color for gutter
+              },
+            },
+          },
+        },
+        overrides = function(colors)
+          local theme = colors.theme
+          return {
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+
+            -- Save an hlgroup with dark background and dimmed foreground
+            -- so that you can use it where your still want darker windows.
+            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+            -- Popular plugins that open floats will link to NormalFloat by default;
+            -- set their background accordingly if you wish to keep them dark and borderless
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+          }
+        end,
+        theme = "dragon", -- Load "wave" theme
+        background = { -- map the value of 'background' option to a theme
+          dark = "wave", -- try "dragon" !
+          light = "lotus",
+        },
+      })
+    end,
+  },
+  {
     "ellisonleao/gruvbox.nvim",
     config = function()
       require("gruvbox").setup({
@@ -32,41 +110,25 @@ return {
     end,
   },
   {
-    lazy = false,
-    "folke/tokyonight.nvim",
-    priority = 1000,
+    "Everblush/nvim",
+    name = "everblush",
     config = function()
-      local theme = require("tokyonight")
-      theme.setup({
-        style = "night",
-        transparent = true,
-        on_colors = function(c)
-          -- Because lualine broke stuff with the latest commit
-          c.bg_statusline = c.none
-        end,
-        on_highlights = function(hl, c)
-          -- TabLineFill is currently set to black
-          hl.TabLineFill = {
-            bg = c.none,
-          }
-        end,
-        styles = {
-          comments = { italic = true },
-          sidebars = "transparent",
-        },
+      require("everblush").setup({
+        transparent_background = true,
       })
-      -- theme.load()
     end,
   },
   {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = function(_, opts)
-      opts.transparent = true
-      opts.italic_comments = true
-      opts.borderless_pickers = false
-    end,
+    "oxfist/night-owl.nvim",
+    -- config = function()
+    --   require("night-owl").setup({
+    --     bold = true,
+    --     italics = true,
+    --     underline = true,
+    --     undercurl = true,
+    --     transparent_background = true,
+    --   })
+    -- end,
   },
   {
     "0xstepit/flow.nvim",
@@ -84,7 +146,7 @@ return {
       require("rose-pine").setup({
         variant = "main", -- auto, main, moon, or dawn
         dark_variant = "dawn", -- main, moon, or dawn
-        dim_inactive_windows = false,
+        dim_inactive_windows = true, -- 非活动窗口变暗
         extend_background_behind_borders = true,
 
         styles = {
@@ -94,8 +156,9 @@ return {
         },
 
         highlight_groups = {
-          -- Comment = { fg = "foam" },
-          -- VertSplit = { fg = "muted", bg = "muted" },
+          Comment = { italic = true },
+          VertSplit = { fg = "muted", bg = "muted" },
+          Function = { italic = true },
         },
 
         before_highlight = function(group, highlight, palette)
@@ -160,7 +223,24 @@ return {
       }
     end,
   },
-  { "Shatur/neovim-ayu" },
+  {
+    "Shatur/neovim-ayu",
+    config = function()
+      require("ayu").setup({
+        overrides = {
+          Normal = { bg = "None" },
+          ColorColumn = { bg = "None" },
+          SignColumn = { bg = "None" },
+          Folded = { bg = "None" },
+          FoldColumn = { bg = "None" },
+          CursorLine = { bg = "None" },
+          CursorColumn = { bg = "None" },
+          WhichKeyFloat = { bg = "None" },
+          VertSplit = { bg = "None" },
+        },
+      })
+    end,
+  },
   -- catppuccin
   -- 社区配置分享：https://github.com/catppuccin/nvim/discussions/323?sort=new
   {
@@ -385,25 +465,6 @@ return {
       -- })
     end,
   },
-  {
-    "tiagovla/tokyodark.nvim",
-    opts = {
-      -- custom options here
-      transparent_background = true,
-      -- gamma = 0.9,
-      custom_highlights = function(hl, p)
-        return {
-          -- https://github.com/folke/tokyonight.nvim/issues/703
-          TabLineFill = {
-            bg = "None",
-          },
-        }
-      end,
-    },
-    config = function(_, opts)
-      require("tokyodark").setup(opts) -- calling setup is optional
-    end,
-  },
   { "nyoom-engineering/oxocarbon.nvim" },
   {
     "ptdewey/monalisa-nvim",
@@ -475,6 +536,27 @@ return {
     priority = 1000,
     config = function()
       vim.g.moonflyTransparent = true
+      vim.g.moonflyItalics = true
+      vim.g.moonflyNormalFloat = true
+      vim.o.winborder = "single"
+    end,
+  },
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.nightflyItalics = true
+      vim.g.nightflyNormalFloat = true
+      vim.g.nightflyTerminalColors = true
+      vim.g.nightflyTransparent = true
+      vim.g.nightflyUnderlineMatchParen = true
+      -- Lua initialization file
+      vim.g.nightflyVirtualTextColor = true
+      -- Lua initialization file
+      vim.g.nightflyWinSeparator = 0
+      -- vim.o.winborder = "single"
     end,
   },
   {
@@ -491,12 +573,23 @@ return {
     end,
   },
   {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("cyberdream").setup({
+        transparent = true,
+      })
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "nordic",
       -- colorscheme = "moonfly",
-      -- colorscheme = "tokyodark",
-      colorscheme = "oldworld",
+      -- colorscheme = "nightfly",
+      -- colorscheme = "cyberdream",
+      -- colorscheme = "everblush",
+      -- colorscheme = "oldworld",
       -- colorscheme = "darkbox",
       -- colorscheme = "jellybeans",
       -- colorscheme = "gruvbox-material",
@@ -505,8 +598,10 @@ return {
       -- colorscheme = "catppuccin",
       -- colorscheme = "kanagawa",
       -- colorscheme = "gruvbox",
-      -- colorscheme = "citruszest",
       -- colorscheme = "everforest",
+      -- colorscheme = "everforest",
+      -- colorscheme = "tokyodark",
+      colorscheme = "kanagawa",
       -- colorscheme = "ayu",
       -- colorscheme = "rose-pine",
       -- colorscheme = "tokyonight",
@@ -520,6 +615,7 @@ return {
       -- colorscheme = "moonfly",
       -- colorscheme = "shadow",
       -- colorscheme = "onenord",
+      -- colorscheme = "night-owl",
     },
   },
 }

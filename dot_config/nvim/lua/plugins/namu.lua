@@ -28,7 +28,7 @@ return {
     -- === Suggested Keymaps: ===
     local namu = require("namu.namu_symbols")
     local colorscheme = require("namu.colorscheme")
-    vim.keymap.set("n", "<leader>ss", namu.show, {
+    vim.keymap.set("n", "<leader>cb", namu.show, {
       desc = "Jump to LSP symbol",
       silent = true,
     })

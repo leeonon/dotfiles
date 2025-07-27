@@ -33,8 +33,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.neogen" },
     -- 任务管理器
     { import = "lazyvim.plugins.extras.editor.overseer" },
-    -- Harpoon2
-    { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    -- -- Harpoon2
+    -- { import = "lazyvim.plugins.extras.editor.harpoon2" },
     -- 重构
     { import = "lazyvim.plugins.extras.editor.refactoring" },
     -- 基于 LSP 的重构

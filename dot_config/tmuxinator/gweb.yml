@@ -1,0 +1,9 @@
+name: GoNxtWeb
+root: ~/code/5eplay/gonxt/gonxt-web
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - nvim
+  - dev: pnpm run dev

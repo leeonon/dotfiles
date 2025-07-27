@@ -6,15 +6,31 @@
 --
 local keymap = vim.keymap
 
--- 删除默认的键映射
+keymap.set("n", "\\", "<CMD>:sp<CR>", { desc = "Split window horizontally" })
+keymap.set("n", "|", "<CMD>:vsp<CR>", { desc = "Split window vertically" })
 
 keymap.set("i", "jk", "<Esc>")
-keymap.set("n", "<c-a>", "ggVG")
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Move cursor down" })
+keymap.set("x", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Move cursor down" })
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Move cursor up" })
+keymap.set("x", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Move cursor up" })
+
+-- 跳转当改行最后一个字符 默认为 $
+keymap.set("n", "gl", "$", { desc = "Go to line end" })
+-- 跳转到行首
+keymap.set("n", "gh", "^", { desc = "Go to line start" })
+-- 跳转到下面的 markdown 标题
+keymap.set("n", "gj", "<cmd>call search('^#', 'W')<cr>", { desc = "Go to next markdown header" })
+-- 跳转到上面的 markdown 标题
+keymap.set("n", "gk", "<cmd>call search('^#', 'bW')<cr>", { desc = "Go to previous markdown header" })
+
 -- 复制一行并注释掉第一行
 keymap.set("n", "<leader>q", "<cmd>q<cr>")
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
 keymap.set("n", "<leader>x", "<cmd>x<cr>")
 
+-- 选中整个文件 - vig
+-- 复制整个文件 - yig
 keymap.set("n", "<leader>i", ":Neotree filesystem reveal float<CR>", {})
 
 keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
@@ -54,6 +70,14 @@ keymap.set("n", "<S-F>", function()
   })
 end, { desc = "Lens" })
 
+-- 将查找/替换限制在当前文件内
+keymap.set(
+  { "v" },
+  "<leader>s1",
+  '<cmd>lua require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })<cr>',
+  { noremap = true, silent = true }
+)
+
 -- legendary.nvim
 keymap.set("n", "<leader>le", "<cmd>Legendary<cr>", { desc = "Legendary" })
 
@@ -76,9 +100,13 @@ keymap.set("i", "<A-Up>", "<esc>:m .-2<CR>==gi")
 keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 
-keymap.set("v", "<leader>wd", 'xi""<ESC>hp', { desc = "用双引号包裹选定文本" })
-keymap.set("v", "<leader>ws", "xi''<ESC>hp", { desc = "用单引号包裹选定文本" })
-
 keymap.set("n", "<leader>ca", function()
   require("tiny-code-action").code_action()
 end, { noremap = true, silent = true })
+
+-- 重载 Neovim 配置
+vim.keymap.set("n", "<leader>rr", function()
+  vim.cmd("source $MYVIMRC")
+  vim.cmd("Lazy reload")
+  print("配置已重载")
+end, { desc = "重载 Neovim 配置" })

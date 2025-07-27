@@ -31,26 +31,6 @@ vim.g.root_spec = { "cwd" }
 -- 为了防止这种情况,请将 `splitkeep` 设置为 `screen` 或 `topline`。
 vim.opt.splitkeep = "screen"
 
--- diagnostic border
-local _border = "single"
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = _border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = _border,
-})
-
-vim.diagnostic.config({
-  float = { border = _border },
-  virtual_text = true,
-  virtual_lines = false,
-  -- virtual_lines = {
-  --   -- 仅显示当前光标所在行的虚拟行诊断信息
-  --   current_line = true,
-  -- },
-})
-
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false
 -- vim.opt.listchars = "tab:» ,lead:·,trail:·"
@@ -76,3 +56,9 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
     end
   end,
 })
+
+vim.wo.relativenumber = false
+vim.wo.number = false
+
+-- 在块注释中自动插入 * 号。
+vim.opt.formatoptions:append({ "r" })

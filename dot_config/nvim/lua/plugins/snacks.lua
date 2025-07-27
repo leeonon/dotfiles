@@ -14,6 +14,7 @@ return {
         -- position = "bottom",
       },
     },
+    -- https://github.com/folke/snacks.nvim/discussions/111
     dashboard = {
       enabled = true,
       preset = {

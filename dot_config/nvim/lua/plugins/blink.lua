@@ -87,7 +87,7 @@ return {
             enabled = false,
           },
         },
-        -- 幽灵文本
+        -- TODO: 幽灵文本
         ghost_text = {
           enabled = false,
           -- show_with_menu = false,
@@ -185,14 +185,14 @@ return {
         documentation = {
           window = {
             border = {
-              { "󰙎", "DiagnosticHint" },
-              { "─" },
-              { "╮" },
-              { "│" },
-              { "╯" },
-              { "─" },
-              { "╰" },
-              { "│" },
+              { "", "DiagnosticHint" },
+              "─",
+              "╮",
+              "│",
+              "╯",
+              "─",
+              "╰",
+              "│",
             },
           },
         },

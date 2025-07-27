@@ -33,47 +33,4 @@ return {
       end
     end,
   },
-  -- 展示尾随空格
-  -- {
-  --   "johnfrankmorgan/whitespace.nvim",
-  -- },
-  -- {
-  --   "nvimdev/dashboard-nvim",
-  --   event = "VimEnter",
-  --   opts = function()
-  --     -- local opts = {
-  --     --   theme = "hyper",
-  --     --   hide = {
-  --     --     statusline = false,
-  --     --   },
-  --     --   config = {
-  --     --     packages = { enable = true },
-  --     --     week_header = {
-  --     --       enable = true,
-  --     --     },
-  --     --     shortcut = {
-  --     --       {
-  --     --         icon = " ",
-  --     --         icon_hl = "@variable",
-  --     --         desc = "Files",
-  --     --         group = "Label",
-  --     --         action = "Telescope find_files",
-  --     --         key = "f",
-  --     --       },
-  --     --       { action = "Lazy", group = "@property", desc = " Lazy", icon = "󰒲 ", key = "l" },
-  --     --       { action = "LazyExtras", group = "DiagnosticHint", desc = " Lazy Extras", icon = " ", key = "x" },
-  --     --       { action = "Telescope live_grep", group = "Number", desc = " Find Text", icon = " ", key = "g" },
-  --     --       { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
-  --     --       { action = "qa", desc = " Quit", icon = " ", key = "q" },
-  --     --     },
-  --     --     footer = function()
-  --     --       local stats = require("lazy").stats()
-  --     --       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-  --     --       return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
-  --     --     end,
-  --     --   },
-  --     -- }
-  --     -- return opts
-  --   end,
-  -- },
 }

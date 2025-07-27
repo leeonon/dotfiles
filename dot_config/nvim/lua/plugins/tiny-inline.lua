@@ -1,11 +1,4 @@
 return {
-  -- {
-  --   "rachartier/tiny-glimmer.nvim",
-  --   event = "TextYankPost",
-  --   opts = {
-  --     -- your configuration
-  --   },
-  -- },
   -- 同步修改 vim.diagnostic.config({ virtual_text = false })
   {
     "rachartier/tiny-inline-diagnostic.nvim",
@@ -15,23 +8,32 @@ return {
       require("tiny-inline-diagnostic").setup({
         -- "modern", "classic", "minimal", "powerline",
         -- "ghost", "simple", "nonerdfont", "amongus"
-        preset = "ghost",
-        transparent_bg = false,
+        preset = "minimal",
+        transparent_bg = true,
         options = {
           show_source = true,
           use_icons_from_diagnostic = true,
           multilines = {
-            -- Enable multiline diagnostic messages
+            -- 启用多行诊断消息
             enabled = true,
-
-            -- Always show messages on all lines for multiline diagnostics
+            -- 始终在所有行上显示多行诊断信息。
             always_show = true,
           },
           virt_texts = {
-            -- Priority for virtual text display
-            priority = 3048,
+            -- 优先级 - 处理与 Git Blame 的冲突
+            priority = 6000,
           },
         },
+      })
+      -- 仅在配置中需要时，如果您已有原生LSP诊断
+      vim.diagnostic.config({
+        float = { border = "single" },
+        virtual_text = false,
+        virtual_lines = false,
+        -- virtual_lines = {
+        --   -- 仅显示当前光标所在行的虚拟行诊断信息
+        --   current_line = true,
+        -- },
       })
     end,
   },

@@ -16,7 +16,7 @@ return {
         })
       end,
       mode = { "n", "v" },
-      desc = "Search and Replace",
+      desc = "搜索和替换",
     },
   },
 }

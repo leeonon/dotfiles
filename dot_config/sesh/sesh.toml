@@ -2,7 +2,7 @@
 # startup_command = "nvim +GoToFile"
 
 [[session]]
-name = "Yang"
+name = "Github"
 path = "~/code/github"
 
 [[session]]
@@ -10,16 +10,16 @@ name = "Obsidian"
 path = "~/code/github/LeeOnOnObsidian/content"
 
 [[session]]
-name = "Web Site"
-path = "~/code/github/web-site"
-
-[[session]]
 name = "5EPlay"
 path = "~/code/5eplay"
 
 [[session]]
-name = "GGPlay"
-path = "~/code/5eplay/gg-play/"
+name = "Gonxt Client"
+path = "~/code/5eplay/gonxt/gonxt-client"
+
+[[session]]
+name = "Gonxt Admin"
+path = "~/code/5eplay/gonxt/gonxt-admin"
 
 [[session]]
 name = "Github"
@@ -34,9 +34,5 @@ name = "Code 💻"
 path = "~/code"
 
 [[session]]
-name = "Dotfiles 📁"
+name = "Dotfiles"
 path = "~/.local/share/chezmoi/"
-
-[[session]]
-name = "Downloads 📥"
-path = "~/Downloads"

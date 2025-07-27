@@ -177,11 +177,13 @@ export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
 # --------------------- FZF Start --------------------
 source <(fzf --zsh)
-# 别名设置
 alias fv='vim $(fzf)'
-# alias fvim="vim $(find . -type f | fzf)"
 alias fp="fzf --preview 'bat --color=always {}'"
 alias fh='history | fzf'
+c.() { cd "$@" && l; }
+fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
+f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
+
 # -------------------- FZF End ------------------------
 
 # ------------------- Yazi Start ---------------------
@@ -194,6 +196,7 @@ function yz() {
 	rm -f -- "$tmp"
 }
 # ------------------- Yazi End -----------------------
+#
 
 # pnpm
 export PNPM_HOME="/Users/ly/Library/pnpm"
@@ -220,6 +223,8 @@ export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 source /Users/ly/.config/broot/launcher/bash/br
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+# eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin init zsh)"
 
 # bun completions
 [ -s "/Users/ly/.bun/_bun" ] && source "/Users/ly/.bun/_bun"
@@ -234,4 +239,20 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+# Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+
+# Android SDK
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 

@@ -30,14 +30,14 @@ y = 8
 # style = "Regular"
 
 # family = "JetBrainsMono Nerd Font"
-family = "Iosevka Nerd Font"
+family = "Zed Plex Mono"
 # style = "Medium"
-style = "Regular"
+# style = "Regular"
 
 [font.bold]
 # family = "JetBrainsMono Nerd Font"
-family = "Iosevka Nerd Font"
-style = "Bold"
+family = "Zed Plex Mono"
+# style = "Bold"
 
 [font.bold_italic]
 # family = "BlexMono Nerd Font"

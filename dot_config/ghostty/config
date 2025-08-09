@@ -1,11 +1,15 @@
 # UI
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur-radius = 60
+
+# theme = Black Metal (Bathory)
+theme = oldworld
+# theme = catppuccin-mocha
+
 # theme = rose-pine
-# theme = ayu
-theme = cyberdream
-# theme = aura
-# theme = Kanagawa Dragon
+# background = #010101
+
+# theme = cyberdream
 title = Ghostty 👻
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon      = hidden
@@ -32,14 +36,16 @@ window-save-state = always
 # window-decoration = none
 
 # Font
-font-size = 14.0
+font-size = 15.0
 # font-family = MonoLisa
 # font-style = Medium
-font-style = Regular
+# font-style = Regular
 # font-style-bold = Regular Bold
 # font-style-italic = Regular Italic
 # font-style-bold-italic = Black Italic
-
+# font-family = "SFMono Nerd Font"
+# font-family = "CaskaydiaCove Nerd Font"
+# font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"
 # font-family = "Roboto Mono"
 # font-family = "GeistMono Nerd Font"
@@ -53,6 +59,8 @@ font-style = Regular
 # font-family = "CartographCF Nerd Font"
 # font-family = "Geist Mono"
 # font-family = "Comic Mono"
+font-family = "ComicShannsMono Nerd Font"
+# font-family = "Zed Plex Mono"
 
 # font-family = "MonoLisa"
 # font-family-bold
@@ -70,8 +78,8 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
 # font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
 
-adjust-cell-height = 6
-adjust-cursor-height = 6
+adjust-cell-height = 10
+# adjust-cursor-height = 4
 
 # 使用更粗的笔触绘制字体
 font-thicken = true
@@ -88,6 +96,11 @@ font-feature = ss08
 font-feature = ss11
 font-feature = ss17
 
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
+keybind = alt+arrow_up=unbind
+keybind = alt+arrow_down=unbind
+
 # Keybinds
 keybind = ctrl+shift+w=toggle_fullscreen
 keybind = super+shift+r=reload_config
@@ -98,7 +111,6 @@ keybind = super+s=text:\x13
 keybind = super+d=text:\x04
 keybind = super+u=text:\x15
 keybind = super+o=text:\x0f
-keybind = super+f=text:\x1b:GrugFar\r
 # --------- Neovim --------
 
 # --------- Keybinds Tmux ---------

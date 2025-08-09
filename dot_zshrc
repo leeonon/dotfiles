@@ -91,11 +91,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -151,6 +151,7 @@ alias tls='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder "Pi
 alias taze='npx taze'
 # tmuxinator
 alias mux='tmuxinator'
+alias npxkill='npx npkill'
 
 # Abbr
 # Lazygit
@@ -222,7 +223,20 @@ export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
 source /Users/ly/.config/broot/launcher/bash/br
 eval "$(starship init zsh)"
+
+# ---------------------------------------------- zoxide start ----------------------------------------------
+# z foo # 进入匹配foo的最高排名目录
+# z foo bar # 进入匹配foo和bar的最高排名目录
+# z foo / # 进入以foo开头的子目录
+# z ~/foo # z 也可以像普通cd命令一样使用
+# z foo/ # 进入相对路径
+# z .. # 进入上一级目录
+# z - # 进入上一个目录
+# zi foo # 使用交互式选择进入目录（使用fzf）
+# z foo<SPACE><TAB> # 显示交互式补全（仅适用于zoxide v0.8.0+，bash 4.4+/fish/zsh）
 eval "$(zoxide init zsh)"
+# ---------------------------------------------- zoxide end ----------------------------------------------
+
 # eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(atuin init zsh)"
 

@@ -260,24 +260,7 @@ return {
           },
           -- filesize,
         },
-        lualine_b = {},
-        lualine_c = {
-          {
-            "pretty_path",
-            icon_show = true,
-            highlights = {
-              modified = { fg = "#ff00ff", bold = true, italic = true },
-              path_sep = "Comment",
-            },
-            icon_padding = {
-              [""] = 0, -- disable extra padding for terminal icon
-            },
-            -- "filename",
-            path = 5,
-            padding = 1,
-            color = { fg = colors.fg_01 },
-            -- separator = { left = "", right = "" },
-          },
+        lualine_b = {
           {
             "branch",
             icon = "",
@@ -289,6 +272,45 @@ return {
             get_ahead_behind_info,
             color = { fg = colors.cyan },
           },
+        },
+        lualine_c = {
+          {
+            "filename",
+            icon_show = true,
+            file_status = true, -- Displays file status (readonly status, modified status)
+            newfile_status = false, -- Display new file status (new file means no write after created)
+            path = 4,
+            -- 0: Just the filename
+            -- 1: Relative path
+            -- 2: Absolute path
+            -- 3: Absolute path, with tilde as the home directory
+            -- 4: Filename and parent dir, with tilde as the home directory
+
+            shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+            -- for other components. (terrible name, any suggestions?)
+            symbols = {
+              modified = "[+]", -- Text to show when the file is modified.
+              readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+              unnamed = "[No Name]", -- Text to show for unnamed buffers.
+              newfile = "[New]", -- Text to show for newly created file before first write
+            },
+          },
+          -- {
+          --   "pretty_path",
+          --   icon_show = true,
+          --   highlights = {
+          --     modified = { fg = "#ff00ff", bold = true, italic = true },
+          --     path_sep = "Comment",
+          --   },
+          --   icon_padding = {
+          --     [""] = 0, -- disable extra padding for terminal icon
+          --   },
+          --   -- "filename",
+          --   path = 5,
+          --   padding = 1,
+          --   color = { fg = colors.fg_01 },
+          --   -- separator = { left = "", right = "" },
+          -- },
           {
             "diff",
             -- color = { bg = colors.gray2, fg = colorsbg_01, gui = "bold" },
@@ -303,14 +325,16 @@ return {
               removed = { fg = colors.red },
             },
           },
-          -- {
-          --   "location",
-          --   color = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
-          --   separator = { left = "", right = "" },
-          --   -- separator = { left = "", right = "" },
-          -- },
+          {
+            "location",
+            color = { bg = nil, fg = colors.yellow, gui = "bold" },
+            -- separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
+          },
         },
         lualine_x = {
+          space,
+          "g:obsidian",
           space,
           {
             function()
@@ -363,6 +387,17 @@ return {
             -- separator = { left = "" },
             separator = { left = "", right = "" },
           },
+          -- {
+          --   "lsp_status",
+          --   icon = " ", -- f013
+          --   symbols = {
+          --     spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+          --     done = "✓",
+          --     separator = " ",
+          --   },
+          --   -- List of LSP names to ignore (e.g., `null-ls`):
+          --   ignore_lsp = {},
+          -- },
           {
             function()
               return getLspName()

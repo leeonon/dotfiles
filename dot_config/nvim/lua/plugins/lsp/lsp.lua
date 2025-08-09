@@ -85,6 +85,20 @@ return {
             },
           },
         },
+        -- Svelte 无法识别 ts 文件类型变更
+        -- https://github.com/sveltejs/language-tools/issues/2008#issuecomment-2898485264
+        -- https://github.com/neovim/nvim-lspconfig/issues/725
+        svelte = {
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePost", {
+              pattern = { "*.js", "*.ts" },
+              callback = function(ctx)
+                -- Here use ctx.match instead of ctx.file
+                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+              end,
+            })
+          end,
+        },
       },
       -- 代码折叠相关
       capabilities = {

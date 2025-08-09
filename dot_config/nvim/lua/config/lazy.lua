@@ -13,7 +13,6 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.toml" },
-    { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
@@ -26,37 +25,33 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.linting.eslint" },
     -- 添加、删除、替换、查找、突出显示周围内容（例如括号、引号等）。
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
-    { import = "lazyvim.plugins.extras.ai.copilot" },
     -- 代码片段
     { import = "lazyvim.plugins.extras.coding.luasnip" },
     -- 一键生成注释 <leader>cn
     { import = "lazyvim.plugins.extras.coding.neogen" },
     -- 任务管理器
     { import = "lazyvim.plugins.extras.editor.overseer" },
-    -- -- Harpoon2
-    -- { import = "lazyvim.plugins.extras.editor.harpoon2" },
     -- 重构
     { import = "lazyvim.plugins.extras.editor.refactoring" },
     -- 基于 LSP 的重构
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    -- { import = "lazyvim.plugins.extras.ui.edgy" },
-    -- { import = "lazyvim.plugins.extras.editor.mini-files" },
-    -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
-    -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
+
     { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.vscode" },
-    -- Rest 请求
-    { import = "lazyvim.plugins.extras.util.rest" },
+
+    -- AI Tools
+    { import = "plugins.ai.avante" },
+    { import = "plugins.ai.claude-code" },
+    { import = "lazyvim.plugins.extras.ai.copilot" },
+    { import = "plugins.codecompanion.init" },
+
     { import = "plugins" },
     { import = "plugins.lsp.lsp" },
     { import = "plugins.lsp.rust" },
     { import = "plugins.lsp.tailwindcss" },
     { import = "plugins.format-linting" },
-    { import = "plugins.codecompanion.init" },
     { import = "plugins.git" },
-    { import = "plugins.ai.avante" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

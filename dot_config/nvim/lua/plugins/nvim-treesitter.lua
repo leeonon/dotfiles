@@ -27,6 +27,7 @@ return {
         "markdown",
         "markdown_inline",
         "svelte",
+        "http",
         "graphql",
         "bash",
         "lua",

@@ -3,7 +3,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^6",
-    -- lazy = false, -- This plugin is already lazy
+    lazy = false, -- This plugin is already lazy
     ft = { "rust" },
     config = function()
       local bufnr = vim.api.nvim_get_current_buf()
@@ -27,11 +27,21 @@ return {
     end,
   },
   {
-    "saecki/crates.nvim",
-    tag = "stable",
-    config = function()
-      require("crates").setup({})
-    end,
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {
+      completion = {
+        crates = {
+          enabled = true,
+        },
+      },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    },
   },
   -- RustOwl 可视化了变量的所有权转移和生命周期
   {

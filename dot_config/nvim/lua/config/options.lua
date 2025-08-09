@@ -44,7 +44,8 @@ vim.o.termguicolors = true
 -- 开启ESLint 自动格式化
 vim.g.lazyvim_eslint_auto_format = true
 
-vim.g.lazyvim_picker = "fzf"
+-- vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_picker = "snacks"
 vim.g.lazyvim_blink_main = false
 vim.g.lazyvim_cmp = "blink.cmp"
 
@@ -57,8 +58,25 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
   end,
 })
 
-vim.wo.relativenumber = false
-vim.wo.number = false
+vim.wo.relativenumber = true
+vim.wo.number = true
 
--- 在块注释中自动插入 * 号。
-vim.opt.formatoptions:append({ "r" })
+vim.filetype.add({
+  extension = {
+    env = "dotenv",
+  },
+  filename = {
+    [".env"] = "dotenv",
+    ["env"] = "dotenv",
+  },
+  pattern = {
+    ["[jt]sconfig.*.json"] = "jsonc",
+    ["%.env%.[%w_.-]+"] = "dotenv",
+  },
+})
+
+-- LSP Server to use for Rust.
+-- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer.
+-- only for diagnostics. The rest of LSP support will still be
+-- provided by rust-analyzer.
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"

@@ -8,11 +8,20 @@ return {
       require("tiny-inline-diagnostic").setup({
         -- "modern", "classic", "minimal", "powerline",
         -- "ghost", "simple", "nonerdfont", "amongus"
-        preset = "minimal",
-        transparent_bg = true,
+        preset = "ghost",
+        transparent_bg = false,
+        -- signs = {
+        --   left = "",
+        --   right = "",
+        --   diag = "●",
+        --   arrow = "    ",
+        --   up_arrow = "    ",
+        --   vertical = " │",
+        --   vertical_end = " └",
+        -- },
         options = {
           show_source = true,
-          use_icons_from_diagnostic = true,
+          use_icons_from_diagnostic = false,
           multilines = {
             -- 启用多行诊断消息
             enabled = true,

@@ -24,6 +24,9 @@ keymap.set("n", "gj", "<cmd>call search('^#', 'W')<cr>", { desc = "Go to next ma
 -- 跳转到上面的 markdown 标题
 keymap.set("n", "gk", "<cmd>call search('^#', 'bW')<cr>", { desc = "Go to previous markdown header" })
 
+-- keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+-- keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+
 -- 复制一行并注释掉第一行
 keymap.set("n", "<leader>q", "<cmd>q<cr>")
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
@@ -58,29 +61,6 @@ keymap.set("n", "<leader>ul", function()
   end
 end, { desc = "Toggle Line Numbers" })
 
--- 搜索
-keymap.set("n", "<S-F>", function()
-  local grug = require("grug-far")
-  local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-  grug.open({
-    transient = true,
-    prefills = {
-      filesFilter = ext and ext ~= "" and "*." .. ext or nil,
-    },
-  })
-end, { desc = "Lens" })
-
--- 将查找/替换限制在当前文件内
-keymap.set(
-  { "v" },
-  "<leader>s1",
-  '<cmd>lua require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })<cr>',
-  { noremap = true, silent = true }
-)
-
--- legendary.nvim
-keymap.set("n", "<leader>le", "<cmd>Legendary<cr>", { desc = "Legendary" })
-
 -- 复制一行并注释掉第一行
 keymap.set("n", "ycc", "yygccp", { remap = true })
 -- 在 INSERT 和 NORMAL 模式下自动在行尾添加分号或逗号
@@ -88,6 +68,12 @@ keymap.set("i", ";;", "<ESC>A;")
 keymap.set("i", ",,", "<ESC>A,")
 keymap.set("n", ";;", "A;<ESC>")
 keymap.set("n", ",,", "A,<ESC>")
+
+-- 调整窗口大小 - Ctrl + w + = 恢复窗口大小
+keymap.set("n", "<A-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+keymap.set("n", "<A-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+keymap.set("n", "<A-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+keymap.set("n", "<A-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- 上下移动文本行
 -- 正常模式

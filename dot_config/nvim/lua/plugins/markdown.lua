@@ -1,6 +1,7 @@
 local link_char = "  "
 return {
   {
+    -- https://github.com/iamcco/markdown-preview.nvim/issues/695
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     build = function()

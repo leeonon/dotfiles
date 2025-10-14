@@ -15,9 +15,6 @@ return {
       "CodeCompanionCmd",
       "CodeCompanionActions",
     },
-    dependencies = {
-      "j-hui/fidget.nvim",
-    },
     event = "VeryLazy",
     init = function()
       require("utils/fidget-spinner"):init()

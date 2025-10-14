@@ -1,19 +1,22 @@
+# auto-update-channel = tip
 # UI
-background-opacity = 0.9
+background-opacity = 0.8
 background-blur-radius = 60
 
 # theme = Black Metal (Bathory)
-theme = oldworld
+# theme = oldworld
+# theme = techbase
 # theme = catppuccin-mocha
+# theme = yugen
 
 # theme = rose-pine
-# background = #010101
+background = #0b0b12
 
 # theme = cyberdream
 title = Ghostty 👻
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon      = hidden
-cursor-color = #ACA1CF
+# cursor-color = #ACA1CF
 
 # -------
 #blueprint
@@ -36,7 +39,7 @@ window-save-state = always
 # window-decoration = none
 
 # Font
-font-size = 15.0
+font-size = 16
 # font-family = MonoLisa
 # font-style = Medium
 # font-style = Regular
@@ -52,15 +55,16 @@ font-size = 15.0
 # font-family = "DankMono Nerd Font"
 # font-family = "JetBrains Mono"
 # font-family = "JetBrainsMono Nerd Font"
-# font-family = "Iosevka Nerd Font"
+font-family = "Iosevka Nerd Font"
 # font-family = "Iosevka Term"
 # font-family = "Fantasque Sans Mono"
 # font-family = "DM Mono"
 # font-family = "CartographCF Nerd Font"
 # font-family = "Geist Mono"
 # font-family = "Comic Mono"
-font-family = "ComicShannsMono Nerd Font"
+# font-family = "ComicShannsMono Nerd Font"
 # font-family = "Zed Plex Mono"
+# font-family = "BlexMono Nerd Font"
 
 # font-family = "MonoLisa"
 # font-family-bold
@@ -78,7 +82,7 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
 # font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
 
-adjust-cell-height = 10
+# adjust-cell-height = 8
 # adjust-cursor-height = 4
 
 # 使用更粗的笔触绘制字体
@@ -96,14 +100,17 @@ font-feature = ss08
 font-feature = ss11
 font-feature = ss17
 
-keybind = alt+arrow_left=unbind
-keybind = alt+arrow_right=unbind
-keybind = alt+arrow_up=unbind
-keybind = alt+arrow_down=unbind
+# keybind = alt+arrow_left=unbind
+# keybind = alt+arrow_right=unbind
+# keybind = alt+arrow_up=unbind
+# keybind = alt+arrow_down=unbind
+keybind = ctrl+,=unbind
+keybind = ctrl+.=unbind
 
 # Keybinds
 keybind = ctrl+shift+w=toggle_fullscreen
 keybind = super+shift+r=reload_config
+keybind = super+enter=toggle_maximize
 
 # --------- Neovim -------
 # 保存
@@ -114,15 +121,15 @@ keybind = super+o=text:\x0f
 # --------- Neovim --------
 
 # --------- Keybinds Tmux ---------
-keybind = super+one=text:\x01\x31
-keybind = super+two=text:\x01\x32
-keybind = super+three=text:\x01\x33
-keybind = super+four=text:\x01\x34
-keybind = super+five=text:\x01\x35
-keybind = super+six=text:\x01\x36
-keybind = super+seven=text:\x01\x37
-keybind = super+eight=text:\x01\x38
-keybind = super+nine=text:\x01\x39
+keybind = super+Digit1=text:\x01\x31
+keybind = super+Digit2=text:\x01\x32
+keybind = super+Digit3=text:\x01\x33
+keybind = super+Digit4=text:\x01\x34
+keybind = super+Digit5=text:\x01\x35
+keybind = super+Digit6=text:\x01\x36
+keybind = super+Digit7=text:\x01\x37
+keybind = super+Digit8=text:\x01\x38
+keybind = super+Digit9=text:\x01\x39
 keybind = super+t=text:\x01\x63
 keybind = super+x=text:\x01\x78
 keybind = super+,=text:\x01\x2c
@@ -141,9 +148,9 @@ keybind = super+z=text:\x01\x7a
 
 # Shader
 # 扭曲
-# custom-shader = ./ghostty-shaders/drunkard.glsl 
+# custom-shader = ./ghostty-shaders/drunkard.glsl
 # 雪花
-# custom-shader = ./ghostty-shaders/just-snow.glsl 
+# custom-shader = ./ghostty-shaders/just-snow.glsl
 # 星空
 # custom-shader = ./ghostty-shaders/starfield.glsl
 # 星空
@@ -171,7 +178,7 @@ keybind = super+z=text:\x01\x7a
 # custom-shader = ./ghostty-shaders/fireworks-rockets.glsl
 # custom-shader = ./ghostty-shaders/tft.glsl
 # 动画渐变
-# custom-shader = ./ghostty-shaders/animated-gradient-shader.glsl 
+# custom-shader = ./ghostty-shaders/animated-gradient-shader.glsl
 # custom-shader = ./ghostty-shaders/sin-interference.glsl
 
 # Cursor

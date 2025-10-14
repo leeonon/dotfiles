@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -156,6 +156,11 @@ alias npxkill='npx npkill'
 # Abbr
 # Lazygit
 abbr -S lg='lazygit' >>/dev/null
+# CLI Diff
+abbr -S difit='npx difit' >>/dev/null
+# Claude Code usage
+abbr -S ccusage= 'bunx ccusage' >>/dev/null
+
 
 function sss() {
   {
@@ -260,8 +265,11 @@ export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
 
+# Java
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+
 # Android SDK
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+# export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 # export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -270,3 +278,8 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+
+# Flutter
+export PATH="$HOME/develop/flutter/bin:$PATH"
+export PUB_HOSTED_URL="https://pub.flutter-io.cn"
+export FLUTTER_STORAGE_BASE_URL="https://storage.flutter-io.cn"

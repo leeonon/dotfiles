@@ -1,0 +1,19 @@
+sessions:
+  - name: "Github"
+    directory: "~/code/github"
+    windows:
+      - name: "Code"
+        layout: "vertical"
+        #layout: "horizontal"
+        panes:
+          - command: "nvim"
+          - command: "git status"
+      - name: "Shell"
+        panes:
+          - command: "pnpm run ios"
+  - name: "Obsidian"
+    directory: "~/code/github/LeeOnOnObsidian/content"
+    windows:
+      - name: "Editor"
+        panes:
+          - command: "vim"

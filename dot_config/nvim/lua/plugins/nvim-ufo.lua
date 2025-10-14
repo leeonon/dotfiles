@@ -2,7 +2,7 @@
 
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
-  local suffix = (" 󰁂 %d line "):format(endLnum - lnum)
+  local suffix = (" 󰁂 %d 行 "):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0

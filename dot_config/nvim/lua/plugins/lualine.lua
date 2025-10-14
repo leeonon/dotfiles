@@ -245,7 +245,7 @@ return {
             end,
             color = function()
               local mode_color = modecolor
-              return { bg = nil, fg = mode_color[vim.fn.mode()], gui = "bold" }
+              return { bg = nil, fg = mode_color[vim.fn.mode()], gui = "" }
             end,
             padding = { right = 0, left = 1 },
           },
@@ -253,7 +253,7 @@ return {
             "mode",
             color = function()
               local mode_color = modecolor
-              return { bg = nil, fg = mode_color[vim.fn.mode()], gui = "bold" }
+              return { bg = nil, fg = mode_color[vim.fn.mode()], gui = "" }
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
@@ -261,9 +261,11 @@ return {
           -- filesize,
         },
         lualine_b = {
+          "filetype",
+          -- "buffers",
           {
             "branch",
-            icon = "",
+            icon = "", -- ",
             color = { bg = nil, fg = colors.green, gui = "bold" },
             -- separator = { left = "", right = "" },
             -- separator = { left = "", right = "" },
@@ -272,14 +274,16 @@ return {
             get_ahead_behind_info,
             color = { fg = colors.cyan },
           },
+          -- "encoding",
+          -- "fileformat",
         },
         lualine_c = {
           {
             "filename",
             icon_show = true,
             file_status = true, -- Displays file status (readonly status, modified status)
-            newfile_status = false, -- Display new file status (new file means no write after created)
-            path = 4,
+            newfile_status = true, -- Display new file status (new file means no write after created)
+            path = 0,
             -- 0: Just the filename
             -- 1: Relative path
             -- 2: Absolute path
@@ -295,22 +299,6 @@ return {
               newfile = "[New]", -- Text to show for newly created file before first write
             },
           },
-          -- {
-          --   "pretty_path",
-          --   icon_show = true,
-          --   highlights = {
-          --     modified = { fg = "#ff00ff", bold = true, italic = true },
-          --     path_sep = "Comment",
-          --   },
-          --   icon_padding = {
-          --     [""] = 0, -- disable extra padding for terminal icon
-          --   },
-          --   -- "filename",
-          --   path = 5,
-          --   padding = 1,
-          --   color = { fg = colors.fg_01 },
-          --   -- separator = { left = "", right = "" },
-          -- },
           {
             "diff",
             -- color = { bg = colors.gray2, fg = colorsbg_01, gui = "bold" },
@@ -325,12 +313,28 @@ return {
               removed = { fg = colors.red },
             },
           },
+          "searchcount",
           {
-            "location",
-            color = { bg = nil, fg = colors.yellow, gui = "bold" },
-            -- separator = { left = "", right = "" },
-            -- separator = { left = "", right = "" },
+            function()
+              return " "
+            end,
+            color = function()
+              local status = require("sidekick.status").get()
+              if status then
+                return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
+              end
+            end,
+            cond = function()
+              local status = require("sidekick.status")
+              return status.get() ~= nil
+            end,
           },
+          -- {
+          --   "location",
+          --   color = { bg = nil, fg = colors.yellow, gui = "bold" },
+          --   -- separator = { left = "", right = "" },
+          --   -- separator = { left = "", right = "" },
+          -- },
         },
         lualine_x = {
           space,
@@ -385,7 +389,7 @@ return {
             color = { bg = nil, fg = colors.orange, gui = "bold" },
             -- color = { bg = nil, fg = colors.blue },
             -- separator = { left = "" },
-            separator = { left = "", right = "" },
+            -- separator = { left = "", right = "" },
           },
           -- {
           --   "lsp_status",
@@ -403,8 +407,8 @@ return {
               return getLspName()
             end,
             -- separator = { left = "", right = "" },
-            separator = { left = "", right = "" },
-            color = { bg = nil, fg = colors.purple, gui = "italic,bold" },
+            -- separator = { left = "", right = "" },
+            color = { bg = nil, fg = colors.purple, gui = "bold" },
           },
         },
       },

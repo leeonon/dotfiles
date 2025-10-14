@@ -1,3 +1,16 @@
+local num_icons = {
+  "󰎤 ",
+  "󰎧 ",
+  "󰎪 ",
+  "󰎭 ",
+  "󰎱 ",
+  "󰎳 ",
+  "󰎶 ",
+  "󰎹 ",
+  "󰎼 ",
+  "󰽽 ",
+}
+
 return {
   "akinsho/bufferline.nvim",
   enabled = false,

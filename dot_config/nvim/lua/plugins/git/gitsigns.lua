@@ -2,6 +2,11 @@ return {
   "lewis6991/gitsigns.nvim",
   event = "LazyFile",
   opts = {
+    preview_config = {
+      border = "solid",
+      row = 1,
+      col = 1,
+    },
     signs = {
       add = { text = "▎" },
       change = { text = "▎" },
@@ -10,7 +15,7 @@ return {
       changedelete = { text = "▎" },
       untracked = { text = "▎" },
     },
-    signcolumn = false, -- lazyvim <leader>uG Toggle
+    signcolumn = true, -- leader uG toggle
     signs_staged = {
       add = { text = "▎" },
       change = { text = "▎" },
@@ -18,6 +23,7 @@ return {
       topdelete = { text = "" },
       changedelete = { text = "▎" },
     },
+    update_debounce = 500,
     on_attach = function(buffer)
       local gs = package.loaded.gitsigns
 

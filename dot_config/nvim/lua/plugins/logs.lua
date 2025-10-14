@@ -1,5 +1,6 @@
 return {
   "gaelph/logsitter.nvim",
+  enabled = false,
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
     vim.keymap.set("n", "<leader>lg", function()

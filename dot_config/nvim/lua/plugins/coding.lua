@@ -8,4 +8,9 @@ return {
   {
     "editorconfig/editorconfig-vim",
   },
+  -- 保存时删除 EOF 处的尾随空格和空行
+  {
+    "mcauley-penney/tidy.nvim",
+    config = true,
+  },
 }

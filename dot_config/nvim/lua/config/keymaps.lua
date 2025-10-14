@@ -36,10 +36,6 @@ keymap.set("n", "<leader>x", "<cmd>x<cr>")
 -- 复制整个文件 - yig
 keymap.set("n", "<leader>i", ":Neotree filesystem reveal float<CR>", {})
 
-keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
-keymap.set("n", "<leader>gD", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
-keymap.set("n", "<leader>gp", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffviewFileHistory" })
-
 -- 避免使用 Ctrl + a 和 Ctrl + x, 会不小心触发数字增减
 keymap.set("n", "<C-a>", "<Nop>")
 keymap.set("n", "<C-x>", "<Nop>")

@@ -12,6 +12,7 @@ return {
     "folke/noice.nvim",
     opts = function(_, opts)
       opts.presets.lsp_doc_border = true
+      -- opts.cmdline = { view = "cmdline" }
       -- 禁用显示“无可用消息”提示
       table.insert(opts.routes, {
         filter = {
@@ -23,7 +24,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     lazy = true,
     opts = {},
     init = function()

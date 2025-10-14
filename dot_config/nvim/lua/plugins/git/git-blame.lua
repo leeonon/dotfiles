@@ -20,8 +20,9 @@ return {
   opts = {
     enabled = true,
     date_format = "%r",
-    message_template = " <author> 󰔠 <date> 󰈚 <summary>  <sha>",
-    message_when_not_committed = "  Not Committed Yet",
+    message_template = " <author> 󰔠 <date> 󰈚 <summary>",
+    -- message_when_not_committed = "  Not Committed Yet",
+    message_when_not_committed = "",
   },
   keys = {
     { "<Leader>gB", mode = { "n" }, desc = "Git Blame Functions" },

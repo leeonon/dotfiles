@@ -24,7 +24,6 @@ return {
         hl_group = "Comment",
         separator = string.rep("-", 80),
       },
-
       callbacks = {
         enter_note = function(_, note)
           vim.keymap.set("n", "<leader>oh", "<cmd>Obsidian toggle_checkbox<cr>", {

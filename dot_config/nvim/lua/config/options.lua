@@ -46,8 +46,6 @@ vim.g.lazyvim_eslint_auto_format = true
 
 -- vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_picker = "snacks"
-vim.g.lazyvim_blink_main = false
-vim.g.lazyvim_cmp = "blink.cmp"
 
 -- 始终保持光标位于终端的垂直中心
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
@@ -66,12 +64,14 @@ vim.filetype.add({
     env = "dotenv",
   },
   filename = {
-    [".env"] = "dotenv",
-    ["env"] = "dotenv",
+    -- dotenv
+    [".env"] = "config",
+    ["env"] = "config",
   },
   pattern = {
     ["[jt]sconfig.*.json"] = "jsonc",
     ["%.env%.[%w_.-]+"] = "dotenv",
+    ["gitconf.*"] = "gitconfig",
   },
 })
 
@@ -80,3 +80,28 @@ vim.filetype.add({
 -- only for diagnostics. The rest of LSP support will still be
 -- provided by rust-analyzer.
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
+
+-- Treesitter settings 包含缩进设置
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    local ft = vim.bo.filetype
+    local lang = vim.treesitter.language.get_lang(ft)
+
+    if not lang or not vim.treesitter.language.add(lang) then
+      return
+    end
+
+    vim.treesitter.start()
+
+    -- Set folding if available
+    if vim.treesitter.query.get(lang, "folds") then
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end
+
+    -- Set indentation if available (overrides traditional indent)
+    if vim.treesitter.query.get(lang, "indents") then
+      vim.bo.indentexpr = "nvim_treesitter#indent()"
+    end
+  end,
+})

@@ -13,12 +13,13 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.sql" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.astro" },
     -- TODO: layvim 的 svelte extras 目前有 bug, 其配置的 lsp didChangeWatchedFiles 会出错导致 lsp 退出
-    -- { import = "lazyvim.plugins.extras.lang.svelte" },
+    { import = "lazyvim.plugins.extras.lang.svelte" },
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
@@ -36,6 +37,7 @@ require("lazy").setup({
     -- 基于 LSP 的重构
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
 
+    -- { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.vscode" },
@@ -43,13 +45,13 @@ require("lazy").setup({
     -- AI Tools
     { import = "plugins.ai.avante" },
     { import = "plugins.ai.claude-code" },
+    { import = "plugins.ai.opencode" },
+    { import = "plugins.ai.sidekick" },
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "plugins.codecompanion.init" },
 
     { import = "plugins" },
-    { import = "plugins.lsp.lsp" },
-    { import = "plugins.lsp.rust" },
-    { import = "plugins.lsp.tailwindcss" },
+    { import = "plugins.lsp" },
     { import = "plugins.format-linting" },
     { import = "plugins.git" },
   },

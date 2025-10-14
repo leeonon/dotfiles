@@ -1,4 +1,4 @@
-local icons = require("icons.kind-icon")
+local icons = require("icons.icons")
 
 return {
   {

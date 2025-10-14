@@ -1,0 +1,149 @@
+{
+  "View": {
+    "prefix": "v",
+    "body": [
+      "<View className=\"flex-1 items-center justify-center\">",
+      "  $1",
+      "</View>"
+    ],
+    "description": "A Simple View "
+  },
+  "Text": {
+    "prefix": "t",
+    "body": [
+      "<Text variant=\"body\" className=\"text-center\">",
+      "  $1",
+      "</Text>"
+    ],
+    "description": "A Simple Text"
+  },
+  "export *": {
+    "prefix": "ex *",
+    "body": ["export * from '.$1';"],
+    "description": "导出全部"
+  },
+  "Component": {
+    "prefix": "comp",
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "import { Text, View } from '@/components/ui';",
+      "",
+      "type Props = {",
+      "  $2",
+      "};",
+      "export const ${1:CompName} = ({}: Props) => {",
+      "  return (",
+      "    <View className=\"flex-1\">",
+      "      <Text className=\"text-base\">${1:CompName} Component</Text>",
+      "    </View>",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "组件"
+  },
+  "useQuery with variables": {
+    "prefix": "useqv",
+    "body": [
+      "import type { AxiosError } from 'axios';",
+      "import { createQuery } from 'react-query-kit';",
+      "",
+      "import { client } from '../common';",
+      "",
+      "type Variables = {$3};",
+      "type Response = {$4};",
+      "",
+      "export const use$1 = createQuery<Response, Variables, AxiosError>({",
+      "  queryKey: ['$2'], ",
+      "  fetcher: (variables) => {",
+      "    return client",
+      "      .get(`$2/\\${variables.${5}}`)",
+      "      .then((response) => response.data);",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "useQuery with variables"
+  },
+  "useQuery": {
+    "prefix": "useq",
+    "body": [
+      "import type { AxiosError } from 'axios';",
+      "import { createQuery } from 'react-query-kit';",
+      "",
+      "import { client } from '../common';",
+      "",
+      "type Response = {$3};",
+      "type Variables = void;",
+      "",
+      "export const use$1 = createQuery<Response, Variables, AxiosError>({",
+      "  queryKey: ['$2'],",
+      "  fetcher: () => {",
+      "    return client.get(`$2`).then((response) => response.data.posts);",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "useQuery"
+  },
+  "useInfiniteQuery": {
+    "prefix": "useiq",
+    "body": [
+      "import type { AxiosError } from 'axios';",
+      "import { createInfiniteQuery } from 'react-query-kit';",
+      "",
+      "import { client } from '../common/client';",
+      "import { DEFAULT_LIMIT, getNextPageParam } from '../common/utils';",
+      "import type { PaginateQuery } from '../types';",
+      "",
+      "type Response = void;",
+      "type Variables = PaginateQuery<$3>;",
+      "",
+      "export const use$1 = createInfiniteQuery<Response, Variables, AxiosError>({",
+      "  queryKey: ['$2'],",
+      "  fetcher: (_variables: any, { pageParam }): Promise<Response> => {",
+      "    return client({",
+      "      url: `/$2/`,",
+      "      method: 'GET',",
+      "      params: {",
+      "        limit: DEFAULT_LIMIT,",
+      "        offset: pageParam,",
+      "      },",
+      "    }).then((response) => response.data);",
+      "  },",
+      "  getNextPageParam,",
+      "  initialPageParam: 0,",
+      "});"
+    ],
+    "description": "useInfiniteQuery"
+  },
+
+  "useMutation ": {
+    "prefix": "usem",
+    "body": [
+      "import type { AxiosError } from 'axios';",
+      "import { createMutation } from 'react-query-kit';",
+      "",
+      "import { client } from '../common';",
+      "",
+      "type Variables = {$3};",
+      "type Response = {$4};",
+      "",
+      "export const use$1 = createMutation<Response, Variables, AxiosError>({",
+      "  mutationFn: async (variables) =>",
+      "    client({",
+      "      url: '$2',",
+      "      method: 'POST',",
+      "      data: variables,",
+      "    }).then((response) => response.data)",
+      "});"
+    ],
+    "description": "useMutation "
+  },
+  "navigate": {
+    "prefix": "navigate",
+    "body": ["const { navigate } = useNavigation();", ""],
+    "description": "navigate"
+  }
+}

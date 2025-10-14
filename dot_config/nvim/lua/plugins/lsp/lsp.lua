@@ -111,4 +111,9 @@ return {
       },
     },
   },
+  -- 展示 Lsp 加载进度UI
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+  },
 }

@@ -1,16 +1,25 @@
 -- https://github.com/catppuccin/nvim/discussions/323
 -- lazy = false 可以编辑器中 <leader>uC 快速切换
+
 return {
   -- add gruvbox
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+  },
+  {
     "tiagovla/tokyodark.nvim",
     opts = {
-      transparent_background = false,
+      transparent_background = true,
       gamma = 1.00,
       styles = {
         comments = { italic = true },
         keywords = { italic = true },
-        identifiers = { italic = true },
+        identifiers = { italic = false },
         functions = {},
         variables = {},
       },
@@ -163,17 +172,18 @@ return {
   },
   -- catppuccin
   -- 社区配置分享：https://github.com/catppuccin/nvim/discussions/323?sort=new
+  -- 在线生成主题配置: https://catbbrew.com/design
   {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
-      flavour = "mocha",
-      background = { -- :h background
-        light = "latte",
-        dark = "mocha",
-      },
+      flavour = "macchiato",
+      -- background = {
+      --   light = "latte",
+      --   dark = "mocha",
+      -- },
       term_colors = true,
-      transparent_background = false,
+      transparent_background = true,
       styles = {
         comments = {},
         conditionals = {},
@@ -187,11 +197,71 @@ return {
         properties = {},
         types = {},
       },
+      highlight_overrides = {
+        all = function(colors)
+          return {
+            CurSearch = { bg = colors.sky },
+            IncSearch = { bg = colors.sky },
+            CursorLineNr = { fg = colors.blue, style = { "bold" } },
+            DashboardFooter = { fg = colors.overlay0 },
+            WinSeparator = { fg = colors.overlay0, style = { "bold" } },
+            ["@markup.italic"] = { fg = colors.blue, style = { "italic" } },
+            ["@markup.strong"] = { fg = colors.blue, style = { "bold" } },
+            Headline = { style = { "bold" } },
+            Headline1 = { fg = colors.blue, style = { "bold" } },
+            Headline2 = { fg = colors.pink, style = { "bold" } },
+            Headline3 = { fg = colors.lavender, style = { "bold" } },
+            Headline4 = { fg = colors.green, style = { "bold" } },
+            Headline5 = { fg = colors.peach, style = { "bold" } },
+            Headline6 = { fg = colors.flamingo, style = { "bold" } },
+            rainbow1 = { fg = colors.blue, style = { "bold" } },
+            rainbow2 = { fg = colors.pink, style = { "bold" } },
+            rainbow3 = { fg = colors.lavender, style = { "bold" } },
+            rainbow4 = { fg = colors.green, style = { "bold" } },
+            rainbow5 = { fg = colors.peach, style = { "bold" } },
+            rainbow6 = { fg = colors.flamingo, style = { "bold" } },
+          }
+        end,
+      },
       color_overrides = {
         mocha = {
-          base = "#151515",
-          mantle = "#0e0e0e",
-          crust = "#080808",
+          base = "#000000",
+          mantle = "#000000",
+          crust = "#000000",
+        },
+        macchiato = {
+          rosewater = "#F5B8AB",
+          flamingo = "#F29D9D",
+          pink = "#AD6FF7",
+          mauve = "#FF8F40",
+          red = "#E66767",
+          maroon = "#EB788B",
+          peach = "#FAB770",
+          yellow = "#FACA64",
+          green = "#70CF67",
+          teal = "#4CD4BD",
+          sky = "#61BDFF",
+          sapphire = "#4BA8FA",
+          blue = "#00BFFF",
+          lavender = "#00BBCC",
+          text = "#C1C9E6",
+          subtext1 = "#A3AAC2",
+          subtext0 = "#8E94AB",
+          overlay2 = "#7D8296",
+          overlay1 = "#676B80",
+          overlay0 = "#464957",
+          surface2 = "#3A3D4A",
+          surface1 = "#2F313D",
+          surface0 = "#1D1E29",
+          base = "#0b0b12",
+          mantle = "#11111a",
+          crust = "#191926",
+        },
+      },
+      integrations = {
+        telescope = {
+          enabled = true,
+          style = "nvchad",
         },
       },
     },
@@ -201,7 +271,7 @@ return {
     priority = 1000,
     config = function()
       vim.g.everforest_enable_italic = true
-      vim.g.everforest_transparent_background = false
+      vim.g.everforest_transparent_background = true
       vim.g.everforest_diagnostic_text_highlight = 1
       vim.g.everforest_diagnostic_line_highlight = 1
       vim.g.everforest_diagnostic_virtual_text = "highlighted"
@@ -252,6 +322,33 @@ return {
           StatusLineTermNC = { bg = "NONE" },
           LualineNormal = { bg = "NONE" },
           TabLine = { bg = "NONE" },
+
+          -- BlinkCmpIcon
+          -- BlinkCmpKindIconField = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconProperty = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconEvent = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconText = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconEnum = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconKeyword = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconConstant = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconConstructor = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconReference = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconFunction = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconStruct = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconClass = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconModule = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconOperator = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconVariable = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconFile = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconUnit = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconSnippet = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconFolder = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconInterface = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconColor = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconTypeParameter = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconMethod = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconValue = { fg = fg_color, bg = bg_color },
+          -- BlinkCmpKindIconEnumMember = { fg = fg_color, bg = bg_color },
         },
       })
     end,
@@ -302,16 +399,96 @@ return {
         -- transparent = true,
       })
       -- require("black-metal").load()
-      vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = "#111111" })
-      vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#222222" })
-      vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#111111", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "NONE", fg = "#e78a43" })
+      -- vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = "#111111" })
+      -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#222222" })
+      -- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#111111", bg = "NONE" })
+      -- vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "NONE", fg = "#e78a43" })
     end,
+  },
+  {
+    "2nthony/vitesse.nvim",
+    dependencies = {
+      "tjdevries/colorbuddy.nvim",
+    },
+    config = function()
+      vim.opt.winblend = 0
+      vim.opt.pumblend = 0
+      require("vitesse").setup({
+        comment_italics = true,
+        transparent_background = true,
+        transparent_float_background = true, -- aka pum(popup menu) background
+        reverse_visual = false,
+        dim_nc = false,
+        cmp_cmdline_disable_search_highlight_group = false, -- disable search highlight group for cmp item
+        -- if `transparent_float_background` false, make telescope border color same as float background
+        telescope_border_follow_float_background = false,
+        -- similar to above, but for lspsaga
+        lspsaga_border_follow_float_background = false,
+        -- diagnostic virtual text background, like error lens
+        diagnostic_virtual_text_background = false,
+
+        -- override the `lua/vitesse/palette.lua`, go to file see fields
+        colors = {},
+        themes = {},
+      })
+    end,
+  },
+  {
+    "mcauley-penney/techbase.nvim",
+    opts = {
+      italic_comments = true,
+      transparent = false,
+      plugin_support = {
+        aerial = false,
+        blink = true,
+        edgy = false,
+        gitsigns = true,
+        hl_match_area = false,
+        lazy = true,
+        lualine = true,
+        mason = true,
+        mini_cursorword = false,
+        nvim_cmp = false,
+        vim_illuminate = true,
+        visual_whitespace = false,
+      },
+      hl_overrides = {},
+    },
+    init = function()
+      vim.cmd.colorscheme("techbase")
+    end,
+    priority = 1000,
+  },
+  {
+    "darianmorat/gruvdark.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true, -- Show or hide background
+      colors = {}, -- Override default colors
+      highlights = {}, -- Override highlight groups
+    },
+    config = function(_, opts)
+      require("gruvdark").setup(opts)
+      -- vim.cmd.colorscheme("gruvdark")
+    end,
+  },
+  {
+    "bettervim/yugen.nvim",
+    config = function()
+      -- vim.cmd.colorscheme("yugen")
+    end,
+  },
+  {
+    "kvrohit/rasmus.nvim",
+    priority = 1000,
+    config = function() end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oldworld",
+      colorscheme = "tokyodark",
+      -- colorscheme = "rasmus",
     },
   },
 }

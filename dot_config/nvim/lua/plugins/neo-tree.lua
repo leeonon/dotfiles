@@ -1,41 +1,5 @@
 local inputs = require("neo-tree.ui.inputs")
-
--- Trash the target
-local function trash(state)
-  local node = state.tree:get_node()
-  if node.type == "message" then
-    return
-  end
-  local _, name = require("neo-tree.utils").split_path(node.path)
-  local msg = string.format("Are you sure you want to trash '%s'?", name)
-  inputs.confirm(msg, function(confirmed)
-    if not confirmed then
-      return
-    end
-    vim.api.nvim_command("silent !trash -F " .. node.path)
-    require("neo-tree.sources.manager").refresh(state)
-  end)
-end
-
--- Trash the selections (visual mode)
-local function trash_visual(state, selected_nodes)
-  local paths_to_trash = {}
-  for _, node in ipairs(selected_nodes) do
-    if node.type ~= "message" then
-      table.insert(paths_to_trash, node.path)
-    end
-  end
-  local msg = "Are you sure you want to trash " .. #paths_to_trash .. " items?"
-  inputs.confirm(msg, function(confirmed)
-    if not confirmed then
-      return
-    end
-    for _, path in ipairs(paths_to_trash) do
-      vim.api.nvim_command("silent !trash -F " .. path)
-    end
-    require("neo-tree.sources.manager").refresh(state)
-  end)
-end
+local utils = require("neo-tree.utils")
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
@@ -47,6 +11,10 @@ return {
     "mrbjarksen/neo-tree-diagnostics.nvim",
   },
   config = function()
+    -- 用于解决 neo-tree 在 monorepo 项目中切换文件时,目录发生变化的问题
+    -- https://github.com/LazyVim/LazyVim/discussions/2150
+    -- 可能会导致 lsp 服务在项目在 monorepo 项目切换时无法自动切换?
+    vim.g.root_spec = { "cwd" }
     require("neo-tree").setup({
       popup_border_style = "rounded",
       close_if_last_window = true,
@@ -74,7 +42,7 @@ return {
       window = {
         position = "float", -- left, right, top, bottom, float, current
         mappings = {
-          ["T"] = "trash", -- 将文件或目录移动到回收站
+          ["D"] = "trash",
           -- 打开文件而不失去侧边栏焦点
           ["<tab>"] = function(state)
             local node = state.tree:get_node()
@@ -89,9 +57,9 @@ return {
       },
       default_component_configs = {
         indent = {
-          indent_size = 2,
+          indent_size = 3,
           padding = 0, -- extra padding on left hand side
-          indent_marker = "|", -- "│",
+          indent_marker = " ", -- "│",
           last_indent_marker = "╰",
         },
       },
@@ -105,7 +73,7 @@ return {
           },
         },
         filtered_items = {
-          visible = true,
+          visible = false,
           show_hidden_count = true,
           hide_dotfiles = true,
           hide_gitignored = true,
@@ -122,8 +90,39 @@ return {
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       commands = {
-        trash = trash,
-        trash_visual = trash_visual,
+        trash = function(state)
+          local inputs = require("neo-tree.ui.inputs")
+          local path = state.tree:get_node().path
+          local _, name = utils.split_path(path)
+
+          local msg = string.format("Are you sure you want to trash '%s'?", name)
+
+          inputs.confirm(msg, function(confirmed)
+            if not confirmed then
+              return
+            end
+
+            vim.fn.system({ "trash", vim.fn.fnameescape(path) })
+
+            require("neo-tree.sources.manager").refresh(state.name)
+          end)
+        end,
+
+        trash_visual = function(state, selected_nodes)
+          local inputs = require("neo-tree.ui.inputs")
+          local msg = "Are you sure you want to trash " .. #selected_nodes .. " files ?"
+
+          inputs.confirm(msg, function(confirmed)
+            if not confirmed then
+              return
+            end
+            for _, node in ipairs(selected_nodes) do
+              vim.fn.system({ "trash", vim.fn.fnameescape(node.path) })
+            end
+
+            require("neo-tree.sources.manager").refresh(state.name)
+          end)
+        end,
         avante_add_files = function(state)
           local node = state.tree:get_node()
           local filepath = node:get_id()

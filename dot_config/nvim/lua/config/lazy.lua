@@ -14,6 +14,7 @@ require("lazy").setup({
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.sql" },
+    { import = "lazyvim.plugins.extras.lang.vue" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
@@ -21,8 +22,10 @@ require("lazy").setup({
     -- TODO: layvim 的 svelte extras 目前有 bug, 其配置的 lsp didChangeWatchedFiles 会出错导致 lsp 退出
     { import = "lazyvim.plugins.extras.lang.svelte" },
     { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.dart" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.formatting.biome" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
     -- 添加、删除、替换、查找、突出显示周围内容（例如括号、引号等）。
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
@@ -32,10 +35,11 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.neogen" },
     -- 任务管理器
     { import = "lazyvim.plugins.extras.editor.overseer" },
-    -- 重构
-    { import = "lazyvim.plugins.extras.editor.refactoring" },
+    -- -- 重构
+    -- { import = "lazyvim.plugins.extras.editor.refactoring" },
     -- 基于 LSP 的重构
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    { import = "lazyvim.plugins.extras.ai.sidekick" },
 
     -- { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     { import = "lazyvim.plugins.extras.coding.blink" },
@@ -43,11 +47,12 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.vscode" },
 
     -- AI Tools
+    { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "plugins.ai.avante" },
     { import = "plugins.ai.claude-code" },
     { import = "plugins.ai.opencode" },
     { import = "plugins.ai.sidekick" },
-    { import = "lazyvim.plugins.extras.ai.copilot" },
+    { import = "plugins.ai.copilot" },
     { import = "plugins.codecompanion.init" },
 
     { import = "plugins" },

@@ -8,7 +8,12 @@ return {
         enable = true,
       },
       -- enable indentation
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        -- NOTE: 启用缩进功能会显著降低Dart文件的编辑速度。
+        -- https://github.com/nvim-flutter/flutter-tools.nvim/issues/267#issuecomment-1616728174
+        disable = { "dart" },
+      },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {
         enable = true,

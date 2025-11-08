@@ -1,16 +1,3 @@
-local num_icons = {
-  "󰎤 ",
-  "󰎧 ",
-  "󰎪 ",
-  "󰎭 ",
-  "󰎱 ",
-  "󰎳 ",
-  "󰎶 ",
-  "󰎹 ",
-  "󰎼 ",
-  "󰽽 ",
-}
-
 return {
   "akinsho/bufferline.nvim",
   enabled = false,
@@ -50,7 +37,7 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = "  NeoTree",
+            text = "  NEOTREE",
             highlight = "Directory",
             text_align = "left",
           },

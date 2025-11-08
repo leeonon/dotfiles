@@ -37,10 +37,31 @@ local function biome_or_prettier(bufnr)
   return {}
 end
 
--- TODO: prettier 感觉很卡,换成 prettierd 试试
+local supported = {
+  "astro",
+  "css",
+  "graphql",
+  -- "html",
+  "javascript",
+  "javascriptreact",
+  "json",
+  "jsonc",
+  -- "markdown",
+  "svelte",
+  "typescript",
+  "typescriptreact",
+  "vue",
+  -- "yaml",
+}
+
 return {
   "stevearc/conform.nvim",
   opts = {
+    formatters = {
+      biome = {
+        require_cwd = true,
+      },
+    },
     formatters_by_ft = {
       javascript = biome_or_prettier,
       typescript = biome_or_prettier,
@@ -57,6 +78,7 @@ return {
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt" },
+      dart = { "dart_format" },
     },
   },
 }

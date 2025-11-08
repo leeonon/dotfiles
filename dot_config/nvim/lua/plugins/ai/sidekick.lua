@@ -1,6 +1,7 @@
 return {
   "folke/sidekick.nvim",
   opts = {
+    nes = { enabled = false }, -- 禁止默认启用的 nes 功能
     cli = {
       mux = {
         backend = "tmux",

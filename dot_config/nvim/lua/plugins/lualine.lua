@@ -415,4 +415,14 @@ return {
       extensions = { "neo-tree", "lazy" },
     }
   end,
+  config = function(_, opts)
+    require("lualine").setup(opts)
+
+    -- lualine 与 vim-tpipline 冲突 - https://github.com/vimpostor/vim-tpipeline/issues/53
+    if os.getenv("TMUX") then
+      vim.defer_fn(function()
+        vim.o.laststatus = 0
+      end, 0)
+    end
+  end,
 }

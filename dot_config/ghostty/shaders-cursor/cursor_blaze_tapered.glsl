@@ -36,12 +36,12 @@ float getSdfParallelogram(in vec2 p, in vec2 v0, in vec2 v1, in vec2 v2, in vec2
     return s * sqrt(d);
 }
 
-vec2 normalize(vec2 value, float isPosition) {
+vec2 norm(vec2 value, float isPosition) {
     return (value * 2.0 - (iResolution.xy * isPosition)) / iResolution.y;
 }
 
 float antialising(float distance) {
-    return 1. - smoothstep(0., normalize(vec2(2., 2.), 0.).x, distance);
+    return 1. - smoothstep(0., norm(vec2(2., 2.), 0.).x, distance);
 }
 
 float determineStartVertexFactor(vec2 c, vec2 p) {
@@ -65,26 +65,22 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-// const vec4 TRAIL_COLOR = vec4(1.0, 0.725, 0.161, 1.0);
-// const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
-const vec4 TRAIL_COLOR = vec4(0.675, 0.631, 0.812, 1.0);       
-const vec4 TRAIL_COLOR_ACCENT = vec4(0.757, 0.682, 0.875, 1.0);
+const vec4 TRAIL_COLOR = vec4(1.0, 0.725, 0.161, 1.0);
+const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
 const float DURATION = 0.3; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
-    #if !defined(WEB)
     fragColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
-    #endif
     // Normalization for fragCoord to a space of -1 to 1;
-    vec2 vu = normalize(fragCoord, 1.);
+    vec2 vu = norm(fragCoord, 1.);
     vec2 offsetFactor = vec2(-.5, 0.5);
 
     // Normalization for cursor position and size;
     // cursor xy has the postion in a space of -1 to 1;
     // zw has the width and height
-    vec4 currentCursor = vec4(normalize(iCurrentCursor.xy, 1.), normalize(iCurrentCursor.zw, 0.));
-    vec4 previousCursor = vec4(normalize(iPreviousCursor.xy, 1.), normalize(iPreviousCursor.zw, 0.));
+    vec4 currentCursor = vec4(norm(iCurrentCursor.xy, 1.), norm(iCurrentCursor.zw, 0.));
+    vec4 previousCursor = vec4(norm(iPreviousCursor.xy, 1.), norm(iPreviousCursor.zw, 0.));
 
     vec2 centerCC = getRectangleCenter(currentCursor);
     vec2 centerCP = getRectangleCenter(previousCursor);

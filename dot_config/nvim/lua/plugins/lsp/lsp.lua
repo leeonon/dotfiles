@@ -47,8 +47,23 @@ return {
         tailwindcss = {
           settings = {
             tailwindCSS = {
-              lint = {
-                invalidApply = false,
+              -- lint = {
+              --   invalidApply = false,
+              -- },
+              classAttributes = { "class", "className", "ngClass" },
+              experimental = {
+                classRegex = {
+                  "tw`([^`]*)", -- tw`...`
+                  "tw='([^']*)", -- <div tw="..." />
+                  "tw={`([^`}]*)", -- <div tw={"..."} />
+                  "tw\\.\\w+`([^`]*)", -- tw.xxx`...`
+                  "tw\\(.*?\\)`([^`]*)", -- tw(component)`...`
+                  "styled\\(.*?, '([^']*)'\\)",
+                  { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+                  { "clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+                  { "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]", "[`'\"`]([^'\"`,;]*)[`'\"`]" },
+                  { "{([\\s\\S]*)}", ":\\s*['\"`]([^'\"`]*)['\"`]" },
+                },
               },
             },
           },
@@ -99,16 +114,17 @@ return {
             })
           end,
         },
+        dart = {},
       },
       -- 代码折叠相关
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
+      -- capabilities = {
+      --   textDocument = {
+      --     foldingRange = {
+      --       dynamicRegistration = false,
+      --       lineFoldingOnly = true,
+      --     },
+      --   },
+      -- },
     },
   },
   -- 展示 Lsp 加载进度UI

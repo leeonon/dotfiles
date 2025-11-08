@@ -25,25 +25,15 @@ return {
       },
       custom_highlights = function()
         return {
-          Normal = { bg = "NONE" },
-          NormalFloat = { bg = "NONE" },
-          FloatBorder = { bg = "NONE" },
-          FloatTitle = { bg = "NONE" },
-          TabLineFill = { bg = "NONE" },
-          StatusLineNC = { bg = "NONE" },
-          StatusLineTermNC = { bg = "NONE" },
-          TabLine = { bg = "NONE" },
+          StatusLine = { bg = "NONE" },
         }
       end,
+      on_colors = function(colors)
+        colors.hint = colors.orange
+        colors.error = "#ff0000"
+      end,
       custom_palette = function()
-        return {
-          -- bg = "NONE",
-          -- bg1 = "NONE",
-          bg2 = "NONE",
-          -- bg3 = "NONE",
-          -- bg4 = "NONE",
-          -- bg5 = "NONE",
-        }
+        return {}
       end,
       terminal_colors = true,
     },
@@ -354,30 +344,6 @@ return {
     end,
   },
   {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("cyberdream").setup({
-        variant = "auto",
-        transparent = false,
-        italic_comments = true,
-        hide_fillchars = true,
-        saturation = 0.7,
-
-        terminal_colors = false,
-        cache = true,
-        borderless_pickers = true,
-        overrides = function(c)
-          return {
-            CursorLine = { bg = c.bg },
-            CursorLineNr = { fg = c.magenta },
-          }
-        end,
-      })
-    end,
-  },
-  {
     "nyoom-engineering/oxocarbon.nvim",
   },
   {
@@ -460,35 +426,32 @@ return {
     priority = 1000,
   },
   {
-    "darianmorat/gruvdark.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = true, -- Show or hide background
-      colors = {}, -- Override default colors
-      highlights = {}, -- Override highlight groups
-    },
-    config = function(_, opts)
-      require("gruvdark").setup(opts)
-      -- vim.cmd.colorscheme("gruvdark")
-    end,
-  },
-  {
     "bettervim/yugen.nvim",
-    config = function()
-      -- vim.cmd.colorscheme("yugen")
-    end,
+    config = function() end,
   },
   {
-    "kvrohit/rasmus.nvim",
+    "vertexE/synth.nvim",
     priority = 1000,
-    config = function() end,
+    config = function()
+      require("synth").setup({
+        override_colors = {},
+        override_hl = function(colors)
+          return {
+            ["Normal"] = { bg = "NONE", fg = colors.text_200:hex() },
+            ["NormalFloat"] = { bg = "NONE", fg = colors.text_200:hex() },
+            StatusLine = { bg = "NONE" }, -- 活动窗口的 lualine
+            StatusLineNC = { bg = "NONE" }, -- 非活动窗口的 lualine
+          }
+        end,
+      })
+    end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
+      -- colorscheme = "yugen",
       colorscheme = "tokyodark",
-      -- colorscheme = "rasmus",
+      -- colorscheme = "synth",
     },
   },
 }

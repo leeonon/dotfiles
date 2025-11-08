@@ -16,6 +16,7 @@ return {
         "tailwindcss",
         "svelte",
         "lua_ls",
+        "vue_ls",
         "emmet_ls",
         "prismals",
         "rust-analyzer",
@@ -29,6 +30,7 @@ return {
         "eslint",
         "biome",
         "stylua",
+        "copilot-language-server",
       },
     },
     config = function()

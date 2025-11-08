@@ -54,7 +54,8 @@ return {
         provider_selector = function(bufnr, filetype, buftype)
           return { "treesitter", "indent" }
         end,
-        fold_virt_text_handler = handler,
+        oepn_fold_hl_timeout = 0,
+        -- fold_virt_text_handler = handler,
       })
     end,
   },

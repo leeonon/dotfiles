@@ -152,11 +152,10 @@ alias taze='npx taze'
 # tmuxinator
 alias mux='tmuxinator'
 alias npxkill='npx npkill'
-
 # Abbr
 # Lazygit
 abbr -S lg='lazygit' >>/dev/null
-# CLI Diff
+# CLI Diff - 在浏览器中打开 Diff 服务
 abbr -S difit='npx difit' >>/dev/null
 # Claude Code usage
 abbr -S ccusage= 'bunx ccusage' >>/dev/null
@@ -178,6 +177,7 @@ eval export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
@@ -202,7 +202,17 @@ function yz() {
 	rm -f -- "$tmp"
 }
 # ------------------- Yazi End -----------------------
-#
+# -------------------- 5E Start----------------------------
+5eapp() {
+  if [[ "$1" == "fa" && -n "$2" ]]; then
+    shift
+    flutter attach --debug-uri "$@"
+  else
+    echo "Usage: 5eapp fa <debug-uri>"
+    return 1
+  fi
+}
+# -------------------- 5E End----------------------------
 
 # pnpm
 export PNPM_HOME="/Users/ly/Library/pnpm"
@@ -283,3 +293,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="$HOME/develop/flutter/bin:$PATH"
 export PUB_HOSTED_URL="https://pub.flutter-io.cn"
 export FLUTTER_STORAGE_BASE_URL="https://storage.flutter-io.cn"
+
+# opencode
+export PATH=/Users/ly/.opencode/bin:$PATH

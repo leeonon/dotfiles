@@ -3,6 +3,8 @@ return {
   "f-person/git-blame.nvim",
   lazy = true,
   event = "BufRead",
+  -- 启用后会创建多个 fzf 进程 ?
+  enabled = true,
   cmd = {
     "GitBlameToggle",
     "GitBlameEnable",
@@ -12,13 +14,12 @@ return {
     "GitBlameCopyFileURL",
     "GitBlameCopySHA",
   },
-  -- NOTE: if you want to improve performance, you can change the event to CursorHold
-  -- init = function()
-  -- vim.g.gitblame_schedule_event = "CursorHold"
-  -- vim.g.gitblame_clear_event = "CursorHoldI"
-  -- end,
+  init = function()
+    vim.g.gitblame_schedule_event = "CursorHold"
+    vim.g.gitblame_clear_event = "CursorHoldI"
+  end,
   opts = {
-    enabled = true,
+    enabled = false,
     date_format = "%r",
     message_template = " <author> 󰔠 <date> 󰈚 <summary>",
     -- message_when_not_committed = "  Not Committed Yet",

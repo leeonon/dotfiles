@@ -1,6 +1,5 @@
 return {
   {
-
     "NickvanDyke/opencode.nvim",
     enabled = false,
     dependencies = {
@@ -11,10 +10,8 @@ return {
       vim.g.opencode_opts = {
         -- Your configuration, if any — see `lua/opencode/config.lua`
       }
-
       -- Required for `opts.auto_reload`
       vim.opt.autoread = true
-
       -- Recommended keymaps
       vim.keymap.set("n", "<leader>at", function()
         require("opencode").toggle()

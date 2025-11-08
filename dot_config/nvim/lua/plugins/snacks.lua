@@ -2,9 +2,6 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  init = function()
-    vim.b.miniindentscope_disable = true
-  end,
   opts = {
     image = {
       enabled = true,
@@ -61,6 +58,7 @@ return {
     picker = {
       -- !NOTE: picker keymaps : https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#%EF%B8%8F-config
       -- prompt = "➡️ ",
+      prompt = "[SNACKS] ➡️ ",
       focus = "input", -- "input" | "list" ,
       layout = {
         cycle = true,
@@ -107,6 +105,8 @@ return {
     },
   },
   init = function()
+    vim.b.miniindentscope_disable = true
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()

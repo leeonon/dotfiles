@@ -1,16 +1,17 @@
 # auto-update-channel = tip
 # UI
-background-opacity = 0.8
-background-blur-radius = 60
+# background-opacity = 0.8
+# background-blur-radius = 60
+cursor-style = block
 
+theme = custom
 # theme = Black Metal (Bathory)
 # theme = oldworld
 # theme = techbase
 # theme = catppuccin-mocha
 # theme = yugen
-
 # theme = rose-pine
-background = #0b0b12
+# background = #0b0b12
 
 # theme = cyberdream
 title = Ghostty 👻
@@ -36,6 +37,7 @@ window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = false
 window-save-state = always
+window-padding-color = extend-always
 # window-decoration = none
 
 # Font
@@ -69,9 +71,9 @@ font-family = "Iosevka Nerd Font"
 # font-family = "MonoLisa"
 # font-family-bold
 
-font-family-italic = "CartographCF Nerd Font"
-font-style-italic = Regular Italic
-font-family-bold-italic = "CartographCF Nerd Font"
+# font-family-italic = "CartographCF Nerd Font"
+# font-style-italic = Regular Italic
+# font-family-bold-italic = "CartographCF Nerd Font"
 
 # font-family = "JetBrainsMono Nerd Font"
 # font-family-bold = "JetBrainsMono Nerd Font Mono"
@@ -82,7 +84,7 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
 # font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
 
-# adjust-cell-height = 8
+adjust-cell-height = 25%
 # adjust-cursor-height = 4
 
 # 使用更粗的笔触绘制字体
@@ -182,15 +184,18 @@ keybind = super+z=text:\x01\x7a
 # custom-shader = ./ghostty-shaders/sin-interference.glsl
 
 # Cursor
-# custom-shader = ./shaders-cursor/cursor_smear_fade.glsl
-# custom-shader = ./shaders-cursor/manga_slash.glsl
+custom-shader = ./shaders-cursor/cursor.glsl
 # custom-shader = ./shaders-cursor/cursor_frozen.glsl
+# custom-shader = ./shaders-cursor/blaze_sparks.glsl
+# custom-shader = ./shaders-cursor/cursor_blaze_no_trail.glsl # 光标高亮 无尾巴
+# custom-shader = ./shaders-cursor/party_sparks.glsl # 彩色火花光标爆炸
+# custom-shader = ./shaders-cursor/shake.glsl # 地震效果
+
 # custom-shader = ./shaders-cursor/cursor_blaze.glsl
-# custom-shader = ./shaders-cursor/cursor_smear.glsl
-custom-shader = ./shaders-cursor/cursor_blaze_tapered.glsl
-# custom-shader = ./shaders-cursor/cursor_blaze_lightning.glsl
-# custom-shader = ./shaders-cursor/cursor_blaze_lightning_boom.glsl
-# custom-shader = ./shaders-cursor/cursor_smear_fade_v2.glsl
+# custom-shader = ./shaders-cursor/cursor_border_1.glsl
+# custom-shader = ./shaders-cursor/cursor_smear_fade.glsl
+
+
 
 # custom-shader-animation = true
 
@@ -206,5 +211,4 @@ macos-auto-secure-input        = true
 macos-secure-input-indication  = true
 quit-after-last-window-closed  = false
 scrollback-limit               = 4200
-cursor-style                  = bar
 # shell-integration              = fish

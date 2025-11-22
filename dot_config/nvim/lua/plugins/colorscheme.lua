@@ -447,10 +447,49 @@ return {
     end,
   },
   {
+    "IroncladDev/osmium",
+    config = function()
+      require("osmium").setup({
+        integrations = {
+          gitsigns = true,
+          telescope = true,
+        },
+        transparent_bg = false,
+        show_end_of_buffer = false,
+      })
+
+      -- vim.cmd.colorscheme("osmium")
+    end,
+  },
+  {
+    "uhs-robert/oasis.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("oasis").setup({
+        style = nil,
+        use_legacy_comments = false,
+        styles = {
+          bold = true,
+          italic = true,
+          underline = true,
+          undercurl = true,
+          strikethrough = true,
+        },
+        transparent = true,
+        terminal_colors = true,
+        palette_overrides = {},
+        highlight_overrides = {},
+      })
+      vim.cmd.colorscheme("oasis-night") -- After setup, apply theme (or a any style like "oasis-night")
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "yugen",
-      colorscheme = "tokyodark",
+      -- colorscheme = "tokyodark",
+      -- colorscheme = "everforest",
       -- colorscheme = "synth",
     },
   },

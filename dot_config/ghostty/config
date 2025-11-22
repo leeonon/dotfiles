@@ -1,10 +1,11 @@
 # auto-update-channel = tip
 # UI
-# background-opacity = 0.8
-# background-blur-radius = 60
+background-opacity = 0.9
+background-blur-radius = 60
 cursor-style = block
 
-theme = custom
+# theme = custom
+theme = custom-cat
 # theme = Black Metal (Bathory)
 # theme = oldworld
 # theme = techbase

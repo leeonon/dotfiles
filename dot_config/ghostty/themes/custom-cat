@@ -1,0 +1,25 @@
+window-theme = auto
+palette = 0=#494d64
+palette = 1=#F18FAD
+palette = 2=#bff2d0
+palette = 3=#FAE3B0
+palette = 4=#97CCFB
+palette = 5=#f7b5f6
+palette = 6=#A6E3FF
+palette = 7=#828BB8
+
+palette = 8=#444A73
+palette = 9=#f5b1c6
+palette = 10=#d2f6dd
+palette = 11=#fceed0
+palette = 12=#b6dbfc
+palette = 13=#f9c4f8
+palette = 14=#c1ebff
+palette = 15=#C8D3F5
+
+background = #1D1E2E
+foreground = #cad3f5
+cursor-color = #F7B5F6
+cursor-text = #24273a
+selection-background = #7571F9
+selection-foreground = #FFFFFF

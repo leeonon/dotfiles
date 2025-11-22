@@ -122,7 +122,8 @@ alias nv="neovide --frame buttonless --title-hidden"
 # 使用 bat 代替 cat
 alias cat='bat --paging=never'
 # bpytop 终端资源监控器
-alias kale='bpytop'
+# alias kale='bpytop'
+alias kale='btop'
 # lazydocker docker 管理支持鼠标
 alias lazydocker='lazydocker'
 # duf 查看磁盘信息

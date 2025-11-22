@@ -40,7 +40,8 @@ return {
       },
       buffers = { follow_current_file = { enabled = true } },
       window = {
-        position = "float", -- left, right, top, bottom, float, current
+        width = 60,
+        position = "left", -- left, right, top, bottom, float, current
         mappings = {
           ["D"] = "trash",
           -- 打开文件而不失去侧边栏焦点
@@ -164,7 +165,7 @@ return {
         end,
       },
     })
-    vim.keymap.set("n", "<C-m>", ":Neotree filesystem reveal float<CR>", {})
+    vim.keymap.set("n", "<C-m>", ":Neotree filesystem reveal left<CR>", {})
     -- vim.keymap.set("n", "<C-i>", ":Neotree reveal<cr>", {
     --   desc = "Toggle Neo-tree",
     -- })

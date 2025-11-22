@@ -7,7 +7,7 @@ customCommands:
     key: "C"
   - command: "git commit -m '{{ .Form.emoji }} {{ if .Form.scope }} ({{ .Form.scope }}): {{ end }} {{ .Form.message }}'"
     context: files
-    description: Commit changes using gitmojis
+    description: 使用GitMojis提交更改
     key: I
     prompts:
       - command: gitmoji -l
@@ -94,10 +94,10 @@ gui:
   showIcons: true
 
 git:
-  branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' {{branchName}} --"
-  allBranchesLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
+  branchlogcmd: "git log --graph --color=always --pretty='%cred%h%creset -%c(auto)%d%creset %s %cgreen(%cr) %c(bold blue)<%an>%creset' {{branchname}} --"
+  allbrancheslogcmd: "git log --graph --color=always --pretty='%cred%h%creset -%c(auto)%d%creset %s %cgreen(%cr) %c(bold blue)<%an>%creset' --all"
   # 自定义分页器
-  # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/custom_pagers.md
   paging:
-    colorArg: always
-    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    colorarg: always
+    pager: delta --dark --paging=never --line-numbers --hyperlinks --side-by-side --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

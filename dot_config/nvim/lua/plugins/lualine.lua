@@ -241,7 +241,7 @@ return {
           {
             function()
               -- 󰂵           󰝨 󰙴  󰊠 󱙝  
-              return "󱙝"
+              return ""
             end,
             color = function()
               local mode_color = modecolor
@@ -407,7 +407,7 @@ return {
               return getLspName()
             end,
             -- separator = { left = "", right = "" },
-            -- separator = { left = "", right = "" },
+            separator = { left = "", right = "" },
             color = { bg = nil, fg = colors.purple, gui = "bold" },
           },
         },

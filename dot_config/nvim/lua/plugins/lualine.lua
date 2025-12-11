@@ -95,11 +95,37 @@ else
   vim.notify("Failed to create timer", vim.log.levels.WARN)
 end
 
-local function get_lualine_colors()
-  local colorname = vim.g.colors_name:gsub("^four%-symbols%-", "") or "black-tortoise"
-  local name = vim.g.colors_name:match("^four%-symbols%-") and colorname or "black-tortoise"
-  local c = require("four-symbols.palette").get_palette(name)
-  return c
+local function copilot_status()
+  return {
+    function()
+      return " "
+    end,
+    color = function()
+      local status = require("sidekick.status").get()
+      if status then
+        return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
+      end
+    end,
+    cond = function()
+      local status = require("sidekick.status")
+      return status.get() ~= nil
+    end,
+  }
+end
+
+local function cli_sessions_status()
+  return {
+    function()
+      local status = require("sidekick.status").cli()
+      return " " .. (#status > 1 and #status or "")
+    end,
+    cond = function()
+      return #require("sidekick.status").cli() > 0
+    end,
+    color = function()
+      return "Special"
+    end,
+  }
 end
 
 local function getLspName()
@@ -159,6 +185,7 @@ local function getLspName()
 end
 
 local icons = require("lazyvim.config").icons
+
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
@@ -313,6 +340,8 @@ return {
               removed = { fg = colors.red },
             },
           },
+          copilot_status(),
+          cli_sessions_status(),
           "searchcount",
           {
             function()

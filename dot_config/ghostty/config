@@ -2,7 +2,9 @@
 # UI
 background-opacity = 0.9
 background-blur-radius = 60
-cursor-style = block
+cursor-style = bar
+cursor-style-blink = true
+cursor-click-to-move = true
 
 # theme = custom
 theme = custom-cat
@@ -13,6 +15,7 @@ theme = custom-cat
 # theme = yugen
 # theme = rose-pine
 # background = #0b0b12
+background = #191d23
 
 # theme = cyberdream
 title = Ghostty 👻
@@ -42,7 +45,7 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 16
+font-size = 15.5
 # font-family = MonoLisa
 # font-style = Medium
 # font-style = Regular
@@ -59,6 +62,7 @@ font-size = 16
 # font-family = "JetBrains Mono"
 # font-family = "JetBrainsMono Nerd Font"
 font-family = "Iosevka Nerd Font"
+# font-family = "Berkeley Mono"
 # font-family = "Iosevka Term"
 # font-family = "Fantasque Sans Mono"
 # font-family = "DM Mono"
@@ -85,7 +89,7 @@ font-family = "Iosevka Nerd Font"
 # font-codepoint-map = U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0=BlexMono Nerd Font
 # font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF=Maple Mono NF CN
 
-adjust-cell-height = 25%
+adjust-cell-height = 35%
 # adjust-cursor-height = 4
 
 # 使用更粗的笔触绘制字体
@@ -160,6 +164,7 @@ keybind = super+z=text:\x01\x7a
 # custom-shader = ./ghostty-shaders/retro-terminal.glsl
 # 扭曲 静态
 # custom-shader = ./ghostty-shaders/bettercrt.glsl
+# 星空穿越
 # custom-shader = ./ghostty-shaders/starfield-colors.glsl
 # 渐变
 # custom-shader = ./ghostty-shaders/gradient-background.glsl

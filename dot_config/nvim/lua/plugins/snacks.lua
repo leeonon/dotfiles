@@ -58,7 +58,7 @@ return {
     picker = {
       -- !NOTE: picker keymaps : https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#%EF%B8%8F-config
       -- prompt = "➡️ ",
-      prompt = "[SNACKS] ➡️ ",
+      prompt = "[SNACKS] 🍪 ",
       focus = "input", -- "input" | "list" ,
       layout = {
         cycle = true,
@@ -102,6 +102,14 @@ return {
         Snacks.picker.buffers()
       end,
       desc = "Buffers",
+    },
+    {
+      "<leader>.",
+      nil,
+    },
+    {
+      "<leader>S",
+      nil,
     },
   },
   init = function()

@@ -8,7 +8,7 @@ return {
       require("tiny-inline-diagnostic").setup({
         -- "modern", "classic", "minimal", "powerline",
         -- "ghost", "simple", "nonerdfont", "amongus"
-        preset = "ghost",
+        preset = "amongus",
         transparent_bg = false,
         -- signs = {
         --   left = "",

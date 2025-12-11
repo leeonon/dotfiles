@@ -1,5 +1,6 @@
 return {
   "nvim-mini/mini.files",
+  enabled = false,
   opts = {
     windows = {
       preview = true,

@@ -42,6 +42,7 @@ return {
         "query",
         "astro",
         "rust",
+        "dart",
       },
     },
   },

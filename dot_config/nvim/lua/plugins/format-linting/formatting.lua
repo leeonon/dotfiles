@@ -1,5 +1,4 @@
 -- conform 格式化配置
-
 -- Biome 支持 https://github.com/LazyVim/LazyVim/issues/2116
 
 local function find_config(bufnr, config_files)
@@ -37,23 +36,6 @@ local function biome_or_prettier(bufnr)
   return {}
 end
 
-local supported = {
-  "astro",
-  "css",
-  "graphql",
-  -- "html",
-  "javascript",
-  "javascriptreact",
-  "json",
-  "jsonc",
-  -- "markdown",
-  "svelte",
-  "typescript",
-  "typescriptreact",
-  "vue",
-  -- "yaml",
-}
-
 return {
   "stevearc/conform.nvim",
   opts = {
@@ -78,7 +60,8 @@ return {
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt" },
-      dart = { "dart_format" },
+      -- 使用 lsp 格式化 dart
+      -- dart = { "dart_format" },
     },
   },
 }

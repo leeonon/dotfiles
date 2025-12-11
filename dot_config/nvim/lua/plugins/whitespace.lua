@@ -1,6 +1,6 @@
 return {
   "mcauley-penney/visual-whitespace.nvim",
-  enabled = false,
+  enabled = true,
   config = true,
   event = "ModeChanged *:[vV\22]", -- optionally, lazy load on entering visual mode
   opts = {

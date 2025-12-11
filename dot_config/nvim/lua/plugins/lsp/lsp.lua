@@ -22,6 +22,43 @@ local config = {
   -- },
 }
 
+local function find_tailwind_global_css()
+  local target = "@import 'tailwindcss';"
+
+  -- Find project root using `.git`
+  local buf = vim.api.nvim_get_current_buf()
+  local root = vim.fs.root(buf, function(name)
+    return name == ".git"
+  end)
+
+  if not root then
+    return nil -- no project root found
+  end
+
+  -- Find stylesheet files in the project root (recursively)
+  local files = vim.fs.find(function(name)
+    return name:match("%.css$") or name:match("%.scss$") or name:match("%.pcss$")
+  end, {
+    path = root,
+    type = "file",
+    limit = math.huge, -- search full tree
+  })
+
+  for _, path in ipairs(files) do
+    local f = io.open(path, "r")
+    if f then
+      local content = f:read("*a")
+      f:close()
+
+      if content:find(target, 1, true) then
+        return path -- return first match
+      end
+    end
+  end
+
+  return nil
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -71,11 +108,11 @@ return {
         tailwindcss = {
           settings = {
             tailwindCSS = {
-              -- lint = {
-              --   invalidApply = false,
-              -- },
               classAttributes = { "class", "className", "ngClass" },
               experimental = {
+                -- configFile = "/Users/ly/code/github/molink/app/src/lib/styles/tailwind.css",
+                -- TODO: 在 Tailwind v4 中寻找配置文件的解决方案，关注 PR 状态: https://github.com/neovim/nvim-lspconfig/pull/4222/files
+                configFile = find_tailwind_global_css(),
                 classRegex = {
                   "tw`([^`]*)", -- tw`...`
                   "tw='([^']*)", -- <div tw="..." />
@@ -93,6 +130,7 @@ return {
           },
         },
         volar = {
+          enabled = false,
           settings = {
             css = {
               validate = true,
@@ -109,6 +147,7 @@ return {
           },
         },
         cssls = {
+          enabled = false,
           settings = {
             css = {
               validate = true,
@@ -138,7 +177,6 @@ return {
             })
           end,
         },
-        dart = {},
         cssmodules_ls = {
           enabled = false,
         },
@@ -151,15 +189,6 @@ return {
           },
         },
       },
-      -- 代码折叠相关
-      -- capabilities = {
-      --   textDocument = {
-      --     foldingRange = {
-      --       dynamicRegistration = false,
-      --       lineFoldingOnly = true,
-      --     },
-      --   },
-      -- },
     },
   },
   -- 展示 Lsp 加载进度UI

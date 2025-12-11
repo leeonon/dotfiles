@@ -257,34 +257,6 @@ return {
     },
   },
   {
-    "sainnhe/everforest",
-    priority = 1000,
-    config = function()
-      vim.g.everforest_enable_italic = true
-      vim.g.everforest_transparent_background = true
-      vim.g.everforest_diagnostic_text_highlight = 1
-      vim.g.everforest_diagnostic_line_highlight = 1
-      vim.g.everforest_diagnostic_virtual_text = "highlighted"
-      vim.g.everforest_background = "hard"
-      vim.g.everforest_ui_contrast = "high"
-      -- vim.g.everforest_current_word = "underline"
-    end,
-  },
-  {
-    "sainnhe/gruvbox-material",
-    enabled = true,
-    priority = 1000,
-    config = function()
-      vim.g.gruvbox_material_transparent_background = 0
-      vim.g.gruvbox_material_foreground = "mix"
-      vim.g.gruvbox_material_background = "hard"
-      vim.g.gruvbox_material_ui_contrast = "high"
-      vim.g.gruvbox_material_float_style = "bright"
-      vim.g.gruvbox_material_statusline_style = "mix" -- Options: "original", "material", "mix", "afterglow"
-      vim.g.gruvbox_material_cursor = "auto"
-    end,
-  },
-  {
     "dgox16/oldworld.nvim",
     lazy = false,
     priority = 1000,
@@ -341,34 +313,6 @@ return {
           -- BlinkCmpKindIconEnumMember = { fg = fg_color, bg = bg_color },
         },
       })
-    end,
-  },
-  {
-    "nyoom-engineering/oxocarbon.nvim",
-  },
-  {
-    "Skardyy/makurai-nvim",
-    config = function()
-      require("makurai").setup({
-        transparent = false,
-        bordered = true,
-        increase_contrast = false,
-      })
-    end,
-  },
-  {
-    "metalelf0/black-metal-theme-neovim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("black-metal").setup({
-        -- transparent = true,
-      })
-      -- require("black-metal").load()
-      -- vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = "#111111" })
-      -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#222222" })
-      -- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#111111", bg = "NONE" })
-      -- vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "NONE", fg = "#e78a43" })
     end,
   },
   {
@@ -430,58 +374,64 @@ return {
     config = function() end,
   },
   {
-    "vertexE/synth.nvim",
-    priority = 1000,
+    "sam4llis/nvim-tundra",
     config = function()
-      require("synth").setup({
-        override_colors = {},
-        override_hl = function(colors)
-          return {
-            ["Normal"] = { bg = "NONE", fg = colors.text_200:hex() },
-            ["NormalFloat"] = { bg = "NONE", fg = colors.text_200:hex() },
-            StatusLine = { bg = "NONE" }, -- 活动窗口的 lualine
-            StatusLineNC = { bg = "NONE" }, -- 非活动窗口的 lualine
-          }
-        end,
-      })
-    end,
-  },
-  {
-    "IroncladDev/osmium",
-    config = function()
-      require("osmium").setup({
-        integrations = {
-          gitsigns = true,
-          telescope = true,
+      require("nvim-tundra").setup({
+        transparent_background = false,
+        dim_inactive_windows = {
+          enabled = false,
+          color = nil,
         },
-        transparent_bg = false,
-        show_end_of_buffer = false,
+        sidebars = {
+          enabled = true,
+          color = nil,
+        },
+        editor = {
+          search = {},
+          substitute = {},
+        },
+        syntax = {
+          booleans = { bold = true, italic = true },
+          comments = { bold = true, italic = true },
+          conditionals = {},
+          constants = { bold = true },
+          fields = {},
+          functions = {},
+          keywords = {},
+          loops = {},
+          numbers = { bold = true },
+          operators = { bold = true },
+          punctuation = {},
+          strings = {},
+          types = { italic = true },
+        },
+        diagnostics = {
+          errors = {},
+          warnings = {},
+          information = {},
+          hints = {},
+        },
+        plugins = {
+          lsp = true,
+          semantic_tokens = true,
+          treesitter = true,
+          telescope = true,
+          nvimtree = true,
+          cmp = true,
+          context = true,
+          dbui = true,
+          gitsigns = true,
+          neogit = true,
+          textfsm = true,
+        },
+        overwrite = {
+          colors = {},
+          highlights = {},
+        },
       })
 
-      -- vim.cmd.colorscheme("osmium")
-    end,
-  },
-  {
-    "uhs-robert/oasis.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("oasis").setup({
-        style = nil,
-        use_legacy_comments = false,
-        styles = {
-          bold = true,
-          italic = true,
-          underline = true,
-          undercurl = true,
-          strikethrough = true,
-        },
-        transparent = true,
-        terminal_colors = true,
-        palette_overrides = {},
-        highlight_overrides = {},
-      })
-      vim.cmd.colorscheme("oasis-night") -- After setup, apply theme (or a any style like "oasis-night")
+      vim.g.tundra_biome = "jungle" -- 'arctic' or 'jungle'
+      vim.opt.background = "dark"
     end,
   },
   {
@@ -491,6 +441,9 @@ return {
       -- colorscheme = "tokyodark",
       -- colorscheme = "everforest",
       -- colorscheme = "synth",
+      colorscheme = "catppuccin",
+      -- colorscheme = "tundra",
+      -- colorscheme = "techbase",
     },
   },
 }

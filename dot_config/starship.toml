@@ -1,61 +1,166 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
-[╭](bold overlay1)🛸 \
+[╭](fg:current_line)\
+$os\
+$status\
 $directory\
 $git_branch\
 $git_status\
-$kubernetes \
-$time \
-\n$character"""
+$fill\
+$golang\
+$nodejs\
+$bun\
+$deno\
+$python\
+$java\
+$zig\
+$rust\
+$c\
+$cmd_duration\
+$time\
+$username\
+$line_break\
+$character\
+"""
 
-palette = 'gruvbox'
+# palette = 'catppuccin_mocha'
+palette = 'tokyo_night'
+add_newline = true
 
-[palettes.gruvbox]
-color_fg0 = '#ebdbb2'    # text foreground
-color_bg0 = '#3C4841'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
-color_red = '#cc241d'
-color_yellow = '#d79921'
+[palettes.catppuccin_mocha]
+foreground = '#D9E0EE'
+background = '#1E1E2E'
+current_line = '#2E2E3E'
+primary = '#313244'
+box = '#2E2E3E'
+blue = '#8AADF4'
+cyan = '#76E3F6'
+green = '#A6E3A1'
+orange = '#F9AF74'
+pink = '#F5BDE6'
+purple = '#CBA6F7'
+red = '#F38BA8'
+yellow = '#F9E2AF'
+status = "#e23140"
+prompt_ok = "#8047c1"
+prompt_err = "#e23140"
+
+[palettes.tokyo_night]
+foreground = '#D8D8D8'
+background = '#1A1B26'
+current_line = '#2A2C37'
+primary = '#292E42'
+box = '#2A2C37'
+blue = '#7AA2F7'
+cyan = '#7FDBCA'
+green = '#98C379'
+orange = '#FF9E64'
+pink = '#FF75A0'
+purple = '#BB80B3'
+red = '#F7768E'
+yellow = '#E5C07B'
+status = "#e23140"
+prompt_ok = "#8047c1"
+prompt_err = "#e23140"
+
+
+[os]
+format = '(fg:current_line)[](fg:red)[](fg:primary bg:red)[](fg:red)'
+disabled = false
+
+[status]
+format = "[─](fg:current_line)[](fg:status)[](fg:primary bg:status)[](fg:status bg:box)[ $status](fg:foreground bg:box)[](fg:box)"
+pipestatus = true
+pipestatus_separator = "-"
+pipestatus_segment_format = "$status"
+pipestatus_format = "[─](fg:current_line)[](fg:status)[](fg:primary bg:status)[](fg:status bg:box)[ $pipestatus](fg:foreground bg:box)[](fg:box)"
+disabled = false
+
+[directory]
+format = '[─](fg:current_line)[](fg:pink)[](fg:primary bg:pink)[](fg:pink bg:box)[ $read_only$truncation_symbol$path](fg:foreground bg:box)[](fg:box)'
+home_symbol = " ~/"
+truncation_symbol = ' '
+truncation_length = 2
+read_only = '󱧵 '
+read_only_style = ''
+
+[git_branch]
+format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $branch](fg:foreground bg:box)'
+symbol = ''
+
+[git_status]
+format = '[$all_status](fg:green bg:box)[](fg:box)'
+conflicted = ' ='
+up_to_date = ''
+untracked = ' ?${count}'
+stashed = ' $'
+modified = ' !${count}'
+staged = ' +'
+renamed = ' »'
+deleted = ' ✘'
+ahead = ' ⇡${count}'
+diverged = ' ⇕⇡${ahead_count}⇣${behind_count}'
+behind = ' ⇣${count}'
+
+[nodejs]
+format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = '󰎙 Node.js'
+
+[bun]
+format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = ' Bun'
+
+[deno]
+format = '[─](fg:current_line)[](fg:purple)[$symbol](fg:primary bg:purple)[](fg:purple bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = '🦕 Deno'
+
+[zig]
+format = '[─](fg:current_line)[](fg:blue)[$symbol](fg:primary bg:blue)[](fg:blue bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = '⚡️ Zig'
+
+[rust]
+format = '[─](fg:current_line)[](fg:yellow)[$symbol](fg:primary bg:yellow)[](fg:yellow bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = ' Rust'
+
+[python]
+format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ (${version} )(\($virtualenv\) )](fg:foreground bg:box)[](fg:box)'
+symbol = ' python'
+
+[java]
+format = '[─](fg:current_line)[](fg:red)[$symbol](fg:primary bg:red)[](fg:red bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = ' Java'
+
+[golang]
+format = '[─](fg:current_line)[](fg:red)[$symbol](fg:primary bg:red)[](fg:red bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = '󰑮 Go'
+
+[c]
+format = '[─](fg:current_line)[](fg:blue)[$symbol](fg:primary bg:blue)[](fg:blue bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
+symbol = ' C'
+
+[fill]
+symbol = '─'
+style = 'fg:current_line'
+
+[cmd_duration]
+min_time = 500
+format = '[─](fg:current_line)[](fg:orange)[](fg:primary bg:orange)[](fg:orange bg:box)[ $duration](fg:foreground bg:box)[](fg:box)'
+
+[time]
+format = '[─](fg:current_line)[](fg:purple)[󰦖](fg:primary bg:purple)[](fg:purple bg:box)[ $time](fg:foreground bg:box)[](fg:box)'
+time_format = '%H:%M'
+disabled = false
+
+[username]
+format = '[─](fg:current_line)[](fg:yellow)[](fg:primary bg:yellow)[](fg:yellow bg:box)[ $user](fg:foreground bg:box)[](fg:box) '
+show_always = true
 
 [character]
 format = """
-[╰─$symbol](fg:overlay1) """
-success_symbol = '[](fg:bold text)'
-error_symbol = '[](fg:bold red)'
+[╰─$symbol](fg:current_line) """
+success_symbol = "[❯](fg:prompt_ok)"
+error_symbol = "[❯](fg:prompt_err)"
 
-[directory]
-# style = "fg:color_fg0 bg:color_bg0"
-format = '$path'
-truncation_length = 3
-truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-
-[git_branch]
-style = "fg:color_yellow"
-disabled = false
-symbol = ""
-format = '( | [$symbol]($style) $branch)'
-
-[git_status]
-disabled = false
-style = "fg:color_orange"
-format = '( [$all_status]($style))'
-
-[kubernetes]
-disabled = false
-style = "fg:color_yellow"
-format = '( | [$context]($style)( in [$namespace]($style)))'
-
-[time]
-disabled = false
-time_format = "%R" # Hour:Minute Format
-format = '| $time'
+[profiles]
+transient = """$character"""

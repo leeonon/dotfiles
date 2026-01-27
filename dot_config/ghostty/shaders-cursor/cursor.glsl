@@ -71,8 +71,10 @@ float ease(float x) {
 // const vec4 TRAIL_COLOR = vec4(0.9486, 0.7286, 0.2774, 1.0);
 // const vec4 TRAIL_COLOR_ACCENT = vec4(0.8598, 0.0598, 0.0598, 1.0);
 
-const vec4 TRAIL_COLOR = vec4(0.7229, 0.5304, 0.2356, 1.0);
-const vec4 TRAIL_COLOR_ACCENT = vec4(0.5897, 0.0897, 0.0897, 1.0);
+// const vec4 TRAIL_COLOR = vec4(0.7229, 0.5304, 0.2356, 1.0);
+// const vec4 TRAIL_COLOR_ACCENT = vec4(0.5897, 0.0897, 0.0897, 1.0);
+const vec4 TRAIL_COLOR        = vec4(0.4157, 0.5451, 0.8902, 1.0);
+const vec4 TRAIL_COLOR_ACCENT = vec4(0.1333, 0.2196, 0.6392, 1.0);
 
 // const vec4 TRAIL_COLOR = vec4(0.675, 0.631, 0.812, 1.0);
 // const vec4 TRAIL_COLOR_ACCENT = vec4(0.757, 0.682, 0.875, 1.0);

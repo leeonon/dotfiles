@@ -6,6 +6,7 @@ local icons = require("icons.icons")
 return {
   "sindrets/diffview.nvim",
   cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+  enabled = false,
   keys = {
     { "<leader>go", nil, desc = "DiffView" },
     { "<leader>goo", "<cmd>DiffviewOpen<cr>", desc = "DiffView Open" },

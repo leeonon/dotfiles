@@ -6,8 +6,12 @@
 --
 local keymap = vim.keymap
 
-keymap.set("n", "\\", "<CMD>:sp<CR>", { desc = "Split window horizontally" })
-keymap.set("n", "|", "<CMD>:vsp<CR>", { desc = "Split window vertically" })
+-- keymap.set("n", "\\", "<CMD>:sp<CR>", { desc = "Split window horizontally" })
+-- keymap.set("n", "|", "<CMD>:vsp<CR>", { desc = "Split window vertically" })
+
+-- 避免使用 Ctrl + a 和 Ctrl + x, 会不小心触发数字增减
+keymap.set("n", "<C-a>", "<Nop>")
+keymap.set("n", "<C-x>", "<Nop>")
 
 keymap.set("i", "jk", "<Esc>")
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Move cursor down" })
@@ -32,14 +36,6 @@ keymap.set("n", "<leader>q", "<cmd>q<cr>")
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
 keymap.set("n", "<leader>x", "<cmd>x<cr>")
 
--- 选中整个文件 - vig
--- 复制整个文件 - yig
-keymap.set("n", "<leader>i", ":Neotree filesystem reveal float<CR>", {})
-
--- 避免使用 Ctrl + a 和 Ctrl + x, 会不小心触发数字增减
-keymap.set("n", "<C-a>", "<Nop>")
-keymap.set("n", "<C-x>", "<Nop>")
-
 -- hinell/duplicate.nvim 多行复制移动
 keymap.set("n", "<S-A-Up>", "<CMD>LineDuplicate -1<CR>", { desc = "Line: duplicate up" })
 keymap.set("n", "<S-A-Down>", "<CMD>LineDuplicate +1<CR>", { desc = "Line: duplicate down" })
@@ -48,21 +44,19 @@ keymap.set("v", "<S-A-Down>", "<CMD>VisualDuplicate +1<CR>", { desc = "Selection
 
 -- 行号
 keymap.set("n", "<leader>ul", function()
-  if vim.wo.relativenumber then
-    vim.wo.relativenumber = false
-    vim.wo.number = false
-  else
-    vim.wo.relativenumber = true
-    vim.wo.number = true
-  end
+    if vim.wo.relativenumber then
+        vim.wo.relativenumber = false
+        vim.wo.number = false
+    else
+        vim.wo.relativenumber = true
+        vim.wo.number = true
+    end
 end, { desc = "Toggle Line Numbers" })
 
--- 复制一行并注释掉第一行
-keymap.set("n", "ycc", "yygccp", { remap = true })
 -- 在 INSERT 和 NORMAL 模式下自动在行尾添加分号或逗号
-keymap.set("i", ";;", "<ESC>A;")
+-- keymap.set("i", ";;", "<ESC>A;")
 keymap.set("i", ",,", "<ESC>A,")
-keymap.set("n", ";;", "A;<ESC>")
+-- keymap.set("n", ";;", "A;<ESC>")
 keymap.set("n", ",,", "A,<ESC>")
 
 -- 调整窗口大小 - Ctrl + w + = 恢复窗口大小
@@ -83,12 +77,14 @@ keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 
 keymap.set("n", "<leader>ca", function()
-  require("tiny-code-action").code_action()
+    require("tiny-code-action").code_action()
 end, { noremap = true, silent = true })
 
 -- 重载 Neovim 配置
 vim.keymap.set("n", "<leader>rr", function()
-  vim.cmd("source $MYVIMRC")
-  vim.cmd("Lazy reload")
-  print("配置已重载")
+    vim.cmd("source $MYVIMRC")
+    vim.cmd("Lazy reload")
+    print("配置已重载")
 end, { desc = "重载 Neovim 配置" })
+
+vim.keymap.set("n", "<leader>tk", require("nvim-pretty-ts-errors").show_line_diagnostics)

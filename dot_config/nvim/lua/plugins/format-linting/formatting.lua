@@ -48,6 +48,7 @@ return {
       javascript = biome_or_prettier,
       typescript = biome_or_prettier,
       javascriptreact = biome_or_prettier,
+      vue = biome_or_prettier,
       typescriptreact = biome_or_prettier,
       svelte = biome_or_prettier,
       css = { "prettierd" },

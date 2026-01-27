@@ -17,7 +17,7 @@ return {
       indent = {
         enable = false,
         chars = {
-          "│",
+          "┊",
           "¦",
           "┆",
           "┊",
@@ -40,7 +40,7 @@ return {
       },
       line_num = {
         style = "#899d9c",
-        enable = true,
+        enable = false,
       },
     })
   end,

@@ -6,21 +6,21 @@
 -- The default conceallevel is 3 in LazyVim
 -- 文件不自动隐藏双引号
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "json", "jsonc" },
-  callback = function()
-    vim.wo.conceallevel = 0
-  end,
+    pattern = { "json", "jsonc" },
+    callback = function()
+        vim.wo.conceallevel = 0
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "markdown" },
-  callback = function()
-    vim.wo.conceallevel = 1
-  end,
+    pattern = { "markdown" },
+    callback = function()
+        vim.wo.conceallevel = 1
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown" },
-  -- markdown 文件不启用拼写检查
-  command = "setlocal nospell",
+    pattern = { "markdown" },
+    -- markdown 文件不启用拼写检查
+    command = "setlocal nospell",
 })

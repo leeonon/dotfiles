@@ -8,16 +8,14 @@ return {
   config = function()
     require("flutter-tools").setup({
       dev_log = {
-        enabled = false,
+        enabled = true,
       },
       dev_tools = {
         autostart = true,
         auto_openbrowser = true,
       },
       debugger = {
-        exception_breakpoints = {},
-        enable = true,
-        -- run_via_dap = false, -- 只 attach, 不 run
+        enable = false,
       },
       outline = {
         open_cmd = "40vnew", -- 打开大纲的窗口命令

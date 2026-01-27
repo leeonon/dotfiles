@@ -2,7 +2,7 @@
 return {
   {
     "mrcjkb/rustaceanvim",
-    version = "^6",
+    version = "^7",
     lazy = false, -- This plugin is already lazy
     ft = { "rust" },
     config = function()
@@ -10,14 +10,6 @@ return {
       vim.keymap.set("n", "<leader>rt", function()
         vim.cmd.RustLsp("openCargo")
       end, { silent = true, buffer = bufnr, desc = "打开Cargo.toml" })
-      -- vim.keymap.set(
-      --   "n",
-      --   "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-      --   function()
-      --     vim.cmd.RustLsp({ "hover", "actions" })
-      --   end,
-      --   { silent = true, buffer = bufnr }
-      -- )
       vim.keymap.set("n", "<leader>ct", function()
         vim.cmd.RustLsp("codeAction")
       end, { desc = "Code Action", buffer = bufnr })
@@ -25,6 +17,17 @@ return {
         vim.cmd.RustLsp("debuggables")
       end, { desc = "Rust Debuggables", buffer = bufnr })
     end,
+  },
+  {
+    "alexpasmantier/krust.nvim",
+    ft = "rust",
+    opts = {
+      keymap = "<leader>k", -- Set a keymap for Rust buffers (default: false)
+      float_win = {
+        border = "rounded", -- Border style: "none", "single", "double", "rounded", "solid", "shadow"
+        auto_focus = false, -- Auto-focus float (default: false)
+      },
+    },
   },
   {
     "Saecki/crates.nvim",

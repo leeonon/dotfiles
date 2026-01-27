@@ -1,5 +1,6 @@
 local git_status_cache = {}
 
+local normal_color = "#b0b0b0"
 local colors = {
   bg = "#161617",
   fg = "#c9c7cd",
@@ -93,39 +94,6 @@ if timer then
   timer:start(0, 1000, async_git_status_update)
 else
   vim.notify("Failed to create timer", vim.log.levels.WARN)
-end
-
-local function copilot_status()
-  return {
-    function()
-      return " "
-    end,
-    color = function()
-      local status = require("sidekick.status").get()
-      if status then
-        return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
-      end
-    end,
-    cond = function()
-      local status = require("sidekick.status")
-      return status.get() ~= nil
-    end,
-  }
-end
-
-local function cli_sessions_status()
-  return {
-    function()
-      local status = require("sidekick.status").cli()
-      return " " .. (#status > 1 and #status or "")
-    end,
-    cond = function()
-      return #require("sidekick.status").cli() > 0
-    end,
-    color = function()
-      return "Special"
-    end,
-  }
 end
 
 local function getLspName()
@@ -268,7 +236,7 @@ return {
           {
             function()
               -- 󰂵           󰝨 󰙴  󰊠 󱙝  
-              return ""
+              return "󰙴 "
             end,
             color = function()
               local mode_color = modecolor
@@ -288,18 +256,18 @@ return {
           -- filesize,
         },
         lualine_b = {
-          "filetype",
+          -- "filetype",
           -- "buffers",
           {
             "branch",
             icon = "", -- ",
-            color = { bg = nil, fg = colors.green, gui = "bold" },
+            color = { bg = nil, fg = normal_color, gui = "" },
             -- separator = { left = "", right = "" },
             -- separator = { left = "", right = "" },
           },
           {
             get_ahead_behind_info,
-            color = { fg = colors.cyan },
+            color = { fg = normal_color },
           },
           -- "encoding",
           -- "fileformat",
@@ -310,7 +278,7 @@ return {
             icon_show = true,
             file_status = true, -- Displays file status (readonly status, modified status)
             newfile_status = true, -- Display new file status (new file means no write after created)
-            path = 0,
+            path = 1,
             -- 0: Just the filename
             -- 1: Relative path
             -- 2: Absolute path
@@ -329,19 +297,17 @@ return {
           {
             "diff",
             -- color = { bg = colors.gray2, fg = colorsbg_01, gui = "bold" },
-            color = { bg = nil, fg = colors.orange, gui = "bold" },
+            color = { bg = nil, fg = normal_color, gui = "" },
             -- separator = { left = "", right = "" },
             -- separator = { left = "", right = "" },
             symbols = { added = " ", modified = " ", removed = " " },
 
             diff_color = {
-              added = { fg = colors.green },
-              modified = { fg = colors.yellow },
-              removed = { fg = colors.red },
+              added = { fg = normal_color },
+              modified = { fg = normal_color },
+              removed = { fg = normal_color },
             },
           },
-          copilot_status(),
-          cli_sessions_status(),
           "searchcount",
           {
             function()
@@ -360,29 +326,20 @@ return {
           },
           -- {
           --   "location",
-          --   color = { bg = nil, fg = colors.yellow, gui = "bold" },
+          --   color = { bg = nil, fg = colors.yellow, gui = "" },
           --   -- separator = { left = "", right = "" },
           --   -- separator = { left = "", right = "" },
           -- },
         },
         lualine_x = {
-          space,
-          "g:obsidian",
-          space,
           {
             function()
-              return require("noice").api.status.mode.get()
+              return "  " .. require("dap").status()
             end,
             cond = function()
-              return package.loaded["noice"] and require("noice").api.status.mode.has()
+              return package.loaded["dap"] and require("dap").status() ~= ""
             end,
-            color = { fg = Snacks.util.color("Constant") },
-          },
-          -- stylua: ignore
-          {
-            function() return "  " .. require("dap").status() end,
-            cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = { fg = Snacks.util.color("Debug") }
+            color = { fg = Snacks.util.color("Debug") },
           },
           {
             require("lazy.status").updates,
@@ -415,7 +372,7 @@ return {
               info = { fg = colors.purple },
               hint = { fg = colors.cyan },
             },
-            color = { bg = nil, fg = colors.orange, gui = "bold" },
+            color = { bg = nil, fg = colors.orange, gui = "" },
             -- color = { bg = nil, fg = colors.blue },
             -- separator = { left = "" },
             -- separator = { left = "", right = "" },
@@ -437,7 +394,7 @@ return {
             end,
             -- separator = { left = "", right = "" },
             separator = { left = "", right = "" },
-            color = { bg = nil, fg = colors.purple, gui = "bold" },
+            color = { bg = nil, fg = normal_color, gui = "" },
           },
         },
       },

@@ -254,6 +254,7 @@ eval "$(zoxide init zsh)"
 # ---------------------------------------------- zoxide end ----------------------------------------------
 
 # eval "$(atuin init zsh --disable-up-arrow)"
+# Shell 历史记录
 eval "$(atuin init zsh)"
 
 # bun completions

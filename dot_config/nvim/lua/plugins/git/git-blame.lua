@@ -19,7 +19,7 @@ return {
     vim.g.gitblame_clear_event = "CursorHoldI"
   end,
   opts = {
-    enabled = false,
+    enabled = true,
     date_format = "%r",
     message_template = " <author> 󰔠 <date> 󰈚 <summary>",
     -- message_when_not_committed = "  Not Committed Yet",

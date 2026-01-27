@@ -1,10 +1,9 @@
----@type LazySpec
 return {
   "mikavilpas/yazi.nvim",
   event = "VeryLazy",
   keys = {
     {
-      "<leader>-",
+      "<A-0>",
       function()
         require("yazi").yazi()
       end,
@@ -12,14 +11,14 @@ return {
     },
     {
       -- Open in the current working directory
-      "<leader>cw",
+      "<A-1>",
       function()
         require("yazi").yazi(nil, vim.fn.getcwd())
       end,
       desc = "Open the file manager in nvim's working directory",
     },
     {
-      "<c-up>",
+      "A-2",
       function()
         -- NOTE: requires a version of yazi that includes
         -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18

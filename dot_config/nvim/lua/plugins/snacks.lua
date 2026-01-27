@@ -11,33 +11,34 @@ return {
         -- position = "bottom",
       },
     },
+    dashboard = require("utils.dashboard"),
     -- https://github.com/folke/snacks.nvim/discussions/111
-    dashboard = {
-      enabled = true,
-      preset = {
-        header = [[
-████ ██████           █████      ██
-     ███████████             █████ 
-     █████████ ███████████████████ ███   ███████████
-    █████████  ███    █████████████ █████ ██████████████
-   █████████ ██████████ █████████ █████ █████ ████ █████
- ███████████ ███    ███ █████████ █████ █████ ████ █████
-██████  █████████████████████ ████ █████ █████ ████ ██████]],
-      },
-      formats = {
-        key = function(item)
-          return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
-        end,
-      },
-      sections = {
-        {
-          section = "header",
-          padding = 4,
-        },
-        { section = "keys", gap = 1, padding = 1 },
-        { section = "startup" },
-      },
-    },
+    --     dashboard = {
+    --       enabled = true,
+    --       preset = {
+    --         header = [[
+    -- ████ ██████           █████      ██
+    --      ███████████             █████ 
+    --      █████████ ███████████████████ ███   ███████████
+    --     █████████  ███    █████████████ █████ ██████████████
+    --    █████████ ██████████ █████████ █████ █████ ████ █████
+    --  ███████████ ███    ███ █████████ █████ █████ ████ █████
+    -- ██████  █████████████████████ ████ █████ █████ ████ ██████]],
+    --       },
+    --       formats = {
+    --         key = function(item)
+    --           return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
+    --         end,
+    --       },
+    --       sections = {
+    --         {
+    --           section = "header",
+    --           padding = 4,
+    --         },
+    --         { section = "keys", gap = 1, padding = 1 },
+    --         { section = "startup" },
+    --       },
+    --     },
     indent = {
       enabled = false,
     },
@@ -57,16 +58,26 @@ return {
     },
     picker = {
       -- !NOTE: picker keymaps : https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#%EF%B8%8F-config
-      -- prompt = "➡️ ",
       prompt = "[SNACKS] 🍪 ",
       focus = "input", -- "input" | "list" ,
       layout = {
         cycle = true,
-        --- Use the default layout or vertical if the window is too narrow
-        preset = function()
-          -- "vscode" | "default" | "sidebar" | "vertical" | "select"  | "right" | "left" | ivy_split | ivy | dropdown
-          return vim.o.columns >= 120 and "default" or "vertical"
-        end,
+        layout = {
+          box = "vertical",
+          backdrop = true,
+          row = -1,
+          width = 0,
+          height = 0.4,
+          border = nil,
+          title = " {title} {live} {flags}",
+          title_pos = "left",
+          { win = "input", height = 1, border = nil },
+          {
+            box = "horizontal",
+            { win = "list", border = "none" },
+            { win = "preview", title = "{preview}", width = 0.6, border = nil },
+          },
+        },
       },
     },
     scratch = {

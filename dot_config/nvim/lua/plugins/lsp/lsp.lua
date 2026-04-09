@@ -1,27 +1,3 @@
-local config = {
-    -- format = {
-    --   insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = true,
-    --   insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
-    --   semicolons = "remove",
-    -- },
-    -- implementationsCodeLens = {
-    --   enabled = true,
-    --   showOnInterfaceMethods = true,
-    -- },
-    inlayHints = {
-        enumMemberValues = { enabled = false },
-        functionLikeReturnTypes = { enabled = false },
-        parameterNames = { enabled = "none" },
-        parameterTypes = { enabled = false },
-        propertyDeclarationTypes = { enabled = false },
-        variableTypes = { enabled = false },
-    },
-    -- referencesCodeLens = {
-    --   enabled = true,
-    --   showOnAllFunctions = true,
-    -- },
-}
-
 local function find_tailwind_global_css()
     local target = "@import 'tailwindcss';"
 
@@ -62,141 +38,109 @@ end
 return {
     {
         "neovim/nvim-lspconfig",
-        config = function(_)
-            vim.diagnostic.virtual_text = false
-
-            local eslint_base_on_attach = vim.lsp.config.eslint.on_attach
-
-            vim.lsp.enable("eslint")
-            vim.lsp.enable("lua_ls")
-            vim.lsp.enable("ts_ls")
-            vim.lsp.enable("volar")
-            vim.lsp.enable("cssls")
-            vim.lsp.enable("svelte")
-            vim.lsp.enable("cssmodules_ls")
-            vim.lsp.enable("vtsls")
-
-            vim.lsp.config("eslint", {
-                settings = {
-                    format = { enable = true },
-                    useFlatConfig = true,
-                    workingDirectory = { mode = "auto" },
-                    codeActionOnSave = { enable = true, mode = "problems" },
-                },
-                on_attach = function(client, bufnr)
-                    if eslint_base_on_attach ~= nil then
-                        eslint_base_on_attach(client, bufnr)
-                    end
-
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                        buffer = bufnr,
-                        command = "LspEslintFixAll",
-                    })
-                end,
-            })
-
-            vim.lsp.config("lua_ls", {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
+        opts = {
+            servers = {
+                eslint = {
+                    settings = {
+                        format = true,
+                        useFlatConfig = true,
+                        workingDirectory = { mode = "auto" },
+                        codeActionOnSave = { enable = true, mode = "problems" },
                     },
                 },
-            })
-
-            vim.lsp.config("tailwindcss", {
-                settings = {
-                    tailwindCSS = {
-                        classAttributes = { "class", "className", "ngClass" },
-                        experimental = {
-                            -- configFile = "/Users/ly/code/github/molink/app/src/lib/styles/tailwind.css",
-                            -- TODO: 在 Tailwind v4 中寻找配置文件的解决方案，关注 PR 状态: https://github.com/neovim/nvim-lspconfig/pull/4222/files
-                            configFile = find_tailwind_global_css(),
-                            classRegex = {
-                                "tw`([^`]*)", -- tw`...`
-                                "tw='([^']*)", -- <div tw="..." />
-                                "tw={`([^`}]*)", -- <div tw={"..."} />
-                                "tw\\.\\w+`([^`]*)", -- tw.xxx`...`
-                                "tw\\(.*?\\)`([^`]*)", -- tw(component)`...`
-                                "styled\\(.*?, '([^']*)'\\)",
-                                { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
-                                { "clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
-                                { "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]", "[`'\"`]([^'\"`,;]*)[`'\"`]" },
-                                { "{([\\s\\S]*)}", ":\\s*['\"`]([^'\"`]*)['\"`]" },
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" },
                             },
                         },
                     },
                 },
-            })
-
-            vim.lsp.config("volar", {
-                settings = {
-                    css = {
-                        validate = true,
-                        lint = {
-                            unknownAtRules = "ignore",
-                        },
-                    },
-                    scss = {
-                        validate = true,
-                        lint = {
-                            unknownAtRules = "ignore",
-                        },
-                    },
-                },
-            })
-
-            vim.lsp.config("cssls", {
-                settings = {
-                    css = {
-                        validate = true,
-                        lint = {
-                            unknownAtRules = "ignore",
-                        },
-                    },
-                    scss = {
-                        validate = true,
-                        lint = {
-                            unknownAtRules = "ignore",
+                tailwindcss = {
+                    settings = {
+                        tailwindCSS = {
+                            classAttributes = { "class", "className", "ngClass" },
+                            experimental = {
+                                configFile = find_tailwind_global_css(), -- 确保这个函数已定义
+                                classRegex = {
+                                    "tw`([^`]*)",
+                                    "tw='([^']*)",
+                                    "tw={`([^`}]*)",
+                                    "tw\\.\\w+`([^`]*)",
+                                    "tw\\(.*?\\)`([^`]*)",
+                                    "styled\\(.*?, '([^']*)'\\)",
+                                    { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+                                    { "clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+                                    { "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]", "[`'\"`]([^'\"`,;]*)[`'\"`]" },
+                                    { "{([\\s\\S]*)}", ":\\s*['\"`]([^'\"`]*)['\"`]" },
+                                },
+                            },
                         },
                     },
                 },
-            })
-
-            vim.lsp.config("vtsls", {
-                settings = {
-                    javascript = config,
-                    typescript = config,
+                volar = {
+                    settings = {
+                        css = { validate = true, lint = { unknownAtRules = "ignore" } },
+                        scss = { validate = true, lint = { unknownAtRules = "ignore" } },
+                    },
                 },
-            })
-
-            vim.lsp.config("svelte", {
-                on_attach = function(client)
-                    vim.api.nvim_create_autocmd("BufWritePost", {
-                        pattern = { "*.js", "*.ts" },
-                        callback = function(ctx)
-                            -- Here use ctx.match instead of ctx.file
-                            client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+                cssls = {
+                    settings = {
+                        css = { validate = true, lint = { unknownAtRules = "ignore" } },
+                        scss = { validate = true, lint = { unknownAtRules = "ignore" } },
+                    },
+                },
+                cssmodules_ls = { enabled = false },
+                vtsls = { enabled = false }, -- 如果要用 typescript-tools.nvim
+            },
+            setup = {
+                eslint = function()
+                    local formatter = LazyVim.lsp.formatter({
+                        name = "eslint: lsp",
+                        primary = false,
+                        priority = 200,
+                        filter = "eslint",
+                        -- TODO: 不手动设置  LspEslintFixAll 时自动保存格式化失效，Lazyvim 并没有设置, 找找原因
+                        -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/linting/eslint.lua
+                        format = function()
+                            Snacks.util.lsp.on({ "eslint" }, function()
+                                vim.cmd("LspEslintFixAll")
+                            end)
                         end,
                     })
+
+                    -- register the formatter with LazyVim
+                    LazyVim.format.register(formatter)
                 end,
-            })
 
-            vim.lsp.config("cssmodules_ls", {
-                enabled = false,
-            })
+                biome = function(_, opts)
+                    opts.on_attach = function(client, bufnr)
+                        local group = vim.api.nvim_create_augroup("LspBiomeFormat_" .. bufnr, { clear = true })
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = group,
+                            buffer = bufnr,
+                            callback = function()
+                                vim.lsp.buf.format({ async = false })
+                            end,
+                        })
+                    end
+                    return false
+                end,
 
-            vim.lsp.config("vtsls", {
-                -- 使用 typescript-tools.nvim
-                -- Vue_ls 需要这个？
-                enabled = false,
-                settings = {
-                    javascript = config,
-                    typescript = config,
-                },
-            })
-        end,
+                svelte = function(_, opts)
+                    opts.on_attach = function(client, bufnr)
+                        vim.api.nvim_create_autocmd("BufWritePost", {
+                            pattern = { "*.js", "*.ts" },
+                            callback = function(ctx)
+                                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+                            end,
+                        })
+                    end
+                    return false
+                end,
+            },
+        },
     },
     -- 展示 Lsp 加载进度UI
     {

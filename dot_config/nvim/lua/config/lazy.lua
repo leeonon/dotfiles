@@ -12,7 +12,6 @@ require("lazy").setup({
         -- add LazyVim and import its plugins
         { "LazyVim/LazyVim",                                    import = "lazyvim.plugins" },
         -- import any extras modules here
-        { import = "lazyvim.plugins.extras.lang.sql" },
         { import = "lazyvim.plugins.extras.lang.vue" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.json" },
@@ -21,23 +20,18 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.rust" },
         { import = "lazyvim.plugins.extras.lang.tailwind" },
         { import = "lazyvim.plugins.extras.formatting.prettier" },
-        -- { import = "lazyvim.plugins.extras.formlazatting.biome" },
         { import = "lazyvim.plugins.extras.linting.eslint" },
 
         -- 基于 LSP 的重构
         { import = "lazyvim.plugins.extras.editor.inc-rename" },
         { import = "lazyvim.plugins.extras.ai.sidekick" },
-
         { import = "lazyvim.plugins.extras.coding.blink" },
 
         -- AI Tools
         { import = "lazyvim.plugins.extras.ai.copilot" },
-        { import = "plugins.ai.avante" },
-        { import = "plugins.ai.claude-code" },
         { import = "plugins.ai.opencode" },
         { import = "plugins.ai.sidekick" },
         { import = "plugins.ai.copilot" },
-        { import = "plugins.codecompanion.init" },
 
         { import = "plugins" },
         { import = "plugins.lang" },

@@ -1,10 +1,11 @@
 # auto-update-channel = tip
 # UI
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur-radius = 60
 cursor-style = bar
 cursor-style-blink = true
 cursor-click-to-move = true
+bold-is-bright = true
 # theme = custom
 theme = custom-cat
 # theme = techbase
@@ -14,9 +15,10 @@ theme = custom-cat
 # theme = techbase
 # theme = yugen
 # theme = rose-pine
+# theme = lume
 # background = #0b0b12
-# background  = #141617
-background = #101010
+background  = #141617
+# background = #101010
 
 # theme = cyberdream
 title = Ghostty 👻
@@ -25,7 +27,7 @@ macos-titlebar-proxy-icon      = hidden
 # cursor-color = #ACA1CF
 
 # -------
-#blueprint
+# blueprint
 # chalkboard
 # microchip
 # glass
@@ -33,7 +35,7 @@ macos-titlebar-proxy-icon      = hidden
 # paper
 # retro
 # xray
-macos-icon = xray
+macos-icon = paper
 
 # Window
 maximize = true
@@ -63,15 +65,15 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-family = "TX-02"
 # font-family = "DM Mono"
 # font-family = "CartographCF Nerd Font"
-# font-family = "Geist Mono"
+font-family = "Geist Mono"
 # font-family = "Comic Mono"
 # font-family = "ComicShannsMono Nerd Font"
-font-family = "Zed Plex Mono"
+# font-family = "Zed Plex Mono"
 # font-family = "BlexMono Nerd Font"
 font-style = Medium
 
 
-adjust-cell-height = 30%
+adjust-cell-height = 20%
 # adjust-cursor-height = 4
 
 font-feature = +calt
@@ -176,15 +178,13 @@ keybind = super+z=text:\x01\x7a
 
 # Cursor
 custom-shader = ./shaders-cursor/cursor.glsl
-# custom-shader = ./shaders-cursor/cursor_frozen.glsl
-# custom-shader = ./shaders-cursor/blaze_sparks.glsl
-# custom-shader = ./shaders-cursor/cursor_blaze_no_trail.glsl # 光标高亮 无尾巴
-# custom-shader = ./shaders-cursor/party_sparks.glsl # 彩色火花光标爆炸
-# custom-shader = ./shaders-cursor/shake.glsl # 地震效果
 
 # custom-shader = ./shaders-cursor/cursor_blaze.glsl
 # custom-shader = ./shaders-cursor/cursor_border_1.glsl
 # custom-shader = ./shaders-cursor/cursor_smear_fade.glsl
+#
+
+# custom-shader = ./custom-shaders/rain-on-glass.glsl
 
 
 

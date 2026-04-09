@@ -3,8 +3,8 @@
 customCommands:
   - command: git cz
     context: files
-    subprocess: true
     key: "C"
+    output: terminal
   - command: "git commit -m '{{ .Form.emoji }} {{ if .Form.scope }} ({{ .Form.scope }}): {{ end }} {{ .Form.message }}'"
     context: files
     description: 使用GitMojis提交更改
@@ -23,7 +23,6 @@ customCommands:
       - key: message
         title: "Enter the commit title: "
         type: input
-
   # retrieved from: https://github.com/jesseduffield/lazygit/wiki/Custom-Commands-Compendium#conventional-commit
   - key: "<c-v>"
     context: "global"
@@ -88,16 +87,14 @@ customCommands:
         body: "Are you sure you want to commit?"
     command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}{{.Form.Breaking}}: {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
-
 gui:
   language: "zh-CN"
   showIcons: true
-
 git:
   branchlogcmd: "git log --graph --color=always --pretty='%cred%h%creset -%c(auto)%d%creset %s %cgreen(%cr) %c(bold blue)<%an>%creset' {{branchname}} --"
   allbrancheslogcmd: "git log --graph --color=always --pretty='%cred%h%creset -%c(auto)%d%creset %s %cgreen(%cr) %c(bold blue)<%an>%creset' --all"
   # 自定义分页器
   # https://github.com/jesseduffield/lazygit/blob/master/docs/custom_pagers.md
-  paging:
-    colorarg: always
-    pager: delta --dark --paging=never --line-numbers --hyperlinks --side-by-side --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  pagers:
+    - colorarg: always
+      pager: delta --dark --paging=never --line-numbers --hyperlinks --side-by-side --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

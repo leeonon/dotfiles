@@ -49,11 +49,11 @@ return {
                 undercurl = true, -- enable undercurls
                 commentStyle = { italic = true },
                 functionStyle = {},
-                keywordStyle = { italic = true },
-                statementStyle = { bold = true },
+                keywordStyle = { italic = false },
+                statementStyle = { bold = true, italic = false },
                 typeStyle = {},
-                transparent = false, -- do not set background color
-                dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+                transparent = true, -- do not set background color
+                dimInactive = true, -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
                 colors = { -- add/modify theme and palette colors
                     palette = {},
@@ -129,8 +129,8 @@ return {
         name = "rose-pine",
         config = function()
             require("rose-pine").setup({
-                variant = "main", -- auto, main, moon, or dawn
-                dark_variant = "dawn", -- main, moon, or dawn
+                variant = "moon", -- auto, main, moon, or dawn
+                dark_variant = "moon", -- main, moon, or dawn
                 dim_inactive_windows = true, -- 非活动窗口变暗
                 extend_background_behind_borders = true,
 
@@ -257,65 +257,6 @@ return {
         },
     },
     {
-        "dgox16/oldworld.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("oldworld").setup({
-                variant = "default", -- default, oled, cooler
-                styles = {
-                    comments = { italic = true },
-                    functions = { italic = true },
-                },
-                integrations = {
-                    navic = true,
-                    alpha = false,
-                    rainbow_delimiters = false,
-                },
-                highlight_overrides = {
-                    Normal = { bg = "NONE" },
-                    NormalNC = { bg = "NONE" },
-                    -- CursorLine = { bg = "#090909" },
-                    NormalFloat = { bg = "NONE" },
-                    FloatBorder = { bg = "NONE" },
-                    FloatTitle = { bg = "NONE" },
-                    TabLineFill = { bg = "NONE" },
-                    StatusLineNC = { bg = "NONE" },
-                    StatusLineTermNC = { bg = "NONE" },
-                    LualineNormal = { bg = "NONE" },
-                    TabLine = { bg = "NONE" },
-
-                    -- BlinkCmpIcon
-                    -- BlinkCmpKindIconField = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconProperty = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconEvent = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconText = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconEnum = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconKeyword = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconConstant = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconConstructor = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconReference = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconFunction = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconStruct = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconClass = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconModule = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconOperator = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconVariable = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconFile = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconUnit = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconSnippet = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconFolder = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconInterface = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconColor = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconTypeParameter = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconMethod = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconValue = { fg = fg_color, bg = bg_color },
-                    -- BlinkCmpKindIconEnumMember = { fg = fg_color, bg = bg_color },
-                },
-            })
-        end,
-    },
-    {
         "2nthony/vitesse.nvim",
         dependencies = {
             "tjdevries/colorbuddy.nvim",
@@ -370,10 +311,6 @@ return {
         priority = 1000,
     },
     {
-        "bettervim/yugen.nvim",
-        config = function() end,
-    },
-    {
         "sam4llis/nvim-tundra",
         config = function()
             require("nvim-tundra").setup({
@@ -426,101 +363,42 @@ return {
         end,
     },
     {
-        "sainnhe/gruvbox-material",
+        "sainnhe/everforest",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.g.gruvbox_material_enable_italic = true
-            vim.g.gruvbox_material_background = "hard" -- ‘hard’ | ‘medium’(默认) | ‘soft’。
-            vim.g.gruvbox_material_foreground = "material" -- ‘material’(默认) | ‘mix’ | ‘original’
-            vim.g.gruvbox_material_disable_italic_comment = 0 --禁用 Comment 组的斜体。
-            vim.g.gruvbox_material_enable_bold = 1 -- 函数名启用粗体
-            vim.g.gruvbox_material_cursor = "auto"
-            vim.g.gruvbox_material_show_eob = 0 -- 控制 hl-EndOfBuffer 的可见性。
-            vim.g.gruvbox_material_ui_contrast = "high"
-            vim.g.gruvbox_material_float_style = "bright"
-            vim.g.gruvbox_material_transparent_background = 2 -- 0: 不透明背景, 1 开启主体透明；2 扩展更多 UI（如状态栏）也透明
-        end,
-    },
-    {
-        "oskarnurm/koda.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            require("koda").setup({
-                transparent = true,
-                styles = {
-                    functions = { bold = true },
-                    keywords = {},
-                    comments = {
-                        italic = true,
-                    },
-                    strings = {},
-                    constants = {}, -- includes numbers, booleans
-                },
-                colors = {
-                    bg = "#101010",
-                    fg = "#b0b0b0",
-                    dim = "#000000",
-                    line = "#272727",
-                    keyword = "#777777",
-                    comment = "#50585d",
-                    border = "#ffffff",
-                    emphasis = "#ffffff",
-                    func = "#ffffff",
-                    string = "#ffffff",
-                    const = "#d9ba73",
-                    highlight = "#458ee6",
-                    info = "#8ebeec",
-                    success = "#86cd82",
-                    warning = "#d9ba73",
-                    danger = "#ff7676",
-                    green = "#14ba19",
-                    orange = "#f54d27",
-                    red = "#701516",
-                    yellow = "#d0bf41",
-                    pink = "#f2a4db",
-                    cyan = "#5abfb5",
-                },
-                on_highlights = function(hl, c)
-                    -- hl.Visual = { fg = "#fb2b2b", bg = c.dim }
-                    -- hl.CursorLine = { bg = c.dim }
-                    -- hl.FloatBorder = { bg = "NONE", fg = c.border }
-                    hl.WinSeparator = { fg = c.line, bg = "NONE" }
-                    hl.String = { fg = c.success }
-                    hl.Comment = { fg = c.comment, italic = true }
+            vim.g.everforest_enable_italic = false
+            vim.g.everforest_dim_inactive_windows = true
+            vim.g.everforest_diagnostic_text_highlight = true
+            vim.g.everforest_transparent_background = 2
+            vim.g.everforest_diagnostic_text_highlight = 1
+            vim.g.everforest_diagnostic_line_highlight = 1
+            vim.g.everforest_diagnostic_virtual_text = "highlighted"
+            vim.g.everforest_dim_inactive_windows = 1
+            vim.g.everforest_ui_contrast = "high"
+            vim.g.everforest_better_performans = 1
+            vim.g.everforest_float_style = "dim"
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                group = vim.api.nvim_create_augroup("custom_highlights_everforest", {}),
+                pattern = "everforest",
+                callback = function()
+                    local config = vim.fn["everforest#get_configuration"]()
+                    local palette = vim.fn["everforest#get_palette"](config.background, config.colors_override)
+                    local set_hl = vim.fn["everforest#highlight"]
+                    set_hl("WinSeparator", palette.green, palette.none)
                 end,
             })
+            -- vim.cmd.colorscheme("everforest")
         end,
     },
     {
-        "serhez/teide.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            transparent = true,
-        },
-    },
-    {
-        "Shatur/neovim-ayu",
+        "danfry1/lume",
         lazy = false,
         priority = 1000,
         config = function()
-            require("ayu").setup({
-                mirage = true, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
-                terminal = true, -- Set to `false` to let terminal manage its own colors.
-                overrides = {
-                    Normal = { bg = "None" },
-                    NormalFloat = { bg = "none" },
-                    ColorColumn = { bg = "None" },
-                    SignColumn = { bg = "None" },
-                    Folded = { bg = "None" },
-                    FoldColumn = { bg = "None" },
-                    CursorLine = { bg = "None" },
-                    CursorColumn = { bg = "None" },
-                    VertSplit = { bg = "None" },
-                    Comment = { italic = true },
-                },
+            require("lume").setup({
+                transparent = true,
+                italics = false,
             })
         end,
     },
@@ -534,9 +412,17 @@ return {
             -- colorscheme = "gruvbox-material",
             -- colorscheme = "tundra",
             -- colorscheme = "techbase",
-            colorscheme = "teide-darker",
+            -- colorscheme = "teide-darker",
             -- colorscheme = "koda",
+            -- colorscheme = "fleur",
             -- colorscheme = "ayu-dark",
+            -- colorscheme = "rose-pine",
+            -- colorscheme = "aether",
+            -- colorscheme = "jellybeans",
+            -- colorscheme = "kanagawa",
+            -- colorscheme = "oc-2",
+            -- colorscheme = "lume",
+            colorscheme = "vitesse",
         },
     },
 }

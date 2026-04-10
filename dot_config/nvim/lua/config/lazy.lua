@@ -10,9 +10,11 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
     spec = {
         -- add LazyVim and import its plugins
-        { "LazyVim/LazyVim",                                    import = "lazyvim.plugins" },
+        { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         -- import any extras modules here
-        { import = "lazyvim.plugins.extras.lang.vue" },
+        -- Vue 现在依赖 vtsls 来提供 TypeScript 支持，如果启用了vim.g.lazyvim_ts_lsp = "tsgo", 打开会有问题
+        -- https://github.com/LazyVim/LazyVim/blob/83d90f339defdb109a6ede333865a66ffc7ef6aa/lua/lazyvim/plugins/extras/lang/vue.lua#L32
+        -- { import = "lazyvim.plugins.extras.lang.vue" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.json" },
         { import = "lazyvim.plugins.extras.lang.astro" },
@@ -38,7 +40,7 @@ require("lazy").setup({
         { import = "plugins.lsp" },
         { import = "plugins.format-linting" },
         { import = "plugins.git" },
-        { import = "plugins.ui" }
+        { import = "plugins.ui" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

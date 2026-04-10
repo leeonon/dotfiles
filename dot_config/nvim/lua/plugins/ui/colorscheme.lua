@@ -418,11 +418,10 @@ return {
             -- colorscheme = "ayu-dark",
             -- colorscheme = "rose-pine",
             -- colorscheme = "aether",
-            -- colorscheme = "jellybeans",
-            -- colorscheme = "kanagawa",
+            colorscheme = "kanagawa",
             -- colorscheme = "oc-2",
             -- colorscheme = "lume",
-            colorscheme = "vitesse",
+            -- colorscheme = "vitesse",
         },
     },
 }

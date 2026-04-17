@@ -39,6 +39,13 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
+            diagnostics = {
+                virtual_text = false,
+            },
+            inlay_hints = {
+                enabled = false,
+                -- exclude = { "vue", "typescript", "javascript" }, -- filetypes for which you don't want to enable inlay hints
+            },
             servers = {
                 eslint = {
                     settings = {
@@ -93,52 +100,77 @@ return {
                 },
                 cssmodules_ls = { enabled = false },
                 vtsls = {},
+                tsgo = {
+                    settings = {
+                        typescript = {
+                            inlayHints = {
+                                enumMemberValues = { enabled = false },
+                                functionLikeReturnTypes = { enabled = false },
+                                parameterNames = {
+                                    enabled = "literals",
+                                    suppressWhenArgumentMatchesName = false,
+                                },
+                                parameterTypes = { enabled = false },
+                                propertyDeclarationTypes = { enabled = false },
+                                variableTypes = { enabled = false },
+                            },
+                        },
+                    },
+                },
             },
             setup = {
-                eslint = function()
-                    local formatter = LazyVim.lsp.formatter({
-                        name = "eslint: lsp",
-                        primary = false,
-                        priority = 200,
-                        filter = "eslint",
-
-                        -- 这里目前使用 Code Action 处理, 而不是 format
-                        -- CodeAction 修复ESLint 可自动修复的问题
-                        -- Fomat 只处理代码风格，格式化处理
-                        format = function(_)
-                            vim.lsp.buf.code_action({
-                                apply = true,
-                                context = {
-                                    only = { "source.fixAll.eslint" },
-                                    diagnostics = {},
-                                },
-                            })
-                        end,
-                        sources = function(buf)
-                            local clients = vim.lsp.get_clients({ name = "eslint", bufnr = buf })
-                            return vim.tbl_map(function(c)
-                                return c.name
-                            end, clients)
-                        end,
-
-                        --         format = function(buf)
-                        --             -- Only run if eslint is actually attached to this buffer
-                        --             local clients = vim.lsp.get_clients({ bufnr = buf, name = "eslint" })
-                        --             if #clients == 0 then
-                        --                 return
-                        --             end
-                        --         -- TODO: 不手动设置  LspEslintFixAll 时自动保存格式化失效，Lazyvim 并没有设置, 找找原因
-                        --         -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/linting/eslint.lua
-
-                        --             Snacks.util.lsp.on({ "eslint" }, function()
-                        --                 if vim.fn.exists(":LspEslintFixAll") == 2 then
-                        --                     vim.cmd("LspEslintFixAll")
-                        --                 end
-                        --             end)
-                        --         end,
-                    })
-                    LazyVim.format.register(formatter)
+                -- https://github.com/mrcjkb/rustaceanvim/blob/master/doc/mason.txt
+                rust_analyzer = function()
+                    return true
                 end,
+                lua_ls = function()
+                    require("lspconfig.ui.windows").default_options.border = "single"
+                end,
+
+                -- eslint = function()
+                --     local formatter = LazyVim.lsp.formatter({
+                --         name = "eslint: lsp",
+                --         primary = false,
+                --         priority = 200,
+                --         filter = "eslint",
+                --
+                --         -- 这里目前使用 Code Action 处理, 而不是 format
+                --         -- CodeAction 修复ESLint 可自动修复的问题
+                --         -- Fomat 只处理代码风格，格式化处理
+                --         -- format = function(_)
+                --         --     vim.lsp.buf.code_action({
+                --         --         apply = true,
+                --         --         context = {
+                --         --             only = { "source.fixAll.eslint" },
+                --         --             diagnostics = {},
+                --         --         },
+                --         --     })
+                --         -- end,
+                --         -- sources = function(buf)
+                --         --     local clients = vim.lsp.get_clients({ name = "eslint", bufnr = buf })
+                --         --     return vim.tbl_map(function(c)
+                --         --         return c.name
+                --         --     end, clients)
+                --         -- end,
+                --
+                --         format = function(buf)
+                --             -- Only run if eslint is actually attached to this buffer
+                --             local clients = vim.lsp.get_clients({ bufnr = buf, name = "eslint" })
+                --             if #clients == 0 then
+                --                 return
+                --             end
+                --             -- TODO: 不手动设置  LspEslintFixAll 时自动保存格式化失效，Lazyvim 并没有设置, 找找原因
+                --             -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/linting/eslint.lua
+                --
+                --             Snacks.util.lsp.on({ "eslint" }, function()
+                --                 if vim.fn.exists(":LspEslintFixAll") == 2 then
+                --                     vim.cmd("LspEslintFixAll")
+                --                 end
+                --             end)
+                --         end,
+                --     })
+                --     LazyVim.format.register(formatter)
+                -- end,
                 biome = function(_, opts)
                     opts.on_attach = function(client, bufnr)
                         local group = vim.api.nvim_create_augroup("LspBiomeFormat_" .. bufnr, { clear = true })

@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.66.1",
+  "packages": [
+    "npm:pi-provider-kimi-code",
+    "npm:pi-tool-display",
+    "npm:@tmustier/pi-usage-extension"
+  ],
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-code"
+}
+

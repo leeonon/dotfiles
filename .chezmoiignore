@@ -1,0 +1,20 @@
+LICENSE
+README.md
+scripts
+Brewfile*
+CLAUDE.md
+AGENTS.md
+AGENT.md
+TODO.md
+bootstrap.sh
+
+# Exclude node_modules directories
+**/node_modules
+**/node_modules/**
+**/.bin/**
+
+.pi/agent/sessions
+.pi/agent/auth.json
+.pi/agent/pi-fff/
+.git
+.agents/.skill-lock.json

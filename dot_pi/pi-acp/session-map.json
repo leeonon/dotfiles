@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "sessions": {
+    "23dea050-0c45-46e3-8a45-e4fdc01c2817": {
+      "sessionId": "23dea050-0c45-46e3-8a45-e4fdc01c2817",
+      "cwd": "/",
+      "sessionFile": "/Users/ly/.pi/agent/sessions/----/2026-04-17T03-30-21-179Z_23dea050-0c45-46e3-8a45-e4fdc01c2817.jsonl",
+      "updatedAt": "2026-04-17T03:30:21.745Z"
+    },
+    "dfa3f52d-8d53-4d51-8438-3f33e7684177": {
+      "sessionId": "dfa3f52d-8d53-4d51-8438-3f33e7684177",
+      "cwd": "/",
+      "sessionFile": "/Users/ly/.pi/agent/sessions/----/2026-04-17T09-10-17-164Z_dfa3f52d-8d53-4d51-8438-3f33e7684177.jsonl",
+      "updatedAt": "2026-04-17T09:10:17.560Z"
+    },
+    "d0af5a21-4e33-4be8-bd28-6f4415280591": {
+      "sessionId": "d0af5a21-4e33-4be8-bd28-6f4415280591",
+      "cwd": "/",
+      "sessionFile": "/Users/ly/.pi/agent/sessions/----/2026-04-17T09-10-17-144Z_d0af5a21-4e33-4be8-bd28-6f4415280591.jsonl",
+      "updatedAt": "2026-04-17T09:10:17.564Z"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "small_model": "kimi-for-coding/k2p6",
+  "instructions": [
+    "CONTRIBUTING.md",
+    "docs/guidelines.md",
+    ".cursor/rules/*.md"
+  ],
+  "agent": {
+    "dart-ops": {
+      "description": "Dart/Flutter 软件包管理、构建、分析与代码生成的操作专员",
+      "mode": "subagent",
+      "model": "kimi-for-coding/k2p6",
+      "prompt": "{file:./prompts/dart-ops.txt}",
+      "temperature": 0,
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "fvm *": "allow",
+          "melos *": "allow",
+          "flutter *": "allow",
+          "dart *": "allow",
+          "cd *": "allow",
+          "ls": "allow",
+          "find": "allow",
+          "grep": "allow",
+          "cat": "allow",
+          "head": "allow",
+          "tail": "allow",
+          "wc": "allow",
+          "mkdir": "allow",
+          "rm": "allow",
+          "cp": "allow",
+          "mv": "allow",
+          "sed": "allow",
+          "awk": "allow",
+          "sort": "allow",
+          "uniq": "allow"
+        },
+        "webfetch": "deny"
+      },
+      "tools": {
+        "webfetch": true,
+        "read": true,
+        "bash": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "edit": false,
+        "write": false,
+        "sequential-thinking": false,
+        "context7": true,
+        "serena": false,
+        "tavily-mcp": false,
+        "firecrawl-mcp": false,
+        "dart": true
+      }
+    }
+  },
+  "autoupdate": true,
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "svelte": {
+      "type": "remote",
+      "url": "https://mcp.svelte.dev/mcp"
+    }
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "*": "allow",
+      "git push *": "ask",
+      "rm -rf *": "ask",
+      "sudo *": "ask"
+    }
+  },
+  "plugin": [
+    "@sveltejs/opencode",
+    "@tarquinen/opencode-smart-title",
+    "oh-my-openagent@latest",
+    "opentmux",
+    "@slkiser/opencode-quota"
+  ],
+  "provider": {},
+  "experimental": {
+    "quotaToast": {
+      "enableToast": true,
+      "showSessionTokens": true,
+      "enabledProviders": "auto",
+      "formatStyle": "classic",
+      "percentDisplayMode": "remaining"
+    }
+  }
+}

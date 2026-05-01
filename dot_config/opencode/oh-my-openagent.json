@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
+  "tmux": {
+    "isolation": "inline",
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60,
+    "main_pane_min_width": 120,
+    "agent_pane_min_width": 40
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "kimi-for-coding/k2p6"
+    },
+    "hephaestus": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "medium"
+    },
+    "oracle": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "high"
+    },
+    "librarian": {
+      "model": "kimi-for-coding/k2p6"
+    },
+    "explore": {
+      "model": "kimi-for-coding/k2p6"
+    },
+    "multimodal-looker": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "medium"
+    },
+    "prometheus": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "max"
+    },
+    "metis": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "max"
+    },
+    "momus": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "xhigh"
+    },
+    "atlas": {
+      "model": "kimi-for-coding/k2p6"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "high"
+    },
+    "ultrabrain": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "xhigh"
+    },
+    "deep": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "medium"
+    },
+    "artistry": {
+      "model": "kimi-for-coding/k2p6",
+      "variant": "high"
+    },
+    "quick": {
+      "model": "kimi-for-coding/k2p6"
+    },
+    "unspecified-low": {
+      "model": "kimi-for-coding/k2p6"
+    },
+    "unspecified-high": {
+      "model": "kimi-for-coding/k2p6"
+    },
+    "writing": {
+      "model": "kimi-for-coding/k2p6"
+    }
+  }
+}
+

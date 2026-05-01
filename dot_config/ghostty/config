@@ -1,23 +1,23 @@
 # auto-update-channel = tip
 # UI
+# 在线终端主题 https://paletty.dev/p/7yC6wrtxudO/pierre-dark
 background-opacity = 0.9
 background-blur-radius = 60
+# background-blur = macos-glass-clear 
+macos-titlebar-style = transparent
+
 cursor-style = bar
 cursor-style-blink = true
 cursor-click-to-move = true
 bold-is-bright = true
 # theme = custom
-theme = custom-cat
-# theme = techbase
-# theme = teide
-# theme = Black Metal (Bathory)
-# theme = oldworld
-# theme = techbase
 # theme = yugen
-# theme = rose-pine
-# theme = lume
+# theme = palette
+# theme = ayu-dark
+# theme = lake-dweller
+theme = vscode-dark
 # background = #0b0b12
-background  = #141617
+# background  = #141617
 # background = #101010
 
 # theme = cyberdream
@@ -48,12 +48,12 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 15
+font-size = 16
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"
-font-family-italic = "CartographCF Nerd Font"
-font-family-bold-italic = "CartographCF Nerd Font"
+# font-family-italic = "CartographCF Nerd Font"
+# font-family-bold-italic = "CartographCF Nerd Font"
 # font-family = "Roboto Mono"
 # font-family = "GeistMono Nerd Font"
 # font-family = "DankMono Nerd Font"
@@ -65,10 +65,11 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-family = "TX-02"
 # font-family = "DM Mono"
 # font-family = "CartographCF Nerd Font"
-font-family = "Geist Mono"
+# font-family = "Geist Mono"
 # font-family = "Comic Mono"
 # font-family = "ComicShannsMono Nerd Font"
-# font-family = "Zed Plex Mono"
+font-family = "Zed Plex Mono"
+# font-family = "Iosevka Custom"
 # font-family = "BlexMono Nerd Font"
 font-style = Medium
 

@@ -88,3 +88,34 @@ vim.keymap.set("n", "<leader>rr", function()
 end, { desc = "重载 Neovim 配置" })
 
 vim.keymap.set("n", "<leader>tk", require("nvim-pretty-ts-errors").show_line_diagnostics)
+
+-- 复制当前文件路径到剪贴板, 如果在可视模式下, 还会附加选中的行号
+vim.keymap.set({ "n", "v" }, "<leader>yp", function()
+    local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
+    if vim.fn.empty(path) == 1 then
+        vim.notify("No file path available", vim.log.levels.WARN)
+        return
+    end
+
+    local mode = vim.api.nvim_get_mode().mode
+    local line_str = ""
+
+    if mode == "v" or mode == "V" or mode == "\22" then
+        local start_line = vim.fn.line("v")
+        local end_line = vim.fn.line(".")
+
+        if start_line > end_line then
+            start_line, end_line = end_line, start_line
+        end
+
+        if start_line == end_line then
+            line_str = ":" .. start_line
+        else
+            line_str = ":" .. start_line .. ":" .. end_line
+        end
+    end
+
+    local output = path .. line_str
+    vim.fn.setreg("+", output)
+    vim.notify("Copied to clipboard: " .. output, vim.log.levels.INFO)
+end, { desc = "Yank file [P]ath with selected lines to clipboard" })

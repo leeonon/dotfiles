@@ -29,7 +29,11 @@ local function biome_or_prettier(bufnr)
         "prettier.config.cjs",
     })
     if has_prettier_config then
-        return { "prettierd", stop_after_first = true, lsp_format = "first" }
+        return {
+            "prettierd",
+            stop_after_first = true,
+            -- lsp_format = "first"
+        }
     end
 
     -- Default to Prettier if no config is found

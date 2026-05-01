@@ -1,4 +1,23 @@
 return {
+    {
+        "rachartier/tiny-code-action.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            {
+                "folke/snacks.nvim",
+                opts = {
+                    terminal = {},
+                },
+            },
+        },
+        event = "LspAttach",
+        opts = {},
+        config = function()
+            vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+                require("tiny-code-action").code_action()
+            end, { noremap = true, silent = true })
+        end,
+    },
     -- 同步修改 vim.diagnostic.config({ virtual_text = false })
     {
         "rachartier/tiny-inline-diagnostic.nvim",

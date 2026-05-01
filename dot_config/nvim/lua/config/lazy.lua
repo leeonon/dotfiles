@@ -16,6 +16,7 @@ require("lazy").setup({
         -- https://github.com/LazyVim/LazyVim/blob/83d90f339defdb109a6ede333865a66ffc7ef6aa/lua/lazyvim/plugins/extras/lang/vue.lua#L32
         -- { import = "lazyvim.plugins.extras.lang.vue" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
+        { import = "lazyvim.plugins.extras.lang.typescript.tsgo" },
         { import = "lazyvim.plugins.extras.lang.json" },
         { import = "lazyvim.plugins.extras.lang.astro" },
         { import = "lazyvim.plugins.extras.lang.svelte" },

@@ -129,14 +129,14 @@ return {
         name = "rose-pine",
         config = function()
             require("rose-pine").setup({
-                variant = "moon", -- auto, main, moon, or dawn
-                dark_variant = "moon", -- main, moon, or dawn
+                variant = "main", -- auto, main, moon, or dawn
+                dark_variant = "main", -- main, moon, or dawn
                 dim_inactive_windows = true, -- 非活动窗口变暗
                 extend_background_behind_borders = true,
 
                 styles = {
                     bold = true,
-                    italic = false,
+                    italic = true,
                     transparency = true,
                 },
 
@@ -403,6 +403,29 @@ return {
         end,
     },
     {
+        "ember-theme/nvim",
+        name = "ember",
+        priority = 1000,
+        config = function()
+            require("ember").setup({
+                variant = "ember", -- "ember" | "ember-soft" | "ember-light"
+            })
+        end,
+    },
+    {
+        "yonatanperel/lake-dweller.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("lake-dweller").setup({
+                variant = "ocean-dweller", -- "lake-dweller", "pond-dweller", or "ocean-dweller"
+                transparent = true, -- enable transparent background
+                italics = false, -- enable italic text
+                float_background = false, -- distinct background for floating windows
+            })
+        end,
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
@@ -418,10 +441,12 @@ return {
             -- colorscheme = "ayu-dark",
             -- colorscheme = "rose-pine",
             -- colorscheme = "aether",
-            colorscheme = "kanagawa",
+            -- colorscheme = "kanagawa",
             -- colorscheme = "oc-2",
-            -- colorscheme = "lume",
+            colorscheme = "lume",
             -- colorscheme = "vitesse",
+            -- colorscheme = "ember",
+            -- colorscheme = "lake-dweller",
         },
     },
 }

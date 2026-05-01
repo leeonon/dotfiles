@@ -1,4 +1,4 @@
-vim.g.lazyvim_blink_main = false
+vim.g.lazyvim_blink_main = true
 vim.g.lazyvim_cmp = "blink.cmp"
 
 local function get_lsp_completion_context(completion)

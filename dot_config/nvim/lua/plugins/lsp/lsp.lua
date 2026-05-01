@@ -119,10 +119,6 @@ return {
                 },
             },
             setup = {
-                -- https://github.com/mrcjkb/rustaceanvim/blob/master/doc/mason.txt
-                rust_analyzer = function()
-                    return true
-                end,
                 lua_ls = function()
                     require("lspconfig.ui.windows").default_options.border = "single"
                 end,

@@ -48,7 +48,7 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 16
+font-size = 15
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"

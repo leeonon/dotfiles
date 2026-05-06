@@ -173,6 +173,8 @@ abbr -S lg='lazygit' >>/dev/null
 abbr -S difit='npx difit' >>/dev/null
 # Claude Code usage
 abbr -S ccusage= 'bunx ccusage' >>/dev/null
+# Markdown Preview
+abbr -S mdp="leaf"
 
 
 function sss() {

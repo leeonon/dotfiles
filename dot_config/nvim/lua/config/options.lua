@@ -23,6 +23,14 @@ vim.opt.termguicolors = true
 -- 禁用 neovim 生成交换文件并显示错误
 vim.opt.swapfile = false
 
+-- 代码折叠
+vim.o.foldenable = true
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = ""
+vim.o.fillchars = "foldclose:󰅂,foldopen:󰅀"
+vim.o.foldlevelstart = 99
+
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false
 -- vim.opt.listchars = "tab:» ,lead:·,trail:·"

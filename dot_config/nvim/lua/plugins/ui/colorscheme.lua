@@ -429,7 +429,7 @@ return {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
-            -- colorscheme = "tokyodark",
+            colorscheme = "tokyodark",
             -- colorscheme = "everforest",
             -- colorscheme = "catppuccin",
             -- colorscheme = "gruvbox-material",
@@ -443,7 +443,7 @@ return {
             -- colorscheme = "aether",
             -- colorscheme = "kanagawa",
             -- colorscheme = "oc-2",
-            colorscheme = "lume",
+            -- colorscheme = "lume",
             -- colorscheme = "vitesse",
             -- colorscheme = "ember",
             -- colorscheme = "lake-dweller",

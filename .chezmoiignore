@@ -16,5 +16,7 @@ bootstrap.sh
 .pi/agent/sessions
 .pi/agent/auth.json
 .pi/agent/pi-fff/
+.pi/providers
+.pi/pi-acp
 .git
 .agents/.skill-lock.json

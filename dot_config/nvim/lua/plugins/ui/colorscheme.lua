@@ -89,7 +89,7 @@ return {
                 end,
                 theme = "dragon", -- Load "wave" theme
                 background = { -- map the value of 'background' option to a theme
-                    dark = "wave", -- try "dragon" !
+                    dark = "dragon", -- try "dragon" !
                     light = "lotus",
                 },
             })
@@ -429,7 +429,7 @@ return {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
-            colorscheme = "tokyodark",
+            -- colorscheme = "tokyodark",
             -- colorscheme = "everforest",
             -- colorscheme = "catppuccin",
             -- colorscheme = "gruvbox-material",
@@ -441,7 +441,7 @@ return {
             -- colorscheme = "ayu-dark",
             -- colorscheme = "rose-pine",
             -- colorscheme = "aether",
-            -- colorscheme = "kanagawa",
+            colorscheme = "kanagawa-dragon",
             -- colorscheme = "oc-2",
             -- colorscheme = "lume",
             -- colorscheme = "vitesse",

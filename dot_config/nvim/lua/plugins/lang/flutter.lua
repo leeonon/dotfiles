@@ -23,12 +23,6 @@ return {
             },
             widget_guides = { enabled = true, debug = false },
             lsp = {
-                color = {
-                    enabled = false,
-                    background = true,
-                    virtual_text = true,
-                    virtual_text_str = "■",
-                },
                 autostart = true,
                 settings = {
                     -- 配置 https://github.com/dart-lang/sdk/blob/main/pkg/analysis_server/tool/lsp_spec/README.md#client-workspace-configuration

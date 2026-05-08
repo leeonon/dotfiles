@@ -28,7 +28,7 @@ vim.o.foldenable = true
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldtext = ""
-vim.o.fillchars = "foldclose:󰅂,foldopen:󰅀"
+vim.o.fillchars = "foldclose:,foldopen:󰅀"
 vim.o.foldlevelstart = 99
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等

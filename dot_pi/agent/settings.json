@@ -1,0 +1,19 @@
+{
+  "lastChangelogVersion": "0.73.0",
+  "packages": [
+    "npm:pi-provider-kimi-code",
+    "npm:pi-tool-display",
+    "npm:@tmustier/pi-usage-extension",
+    "npm:@ollama/pi-web-search",
+    "npm:pi-lens",
+    "npm:pi-wierd-statusline"
+  ],
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding",
+  "defaultThinkingLevel": "medium",
+  "powerline": {
+    "preset": "default",
+    "fixedEditor": false
+  }
+}
+

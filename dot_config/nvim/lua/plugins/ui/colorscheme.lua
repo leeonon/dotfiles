@@ -160,102 +160,6 @@ return {
             })
         end,
     },
-    -- catppuccin
-    -- 社区配置分享：https://github.com/catppuccin/nvim/discussions/323?sort=new
-    -- 在线生成主题配置: https://catbbrew.com/design
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        opts = {
-            flavour = "macchiato",
-            -- background = {
-            --   light = "latte",
-            --   dark = "mocha",
-            -- },
-            term_colors = true,
-            transparent_background = true,
-            styles = {
-                comments = {},
-                conditionals = {},
-                loops = {},
-                functions = {},
-                keywords = {},
-                strings = {},
-                variables = {},
-                numbers = {},
-                booleans = {},
-                properties = {},
-                types = {},
-            },
-            highlight_overrides = {
-                all = function(colors)
-                    return {
-                        CurSearch = { bg = colors.sky },
-                        IncSearch = { bg = colors.sky },
-                        CursorLineNr = { fg = colors.blue, style = { "bold" } },
-                        DashboardFooter = { fg = colors.overlay0 },
-                        WinSeparator = { fg = colors.overlay0, style = { "bold" } },
-                        ["@markup.italic"] = { fg = colors.blue, style = { "italic" } },
-                        ["@markup.strong"] = { fg = colors.blue, style = { "bold" } },
-                        Headline = { style = { "bold" } },
-                        Headline1 = { fg = colors.blue, style = { "bold" } },
-                        Headline2 = { fg = colors.pink, style = { "bold" } },
-                        Headline3 = { fg = colors.lavender, style = { "bold" } },
-                        Headline4 = { fg = colors.green, style = { "bold" } },
-                        Headline5 = { fg = colors.peach, style = { "bold" } },
-                        Headline6 = { fg = colors.flamingo, style = { "bold" } },
-                        rainbow1 = { fg = colors.blue, style = { "bold" } },
-                        rainbow2 = { fg = colors.pink, style = { "bold" } },
-                        rainbow3 = { fg = colors.lavender, style = { "bold" } },
-                        rainbow4 = { fg = colors.green, style = { "bold" } },
-                        rainbow5 = { fg = colors.peach, style = { "bold" } },
-                        rainbow6 = { fg = colors.flamingo, style = { "bold" } },
-                    }
-                end,
-            },
-            color_overrides = {
-                mocha = {
-                    base = "#000000",
-                    mantle = "#000000",
-                    crust = "#000000",
-                },
-                macchiato = {
-                    rosewater = "#F5B8AB",
-                    flamingo = "#F29D9D",
-                    pink = "#AD6FF7",
-                    mauve = "#FF8F40",
-                    red = "#E66767",
-                    maroon = "#EB788B",
-                    peach = "#FAB770",
-                    yellow = "#FACA64",
-                    green = "#70CF67",
-                    teal = "#4CD4BD",
-                    sky = "#61BDFF",
-                    sapphire = "#4BA8FA",
-                    blue = "#00BFFF",
-                    lavender = "#00BBCC",
-                    text = "#C1C9E6",
-                    subtext1 = "#A3AAC2",
-                    subtext0 = "#8E94AB",
-                    overlay2 = "#7D8296",
-                    overlay1 = "#676B80",
-                    overlay0 = "#464957",
-                    surface2 = "#3A3D4A",
-                    surface1 = "#2F313D",
-                    surface0 = "#1D1E29",
-                    base = "#0b0b12",
-                    mantle = "#11111a",
-                    crust = "#191926",
-                },
-            },
-            integrations = {
-                telescope = {
-                    enabled = true,
-                    style = "nvchad",
-                },
-            },
-        },
-    },
     {
         "2nthony/vitesse.nvim",
         dependencies = {
@@ -288,7 +192,7 @@ return {
         "mcauley-penney/techbase.nvim",
         opts = {
             italic_comments = true,
-            transparent = false,
+            transparent = true,
             plugin_support = {
                 visual_whitespace = true,
                 aerial = false,
@@ -426,11 +330,23 @@ return {
         end,
     },
     {
+        "Mofiqul/vscode.nvim",
+        lazy = false,
+        event = "VeryLazy",
+        priority = 1000,
+        config = function()
+            require("vscode").setup({
+                transparent = true,
+            })
+        end,
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
             -- colorscheme = "tokyodark",
             -- colorscheme = "everforest",
+            -- colorscheme = "vscode",
             -- colorscheme = "catppuccin",
             -- colorscheme = "gruvbox-material",
             -- colorscheme = "tundra",
@@ -441,7 +357,7 @@ return {
             -- colorscheme = "ayu-dark",
             -- colorscheme = "rose-pine",
             -- colorscheme = "aether",
-            colorscheme = "kanagawa-dragon",
+            -- colorscheme = "kanagawa-dragon",
             -- colorscheme = "oc-2",
             -- colorscheme = "lume",
             -- colorscheme = "vitesse",

@@ -17,6 +17,7 @@ require("lazy").setup({
         -- { import = "lazyvim.plugins.extras.lang.vue" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.typescript.tsgo" },
+        { import = "lazyvim.plugins.extras.lang.typescript.oxc" },
         { import = "lazyvim.plugins.extras.lang.json" },
         { import = "lazyvim.plugins.extras.lang.astro" },
         { import = "lazyvim.plugins.extras.lang.svelte" },

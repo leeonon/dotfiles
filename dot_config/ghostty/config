@@ -51,14 +51,13 @@ window-padding-color = extend-always
 font-size = 15
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
-# font-family = "IBM Plex Mono"
+font-family = "IBM Plex Mono"
 # font-family-italic = "CartographCF Nerd Font"
 # font-family-bold-italic = "CartographCF Nerd Font"
 # font-family = "Roboto Mono"
 # font-family = "GeistMono Nerd Font"
 # font-family = "DankMono Nerd Font"
 # font-family = "JetBrainsMono Nerd Font"
-# font-family = "Iosevka Nerd Font"
 # https://lilex.myrt.co/
 # font-family = "Lilex"
 # font-family = "Berkeley Mono"
@@ -68,8 +67,10 @@ font-size = 15
 # font-family = "Geist Mono"
 # font-family = "Comic Mono"
 # font-family = "ComicShannsMono Nerd Font"
-font-family = "Zed Plex Mono"
+# font-family = "Zed Plex Mono"
+# font-family = "Iosevka Nerd Font"
 # font-family = "Iosevka Custom"
+# font-family = "IoskeleyMono Nerd Font"
 # font-family = "BlexMono Nerd Font"
 font-style = Medium
 

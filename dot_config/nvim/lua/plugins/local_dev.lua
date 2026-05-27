@@ -1,0 +1,28 @@
+return {
+	{
+		"inkview.nvim",
+		name = "inkview",
+		dev = true,
+		dir = "/Users/ly/code/github/inkview.nvim",
+		ft = { "markdown", "norg", "rmd", "org" },
+		build = "make",
+		config = function()
+			require("inkview").setup({
+				auto_start = false,
+				auto_refresh = true,
+				debounce = 300,
+				theme = "dark",
+				open_on_filetypes = { "markdown", "norg", "rmd", "org" },
+				debug = true,
+			})
+		end,
+		keys = {
+			{ "<leader>mp", "<cmd>InkviewOpen<cr>", desc = "Open inkview preview" },
+			{ "<leader>mc", "<cmd>InkviewClose<cr>", desc = "Close inkview preview" },
+			{ "<leader>mt", "<cmd>InkviewToggle<cr>", desc = "Toggle inkview preview" },
+			{ "<leader>mr", "<cmd>InkviewRefresh<cr>", desc = "Refresh inkview preview" },
+			{ "<leader>md", "<cmd>InkviewTheme dark<cr>", desc = "Set inkview dark theme" },
+			{ "<leader>ml", "<cmd>InkviewTheme light<cr>", desc = "Set inkview light theme" },
+		},
+	},
+}

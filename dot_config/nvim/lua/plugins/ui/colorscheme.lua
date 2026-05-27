@@ -341,6 +341,16 @@ return {
         end,
     },
     {
+        "uhs-robert/oasis.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("oasis").setup({
+                transparent = true,
+            })
+        end,
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
@@ -363,6 +373,7 @@ return {
             -- colorscheme = "vitesse",
             -- colorscheme = "ember",
             -- colorscheme = "lake-dweller",
+            -- colorscheme = "oasis",
         },
     },
 }

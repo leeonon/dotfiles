@@ -94,7 +94,7 @@ return {
                 function()
                     return " "
                 end,
-                color = { fg = colors.surface0, bg = "NONE", gui = "bold" },
+                color = { fg = colors.surface0, bg = "NONE", gui = "" },
                 padding = { left = 1, right = 1 },
             }
         end
@@ -140,11 +140,11 @@ return {
                     color = function()
                         local mode = vim.fn.mode()
                         if mode == "\22" then
-                            return { fg = "NONE", bg = colors.red, gui = "bold" }
+                            return { fg = "NONE", bg = colors.red, gui = "" }
                         elseif mode == "V" then
-                            return { fg = colors.red, bg = "NONE", gui = "underline,bold" }
+                            return { fg = colors.red, bg = "NONE", gui = "underline," }
                         else
-                            return { fg = colors.red, bg = "NONE", gui = "bold" }
+                            return { fg = colors.red, bg = "NONE", gui = "" }
                         end
                     end,
                     padding = { left = 2, right = 0 },
@@ -154,16 +154,16 @@ return {
                 separator(),
                 {
                     custom_branch,
-                    color = { fg = colors.green, bg = "NONE", gui = "bold" },
+                    color = { fg = colors.green, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 0 },
                 },
                 {
                     "diff",
                     colored = true,
                     diff_color = {
-                        added = { fg = colors.teal, bg = "NONE", gui = "bold" },
-                        modified = { fg = colors.yellow, bg = "NONE", gui = "bold" },
-                        removed = { fg = colors.red, bg = "NONE", gui = "bold" },
+                        added = { fg = colors.teal, bg = "NONE", gui = "" },
+                        modified = { fg = colors.yellow, bg = "NONE", gui = "" },
+                        removed = { fg = colors.red, bg = "NONE", gui = "" },
                     },
                     symbols = { added = "+", modified = "~", removed = "-" },
                     source = nil,
@@ -176,7 +176,7 @@ return {
                     "filetype",
                     icon_only = true,
                     colored = false,
-                    color = { fg = colors.blue, bg = "NONE", gui = "bold" },
+                    color = { fg = colors.blue, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 1 },
                 },
                 {
@@ -190,7 +190,7 @@ return {
                         unnamed = "[?]",
                         newfile = "[!]",
                     },
-                    color = { fg = colors.blue, bg = "NONE", gui = "bold" },
+                    color = { fg = colors.blue, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 0 },
                 },
                 separator(),
@@ -210,7 +210,7 @@ return {
 
                         return string.format(" %d/%d", current_index, total)
                     end,
-                    color = { fg = colors.yellow, bg = "NONE", gui = "bold" },
+                    color = { fg = colors.yellow, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 0 },
                 },
             },
@@ -251,17 +251,12 @@ return {
             lualine_z = {
                 separator(),
                 {
-                    "location",
-                    color = { fg = colors.red, bg = "NONE", gui = "bold" },
-                    padding = { left = 1, right = 0 },
-                },
-                {
                     function()
                         return getLspName()
                     end,
                     -- separator = { left = "", right = "" },
                     -- separator = { left = "", right = "" },
-                    color = { bg = "NONE", fg = colors.green, gui = "bold" },
+                    color = { bg = "NONE", fg = colors.green, gui = "" },
                 },
             },
         }

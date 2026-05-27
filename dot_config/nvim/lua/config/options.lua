@@ -24,12 +24,17 @@ vim.opt.termguicolors = true
 vim.opt.swapfile = false
 
 -- 代码折叠
-vim.o.foldenable = true
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldtext = ""
-vim.o.fillchars = "foldclose:,foldopen:󰅀"
-vim.o.foldlevelstart = 99
+-- vim.o.foldenable = true
+-- vim.o.foldmethod = "expr"
+-- vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.o.foldtext = ""
+-- vim.o.foldlevelstart = 99
+-- vim.opt.fillchars = {
+--     fold = " ",
+--     foldopen = "",
+--     foldclose = "",
+--     foldsep = " ",
+-- }
 
 -- 用于控制是否显示不可见字符（如空格、制表符、换行符等
 vim.opt.list = false

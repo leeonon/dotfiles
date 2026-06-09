@@ -41,7 +41,7 @@ return {
             },
             buffers = { follow_current_file = { enabled = true } },
             window = {
-                width = 45,
+                width = 65,
                 position = "left", -- left, right, top, bottom, float, current
                 mappings = {
                     ["D"] = "trash",

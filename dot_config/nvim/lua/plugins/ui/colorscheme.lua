@@ -351,6 +351,41 @@ return {
         end,
     },
     {
+        "marekh19/meowsoot.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("meowsoot").setup({
+                style = "night", -- "night" (dark) | "dawn" (light)
+                transparent = true, -- transparent backgrounds
+                terminal_colors = true, -- set vim.g.terminal_color_0..15
+
+                styles = {
+                    comments = { italic = true },
+                    keywords = {},
+                    functions = {},
+                    variables = {},
+                    sidebars = "dark", -- "dark" | "transparent" | "normal"
+                    floats = "dark",
+                },
+
+                -- Plugin highlight groups. Auto-detected via lazy.nvim if `auto = true`.
+                plugins = {
+                    all = false,
+                    auto = true,
+                    -- Force-enable / disable individual plugins:
+                    -- telescope = true,
+                    -- gitsigns = false,
+                },
+
+                cache = true, -- cache compiled highlights to disk
+
+                on_colors = function(c) end, -- mutate the color table
+                on_highlights = function(hl, c) end, -- mutate the highlight table
+            })
+        end,
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
@@ -374,6 +409,7 @@ return {
             -- colorscheme = "ember",
             -- colorscheme = "lake-dweller",
             -- colorscheme = "oasis",
+            -- colorscheme = "meowsoot",
         },
     },
 }

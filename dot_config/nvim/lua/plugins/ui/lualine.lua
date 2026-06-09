@@ -140,7 +140,7 @@ return {
                     color = function()
                         local mode = vim.fn.mode()
                         if mode == "\22" then
-                            return { fg = "NONE", bg = colors.red, gui = "" }
+                            return { fg = "NONE", bg = colors.surface2, gui = "" }
                         elseif mode == "V" then
                             return { fg = colors.red, bg = "NONE", gui = "underline," }
                         else
@@ -154,16 +154,16 @@ return {
                 separator(),
                 {
                     custom_branch,
-                    color = { fg = colors.green, bg = "NONE", gui = "" },
+                    color = { fg = colors.surface2, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 0 },
                 },
                 {
                     "diff",
                     colored = true,
                     diff_color = {
-                        added = { fg = colors.teal, bg = "NONE", gui = "" },
-                        modified = { fg = colors.yellow, bg = "NONE", gui = "" },
-                        removed = { fg = colors.red, bg = "NONE", gui = "" },
+                        added = { fg = colors.surface0, bg = "NONE", gui = "" },
+                        modified = { fg = colors.surface1, bg = "NONE", gui = "" },
+                        removed = { fg = colors.surface2, bg = "NONE", gui = "" },
                     },
                     symbols = { added = "+", modified = "~", removed = "-" },
                     source = nil,
@@ -176,7 +176,7 @@ return {
                     "filetype",
                     icon_only = true,
                     colored = false,
-                    color = { fg = colors.blue, bg = "NONE", gui = "" },
+                    color = { fg = colors.surface2, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 1 },
                 },
                 {
@@ -190,7 +190,7 @@ return {
                         unnamed = "[?]",
                         newfile = "[!]",
                     },
-                    color = { fg = colors.blue, bg = "NONE", gui = "" },
+                    color = { fg = colors.surface2, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 0 },
                 },
                 separator(),
@@ -210,18 +210,18 @@ return {
 
                         return string.format(" %d/%d", current_index, total)
                     end,
-                    color = { fg = colors.yellow, bg = "NONE", gui = "" },
+                    color = { fg = colors.surface2, bg = "NONE", gui = "" },
                     padding = { left = 0, right = 0 },
                 },
             },
             lualine_x = {
                 "searchcount",
-                separator(),
-                {
-                    require("lazy.status").updates,
-                    cond = require("lazy.status").has_updates,
-                    color = { fg = Snacks.util.color("Special"), bg = "NONE" },
-                },
+                -- separator(),
+                -- {
+                --     require("lazy.status").updates,
+                --     cond = require("lazy.status").has_updates,
+                --     color = { fg = Snacks.util.color("Special"), bg = "NONE" },
+                -- },
             },
             lualine_y = {
                 { "lsp_progress" },
@@ -229,6 +229,9 @@ return {
                     "diagnostics",
                     sources = { "nvim_diagnostic", "coc" },
                     sections = { "error", "warn", "info", "hint" },
+                    cond = function()
+                        return #vim.diagnostic.get(0) > 0
+                    end,
                     diagnostics_color = {
                         error = { fg = colors.red },
                         warn = { fg = colors.yellow },
@@ -244,7 +247,7 @@ return {
                     },
                     colored = true,
                     update_in_insert = false,
-                    always_visible = true,
+                    always_visible = false,
                     padding = { left = 0, right = 0 },
                 },
             },
@@ -256,7 +259,7 @@ return {
                     end,
                     -- separator = { left = "", right = "" },
                     -- separator = { left = "", right = "" },
-                    color = { bg = "NONE", fg = colors.green, gui = "" },
+                    color = { bg = "NONE", fg = colors.surface2, gui = "" },
                 },
             },
         }

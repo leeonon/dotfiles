@@ -169,14 +169,14 @@ alias ......="cd ../../../../.."
 # Abbr
 # Lazygit
 abbr -S lg='lazygit' >>/dev/null
-# CLI Diff - 在浏览器中打开 Diff 服务
-abbr -S difit='npx difit' >>/dev/null
 # Claude Code usage
 abbr -S ccusage= 'bunx ccusage' >>/dev/null
 # Markdown Preview
 abbr -S mdp='leaf' >>/dev/null
 # Hunk
-abbr -S diffshow='hunk show' >>/dev/null
+abbr -S diffshow='lumen diff' >>/dev/null
+# Tokscale
+abbr -S tokens='bunx tokscale@latest' >>/dev/null
 
 
 function sss() {
@@ -347,3 +347,6 @@ export PATH=/Users/ly/.opencode/bin:$PATH
 
 # 优先local bin, 其次 homebrew bin, 顺序很重要，不然会出现类似 n 切换 node 版本后无效的问题
 export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
+
+# Vite+ bin (https://viteplus.dev)
+# . "$HOME/.vite-plus/env"

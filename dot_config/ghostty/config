@@ -1,7 +1,7 @@
 # auto-update-channel = tip
 # UI
 # 在线终端主题 https://paletty.dev/p/7yC6wrtxudO/pierre-dark
-background-opacity = 0.85
+background-opacity = 0.9
 background-blur-radius = 60
 # background-blur = macos-glass-clear 
 macos-titlebar-style = transparent
@@ -48,7 +48,7 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 15
+font-size = 16
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"
@@ -63,6 +63,8 @@ font-family-bold-italic = "CartographCF Nerd Font"
 # font-family = "Lilex"
 # font-family = "Berkeley Mono"
 # font-family = "TX-02"
+# font-family = "Fira Code Regular"
+# font-family = "Spline Sans Mono"
 # font-family = "DM Mono"
 # font-family = "CartographCF Nerd Font"
 # font-family = "Geist Mono"

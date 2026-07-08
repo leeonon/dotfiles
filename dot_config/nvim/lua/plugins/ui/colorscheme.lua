@@ -386,6 +386,11 @@ return {
         end,
     },
     {
+        "vossenwout/guts.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
@@ -410,6 +415,7 @@ return {
             -- colorscheme = "lake-dweller",
             -- colorscheme = "oasis",
             -- colorscheme = "meowsoot",
+            -- colorscheme = "guts",
         },
     },
 }

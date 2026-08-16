@@ -1,0 +1,334 @@
+// ccmux-plugin v1.0.1
+// OpenCode plugin shipped by ccmux. Writes marker files into the ccmux
+// session-pids dir so the daemon can correlate OpenCode sessions to
+// tmux panes. Installed + uninstalled via `ccmux setup --agent opencode`.
+// Source: github.com/epilande/ccmux
+
+import { writeFile, rename, unlink, mkdir } from "node:fs/promises";
+import { join } from "node:path";
+
+/**
+ * @typedef {object} OpencodeSessionInfo
+ * @property {string} id
+ * @property {string} directory
+ * @property {string} title
+ */
+
+/**
+ * @typedef {{type: "idle"} | {type: "busy"} | {type: "retry"}} OpencodeSessionStatus
+ */
+
+/**
+ * @typedef {object} MarkerState
+ * @property {"idle"|"working"|"waiting_permission"} [state]
+ * @property {number} [state_timestamp]
+ * @property {string} [directory]
+ * @property {string} [title]
+ * @property {string|null} [pending_tool]
+ * @property {string|null} [permission_context]
+ * @property {string} [last_prompt]
+ */
+
+/**
+ * @typedef {object} MakePluginOptions
+ * @property {string} markersDir   Absolute path to ccmux marker directory.
+ * @property {string} version      ccmux version string (for the sentinel line).
+ * @property {() => number} [now]  Injected clock, ms epoch. Defaults to Date.now.
+ */
+
+/**
+ * Build an OpenCode plugin bound to the given markers dir.
+ * @param {MakePluginOptions} opts
+ */
+export function makePlugin({ markersDir, version, now = Date.now }) {
+  const AGENT_TYPE = "opencode";
+
+  /** @type {Map<string, Promise<void>>} */
+  const writeQueues = new Map();
+  /**
+   * Last-written marker state per session. Keeps `session.updated` from
+   * clobbering an in-flight `working`/`waiting_permission` back to idle
+   * when a rename event arrives, and lets us suppress no-op writes when
+   * a bus event would produce a byte-identical marker.
+   * @type {Map<string, MarkerState>}
+   */
+  const sessionState = new Map();
+  /**
+   * Most recent user message ID per session, registered via
+   * `message.updated`. The `message.part.updated` handler captures text
+   * for this messageID only — earlier user messages are ignored, matching
+   * the "lastPrompt" semantics. Cleared on `session.deleted` and
+   * `removeMarker`.
+   * @type {Map<string, string>} sessionId -> userMessageId
+   */
+  const lastUserMessageId = new Map();
+
+  function markerPath(sessionId) {
+    return join(markersDir, `${AGENT_TYPE}-${sessionId}.json`);
+  }
+
+  async function atomicWrite(path, body) {
+    const tmp = `${path}.tmp.${process.pid}.${now()}`;
+    await writeFile(tmp, body);
+    await rename(tmp, path);
+  }
+
+  function buildMarkerBody(sessionId, state) {
+    const ts = now();
+    const body = {
+      agent_type: AGENT_TYPE,
+      pid: process.pid,
+      session_id: sessionId,
+      timestamp: Math.floor(ts / 1000),
+      state_timestamp: Math.floor(ts / 1000),
+      ...state,
+    };
+    return JSON.stringify(body);
+  }
+
+  /**
+   * Chain a per-session write so `permission.asked` and `session.status`
+   * firing within the same tick serialize on disk in emit order.
+   *
+   * @param {string} sessionId
+   * @param {() => Promise<void>} updater
+   */
+  function queueWrite(sessionId, updater) {
+    const prior = writeQueues.get(sessionId) ?? Promise.resolve();
+    const next = prior.then(updater).catch((err) => {
+      console.error(`[ccmux-plugin] ${sessionId}: write failed`, err);
+    });
+    writeQueues.set(sessionId, next);
+    return next;
+  }
+
+  /**
+   * Merge `patch` into the session's in-memory state and flush a fresh
+   * marker file. Null values in patch clear the prior field. Suppresses
+   * the write when every patch field already matches `sessionState` so
+   * heartbeat-like `session.status` re-emits don't burn a tmp+rename.
+   *
+   * @param {string} sessionId
+   * @param {MarkerState} patch
+   */
+  function writeMerged(sessionId, patch) {
+    const prev = sessionState.get(sessionId) ?? {};
+    if (prev && patchIsNoop(prev, patch)) return Promise.resolve();
+    const merged = { ...prev, ...patch };
+    sessionState.set(sessionId, merged);
+    return atomicWrite(
+      markerPath(sessionId),
+      buildMarkerBody(sessionId, merged),
+    );
+  }
+
+  function patchIsNoop(prev, patch) {
+    for (const key of Object.keys(patch)) {
+      if (prev[key] !== patch[key]) return false;
+    }
+    return true;
+  }
+
+  async function removeMarker(sessionId) {
+    sessionState.delete(sessionId);
+    writeQueues.delete(sessionId);
+    lastUserMessageId.delete(sessionId);
+    try {
+      await unlink(markerPath(sessionId));
+    } catch (err) {
+      // ENOENT is expected when we never wrote a marker for this session.
+      if (err && err.code !== "ENOENT") {
+        console.error(`[ccmux-plugin] ${sessionId}: unlink failed`, err);
+      }
+    }
+  }
+
+  /** Map OpenCode's session.status to a ccmux marker state. */
+  function stateFromStatus(status) {
+    if (!status) return "idle";
+    if (status.type === "idle") return "idle";
+    // "busy" and "retry" are both user-visible "working".
+    return "working";
+  }
+
+  async function eagerSeed(client, directory) {
+    const [listRes, statusRes] = await Promise.all([
+      client.session.list({ query: { directory } }).catch((err) => {
+        console.error("[ccmux-plugin] session.list failed", err);
+        return null;
+      }),
+      client.session.status({ query: { directory } }).catch((err) => {
+        console.error("[ccmux-plugin] session.status failed", err);
+        return null;
+      }),
+    ]);
+
+    if (!listRes) return;
+    /** @type {OpencodeSessionInfo[]} */
+    const sessions = listRes.data || [];
+    /** @type {Record<string, OpencodeSessionStatus>} */
+    const statusMap = (statusRes && statusRes.data) || {};
+
+    const writes = sessions.map((s) =>
+      queueWrite(s.id, () =>
+        writeMerged(s.id, {
+          state: stateFromStatus(statusMap[s.id]),
+          directory: s.directory,
+          title: s.title,
+        }),
+      ),
+    );
+    await Promise.all(writes);
+  }
+
+  /**
+   * @typedef {{type: string, properties: any}} BusEvent
+   * @param {BusEvent} event
+   */
+  async function dispatchEvent(event) {
+    const { type, properties } = event;
+    if (!type || !properties) return;
+
+    switch (type) {
+      case "session.created":
+      case "session.updated": {
+        const info = properties.info;
+        if (!info?.id) return;
+        const prior = sessionState.get(info.id);
+        return queueWrite(info.id, () =>
+          writeMerged(info.id, {
+            state: prior?.state ?? "idle",
+            directory: info.directory,
+            title: info.title,
+          }),
+        );
+      }
+
+      case "session.deleted": {
+        const info = properties.info;
+        if (!info?.id) return;
+        return queueWrite(info.id, () => removeMarker(info.id));
+      }
+
+      case "session.status": {
+        const { sessionID, status } = properties;
+        if (!sessionID) return;
+        return queueWrite(sessionID, () =>
+          writeMerged(sessionID, { state: stateFromStatus(status) }),
+        );
+      }
+
+      // Relies on OpenCode firing `message.updated` before
+      // `message.part.updated` for the same message (session.ts:476-492).
+      case "message.updated": {
+        const info = properties?.info;
+        if (!info?.id || !info?.sessionID || info.role !== "user") return;
+        lastUserMessageId.set(info.sessionID, info.id);
+        return;
+      }
+
+      case "message.part.updated": {
+        const part = properties?.part;
+        if (!part || part.type !== "text") return;
+        if (part.synthetic) return;
+        const sessionId = part.sessionID;
+        const messageId = part.messageID;
+        if (!sessionId || !messageId) return;
+        if (lastUserMessageId.get(sessionId) !== messageId) return;
+        const text = typeof part.text === "string" ? part.text.trim() : "";
+        if (!text) return;
+        const last_prompt = text.slice(0, 1024);
+        return queueWrite(sessionId, () =>
+          writeMerged(sessionId, { last_prompt }),
+        );
+      }
+
+      case "permission.asked": {
+        const { sessionID, permission } = properties;
+        if (!sessionID) return;
+        return queueWrite(sessionID, () =>
+          writeMerged(sessionID, {
+            state: "waiting_permission",
+            pending_tool: permission || null,
+            permission_context: describePermission(properties),
+          }),
+        );
+      }
+
+      case "permission.replied": {
+        const { sessionID } = properties;
+        if (!sessionID) return;
+        return queueWrite(sessionID, () =>
+          writeMerged(sessionID, {
+            state: "working",
+            pending_tool: null,
+            permission_context: null,
+          }),
+        );
+      }
+    }
+  }
+
+  /**
+   * OpenCode awaits every plugin's async default export before it finishes
+   * booting. `client.session.list` / `client.session.status` are served by
+   * in-process handlers that depend on runtime state that is only ready
+   * AFTER plugin init completes, so awaiting the seed here deadlocks boot.
+   * Fire and forget: mkdir synchronously-awaitable, return hooks immediately,
+   * let the seed resolve whenever the SDK is ready. Any bus events that fire
+   * in the meantime are handled via the normal `event` hook below.
+   *
+   * @param {import("@opencode-ai/plugin").PluginInput} input
+   */
+  async function plugin(input) {
+    await mkdir(markersDir, { recursive: true });
+    const seedPromise = eagerSeed(input.client, input.directory);
+    // Surface rejection for visibility without blocking init.
+    seedPromise.catch(() => {});
+
+    return {
+      event: async ({ event }) => {
+        try {
+          await dispatchEvent(event);
+        } catch (err) {
+          console.error(`[ccmux-plugin] event ${event?.type} failed`, err);
+        }
+      },
+      /** @internal Exposed for tests so they can await the deferred seed. OpenCode ignores unknown hook keys. */
+      _seedReady: seedPromise,
+    };
+  }
+
+  plugin.version = version;
+  return plugin;
+}
+
+/**
+ * Best-effort human-readable description for a permission.asked event.
+ * Falls back to the permission class name when metadata has no obvious
+ * summary field.
+ *
+ * @param {any} properties
+ * @returns {string|null}
+ */
+function describePermission(properties) {
+  const meta = properties?.metadata;
+  if (meta && typeof meta === "object") {
+    if (typeof meta.command === "string") return meta.command;
+    if (typeof meta.description === "string") return meta.description;
+    if (typeof meta.path === "string") return meta.path;
+  }
+  const patterns = properties?.patterns;
+  if (Array.isArray(patterns) && patterns.length > 0) {
+    return String(patterns[0]);
+  }
+  if (typeof properties?.permission === "string") return properties.permission;
+  return null;
+}
+
+const ccmuxPlugin = makePlugin({
+  markersDir: "/Users/ly/.config/ccmux/session-pids",
+  version: "1.0.1",
+});
+
+export default ccmuxPlugin;

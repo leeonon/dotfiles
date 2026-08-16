@@ -2,3 +2,29 @@ onboarding = false
 
 [keys]
 prefix = "ctrl+a"
+split_vertical = "prefix+%"
+split_horizontal = 'prefix+"'
+detach = "prefix+d"
+
+# leader+s 打开工作区（“spaces”）选择器（设置移出 prefix+s 以腾出空间）
+workspace_picker = "prefix+s"
+settings = "prefix+shift+s"
+
+# vim 风格的 j/k 在 spaces 选择器中向上/向下移动选择
+# （释放了 navigate 模式中的窗格上下移动；使用箭头键或 ctrl+b j/k 来聚焦窗格）
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+navigate_pane_up = ""
+navigate_pane_down = ""
+
+# leader+. / leader+, 在面板中逐步切换到下一个/上一个代理
+next_agent = "prefix+."
+previous_agent = "prefix+,"
+
+# leader+a 聚焦代理面板以进行键盘浏览
+# （j/k 移动，enter 跳转，esc 退出）— 需要重建的二进制文件
+agent_picker = "prefix+a"
+
+[theme]
+name = "dracula"
+auto_switch = false

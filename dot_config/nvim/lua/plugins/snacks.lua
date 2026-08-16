@@ -6,46 +6,23 @@ return {
         image = {
             enabled = true,
         },
+        gitbrowse = {
+            -- your gitbrowse configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
         terminal = {
             win = {
                 -- position = "bottom",
             },
         },
         dashboard = require("utils.dashboard"),
-        -- https://github.com/folke/snacks.nvim/discussions/111
-        --     dashboard = {
-        --       enabled = true,
-        --       preset = {
-        --         header = [[
-        -- ████ ██████           █████      ██
-        --      ███████████             █████ 
-        --      █████████ ███████████████████ ███   ███████████
-        --     █████████  ███    █████████████ █████ ██████████████
-        --    █████████ ██████████ █████████ █████ █████ ████ █████
-        --  ███████████ ███    ███ █████████ █████ █████ ████ █████
-        -- ██████  █████████████████████ ████ █████ █████ ████ ██████]],
-        --       },
-        --       formats = {
-        --         key = function(item)
-        --           return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
-        --         end,
-        --       },
-        --       sections = {
-        --         {
-        --           section = "header",
-        --           padding = 4,
-        --         },
-        --         { section = "keys", gap = 1, padding = 1 },
-        --         { section = "startup" },
-        --       },
-        --     },
         indent = {
             enabled = false,
         },
         bigfile = { enabled = true },
         quickfile = { enabled = true },
         scroll = { enabled = false },
-        statuscolumn = { enabled = true },
         words = { enabled = true },
         input = {
             enabled = true,
@@ -56,41 +33,50 @@ return {
             win = { style = "input" },
             expand = true,
         },
-        -- picker = {
-        --     -- !NOTE: picker keymaps : https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#%EF%B8%8F-config
-        --     prompt = "[SNACKS] 🍪 ",
-        --     focus = "input", -- "input" | "list" ,
-        --     layout = {
-        --         cycle = true,
-        --         layout = {
-        --             box = "vertical",
-        --             backdrop = true,
-        --             row = -1,
-        --             width = 0,
-        --             height = 0.4,
-        --             border = nil,
-        --             title = " {title} {live} {flags}",
-        --             title_pos = "left",
-        --             { win = "input", height = 1, border = nil },
-        --             {
-        --                 box = "horizontal",
-        --                 { win = "list", border = "none" },
-        --                 { win = "preview", title = "{preview}", width = 0.6, border = nil },
-        --             },
-        --         },
-        --     },
-        -- },
         picker = {
             enabled = true,
-            prompt = "[SNACKS] 🍪 ",
-            layout = {
+            prompt = "[SNACKS] ",
+            border = "none",
+            -- layout = "telescope_one",
+            layout = "telescope_default",
+            layouts = {
                 -- The default layout for "telescopy" pickers, e.g. `files`, `commands`, ...
-                -- It will not override non-standard pickers, e.g. `explorer`, `lines`, ...
-                preset = function()
-                    return vim.o.columns >= 100 and "telescope" or "vertical"
-                end,
+                telescope_default = {
+                    preset = function()
+                        return vim.o.columns >= 100 and "telescope" or "vertical"
+                    end,
+                    layout = {
+                        backdrop = false,
+                    },
+                },
+                telescope_one = {
+                    layout = {
+                        box = "horizontal",
+                        backdrop = false,
+                        width = 0.8,
+                        height = 0.9,
+                        border = "none",
+                        {
+                            box = "vertical",
+                            {
+                                win = "input",
+                                height = 1,
+                                border = "rounded",
+                                title = "{title} {live} {flags}",
+                                title_pos = "center",
+                            },
+                            { win = "list", title = " Results ", title_pos = "center", border = "rounded" },
+                        },
+                        {
+                            win = "preview",
+                            title = "{preview:Preview}",
+                            width = 0.45,
+                            border = "rounded",
+                            title_pos = "center",
+                        },
+                    },
+                },
             },
-            layouts = {},
         },
         scratch = {
             enabled = false,
@@ -143,7 +129,7 @@ return {
             callback = function()
                 -- Setup some globals for debugging (lazy-loaded)
                 _G.dd = function(...)
-                    Snacks.debug.inspect(...)
+                    -- Snacks.debug.inspect(...)
                 end
                 _G.bt = function()
                     Snacks.debug.backtrace()
@@ -166,6 +152,25 @@ return {
                 Snacks.toggle.inlay_hints():map("<leader>uh")
                 Snacks.toggle.indent():map("<leader>ug")
                 Snacks.toggle.dim():map("<leader>uD")
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            pattern = "*",
+            callback = function()
+                vim.api.nvim_set_hl(0, "SnacksPicker", { bg = "none", nocombine = true })
+                vim.api.nvim_set_hl(0, "SnacksInputTitle", { bg = "none", nocombine = true })
+                vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = "#45475a", bg = "NONE", nocombine = true })
+                vim.api.nvim_set_hl(0, "SnacksInputBorder", { fg = "#45475a", bg = "NONE", nocombine = true })
+                vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#45475A", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "SnacksPickerTitle", { bg = "#7aa2f7" })
+                vim.api.nvim_set_hl(0, "SnacksPickerPreview", { bg = "NONE" })
+                vim.api.nvim_set_hl(0, "SnacksPickerList", { bg = "NONE" })
+                vim.api.nvim_set_hl(0, "SnacksPickerListTitle", { bg = "#9ece6a" })
+                vim.api.nvim_set_hl(0, "SnacksPickerInputTitle", { bg = "#f7768e", fg = "#45475a" })
+                vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { bg = "NONE", fg = "#45475a" })
+                vim.api.nvim_set_hl(0, "SnacksPickerInputSearch", { bg = "#f7768e" })
+                vim.api.nvim_set_hl(0, "SnacksPickerInput", { bg = "NONE" })
             end,
         })
     end,

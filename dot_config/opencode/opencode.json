@@ -92,7 +92,8 @@
     "@tarquinen/opencode-smart-title",
     "oh-my-openagent@latest",
     "opentmux",
-    "@slkiser/opencode-quota"
+    "@slkiser/opencode-quota",
+    "file:///Users/ly/.config/opencode/plugins/codeisland.js"
   ],
   "provider": {},
   "experimental": {

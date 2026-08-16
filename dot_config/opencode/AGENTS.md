@@ -33,6 +33,7 @@
 - 禁止自动Git Commit 操作
 
 <!-- CODEGRAPH_START -->
+
 ## CodeGraph
 
 In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the repo root), reach for it BEFORE grep/find or reading files when you need to understand or locate code:
@@ -41,4 +42,9 @@ In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the re
 - **Shell** (always works): `codegraph explore "<symbol names or question>"` prints the same output.
 
 If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
+
 <!-- CODEGRAPH_END -->
+
+## 问题修复
+
+如果让你修复某个BUG时，我们修复了两次以及两次以上还没有修复好，这时候你要进行以下操作: 进入深度排查模式，该模式下你不会再急于从表面修复BUG，然后沿着问题的原因一步步排查，一直修复不好 问题的原因可能是排查点进入了误区，这时候需要多考虑几个方面，多角度的去排查问题，直到找到可以确认问题的根本原因才去修复

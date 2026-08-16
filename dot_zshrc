@@ -167,16 +167,17 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 # Abbr
-# Lazygit
-abbr -S lg='lazygit' >>/dev/null
 # Claude Code usage
 abbr -S ccusage= 'bunx ccusage' >>/dev/null
 # Markdown Preview
 abbr -S mdp='leaf' >>/dev/null
-# Hunk
-abbr -S diffshow='lumen diff' >>/dev/null
 # Tokscale
 abbr -S tokens='bunx tokscale@latest' >>/dev/null
+
+#---------- Git -----------------
+abbr -S diffshow='lumen diff' >>/dev/null # Hunk
+abbr -S lg='lazygit' >>/dev/null # Lazygit
+#---------- Git -----------------
 
 
 function sss() {
@@ -257,14 +258,9 @@ function y() {
 # pnpm
 export PNPM_HOME="/Users/ly/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
-export PATH="$HOME/.local/share/pnpm/global/bin:$PATH"
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 # pnpm end
 
 export MY_PING_PATH=/Applications/SASE.app/Contents/Services
@@ -351,9 +347,6 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 # Vite+ bin (https://viteplus.dev)
 # . "$HOME/.vite-plus/env"
 
-export PI_CODING_AGENT_DIR="/Users/ly/code/github/oh-my-pi/agent"
-export PI_CODING_AGENT_SESSION_DIR="/Users/ly/.pi/agent/sessions"
-
 # >>> otty shell integration >>>
 # Added by Otty — toggle in Settings > Shell > Shell Integration.
 # Inert unless launched by Otty (it sets $OTTY_SHELL_INTEGRATION).
@@ -361,3 +354,14 @@ if [ -n "$OTTY_SHELL_INTEGRATION" ] && [ -r "$OTTY_SHELL_INTEGRATION/otty-integr
   . "$OTTY_SHELL_INTEGRATION/otty-integration.zsh"
 fi
 # <<< otty shell integration <<<
+
+
+# Iris Autocomplete
+# eval "$(iris init zsh)"
+eval "$(/Users/ly/.local/bin/mise activate zsh)"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<

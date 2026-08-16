@@ -386,9 +386,110 @@ return {
         end,
     },
     {
-        "vossenwout/guts.nvim",
+        "Aejkatappaja/sora",
         lazy = false,
         priority = 1000,
+        opts = {},
+        config = function(_)
+            require("sora").setup({
+                transparent = true, -- transparent background (also strips float/statusline bg)
+                italic = true, -- italics globally
+                italic_comments = true, -- italics for comments (ignored if italic = false)
+
+                on_colors = function(colors)
+                    colors.bg = "#000000"
+                    colors.bg_float = "#000000"
+                    colors.bg_statusline = "#000000"
+                end,
+                on_highlights = function(hl, colors) end, -- override highlight groups after they build
+            })
+        end,
+    },
+    {
+        "AlexvZyl/nordic.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("nordic").setup({
+                -- This callback can be used to override the colors used in the base palette.
+                on_palette = function(palette) end,
+                -- This callback can be used to override the colors used in the extended palette.
+                after_palette = function(palette) end,
+                -- This callback can be used to override highlights before they are applied.
+                on_highlight = function(highlights, palette) end,
+                -- Enable bold keywords.
+                bold_keywords = false,
+                -- Enable italic comments.
+                italic_comments = true,
+                -- Enable editor background transparency.
+                transparent = {
+                    -- Enable transparent background.
+                    bg = true,
+                    -- Enable transparent background for floating windows.
+                    float = true,
+                },
+                -- Enable brighter float border.
+                bright_border = false,
+                -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+                reduced_blue = true,
+                -- Swap the dark background with the normal one.
+                swap_backgrounds = false,
+                -- Cursorline options.
+                cursorline = {
+                    -- Bold font in cursorline.
+                    bold = false,
+                    -- Bold cursorline number.
+                    bold_number = true,
+                    -- Available styles: 'dark', 'light'.
+                    theme = "dark",
+                    -- Blending the cursorline bg with the buffer bg.
+                    blend = 0.85,
+                },
+                -- Visual selection options.
+                visual = {
+                    -- Bold font in visual selection.
+                    bold = false,
+                    -- Bold visual selection number.
+                    bold_number = true,
+                    -- Available styles: 'dark', 'light'.
+                    theme = "dark",
+                    -- Blending the visual selection bg with the buffer bg.
+                    blend = 0.85,
+                },
+                noice = {
+                    -- Available styles: `classic`, `flat`.
+                    style = "classic",
+                },
+                telescope = {
+                    -- Available styles: `classic`, `flat`.
+                    style = "flat",
+                },
+                leap = {
+                    -- Dims the backdrop when using leap.
+                    dim_backdrop = false,
+                },
+                ts_context = {
+                    -- Enables dark background for treesitter-context window
+                    dark_background = true,
+                },
+            })
+        end,
+    },
+    {
+        "wtfox/luna.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function()
+            require("luna").setup({
+                transparent = true,
+                accent = 1.0, -- 0-1, blends syntax accents toward grey_light; 1 = full color
+                plugins = {
+                    all = true, -- enable every plugin integration unconditionally
+                    auto = true, -- when plugins.all is false, autodetect via lazy.nvim
+                },
+            })
+        end,
     },
     {
         "LazyVim/LazyVim",
@@ -415,7 +516,10 @@ return {
             -- colorscheme = "lake-dweller",
             -- colorscheme = "oasis",
             -- colorscheme = "meowsoot",
+            -- colorscheme = "sora",
             -- colorscheme = "guts",
+            -- colorscheme = "nordic",
+            colorscheme = "luna",
         },
     },
 }

@@ -405,6 +405,18 @@ return {
                         WinSeparator = { fg = colors.overlay0, style = { "bold" } },
                         NormalFloat = { fg = colors.text, bg = colors.crust },
                         FloatBorder = { fg = colors.crust, bg = colors.crust },
+                        -- snacks picker / explorer 透明背景
+                        SnacksPickerBox = { fg = colors.text, bg = "NONE" },
+                        SnacksPickerBoxBorder = { fg = "NONE", bg = "NONE" },
+                        -- Explorer 与编辑面板之间的分割线
+                        SnacksWinSeparator = { fg = colors.crust, bg = "NONE" },
+                        SnacksPickerList = { fg = colors.text, bg = "NONE" },
+                        SnacksPickerListBorder = { fg = colors.overlay0, bg = "NONE" },
+                        SnacksPickerListCursorLine = { bg = colors.surface0 },
+                        SnacksPickerInput = { fg = colors.text, bg = "NONE" },
+                        SnacksPickerInputBorder = { fg = colors.crust, bg = "NONE" },
+                        SnacksPickerPreview = { fg = colors.text, bg = "NONE" },
+                        SnacksPickerPreviewBorder = { fg = colors.overlay0, bg = "NONE" },
                         NeoTreeNormal = { bg = "NONE" },
                         NeoTreeNormalNC = { bg = "NONE" },
                         ["@markup.italic"] = { fg = colors.blue, style = { "italic" } },
@@ -460,6 +472,25 @@ return {
             },
         })
 
-        vim.api.nvim_command("colorscheme catppuccin-frappe")
+        -- vim.api.nvim_command("colorscheme catppuccin-frappe")
+
+        -- vim.api.nvim_create_autocmd("FileType", {
+        --     pattern = { "snacks_picker_list", "snacks_picker_input", "snacks_picker_preview", "snacks_layout_box" },
+        --     callback = function()
+        --         vim.schedule(function()
+        --             local c = require("catppuccin.palettes").get_palette("frappe")
+        --             vim.api.nvim_set_hl(0, "SnacksPickerBox", { fg = c.text, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerBoxBorder", { fg = "NONE", bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksWinSeparator", { fg = c.overlay0, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerList", { fg = c.text, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerListBorder", { fg = c.overlay0, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerListCursorLine", { bg = c.surface0 })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerInput", { fg = c.text, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { fg = c.overlay0, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerPreview", { fg = c.text, bg = "NONE" })
+        --             vim.api.nvim_set_hl(0, "SnacksPickerPreviewBorder", { fg = c.overlay0, bg = "NONE" })
+        --         end)
+        --     end,
+        -- })
     end,
 }

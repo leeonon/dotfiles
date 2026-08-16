@@ -11,28 +11,55 @@ local function find_tailwind_global_css()
         return nil -- no project root found
     end
 
-    -- Find stylesheet files in the project root (recursively)
-    local files = vim.fs.find(function(name)
-        return name:match("%.css$") or name:match("%.scss$") or name:match("%.pcss$")
-    end, {
-        path = root,
-        type = "file",
-        limit = math.huge, -- search full tree
-    })
+    -- Directories we never descend into (huge and never hold the entry css)
+    local skip_dirs = {
+        ["node_modules"] = true,
+        [".git"] = true,
+        [".next"] = true,
+        [".nuxt"] = true,
+        [".svelte-kit"] = true,
+        [".turbo"] = true,
+        [".cache"] = true,
+        ["dist"] = true,
+        ["build"] = true,
+        ["out"] = true,
+        ["target"] = true,
+        ["vendor"] = true,
+        [".venv"] = true,
+    }
 
-    for _, path in ipairs(files) do
-        local f = io.open(path, "r")
-        if f then
-            local content = f:read("*a")
-            f:close()
-
-            if content:find(target, 1, true) then
-                return path -- return first match
+    -- Walk the tree ourselves so we can prune heavy dirs (vim.fs.find can't).
+    -- Depth cap is just a safety net; the prune list is what actually matters.
+    local function scan(dir, depth)
+        if depth > 10 then
+            return nil
+        end
+        for name, type in vim.fs.dir(dir) do
+            local path = vim.fs.joinpath(dir, name)
+            if type == "directory" then
+                if not skip_dirs[name] then
+                    local found = scan(path, depth + 1)
+                    if found then
+                        return found
+                    end
+                end
+            elseif type == "file"
+                and (name:match("%.css$") or name:match("%.scss$") or name:match("%.pcss$"))
+            then
+                local f = io.open(path, "r")
+                if f then
+                    local content = f:read("*a")
+                    f:close()
+                    if content:find(target, 1, true) then
+                        return path -- return first match
+                    end
+                end
             end
         end
+        return nil
     end
 
-    return nil
+    return scan(root, 0)
 end
 
 return {
@@ -65,11 +92,16 @@ return {
                     },
                 },
                 tailwindcss = {
+                    -- 只有在 tailwindcss LSP 真正启动时才去扫项目找全局 css，
+                    -- 避免在 nvim 启动(spec)阶段就同步遍历整个工程目录树。
+                    on_new_config = function(new_config)
+                        new_config.settings.tailwindCSS.experimental.configFile =
+                            find_tailwind_global_css()
+                    end,
                     settings = {
                         tailwindCSS = {
                             classAttributes = { "class", "className", "ngClass" },
                             experimental = {
-                                configFile = find_tailwind_global_css(), -- 确保这个函数已定义
                                 classRegex = {
                                     "tw`([^`]*)",
                                     "tw='([^']*)",
@@ -101,6 +133,19 @@ return {
                 cssmodules_ls = { enabled = false },
                 vtsls = {},
                 tsgo = {
+                    -- 新版 nvim-lspconfig 将 tsgo 并入 tsc 且优先使用本地 node_modules/.bin/tsc，
+                    -- 但普通 tsc 不支持 --lsp 会直接 exit 1，这里强制只用 tsgo
+                    cmd = function(dispatchers, config)
+                        local cmd = "tsgo"
+                        if config and config.root_dir then
+                            local local_cmd =
+                                vim.fs.joinpath(config.root_dir, "node_modules/.bin", "tsgo")
+                            if vim.fn.executable(local_cmd) == 1 then
+                                cmd = local_cmd
+                            end
+                        end
+                        return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
+                    end,
                     settings = {
                         typescript = {
                             inlayHints = {

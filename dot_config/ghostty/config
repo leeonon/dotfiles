@@ -20,9 +20,10 @@ bold-is-bright = true
 # theme = vscode-dark
 # background = #0b0b12
 # background  = #141617
-background = #121212
+# background = #121212
 
-theme = ayu-dark
+# theme = ayu-dark
+theme = luna
 title = Ghostty 👻
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon      = hidden
@@ -50,7 +51,7 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 15
+font-size = 16
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"
@@ -80,9 +81,10 @@ font-family = "Zed Plex Mono"
 # font-family = "BlexMono Nerd Font"
 # font-family = "Martian Mono"
 # font-style = Medium
+font-style = Regular
 
 
-adjust-cell-height = 16
+adjust-cell-height = 15
 # adjust-cursor-height = 4
 
 font-feature = +calt

@@ -18,7 +18,7 @@ return {
                     supports_live = true,
 
                     -- explorer 专属
-                    follow_file = true, -- 跟随当前 buffer 的文件
+                    follow_file = false, -- 打开时不自动跟随当前文件
                     tree = true, -- 显示文件树
                     git_status = true, -- 显示 git 状态
                     git_status_open = false, -- 为展开的目录递归显示 git 状态
@@ -27,7 +27,7 @@ return {
                     diagnostics_open = false, -- 为展开的目录递归显示诊断
                     watch = true, -- 监听文件变化
                     exclude = {}, -- 排除的 glob 模式
-                    hidden = true,
+                    hidden = false,
                     include = {
                         ".env*",
                     }, -- 包含的 glob 模式（优先级高于 exclude/ignored/hidden）
@@ -129,16 +129,16 @@ return {
         {
             "<leader>e",
             function()
-                Snacks.explorer({ cwd = LazyVim.root() })
+                Snacks.explorer()
             end,
-            desc = "Explorer Snacks (root dir)",
+            desc = "Explorer Snacks (cwd)",
         },
         {
             "<leader>E",
             function()
-                Snacks.explorer()
+                Snacks.explorer.reveal()
             end,
-            desc = "Explorer Snacks (cwd)",
+            desc = "Explorer Reveal File",
         },
     },
 }

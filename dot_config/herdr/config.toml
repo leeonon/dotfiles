@@ -21,10 +21,22 @@ navigate_pane_down = ""
 next_agent = "prefix+."
 previous_agent = "prefix+,"
 
-# leader+a 聚焦代理面板以进行键盘浏览
-# （j/k 移动，enter 跳转，esc 退出）— 需要重建的二进制文件
-agent_picker = "prefix+a"
-
 [theme]
-name = "dracula"
-auto_switch = false
+name = "terminal"
+
+[theme.custom]
+panel_bg = "#1c1c1c"
+surface0 = "#060606"
+surface1 = "#1c1c1c"
+surface_dim = "#060606"
+overlay0 = "#888888"
+overlay1 = "#a8a8a8"
+text = "#e4e4e8"
+subtext0 = "#c7c7c7"
+mauve = "#c4a8d6"
+green = "#6fbe80"
+yellow = "#d9a35a"
+red = "#e08585"
+blue = "#75a1c7"
+teal = "#75a1c7"
+peach = "#c2916a"

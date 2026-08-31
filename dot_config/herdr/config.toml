@@ -22,8 +22,9 @@ next_agent = "prefix+."
 previous_agent = "prefix+,"
 
 [theme]
-name = "terminal"
+name = "dracula"
 
+auto_switch = false
 [theme.custom]
 panel_bg = "#1c1c1c"
 surface0 = "#060606"
@@ -40,3 +41,6 @@ red = "#e08585"
 blue = "#75a1c7"
 teal = "#75a1c7"
 peach = "#c2916a"
+
+[ui]
+show_agent_labels_on_pane_borders = true

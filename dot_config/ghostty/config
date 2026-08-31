@@ -1,9 +1,8 @@
 # auto-update-channel = tip
 # UI
 # 在线终端主题 https://paletty.dev/p/7yC6wrtxudO/pierre-dark
-background-blur-radius = 60
 background-opacity = 0.9
-background-blur=16
+background-blur=30
 
 # background-blur = macos-glass-clear 
 macos-titlebar-style = transparent
@@ -51,7 +50,7 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 16
+font-size = 17
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"
@@ -73,18 +72,18 @@ font-size = 16
 # font-family = "Geist Mono"
 # font-family = "Comic Mono"
 # font-family = "ComicShannsMono Nerd Font"
-font-family = "Zed Plex Mono"
+# font-family = "Zed Plex Mono"
 # font-family = "Iosevka Nerd Font"
 # font-family = "Iosevka"
 # font-family = "Iosevka Custom"
 # font-family = "IoskeleyMono Nerd Font"
-# font-family = "BlexMono Nerd Font"
-# font-family = "Martian Mono"
+font-family = "BlexMono Nerd Font"
+# font-family = "Maple Mono"
 # font-style = Medium
 font-style = Regular
 
 
-adjust-cell-height = 15
+adjust-cell-height = 3
 # adjust-cursor-height = 4
 
 font-feature = +calt
@@ -188,7 +187,7 @@ keybind = super+z=text:\x01\x7a
 # custom-shader = ./ghostty-shaders/sin-interference.glsl
 
 # Cursor
-# custom-shader = ./shaders-cursor/cursor.glsl
+custom-shader = ./shaders-cursor/cursor.glsl
 
 # custom-shader = ./shaders-cursor/cursor_blaze.glsl
 # custom-shader = ./shaders-cursor/cursor_border_1.glsl
@@ -212,5 +211,4 @@ clipboard-trim-trailing-spaces = true
 macos-auto-secure-input        = true
 macos-secure-input-indication  = true
 quit-after-last-window-closed  = false
-scrollback-limit               = 4200
 # shell-integration              = fish

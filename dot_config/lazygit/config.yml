@@ -95,6 +95,6 @@ git:
   allbrancheslogcmd: "git log --graph --color=always --pretty='%cred%h%creset -%c(auto)%d%creset %s %cgreen(%cr) %c(bold blue)<%an>%creset' --all"
   # 自定义分页器
   # https://github.com/jesseduffield/lazygit/blob/master/docs/custom_pagers.md
-  pagers:
+  diffRenderers:
     - colorarg: always
-      pager: delta --dark --paging=never --line-numbers --hyperlinks --side-by-side --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      command: delta --dark --paging=never --line-numbers --hyperlinks --side-by-side --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

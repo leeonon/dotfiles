@@ -1,7 +1,7 @@
 # auto-update-channel = tip
 # UI
 # 在线终端主题 https://paletty.dev/p/7yC6wrtxudO/pierre-dark
-background-opacity = 0.9
+# background-opacity = 0.9
 background-blur=30
 
 # background-blur = macos-glass-clear 
@@ -17,7 +17,8 @@ bold-is-bright = true
 # theme = ayu-dark
 # theme = lake-dweller
 # theme = vscode-dark
-# background = #0b0b12
+background = #0b0b12
+# background = #1e1e1e
 # background  = #141617
 # background = #121212
 
@@ -50,13 +51,11 @@ window-padding-color = extend-always
 # window-decoration = none
 
 # Font
-font-size = 17
+font-size = 16
 # font-family = "CaskaydiaCove Nerd Font"
 # font-family = "SFMono Nerd Font Mono"
 # font-family = "IBM Plex Mono"
 # font-family = "Cascadia Code"
-# font-family-italic = "CartographCF Nerd Font"
-# font-family-bold-italic = "CartographCF Nerd Font"
 # font-family = "Roboto Mono"
 # font-family = "GeistMono Nerd Font"
 # font-family = "DankMono Nerd Font"
@@ -65,6 +64,7 @@ font-size = 17
 # font-family = "Lilex"
 # font-family = "Berkeley Mono"
 # font-family = "TX-02"
+font-family = "Paper Mono"
 # font-family = "Fira Code Regular"
 # font-family = "Spline Sans Mono"
 # font-family = "DM Mono"
@@ -77,13 +77,16 @@ font-size = 17
 # font-family = "Iosevka"
 # font-family = "Iosevka Custom"
 # font-family = "IoskeleyMono Nerd Font"
-font-family = "BlexMono Nerd Font"
+# font-family = "BlexMono Nerd Font"
 # font-family = "Maple Mono"
+font-family-italic = "CartographCF Nerd Font"
+font-family-bold-italic = "CartographCF Nerd Font"
+
 # font-style = Medium
-font-style = Regular
+# font-style = Regular
 
 
-adjust-cell-height = 3
+adjust-cell-height = 12%
 # adjust-cursor-height = 4
 
 font-feature = +calt

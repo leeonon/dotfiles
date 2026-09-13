@@ -122,3 +122,6 @@ vim.keymap.set({ "n", "v" }, "<leader>yp", function()
     vim.fn.setreg("+", output)
     vim.notify("Copied to clipboard: " .. output, vim.log.levels.INFO)
 end, { desc = "Yank file [P]ath with selected lines to clipboard" })
+
+-- nvim 0.12 起内置 :lsp 命令，nvim-lspconfig 不再注册 :LspInfo，等价命令是 :checkhealth vim.lsp
+vim.keymap.set("n", "<leader>cL", "<cmd>checkhealth vim.lsp<cr>", { desc = "Lsp Health" })

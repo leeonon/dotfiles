@@ -3,6 +3,10 @@ return {
     opts = {
         -- classic | modern | helix
         preset = "classic",
+        triggers = {
+            { "<auto>", mode = "nxso" },
+            { "<leader>", mode = { "n", "x" } },
+        },
     },
     config = function(_, opts)
         local wk = require("which-key")

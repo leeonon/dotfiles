@@ -49,6 +49,7 @@ return {
 
             mason_tool_installer.setup({
                 ensure_installed = {
+                    "oxfmt", -- oxc formatter (oxlint LSP 由 mason-lspconfig 自动装)
                     "prettier", -- prettier formatter
                     "prettierd",
                     "stylelint",

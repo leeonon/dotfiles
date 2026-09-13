@@ -82,6 +82,8 @@ return {
                         codeActionOnSave = { enable = true, mode = "problems" },
                     },
                 },
+                -- 仅在项目存在 biome.json(c) 时 attach（lspconfig 自带探测）
+                biome = {},
                 lua_ls = {
                     settings = {
                         Lua = {

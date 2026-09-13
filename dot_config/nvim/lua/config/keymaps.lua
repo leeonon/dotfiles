@@ -6,6 +6,9 @@
 --
 local keymap = vim.keymap
 
+-- leader 是空格。空格本身映射成 Nop，which-key 没接住时不会右移一格。
+keymap.set({ "n", "x" }, "<Space>", "<Nop>", { silent = true, desc = "Leader" })
+
 -- keymap.set("n", "\\", "<CMD>:sp<CR>", { desc = "Split window horizontally" })
 -- keymap.set("n", "|", "<CMD>:vsp<CR>", { desc = "Split window vertically" })
 

@@ -4,7 +4,7 @@ return {
     config = function(_)
         require("obsidian").setup({
             picker = {
-                name = "snacks.pick", -- use snacks picker
+                name = "snacks.picker", -- use snacks picker
                 -- name = "telescope.nvim",   -- or telescope
                 -- name = "fzf-lua",     -- or fzf-lua
                 -- name = "mini.pick",   -- or mini.pick

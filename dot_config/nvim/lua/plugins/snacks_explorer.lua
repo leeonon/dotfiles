@@ -134,7 +134,7 @@ return {
             desc = "Explorer Snacks (cwd)",
         },
         {
-            "<leader>E",
+            "<A-i>",
             function()
                 Snacks.explorer.reveal()
             end,

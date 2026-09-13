@@ -1,3 +1,4 @@
+-- eslint 走 LSP extra；nvim-lint 只保留非 LSP 的 linter
 return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
@@ -5,13 +6,7 @@ return {
         local lint = require("lint")
 
         lint.linters_by_ft = {
-            javascript = { "eslint" },
-            typescript = { "eslint" },
-            javascriptreact = { "eslint" },
-            typescriptreact = { "eslint" },
-            svelte = { "eslint" },
             python = { "pylint" },
-            astro = { "eslint" },
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -20,7 +15,7 @@ return {
             group = lint_augroup,
             callback = function()
                 lint.try_lint(nil, {
-                    ignore_errors = true, -- 忽略没有找到 eslint 配置文件时的错误
+                    ignore_errors = true,
                 })
             end,
         })

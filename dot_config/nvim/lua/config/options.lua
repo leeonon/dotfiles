@@ -46,8 +46,10 @@ vim.opt.listchars = {
 }
 
 vim.o.termguicolors = true
--- 开启ESLint 自动格式化
+-- 开启ESLint 自动格式化（仅 eslint LSP 真正 attach 的项目）
 vim.g.lazyvim_eslint_auto_format = true
+-- Prettier extra 只在找到 Prettier 配置时启用
+vim.g.lazyvim_prettier_needs_config = true
 
 -- vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_picker = "snacks"
@@ -55,15 +57,6 @@ vim.g.lazyvim_picker = "snacks"
 -- LSP Server to use for TypeScript.
 ---@type "vtsls" | "tsgo"
 vim.g.lazyvim_ts_lsp = "tsgo" -- Vue 现在依赖 vtsls 来提供 TypeScript 支持，如果启用了vim.g.lazyvim_ts_lsp = "tsgo", 打开会有问题
-
--- 始终保持光标位于终端的垂直中心
-vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-    callback = function()
-        if vim.fn.mode() == "n" then
-            vim.cmd("normal! zz")
-        end
-    end,
-})
 
 vim.wo.relativenumber = true
 vim.wo.number = true

@@ -1,8 +1,8 @@
 # auto-update-channel = tip
 # UI
 # 在线终端主题 https://paletty.dev/p/7yC6wrtxudO/pierre-dark
-# background-opacity = 0.9
-background-blur=30
+background-opacity = 0.9
+background-blur=60
 
 # background-blur = macos-glass-clear 
 macos-titlebar-style = transparent
@@ -64,12 +64,12 @@ font-size = 16
 # font-family = "Lilex"
 # font-family = "Berkeley Mono"
 # font-family = "TX-02"
-font-family = "Paper Mono"
+# font-family = "Paper Mono"
 # font-family = "Fira Code Regular"
 # font-family = "Spline Sans Mono"
 # font-family = "DM Mono"
 # font-family = "CartographCF Nerd Font"
-# font-family = "Geist Mono"
+font-family = "Geist Mono"
 # font-family = "Comic Mono"
 # font-family = "ComicShannsMono Nerd Font"
 # font-family = "Zed Plex Mono"
@@ -79,8 +79,8 @@ font-family = "Paper Mono"
 # font-family = "IoskeleyMono Nerd Font"
 # font-family = "BlexMono Nerd Font"
 # font-family = "Maple Mono"
-font-family-italic = "CartographCF Nerd Font"
-font-family-bold-italic = "CartographCF Nerd Font"
+# font-family-italic = "CartographCF Nerd Font"
+# font-family-bold-italic = "CartographCF Nerd Font"
 
 # font-style = Medium
 # font-style = Regular
@@ -141,7 +141,8 @@ keybind = super+t=text:\x01\x63
 keybind = super+x=text:\x01\x78
 keybind = super+,=text:\x01\x2c
 # keybind = super+l=text:\x01\x73 #Ctrl + a + s 列出所有会话
-keybind = super+l=text:\x01\x77 #Ctrl + a + w 列出所有窗口
+# Ctrl + a + w 打开 herdr-pickr tabs 选择器（注意：ghostty 不支持行内注释，注释必须独立成行）
+keybind = super+l=text:\x01\x77
 keybind = super+k=text:\x01\x4b
 # 放大当前窗口
 keybind = super+z=text:\x01\x7a

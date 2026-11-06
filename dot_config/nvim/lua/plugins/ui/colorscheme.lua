@@ -96,6 +96,36 @@ return {
         end,
     },
     {
+        "sainnhe/gruvbox-material",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.g.gruvbox_material_background = "soft" -- hard, medium, soft
+            vim.g.gruvbox_material_transparent_background = 2
+            vim.g.gruvbox_material_enable_italic = 0
+            vim.g.gruvbox_material_enable_bold = 1
+            vim.g.gruvbox_material_better_performance = 1
+
+            -- 浮窗背景透明: which-key(v3 WhichKeyNormal -> NormalFloat)、
+            -- lazygit(snacks 浮窗 SnacksNormal/SnacksNormalNC)
+            -- 注: transparent_background=2 不作用于浮窗，需单独覆盖高亮组
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                group = vim.api.nvim_create_augroup("custom_highlights_gruvbox_material", {}),
+                pattern = "gruvbox-material",
+                callback = function()
+                    local set_hl = vim.api.nvim_set_hl
+                    set_hl(0, "NormalFloat", { bg = "NONE" })
+                    set_hl(0, "FloatBorder", { bg = "NONE" })
+                    set_hl(0, "FloatTitle", { bg = "NONE" })
+                    set_hl(0, "WhichKeyNormal", { bg = "NONE" })
+                    set_hl(0, "WhichKeyBorder", { fg = "#928374", bg = "NONE" })
+                    set_hl(0, "SnacksNormal", { bg = "NONE" })
+                    set_hl(0, "SnacksNormalNC", { bg = "NONE" })
+                end,
+            })
+        end,
+    },
+    {
         "ellisonleao/gruvbox.nvim",
         config = function()
             require("gruvbox").setup({
@@ -393,8 +423,8 @@ return {
         config = function(_)
             require("sora").setup({
                 transparent = true, -- transparent background (also strips float/statusline bg)
-                italic = true, -- italics globally
-                italic_comments = true, -- italics for comments (ignored if italic = false)
+                italic = false, -- italics globally
+                italic_comments = false, -- italics for comments (ignored if italic = false)
 
                 on_colors = function(colors)
                     colors.bg = "#000000"
@@ -532,6 +562,59 @@ return {
         end,
     },
     {
+        "bytebeast/kissaten.nvim",
+        lazy = false,
+        priority = 1000,
+        -- version = "*", -- uncomment to stay on tagged releases
+        opts = {
+            -- Styles: "morning" (light) | "afternoon" | "evening" | "midnight"
+            style = "evening", -- dark style used by `colorscheme kissaten`
+            light_style = "morning", -- used when vim.o.background == "light"
+
+            transparent = true, -- true: don't paint the background (terminal blur, tmux)
+            terminal_colors = true, -- theme the colors of :terminal
+            dim_inactive = false, -- true: darken windows you're not working in
+
+            -- "normal" | "high" (brighter comments, line numbers and UI hints)
+            contrast = "normal",
+
+            -- Let comments fade behind the code:
+            --   false                 off (comments at ~4.5:1 contrast)
+            --   true or 0.5           gently faded (~3:1)
+            --   { fade = 0.7 }        clearly faded (~2.5:1); 0 = off, 1 = faintest (1.6:1)
+            --   { fade = 0.7, docstrings = false }  fade comments, keep docstrings
+            subtle_comments = false,
+
+            -- Text attributes per category. Use any of:
+            -- italic, bold, underline, undercurl, strikethrough, reverse
+            styles = {
+                comments = { italic = true },
+                keywords = { italic = true },
+                functions = {}, -- e.g. { bold = true }
+                variables = {},
+                parameters = {}, -- e.g. { italic = true }
+                types = {},
+                strings = {},
+                constants = {},
+                -- Backgrounds: "dark" | "normal" | "transparent"
+                sidebars = "dark", -- file explorer, trouble, outline, ...
+                floats = "dark", -- pickers, hover docs, popups
+            },
+
+            -- Global switches that win over everything above
+            no_italic = false, -- true for fonts without italics
+            no_bold = false,
+            no_underline = false,
+
+            bright_borders = false, -- true: accent-colored float borders
+            lualine_bold = false, -- true: bold mode section in the statusline
+
+            -- Recolor anything (see README "Overrides and recipes"):
+            -- on_colors = function(c) c.syn.parameter = c.yellow end,
+            -- on_highlights = function(hl, c) hl.CursorLineNr = { fg = c.orange, bold = true } end,
+        },
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "yugen",
@@ -556,11 +639,12 @@ return {
             -- colorscheme = "lake-dweller",
             -- colorscheme = "oasis",
             -- colorscheme = "meowsoot",
-            -- colorscheme = "sora",
+            colorscheme = "sora",
             -- colorscheme = "guts",
             -- colorscheme = "nordic",
-            colorscheme = "luna",
+            -- colorscheme = "luna",
             -- colorscheme = "circadia-dark",
+            -- colorscheme = "kissaten", -- "kissaten-morning" | "kissaten-afternoon" | "kissaten-evening" | "kissaten-midnight"
         },
     },
 }

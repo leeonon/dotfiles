@@ -5,6 +5,7 @@
     "leader": "ctrl+o"
   },
   "plugin": [
-    "@slkiser/opencode-quota"
+    "@slkiser/opencode-quota",
+    "file:///Users/ly/.config/opencode/plugins/rexmod-tui/tui.js"
   ]
 }

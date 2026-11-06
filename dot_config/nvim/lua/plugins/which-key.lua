@@ -3,6 +3,9 @@ return {
     opts = {
         -- classic | modern | helix
         preset = "classic",
+        win = {
+            border = "rounded",
+        },
         triggers = {
             { "<auto>", mode = "nxso" },
             { "<leader>", mode = { "n", "x" } },

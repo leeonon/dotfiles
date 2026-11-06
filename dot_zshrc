@@ -166,9 +166,11 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+
+# mbx
+alias cargo='mbx'
+
 # Abbr
-# Claude Code usage
-abbr -S ccusage= 'bunx ccusage' >>/dev/null
 # Markdown Preview
 abbr -S mdp='leaf' >>/dev/null
 # Tokscale
@@ -366,3 +368,21 @@ if [ -n "$OTTY_SHELL_INTEGRATION" ] && [ -r "$OTTY_SHELL_INTEGRATION/otty-integr
   . "$OTTY_SHELL_INTEGRATION/otty-integration.zsh"
 fi
 # <<< otty shell integration <<<
+
+# ctrl+x 清屏（herdr 内会被 herdr 拦截交给 pane，裸窗口时生效）
+bindkey '^X' clear-screen
+
+# Added by cua-driver-rs installer — see https://github.com/trycua/cua
+export PATH="/Users/ly/.local/bin:$PATH"
+
+# rex CLI: 上面的多次 PATH 重排会把 Rex 终端注入的 rex 目录挤掉，必须放在文件末尾才能生效
+# https://www.superlogical.com/rex/docs/automate/cli#path
+if [ -n "$REX_BIN_DIR" ]; then
+    export PATH="$REX_BIN_DIR:$PATH"
+fi
+
+# Added by MiniMax Code
+export PATH="$HOME/.minimax/bin:$PATH"
+
+# mise 管理的 node 必须优先于 Hermes 内置的 ~/.local/bin/node（用户选择用 mise 管 node 版本）
+export PATH="$HOME/.local/share/mise/shims:$PATH"

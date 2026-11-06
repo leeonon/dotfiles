@@ -61,9 +61,48 @@ local function find_tailwind_global_css()
     return scan(root, 0)
 end
 
+-- 从一个 code action 里取出属于当前 buffer 的 text edits
+local function action_text_edits(action, uri)
+    local edit = action.edit
+    if not edit then
+        return nil
+    end
+    if edit.changes then
+        return edit.changes[uri]
+    end
+    if edit.documentChanges then
+        local edits = {}
+        for _, change in ipairs(edit.documentChanges) do
+            -- 带 textDocument 的才是 TextDocumentEdit，其余是 CreateFile/RenameFile 等资源操作
+            if change.textDocument and change.textDocument.uri == uri and change.edits then
+                vim.list_extend(edits, change.edits)
+            end
+        end
+        return edits
+    end
+    return nil
+end
+
+local function pos_le(a, b)
+    return a.line < b.line or (a.line == b.line and a.character <= b.character)
+end
+
+local function ranges_overlap(a, b)
+    return pos_le(a.range.start, b.range["end"]) and pos_le(b.range.start, a.range["end"])
+end
+
 -- tialwindcss 保存时自动执行 code action 修复问题
+--
+-- 这里只能「收集全部 edits → 一次性 apply_text_edits」，不能 for 循环逐条
+-- apply_workspace_edit。tailwind LSP 的 canonical class quickfix 会把
+-- `left-[calc(var(--sidebar-width)*-1)]` 改写成更短的 `-left-(--sidebar-width)`，
+-- 逐条应用时后一条的 range 仍按「改动前」的文本算，offset 一路漂移，
+-- 会把同一行后面的类名和行尾引号一起吃掉（曾把 admin 的 sidebar.tsx 写坏过）。
 local function apply_tailwind_quickfixes(client, bufnr)
     if vim.g.autoformat == false or vim.b[bufnr].autoformat == false then
+        return
+    end
+    if not vim.api.nvim_buf_is_loaded(bufnr) then
         return
     end
     local ns = vim.lsp.diagnostic.get_namespace(client.id)
@@ -93,20 +132,48 @@ local function apply_tailwind_quickfixes(client, bufnr)
         ["end"] = { line = vim.api.nvim_buf_line_count(bufnr), character = 0 },
     }
 
-    local response = client:request_sync("textDocument/codeAction", params, 1000, bufnr)
-    local actions = response and response.result or {}
-    for _, action in ipairs(actions) do
+    local ok, response = pcall(client.request_sync, client, "textDocument/codeAction", params, 1000, bufnr)
+    if not ok or not response or not response.result then
+        return
+    end
+
+    local uri = vim.uri_from_bufnr(bufnr)
+    local edits, accepted, commands = {}, {}, {}
+    for _, action in ipairs(response.result) do
         if not action.edit and client:supports_method("codeAction/resolve") then
             local resolved = client:request_sync("codeAction/resolve", action, 1000, bufnr)
             if resolved and resolved.result then
                 action = resolved.result
             end
         end
-        if action.edit then
-            vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+
+        local action_edits = action_text_edits(action, uri)
+        if action_edits then
+            for _, edit in ipairs(action_edits) do
+                -- 多个 action 可能给出重复或互相重叠的 range，重叠的必须丢掉，
+                -- 否则同一个位置被写两次照样会错位。
+                local dup = false
+                for _, kept in ipairs(accepted) do
+                    if ranges_overlap(edit, kept) then
+                        dup = true
+                        break
+                    end
+                end
+                if not dup then
+                    accepted[#accepted + 1] = edit
+                    edits[#edits + 1] = edit
+                end
+            end
         elseif action.command then
-            client:exec_cmd(action.command, { bufnr = bufnr })
+            commands[#commands + 1] = action.command
         end
+    end
+
+    if #edits > 0 then
+        vim.lsp.util.apply_text_edits(edits, bufnr, client.offset_encoding)
+    end
+    for _, command in ipairs(commands) do
+        client:exec_cmd(command, { bufnr = bufnr })
     end
 end
 

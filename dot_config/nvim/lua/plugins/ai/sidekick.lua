@@ -109,5 +109,39 @@ return {
             mode = { "n", "x" },
             desc = "Sidekick Select Prompt",
         },
+        {
+            "<leader>ay",
+            function()
+                local path = vim.api.nvim_buf_get_name(0)
+                if path == "" then
+                    LazyVim.warn("当前 buffer 没有文件名")
+                    return
+                end
+                vim.fn.setreg("+", path)
+                LazyVim.info("已复制: " .. path)
+            end,
+            mode = { "n" },
+            desc = "Yank Absolute Path",
+        },
+        {
+            "<leader>aY",
+            function()
+                local path = vim.api.nvim_buf_get_name(0)
+                if path == "" then
+                    LazyVim.warn("当前 buffer 没有文件名")
+                    return
+                end
+                local start_line = vim.fn.line("v")
+                local end_line = vim.fn.line(".")
+                if start_line > end_line then
+                    start_line, end_line = end_line, start_line
+                end
+                local text = path .. ":" .. start_line .. "-" .. end_line
+                vim.fn.setreg("+", text)
+                LazyVim.info("已复制: " .. text)
+            end,
+            mode = { "x" },
+            desc = "Yank Path with Line Range",
+        },
     },
 }

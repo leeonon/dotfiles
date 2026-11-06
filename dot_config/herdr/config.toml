@@ -1,14 +1,31 @@
+# 关闭首次运行的引导通知
 onboarding = false
 
 [keys]
+# 前缀键（类似 tmux 的 ctrl+b），以下 prefix+xx 都是"前缀键后再按 xx"
 prefix = "ctrl+a"
-split_vertical = "prefix+%"
-split_horizontal = 'prefix+"'
+
+# tmux: | 左右分、- 上下分
+split_vertical = "prefix+|"
+split_horizontal = "prefix+-"
+
+# 分离当前会话（herdr 退出到后台，用 herdr attach 重连）
 detach = "prefix+d"
 
-# leader+s 打开工作区（“spaces”）选择器（设置移出 prefix+s 以腾出空间）
-workspace_picker = "prefix+s"
+# prefix+s：tmux choose-session；prefix+shift+k：Ghostty Cmd+k / tmux sesh
+workspace_picker = ["prefix+s", "prefix+shift+k"]
+
+# 打开设置面板
 settings = "prefix+shift+s"
+
+# Ghostty Cmd+l 发送 prefix+w，由下方 herdr-pickr tabs-space 承接；
+# goto 回落默认 prefix+g
+
+# Ghostty Cmd+, → prefix+,（tmux rename-window）
+rename_tab = "prefix+,"
+
+# 让出 prefix+K，避免 Cmd+k 变成 swap pane
+swap_pane_up = "prefix+shift+up"
 
 # vim 风格的 j/k 在 spaces 选择器中向上/向下移动选择
 # （释放了 navigate 模式中的窗格上下移动；使用箭头键或 ctrl+b j/k 来聚焦窗格）
@@ -17,19 +34,99 @@ navigate_workspace_down = "j"
 navigate_pane_up = ""
 navigate_pane_down = ""
 
-# leader+. / leader+, 在面板中逐步切换到下一个/上一个代理
-next_agent = "prefix+."
-previous_agent = "prefix+,"
+# 侧边栏 agent 面板：切下一个/上一个 agent
+# agent 切走 prefix+,；Ghostty 已 unbind ctrl+, / ctrl+.
+next_agent = "ctrl+."
+previous_agent = "ctrl+comma"
+
+# vim-herdr-navigation：非 vim pane 里 C-h/j/k/l 切 herdr pane
+# （vim pane 里由 nvim 的 herdr.lua 同键位接管）
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
+
+# 清屏：向当前聚焦窗格发送 ctrl+l 字节，窗格里 shell 自己清屏
+# （ctrl+l 键本身被 vim-herdr-navigation 占用，所以走 shell 命令发字节；
+#   裸 Ghostty 窗口里由 ~/.zshrc 的 bindkey '^X' clear-screen 兜底）
+[[keys.command]]
+key = "ctrl+x"
+type = "shell"
+command = "herdr pane send-keys \"$(herdr pane list | jq -r '.result.panes[] | select(.focused==true) | .pane_id')\" ctrl+l"
+description = "clear focused pane screen"
+
+# herdr-pickr：模糊搜索 + 预览，选中直接跳转；弹窗内 Ctrl+T/R/A/S 切视图
+# prefix+w 即 Ghostty Cmd+l；prefix+shift+r 会顶掉默认的 reload_config，
+# 改用 herdr server reload-config 命令重载
+[[keys.command]]
+key = "prefix+w"
+type = "plugin_action"
+command = "javoscript.herdr-pickr.tabs-space"
+description = "pick tabs in current space"
+
+# 所有 space 的 tab 选择器
+[[keys.command]]
+key = "prefix+shift+r"
+type = "plugin_action"
+command = "javoscript.herdr-pickr.tabs-all"
+description = "pick tabs in all spaces"
+
+# 当前 space 的 agent 选择器
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "javoscript.herdr-pickr.agents-space"
+description = "pick agents in current space"
+
+# 所有 space 的 agent 选择器
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "javoscript.herdr-pickr.agents-all"
+description = "pick agents in all spaces"
+
+# 当前 tab 的窗格选择器
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "javoscript.herdr-pickr.panes-tab"
+description = "pick panes in this tab"
+
+[[keys.command]]
+key = "prefix+k"
+type = "plugin_action"
+command = "herdr-bar.open"
+description = "command bar"
 
 [theme]
 name = "dracula"
 
 auto_switch = false
 [theme.custom]
-panel_bg = "#1c1c1c"
-surface0 = "#060606"
+panel_bg = "transparent"
+# 未选中 tab 无背景（背景 = surface0）；选中 tab 背景走 accent
+surface0 = "transparent"
 surface1 = "#1c1c1c"
-surface_dim = "#060606"
+surface_dim = "#3d3d48"  # 侧边栏右缘竖线/内部横线，轻一点不抢眼
 overlay0 = "#888888"
 overlay1 = "#a8a8a8"
 text = "#e4e4e8"
@@ -43,4 +140,58 @@ teal = "#75a1c7"
 peach = "#c2916a"
 
 [ui]
+# 分割窗格的边框上显示检测到的 agent 标签（无手动 pane 名时）
 show_agent_labels_on_pane_borders = true
+# 侧边栏 agent 状态图标用 symbols 模式：
+# ◐ working / ✓ done / × blocked / ○ idle / · unknown
+status_indicators = "symbols"
+# auto：只为分割窗格画边框（单窗格不画）；always/off 可选
+pane_borders = "auto"
+# 窗格间间隙，共享一条分隔线
+pane_gaps = true
+# 窗格区域的外边框
+pane_outer_borders = true
+# 标签栏右侧
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "hostname" },
+  { type = "datetime", format = "%H:%M" },
+]
+tab_bar_right_separator = " · "
+
+# [ui.sidebar.agents]
+# row_gap = 0
+# # rows = [["state_icon", "machine", "workspace", "tab"], ["agent", "state_text"]]
+# rows = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [["state_icon", "workspace"], ["branch", "git_status"]]
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace", "agent"],
+  [
+    "state_text",
+    # "tab",
+    { token = "pane", fg = "#888888" },
+  ],
+]
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
+[experimental]
+kitty_graphics = true
+
+# >>> herdr-projects key (added by the herdr-projects plugin; `herdr-projects remove-extras` removes it)
+[[keys.command]]
+key = "prefix+y"
+type = "plugin_action"
+command = "herdr-projects.open"
+description = "work board"
+# <<< herdr-projects key

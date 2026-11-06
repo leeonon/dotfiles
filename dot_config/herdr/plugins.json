@@ -1,0 +1,528 @@
+[
+  {
+    "plugin_id": "fullerzz.sesh",
+    "name": "Sesh for Herdr",
+    "version": "0.15.0",
+    "min_herdr_version": "0.8.2",
+    "description": "Sesh-style smart workspace/session manager for Herdr",
+    "manifest_path": "/Users/ly/.config/herdr/plugins/github/fullerzz.sesh-ac3fc6b2e1d3/herdr-plugin.toml",
+    "plugin_root": "/Users/ly/.config/herdr/plugins/github/fullerzz.sesh-ac3fc6b2e1d3",
+    "enabled": true,
+    "platforms": ["linux", "macos"],
+    "build": [
+      {
+        "command": [
+          "go",
+          "build",
+          "-ldflags=-X=github.com/fullerzz/herdr-plugin-sesh/internal/app.Version=0.15.0",
+          "-o",
+          "bin/",
+          "./cmd/herdr-sesh"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": ["./bin/herdr-sesh", "plugin", "watch-history"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "last",
+        "title": "Switch to Previous Workspace",
+        "contexts": ["workspace", "pane"],
+        "command": ["./bin/herdr-sesh", "last"]
+      },
+      {
+        "id": "open-picker",
+        "title": "Open Sesh Picker",
+        "contexts": ["workspace", "pane"],
+        "command": ["./bin/herdr-sesh", "plugin", "open-picker"]
+      },
+      {
+        "id": "open-settings",
+        "title": "Sesh Settings",
+        "contexts": ["workspace", "pane"],
+        "command": ["./bin/herdr-sesh", "plugin", "open-settings"]
+      }
+    ],
+    "events": [
+      {
+        "on": "workspace.closed",
+        "command": ["./bin/herdr-sesh", "plugin", "watch-history"]
+      },
+      {
+        "on": "workspace.focused",
+        "command": ["./bin/herdr-sesh", "plugin", "watch-history"]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "Sesh Picker",
+        "placement": "overlay",
+        "command": ["./bin/herdr-sesh", "picker"]
+      },
+      {
+        "id": "settings",
+        "title": "Sesh Settings",
+        "placement": "overlay",
+        "command": ["./bin/herdr-sesh", "config", "edit"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "fullerzz",
+      "repo": "herdr-plugin-sesh",
+      "resolved_commit": "8b12720366ed412f98445112992bedb4b99a73bc",
+      "managed_path": "/Users/ly/.config/herdr/plugins/github/fullerzz.sesh-ac3fc6b2e1d3",
+      "installed_unix_ms": 1791516630233
+    }
+  },
+  {
+    "plugin_id": "heeler",
+    "name": "heeler",
+    "version": "0.5.0",
+    "min_herdr_version": "0.7.5",
+    "description": "Pair a Heeler device by scanning a QR Pairing Code",
+    "manifest_path": "/Users/ly/.config/herdr/plugins/github/heeler-dd89d5c0f92b/plugin/herdr-plugin.toml",
+    "plugin_root": "/Users/ly/.config/herdr/plugins/github/heeler-dd89d5c0f92b/plugin",
+    "enabled": true,
+    "platforms": ["linux", "macos"],
+    "build": [
+      {
+        "command": ["npm", "ci"]
+      }
+    ],
+    "startup": [
+      {
+        "command": ["node", "src/sidebar-hook.js"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "pair",
+        "title": "Pair a mobile device",
+        "description": "Show a Pairing Code QR for the Heeler app",
+        "contexts": ["global"],
+        "command": ["node", "src/pair-action.js"]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_status_changed",
+        "command": ["node", "src/activity-hook.js"]
+      },
+      {
+        "on": "pane.agent_status_changed",
+        "command": ["node", "src/notify-hook.js"]
+      }
+    ],
+    "panes": [
+      {
+        "id": "pair",
+        "title": "Pair device",
+        "placement": "popup",
+        "width": "100%",
+        "height": "100%",
+        "command": ["node", "src/pair-popup.js"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "ZingerLittleBee",
+      "repo": "Heeler",
+      "subdir": "plugin",
+      "requested_ref": "main",
+      "resolved_commit": "e0ddec2e24aaa64ac7b78f74022c789d42d09d25",
+      "managed_path": "/Users/ly/.config/herdr/plugins/github/heeler-dd89d5c0f92b",
+      "installed_unix_ms": 1789981623434
+    }
+  },
+  {
+    "plugin_id": "herdr-bar",
+    "name": "Bar",
+    "version": "0.8.0",
+    "min_herdr_version": "0.9.0",
+    "description": "Cmd+K command bar with agent icons, fuzzy search, and optional automatic tab titles",
+    "manifest_path": "/Users/ly/.config/herdr/plugins/github/herdr-bar-96eebe452a9c/herdr-plugin.toml",
+    "plugin_root": "/Users/ly/.config/herdr/plugins/github/herdr-bar-96eebe452a9c",
+    "enabled": true,
+    "platforms": ["linux", "macos", "windows"],
+    "startup": [
+      {
+        "command": ["python3", "run.py", "--start-titles"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open bar",
+        "description": "Fuzzy-jump to any tab, pane, or agent",
+        "contexts": ["global"],
+        "platforms": ["linux", "macos"],
+        "command": [
+          "sh",
+          "-c",
+          "herdr_bin=\"${HERDR_BIN_PATH:-herdr}\"; [ -x \"$herdr_bin\" ] || herdr_bin=herdr; exec \"$herdr_bin\" plugin pane open --plugin herdr-bar --entrypoint bar --placement popup"
+        ]
+      },
+      {
+        "id": "open-windows",
+        "title": "Open bar",
+        "description": "Fuzzy-jump to any tab, pane, or agent",
+        "contexts": ["global"],
+        "platforms": ["windows"],
+        "command": ["python3", "run.py", "--open"]
+      },
+      {
+        "id": "start-titles",
+        "title": "Start tab watcher",
+        "description": "Start task title and tab status updates enabled in the plugin config",
+        "contexts": ["global"],
+        "command": ["python3", "run.py", "--start-titles", "--resume"]
+      },
+      {
+        "id": "stop-titles",
+        "title": "Stop tab watcher",
+        "description": "Stop this server's title and status watcher, restoring bare tab names",
+        "contexts": ["global"],
+        "command": ["python3", "run.py", "--stop-titles"]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_detected",
+        "command": ["python3", "run.py", "--start-titles"]
+      }
+    ],
+    "panes": [
+      {
+        "id": "bar",
+        "title": "Bar",
+        "description": "Fuzzy-jump to any tab, pane, or agent",
+        "placement": "popup",
+        "width": "74%",
+        "height": "62%",
+        "command": ["python3", "run.py"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "jeffarese",
+      "repo": "herdr-bar",
+      "resolved_commit": "10d8467c49463d88553115f916711341b29f069b",
+      "managed_path": "/Users/ly/.config/herdr/plugins/github/herdr-bar-96eebe452a9c",
+      "installed_unix_ms": 1792210600361
+    }
+  },
+  {
+    "plugin_id": "herdr-projects",
+    "name": "Projects",
+    "version": "1.2.1",
+    "min_herdr_version": "0.9.3",
+    "description": "A work board: one list of tasks, each delegated one an ordinary herdr agent in its own space",
+    "manifest_path": "/Users/ly/.config/herdr/plugins/github/herdr-projects-b1278ffb803c/herdr-plugin.toml",
+    "plugin_root": "/Users/ly/.config/herdr/plugins/github/herdr-projects-b1278ffb803c",
+    "enabled": true,
+    "platforms": ["linux", "macos"],
+    "build": [
+      {
+        "command": ["sh", "bin/run.sh", "--fetch"]
+      }
+    ],
+    "startup": [
+      {
+        "command": ["sh", "bin/run.sh", "hook"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "approve-current",
+        "title": "Approve the task in the focused pane (the board asks first)",
+        "contexts": ["pane"],
+        "command": ["sh", "bin/run.sh", "approve-current"]
+      },
+      {
+        "id": "coordinator",
+        "title": "Go into the Coordinator's chat",
+        "command": ["sh", "bin/run.sh", "open-coordinator"]
+      },
+      {
+        "id": "open",
+        "title": "Open the work board",
+        "command": ["sh", "bin/run.sh", "open"]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_detected",
+        "command": ["sh", "bin/run.sh", "hook"]
+      },
+      {
+        "on": "pane.agent_status_changed",
+        "command": ["sh", "bin/run.sh", "hook"]
+      },
+      {
+        "on": "pane.closed",
+        "command": ["sh", "bin/run.sh", "hook"]
+      },
+      {
+        "on": "worktree.removed",
+        "command": ["sh", "bin/run.sh", "hook"]
+      }
+    ],
+    "panes": [
+      {
+        "id": "board",
+        "title": "Work board",
+        "placement": "tab",
+        "command": ["sh", "bin/run.sh", "board"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "eliasstravik",
+      "repo": "herdr-projects",
+      "resolved_commit": "963d81b4523f725ee028b893521811afd72d1369",
+      "managed_path": "/Users/ly/.config/herdr/plugins/github/herdr-projects-b1278ffb803c",
+      "installed_unix_ms": 1792210202443
+    }
+  },
+  {
+    "plugin_id": "javoscript.herdr-pickr",
+    "name": "Herdr Pickr",
+    "version": "0.3.0",
+    "min_herdr_version": "0.9.0",
+    "description": "Fuzzy tab, space, agent, and pane pickers with terminal previews.",
+    "manifest_path": "/Users/ly/.config/herdr/plugins/github/javoscript.herdr-pickr-b173f2831b31/herdr-plugin.toml",
+    "plugin_root": "/Users/ly/.config/herdr/plugins/github/javoscript.herdr-pickr-b173f2831b31",
+    "enabled": true,
+    "platforms": ["macos", "linux"],
+    "actions": [
+      {
+        "id": "agents",
+        "title": "Pickr: agents in all spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "agents"]
+      },
+      {
+        "id": "agents-all",
+        "title": "Pickr: agents in all spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "agents-all"]
+      },
+      {
+        "id": "agents-space",
+        "title": "Pickr: agents in this space",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "agents-space"]
+      },
+      {
+        "id": "agents-tab",
+        "title": "Pickr: agents in this tab",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "agents-tab"]
+      },
+      {
+        "id": "panes",
+        "title": "Panes in all spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "panes"]
+      },
+      {
+        "id": "panes-all",
+        "title": "Panes in all spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "panes-all"]
+      },
+      {
+        "id": "panes-space",
+        "title": "Panes in this space",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "panes-space"]
+      },
+      {
+        "id": "panes-tab",
+        "title": "Panes in this tab",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "panes-tab"]
+      },
+      {
+        "id": "spaces",
+        "title": "Pickr: spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "spaces"]
+      },
+      {
+        "id": "tabs",
+        "title": "Pickr: tabs in all spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "tabs"]
+      },
+      {
+        "id": "tabs-all",
+        "title": "Pickr: tabs in all spaces",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "tabs-all"]
+      },
+      {
+        "id": "tabs-space",
+        "title": "Pickr: tabs in this space",
+        "contexts": ["global"],
+        "command": ["lua", "src/open.lua", "tabs-space"]
+      }
+    ],
+    "panes": [
+      {
+        "id": "agents",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "agents"]
+      },
+      {
+        "id": "agents-all",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "agents", "all"]
+      },
+      {
+        "id": "agents-space",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "agents", "space"]
+      },
+      {
+        "id": "agents-tab",
+        "title": "Pickr: agents in this tab",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "agents", "tab"]
+      },
+      {
+        "id": "panes",
+        "title": "Panes in all spaces",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "panes"]
+      },
+      {
+        "id": "panes-all",
+        "title": "Panes in all spaces",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "panes", "all"]
+      },
+      {
+        "id": "panes-space",
+        "title": "Panes in this space",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "panes", "space"]
+      },
+      {
+        "id": "panes-tab",
+        "title": "Panes in this tab",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "panes", "tab"]
+      },
+      {
+        "id": "spaces",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "spaces"]
+      },
+      {
+        "id": "tabs",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "tabs"]
+      },
+      {
+        "id": "tabs-all",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "tabs", "all"]
+      },
+      {
+        "id": "tabs-space",
+        "title": "pickr",
+        "placement": "popup",
+        "width": "80%",
+        "height": "70%",
+        "command": ["lua", "src/main.lua", "tabs", "space"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "javoscript",
+      "repo": "herdr-pickr",
+      "resolved_commit": "587d8b019cc07aee58b4819680b155f6fed27d8b",
+      "managed_path": "/Users/ly/.config/herdr/plugins/github/javoscript.herdr-pickr-b173f2831b31",
+      "installed_unix_ms": 1789896080122
+    }
+  },
+  {
+    "plugin_id": "vim-herdr-navigation",
+    "name": "Vim Herdr Navigation",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Seamless Ctrl+h/j/k/l navigation across herdr panes and Vim/Neovim splits",
+    "manifest_path": "/Users/ly/.config/herdr/plugins/github/vim-herdr-navigation-a8bf42123d81/herdr-plugin.toml",
+    "plugin_root": "/Users/ly/.config/herdr/plugins/github/vim-herdr-navigation-a8bf42123d81",
+    "enabled": true,
+    "platforms": ["linux", "macos"],
+    "actions": [
+      {
+        "id": "down",
+        "title": "Navigate down (Vim/herdr)",
+        "contexts": ["global"],
+        "command": ["bash", "navigate.sh", "down"]
+      },
+      {
+        "id": "left",
+        "title": "Navigate left (Vim/herdr)",
+        "contexts": ["global"],
+        "command": ["bash", "navigate.sh", "left"]
+      },
+      {
+        "id": "right",
+        "title": "Navigate right (Vim/herdr)",
+        "contexts": ["global"],
+        "command": ["bash", "navigate.sh", "right"]
+      },
+      {
+        "id": "up",
+        "title": "Navigate up (Vim/herdr)",
+        "contexts": ["global"],
+        "command": ["bash", "navigate.sh", "up"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "paulbkim-dev",
+      "repo": "vim-herdr-navigation",
+      "resolved_commit": "79679dacc791f70fc34de8b29a3cf9706c0f5b2f",
+      "managed_path": "/Users/ly/.config/herdr/plugins/github/vim-herdr-navigation-a8bf42123d81",
+      "installed_unix_ms": 1789806939354
+    }
+  }
+]
